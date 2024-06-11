@@ -1,5 +1,8 @@
 "use client";
+import Image from 'next/image';
 import { useState } from 'react';
+import leftArrow from '../../public/left-arrow.png'; // Adjust the path as necessary
+import rightArrow from '../../public/right-arrow.png'; // Adjust the path as necessary
 
 interface CarouselProps {
   images: string[];
@@ -17,16 +20,21 @@ const Carousel: React.FC<CarouselProps> = ({ images }) => {
   };
 
   return (
-    <div className="relative w-full h-64 overflow-hidden mt-10">
-  <div className="flex transition-transform duration-300 ease-in-out" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
-      {images.map((image, index) => (
-      <div key={index} className="w-full flex-shrink-0">
-        <img src={image} alt={`Slide ${index}`} className="w-full object-cover rounded-md" style={{ height: '600', objectFit: 'contain' }} />
+    <div className="relative w-full overflow-hidden mt-10" style={{ height: '600px' }}>
+      <div className="flex transition-transform duration-500 ease-out" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
+        {images.map((image, index) => (
+          <div key={index} className="w-full flex-shrink-0">
+            <img src={image} alt={`Slide ${index}`} className="w-full object-cover" style={{ height: '600px', objectFit: 'contain', borderRadius: '5px' }} />
+          </div>
+        ))}
       </div>
-    ))}
-      </div>
-      <button onClick={prevSlide} className="absolute top-1/2 left-0 transform -translate-y-1/2 bg-gray-800 text-white p-2">Prev</button>
-      <button onClick={nextSlide} className="absolute top-1/2 right-0 transform -translate-y-1/2 bg-gray-800 text-white p-2">Next</button>
+      <button onClick={prevSlide} className="absolute top-1/2 left-10 transform -translate-y-1/2 bg-gray-800 text-white p-3 rounded-full shadow-lg hover:bg-gray-700 transition duration-300 z-10">
+      <Image src={leftArrow} alt="Previous" width={24} height={24} />
+      </button>
+      <button onClick={nextSlide} className="absolute top-1/2 right-10 transform -translate-y-1/2 bg-gray-800 text-white p-3 rounded-full shadow-lg hover:bg-gray-700 transition duration-300 z-10">
+      <Image src={rightArrow} alt="Next" width={24} height={24} />
+
+      </button>
     </div>
   );
 };
