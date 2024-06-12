@@ -34,9 +34,9 @@ export const NavLinks = [
       ],
     },
     {
-      title: 'Brands',
+      title: 'Design & Development',
       links: [
-        'Advertise with us',
+        'Build web and mobile apps with us',
       ],
     },
     {
@@ -44,13 +44,9 @@ export const NavLinks = [
       links: [
         'About',
         'Careers',
-        'Support',
-        'Media kit',
-        'Testimonials',
-        'API',
         'Terms of service',
         'Privacy policy',
-        'Cookie policy',
+
       ],
     },
     {
@@ -73,14 +69,12 @@ export const NavLinks = [
       ],
     },
     {
-      title: 'Development Resources',
+      title: 'Hire us',
       links: [
-        'Freelancing',
-        'Development Hiring',
-        'Development Portfolio',
-        'Development Education',
-        'Creative Process',
-        'Development Industry Trends',
+        'Landing Pages',
+        'Web Apps',
+        'Mobile Apps',
+        'No-code Solutions',
       ],
     },
   ];

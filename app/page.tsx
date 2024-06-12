@@ -158,7 +158,7 @@ const Home = async ({ searchParams: { category, endcursor } }: Props) => {
           Limited Design Templates For Creators
         </h1>
         <h2 className="text-x text-gray-100  font-medium leading-snug mb-3 text-left text-gray-200">
-        The largest quantity-limited library for Figma, Tailwind, Webflow, and Framer. Build faster and more unique apps with Framewell.       </h2>
+        The largest quantity-limited library for Figma, Tailwind, Webflow, and Framer. Build faster and unique apps with Framewell.       </h2>
         <div className="flex flex-row justify-start w-full y-5 mb-10 gap-4"></div>
 
         {/* <button
@@ -173,6 +173,8 @@ const Home = async ({ searchParams: { category, endcursor } }: Props) => {
       </div>
 
       <Categories />
+
+
       <section className="projects-grid">
         {projectsToDisplay.map(({ node }: { node: ProjectInterface }) => (
           <ProjectCard
@@ -185,7 +187,14 @@ const Home = async ({ searchParams: { category, endcursor } }: Props) => {
             userId={node?.createdBy.id}
           />
         ))}
+        
       </section>
+      <div className="flex justify-start mt-10">
+  <p className="text-left text-lg font-medium text-teal p-2 rounded-md shadow">
+    3 Available {category} Templates
+  </p>
+</div>
+      
 
       {/* <LoadMore
         startCursor={data?.projectSearch?.pageInfo?.startCursor}

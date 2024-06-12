@@ -27,6 +27,7 @@ const Footer = () => (
       <div className="flex items-start flex-col">
         {/* <Image src="/logo.svg" width={150} height={60} alt="logo" /> */}
 
+
         <p className="text-start text-sm font-normal mt-5 max-w-xs">
           Framewell is the leading agency for limited design and no-code templates
         </p>
@@ -47,27 +48,21 @@ const Footer = () => (
             links={footerLinks[2].links}
           />
         </div>
+        <div className="ml-auto">
 
         <FooterColumn
           title={footerLinks[3].title}
           links={footerLinks[3].links}
         />
 
-        <div className="flex-1 flex flex-col gap-4">
-          <FooterColumn
-            title={footerLinks[4].title}
-            links={footerLinks[4].links}
-          />
-          <FooterColumn
-            title={footerLinks[5].title}
-            links={footerLinks[5].links}
-          />
-        </div>
+</div>
+<div className="ml-auto">
 
         <FooterColumn
           title={footerLinks[6].title}
           links={footerLinks[6].links}
         />
+      </div>
       </div>
     </div>
 
