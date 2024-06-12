@@ -1,7 +1,8 @@
 export const NavLinks = [
     // { href: '/', key: 'Templates', text: 'Limited Templates' },
     // { href: '/', key: 'Hire Us', text: 'Hire Us' },
-    { href: '/hire', key: 'Hire Us', text: 'Hire Us' }
+    { href: '/hire', key: 'Hire Us', text: 'Hire Us' },
+    { href: '/jobs', key: 'Jobs', text: 'Jobs' }
 
   ];
   
@@ -36,7 +37,7 @@ export const NavLinks = [
     {
       title: 'Design & Development',
       links: [
-        'Build web and mobile apps with us',
+        'Build faster web and mobile apps',
       ],
     },
     {

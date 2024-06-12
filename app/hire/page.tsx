@@ -14,11 +14,11 @@ const PricingPage = () => {
   return (
     <div className="container mx-auto px-4 py-12 mb-10">
             <div className="flex flex-col items-center justify-center">
-  <h1 className="text-3xl text-gray-100 font-medium leading-tight mb-4">
+  <h1 className="text-2xl text-gray-100 font-medium leading-tight mb-4 mt-10">
     Choose pricing that works for you
   </h1>
-  <h2 className="text-l text-gray-100 font-medium leading-snug mb-10">
-  No contract, one day delivery. Build pixel-perfect landing pages and apps.
+  <h2 className="text-m text-gray-100 font-medium leading-snug mb-10">
+    One day delivery. No contract, build pixel-perfect landing pages and apps
   </h2>
 </div>
       <div className="flex flex-wrap justify-center gap-8">
@@ -373,6 +373,37 @@ const PricingPage = () => {
             Cancel or pause anytime
           </p>
         </div>
+        <div className="mt-10">
+        <h3 className="text-center mb-10 mt-5 text-2xl text-gray-100 font-medium">What Our Customers Say</h3>
+        <div className="flex overflow-x-auto space-x-4 p-4">
+          {/* Testimonial Box */}
+          <div className="min-w-[200px] rounded overflow-hidden shadow-lg bg-white p-6">
+            <img src="https://via.placeholder.com/150" alt="User" className="w-15 h-15 rounded-full mx-auto mb-4" />
+            <p className="text-center font-medium">John Doe</p>
+            <p className="text-center text-sm text-gray-600">CEO at ExampleCorp</p>
+            <p className="text-center text-gray-500 mt-4">
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor."
+            </p>
+          </div>
+          {/* Repeat for more testimonials */}
+          <div className="min-w-[200px] rounded overflow-hidden shadow-lg bg-white p-6">
+            <img src="https://via.placeholder.com/150" alt="User" className="w-15 h-15 rounded-full mx-auto mb-4" />
+            <p className="text-center font-medium">Jane Smith</p>
+            <p className="text-center text-sm text-gray-600">Marketing Director</p>
+            <p className="text-center text-gray-500 mt-4">
+              "Dignissim cras tincidunt lobortis feugiat vivamus at augue eget arcu dictum varius duis at."
+            </p>
+          </div>
+          <div className="min-w-[200px] rounded overflow-hidden shadow-lg bg-white p-6">
+            <img src="https://via.placeholder.com/150" alt="User" className="w-15 h-15 rounded-full mx-auto mb-4" />
+            <p className="text-center font-medium">Jane Smith</p>
+            <p className="text-center text-sm text-gray-600">Marketing Director</p>
+            <p className="text-center text-gray-500 mt-4">
+              "Dignissim cras tincidunt lobortis feugiat vivamus at augue eget arcu dictum varius duis at."
+            </p>
+          </div>
+        </div>
+      </div>
       </div>
     </div>
   );
