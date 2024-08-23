@@ -13,31 +13,22 @@ const Navbar = () => {
       <div className="flex-1 flexStart gap-5">
         <Link href="/">
           <Image
-            src="/framewell-logo.png"
-            width={150}
-            height={40}
+            src="/taskdone-logo.png"
+            width={80}
+            height={80}
             alt="framewell-logo"
-            style={{ marginLeft: 30 }}
+            style={{ marginLeft: 35, paddingTop: 20 }}
           ></Image>
         </Link>
-        <ul className="flex-1 flex justify-end items-center pr-10">
-          {NavLinks.map((link, index) => (
+        <ul className="flex-1 flex justify-end items-center pr-10 mr-20">
+        {NavLinks.map((link, index) => (
             <li key={index}>
-              {index === 0 ? (
                 <Link
                   href={link.href}
-                  className="bg-emerald-200 text-teal-900 px-5 py-2 rounded-md hover:bg-teal-200 hover:text-teal-900 font-bold"
+                  className="text-teal-900 font-medium mr-5 hover:underline" // Updated for header link style
                 >
                   {link.text}
                 </Link>
-              ) : (
-                <Link
-                className="bg-gray-500 text-teal-900 px-5 py-2 rounded-md hover:scale-110 hover:text-teal-900 font-bold transition-transform duration-150"
-                href={link.href}
-                >
-                  {link.text}
-                </Link>
-              )}
             </li>
           ))}
         </ul>

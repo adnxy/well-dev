@@ -8,6 +8,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Space Grotesk", sans-serif;
 }
 
 .logo {
@@ -15,7 +16,7 @@
 }
 
 body {
-  font-family: Inter;
+  font-family: "Space Grotesk";
 }
 
 .flexCenter {
@@ -28,6 +29,13 @@ body {
 
 .flexStart {
   @apply flex items-center justify-start;
+}
+
+.layout-background {
+  background-color: #f8f8f8; /* Replace "#f0f0f0" with your desired color */
+}
+
+.footer {
 }
 
 .text-small {
@@ -107,7 +115,8 @@ body {
 
 /* Footer */
 .footer {
-  @apply flex-col paddings w-full gap-20 bg-light-white;
+  @apply flex-col paddings w-full gap-20;
+  background-color: #35393d; /* Replace "#f0f0f0" with your desired color */
 }
 
 .footer_copyright {

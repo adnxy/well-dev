@@ -2,7 +2,6 @@ import { footerLinks } from "@/constants";
 import Image from "next/image";
 import Link from "next/link";
 
-
 type ColumnProps = {
   title: string;
   links: Array<string>;
@@ -22,14 +21,13 @@ const FooterColumn = ({ title, links }: ColumnProps) => (
 );
 
 const Footer = () => (
-  <section className="flexStart footer">
-    <div className="flex flex-col gap-12 w-full">
-      <div className="flex items-start flex-col">
+  <section className="flexStart footer" style={{ borderTop: '1px solid #d3d3d3' }}>
+    <div className="flex flex-col gap-12 w-full  flex-col text-white">
+      <div className="flex items-start">
         {/* <Image src="/logo.svg" width={150} height={60} alt="logo" /> */}
 
-
         <p className="text-start text-sm font-normal mt-5 max-w-xs">
-          Framewell is the leading agency for limited design and no-code templates
+           Applysnap is a platform that allows you to outsource your job applications to a virtual assistant. We apply to jobs across the web and schedule interviews for you.
         </p>
       </div>
       <div className="flex flex-wrap gap-12">
@@ -49,25 +47,22 @@ const Footer = () => (
           />
         </div>
         <div className="ml-auto">
-
-        <FooterColumn
-          title={footerLinks[3].title}
-          links={footerLinks[3].links}
-        />
-
-</div>
-<div className="ml-auto">
-
-        <FooterColumn
-          title={footerLinks[6].title}
-          links={footerLinks[6].links}
-        />
-      </div>
+          <FooterColumn
+            title={footerLinks[3].title}
+            links={footerLinks[3].links}
+          />
+        </div>
+        <div className="ml-auto">
+          <FooterColumn
+            title={footerLinks[6].title}
+            links={footerLinks[6].links}
+          />
+        </div>
       </div>
     </div>
 
-    <div className="flexBetween footer_copyright">
-      <p>@ 2024 Framewell. All rights reserved</p>
+    <div className="flexBetween footer_copyright text-white">
+      <p>@ 2024 Applysnap. All rights reserved</p>
       {/* <p className="text-gray">
         <span className="text-black font-semibold">10,214</span> projects
         submitted

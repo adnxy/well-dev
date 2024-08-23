@@ -7,9 +7,9 @@ import Footer from "./components/Footer";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Framewell - High-quality UI templates",
+  title: "Applysnap - Outsource your job applications",
   description:
-    "Premium and high-quality templates for Figma, Webflow, Tailwind & CSS",
+    "Applysnap is a platform that allows you to outsource your job applications to a virtual assistant. We apply to jobs across the web and schedule interviews for you.",
 };
 
 export default function RootLayout({
@@ -19,9 +19,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
+      <body className="layout-background">
         <Navbar />
-        <main> {children}</main>
+        <main className="layout-background"> {children}</main>
         <Footer />
       </body>
     </html>

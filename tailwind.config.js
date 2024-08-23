@@ -18,8 +18,9 @@ module.exports = {
         gray: '#4D4A4A',
         'gray-100': '#3d3d4e',
         'black-100': '#252525',
-        'primary-purple': '#9747FF',
+        'primary-green': '#A7F3D0',
         'gray-50': '#D9D9D9',
+        'gray-200': '#F3F3F4',
       },
       boxShadow: {
         menu: '0px 159px 95px rgba(13,12,34,0.01), 0px 71px 71px rgba(13,12,34,0.02), 0px 18px 39px rgba(13,12,34,0.02), 0px 0px 0px rgba(13,12,34,0.02)',
@@ -29,7 +30,19 @@ module.exports = {
       },
       maxWidth: {
         '10xl': '1680px'
-      }
+      },
+      fontFamily: {
+        'clash-grotesk': ['Clash Grotesk', 'sans-serif'],
+      },
+      fontSize: {
+        'headline': '2.45rem', // Adjust the size as needed
+        'subheadline': '1.25rem', // Adjust the size as needed
+      },
+      fontWeight: {
+        'headline': '800', 
+        'subheadline': '400', 
+
+      },
     },
   },
   plugins: [],

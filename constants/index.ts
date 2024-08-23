@@ -1,8 +1,9 @@
 export const NavLinks = [
     // { href: '/', key: 'Templates', text: 'Limited Templates' },
     // { href: '/', key: 'Hire Us', text: 'Hire Us' },
-    { href: '/hire', key: 'Hire Us', text: 'Hire Us' },
-    { href: '/jobs', key: 'Jobs', text: 'Jobs' }
+    { href: '/hire', key: 'Hire Us', text: 'Pricing' },
+    { href: '/jobs', key: 'Jobs', text: 'Get Started' },
+    { href: '/jobs', key: 'Jobs', text: 'Privacy Policy' }
 
   ];
   
@@ -10,7 +11,11 @@ export const NavLinks = [
  { name: "Figma", img: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg"},
  { name: "Framer", img: "https://cdn.icon-icons.com/icons2/2389/PNG/512/framer_logo_icon_145269.png"},
  { name: "Webflow", img: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/webflow/webflow-original.svg"},
- { name: "Tailwind", img: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg"},
+//  { name: "Tailwind", img: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg"},
+//  { name: "React Native", img: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg"},
+//  { name: "React", img: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg"},
+//  { name: "Next.js", img: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg"},
+
   ]
   
   export const footerLinks = [

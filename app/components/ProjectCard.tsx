@@ -56,7 +56,7 @@ const ProjectCard = ({ id, image, title, name, avatarUrl, userId }: Props) => {
                                 className="rounded-full"
                                 alt="profile image"
                             /> */}
-            <p className="text-base font-medium">{name}</p>
+            <p className="text-base font-medium text-zinc-600">{name}</p>
           </div>
         </Link>
 
@@ -69,7 +69,7 @@ const ProjectCard = ({ id, image, title, name, avatarUrl, userId }: Props) => {
           </div>
           <div className="flexCenter gap-2">
             {/* <Image src="/eye.svg" width={12} height={9} alt="eye" /> */}
-            <p className="text-base bg-teal-100 text-green-900 px-2 py-1 rounded-md">{`$${95}`}</p>
+            <p className="text-base text-zinc-600 px-2 py-1 rounded-md">{`$${95}`}</p>
           </div>
         </div>
       </div>
