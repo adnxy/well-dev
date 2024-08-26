@@ -1,8 +1,13 @@
 "use client"; 
 import React, { useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify'; // {{ edit_1 }}
+import 'react-toastify/dist/ReactToastify.css'; // {{ edit_2 }}
 
 const ResumeUpload = () => {
   const [file, setFile] = useState<File | null>(null);
+  const [loading, setLoading] = useState<boolean>(false); // {{ edit_1 }}
+  const [message, setMessage] = useState<string>(''); // {{ edit_2 }}
+  const [showToast, setShowToast] = useState<boolean>(false); // {{ edit_1 }}
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files) {
@@ -15,6 +20,7 @@ const ResumeUpload = () => {
 
     const formData = new FormData();
     formData.append('pdfFile', file);
+    setLoading(true); // {{ edit_3 }}
 
     try {
       const response = await fetch('http://localhost:4500/api/upload', {
@@ -22,14 +28,14 @@ const ResumeUpload = () => {
         body: formData,
       });
       if (response.ok) {
-        // Handle success
-        console.log('Upload successful');
+        toast.success('Upload successful!'); // {{ edit_3 }}
       } else {
-        // Handle error
-        console.error('Upload failed');
+        toast.error('Upload failed.'); // {{ edit_4 }}
       }
     } catch (error) {
-      console.error('Error uploading file:', error);
+      toast.error('Error uploading file.'); // {{ edit_5 }}
+    } finally {
+      setLoading(false); // {{ edit_6 }}
     }
   };
 
@@ -43,9 +49,15 @@ const ResumeUpload = () => {
         id="resume-upload"
         onChange={handleFileChange} // Handle file change
       />
-      <button className="bg-primary-green text-gray rounded-md p-2" onClick={handleUpload}>
-        Upload Resume
+      <button className="bg-primary-green text-gray rounded-md p-2" onClick={handleUpload} disabled={loading}> 
+        {loading ? 'Uploading...' : 'Upload Resume'} 
       </button>
+      {showToast && (
+        <div className="toast-message">
+          {message}
+        </div>
+      )} {/* {{ edit_4 }} */}
+      <ToastContainer /> {/* {{ edit_7 }} */}
     </div>
   );
 };
