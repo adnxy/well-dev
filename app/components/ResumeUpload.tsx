@@ -3,12 +3,15 @@ import React, { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify'; // {{ edit_1 }}
 import 'react-toastify/dist/ReactToastify.css'; // {{ edit_2 }}
 
+import { useEffect } from 'react';
+
 const ResumeUpload = () => {
   const [file, setFile] = useState<File | null>(null);
-  const [loading, setLoading] = useState<boolean>(false); // {{ edit_1 }}
-  const [message, setMessage] = useState<string>(''); // {{ edit_2 }}
-  const [showToast, setShowToast] = useState<boolean>(false); // {{ edit_1 }}
-  const [error, setError] = useState<string | null>(null); // {{ edit_3 }}
+  const [loading, setLoading] = useState<boolean>(false);
+  const [message, setMessage] = useState<string>('');
+  const [showToast, setShowToast] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
+  const [navigate, setNavigate] = useState<boolean>(false);
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files) {
@@ -21,7 +24,7 @@ const ResumeUpload = () => {
 
     const formData = new FormData();
     formData.append('pdfFile', file);
-    setLoading(true); // {{ edit_4 }}
+    setLoading(true);
 
     try {
       const response = await fetch('http://localhost:4500/api/upload', {
@@ -29,16 +32,17 @@ const ResumeUpload = () => {
         body: formData,
       });
       if (response.ok) {
-        toast.success('Upload successful!'); // {{ edit_5 }}
+        toast.success('Upload successful!'); // {{ edit_1 }}
+        window.location.href = '/submit'; // {{ edit_2 }} // Navigate to the next page
       } else {
-        setError('Upload failed.'); // {{ edit_6 }}
-        toast.error('Upload failed.'); // {{ edit_7 }}
+        setError('Upload failed.');
+        toast.error('Upload failed.');
       }
     } catch (error) {
-      setError('Error uploading file.'); // {{ edit_8 }}
-      toast.error('Error uploading file.'); // {{ edit_9 }}
+      setError('Error uploading file.');
+      toast.error('Error uploading file.');
     } finally {
-      setLoading(false); // {{ edit_10 }}
+      setLoading(false); // {{ edit_3 }}
     }
   };
 
@@ -50,7 +54,7 @@ const ResumeUpload = () => {
         className="border border-gray-300 rounded-md p-3 mr-4 w-1/1"
         aria-label="Upload your resume"
         id="resume-upload"
-        onChange={handleFileChange} // Handle file change
+        onChange={handleFileChange}
       />
       <button className="bg-primary-green text-gray rounded-md p-2" onClick={handleUpload} disabled={loading}> 
         {loading ? 'Uploading...' : 'Upload Resume'} 
@@ -59,9 +63,9 @@ const ResumeUpload = () => {
         <div className="toast-message">
           {message}
         </div>
-      )} {/* {{ edit_11 }} */}
-      {error && <div className="error-message">{error}</div>} {/* {{ edit_12 }} */}
-      <ToastContainer /> {/* {{ edit_13 }} */}
+      )}
+      {error && <div className="error-message">{error}</div>}
+      <ToastContainer />
     </div>
   );
 };
