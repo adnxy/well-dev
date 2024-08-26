@@ -8,6 +8,7 @@ const ResumeUpload = () => {
   const [loading, setLoading] = useState<boolean>(false); // {{ edit_1 }}
   const [message, setMessage] = useState<string>(''); // {{ edit_2 }}
   const [showToast, setShowToast] = useState<boolean>(false); // {{ edit_1 }}
+  const [error, setError] = useState<string | null>(null); // {{ edit_3 }}
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files) {
@@ -20,7 +21,7 @@ const ResumeUpload = () => {
 
     const formData = new FormData();
     formData.append('pdfFile', file);
-    setLoading(true); // {{ edit_3 }}
+    setLoading(true); // {{ edit_4 }}
 
     try {
       const response = await fetch('http://localhost:4500/api/upload', {
@@ -28,14 +29,16 @@ const ResumeUpload = () => {
         body: formData,
       });
       if (response.ok) {
-        toast.success('Upload successful!'); // {{ edit_3 }}
+        toast.success('Upload successful!'); // {{ edit_5 }}
       } else {
-        toast.error('Upload failed.'); // {{ edit_4 }}
+        setError('Upload failed.'); // {{ edit_6 }}
+        toast.error('Upload failed.'); // {{ edit_7 }}
       }
     } catch (error) {
-      toast.error('Error uploading file.'); // {{ edit_5 }}
+      setError('Error uploading file.'); // {{ edit_8 }}
+      toast.error('Error uploading file.'); // {{ edit_9 }}
     } finally {
-      setLoading(false); // {{ edit_6 }}
+      setLoading(false); // {{ edit_10 }}
     }
   };
 
@@ -56,8 +59,9 @@ const ResumeUpload = () => {
         <div className="toast-message">
           {message}
         </div>
-      )} {/* {{ edit_4 }} */}
-      <ToastContainer /> {/* {{ edit_7 }} */}
+      )} {/* {{ edit_11 }} */}
+      {error && <div className="error-message">{error}</div>} {/* {{ edit_12 }} */}
+      <ToastContainer /> {/* {{ edit_13 }} */}
     </div>
   );
 };
