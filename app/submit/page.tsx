@@ -15,7 +15,7 @@ const Submit = () => {
 
   return (
     <div className="flex flex-col items-center mt-20">
-      <h1 className="text-2xl mb-4">Submit Your Information</h1>
+      <h1 className="text-2xl mb-4">Submit your resume, we do the rest</h1>
       <form onSubmit={handleSubmit} className="w-1/3">
         <div className="mb-4">
           <label htmlFor="email" className="block mb-2">Email:</label>
