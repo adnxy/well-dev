@@ -20,6 +20,7 @@ import "@fontsource/space-grotesk"; // Defaults to weight 400
 import Image from "next/image";
 import Framer from "../public/framer-logo.svg";
 import Faq from "./components/FAQ";
+import ResumeUpload from "./components/ResumeUpload";
 
 // import "@fontsource/space-grotesk/400.css"; // Specify weight
 // import "@fontsource/space-grotesk/400-italic.css"; // Specify weight and style
@@ -188,20 +189,9 @@ const Home = async ({ searchParams: { category, endcursor } }: Props) => {
         You upload the resume, we do the rest
       </h1>
       <p className="text-subheadline font-subheadline mt-2">
-        Auto applies to hundreds of jobs across the web.{" "}
+        Auto apply to hundreds of jobs across the web.{" "}
       </p>
-      <div className="flex justify-end mt-20 mb-30">
-        <input
-          type="file"
-          accept="application/pdf"
-          className="border border-gray-300 rounded-md p-3 mr-4 w-1/1"
-          aria-label="Upload your resume"
-          id="resume-upload"
-        />
-        <button className="bg-primary-green text-gray rounded-md p-2">
-          Upload Resume
-        </button>
-      </div>
+    <ResumeUpload />
 
       <div className="mb-80"></div>
       <section className="flexStart flex-col paddings mb-16">
