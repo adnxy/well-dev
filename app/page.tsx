@@ -52,7 +52,9 @@ export const revalidate = 0;
 
 const Home = async ({ searchParams: { category, endcursor } }: Props) => {
   // const data = await fetchAllProjects(category, endcursor) as ProjectSearch
-  
+
+  const yourBackgroundImage = "../public/pattern-background.png";
+
   const data = {
     projectSearch: {
       edges: [
@@ -184,37 +186,44 @@ const Home = async ({ searchParams: { category, endcursor } }: Props) => {
   }
 
   return (
-    <section className="flexStart flex-col paddings mb-16">
+    <section
+      className="flexStart flex-col paddings mb-16"
+      style={{
+        backgroundImage: `url(${yourBackgroundImage})`,
+        backgroundPosition: 'center', 
+        backgroundRepeat: 'no-repeat' 
+      }}
+    >
       <h1 className="text-headline font-headline mt-40 mb-50 font-bold">
         You Upload The Resume, We Do The Rest
       </h1>
       <p className="text-subheadline font-subheadline mt-2">
         Auto apply to hundreds of jobs across the web.{" "}
       </p>
-    <ResumeUpload />
+      <ResumeUpload />
 
       <div className="mb-80"></div>
       <section className="flexStart flex-col paddings mb-16">
-        <div className="flex justify-between mt-50">
-          <div className="flex flex-col w-1/2">
-            <h2 className="text-headline font-headline mt-10">How It Works</h2>
-            <p className="text-subheadline font-subheadline mt-2">
-              Automate the way you apply to jobs.
-            </p>
+        <h2 className="text-headline font-headline mt-10">How it works</h2>
+        <p className="text-subheadline font-subheadline mt-2">
+          Automate the way you apply to jobs.
+        </p>
+        <div className="flex justify-between mt-10">
+          <div className="border p-4 m-2 rounded-md shadow-md w-1/4">
+            <h3 className="font-bold">Step 1</h3>
+            <p>Upload your resume</p>
           </div>
-          <div className="flex flex-col w-1/2">
-            <div className="border p-4 m-2 rounded-md shadow-md">
-              <h3 className="font-bold">Step 1</h3>
-              <p>Upload your resume.</p>
-            </div>
-            <div className="border p-4 m-2 rounded-md shadow-md">
-              <h3 className="font-bold">Step 2</h3>
-              <p>We apply to jobs across the web.</p>
-            </div>
-            <div className="border p-4 m-2 rounded-md shadow-md">
-              <h3 className="font-bold">Step 3</h3>
-              <p>Schedule interviews and get weekly reports</p>
-            </div>
+          <div className="border p-4 m-2 rounded-md shadow-md w-1/4">
+            <h3 className="font-bold">Step 2</h3>
+            <p>We apply to jobs across the web.</p>
+          </div>
+          <div className="border p-4 m-2 rounded-md shadow-md w-1/4">
+            <h3 className="font-bold">Step 3</h3>
+            <p>Schedule interviews and get weekly reports</p>
+          </div>
+          <div className="border p-4 m-2 rounded-md shadow-md w-1/4">
+            <h3 className="font-bold">Step 4</h3>
+            <p>Get Hired.</p>
           </div>
         </div>
       </section>
@@ -249,7 +258,8 @@ const Home = async ({ searchParams: { category, endcursor } }: Props) => {
               Pricing
             </h2>
             <p className="mb-5 font-light text-gray-500 sm:text-xl dark:text-gray-400">
-              Here at Applysnap we focus on markets where technology and inovation can unlock long-term value and drive economic growth.
+              Here at Applysnap we focus on markets where technology and
+              inovation can unlock long-term value and drive economic growth.
             </p>
           </div>
           <div className="space-y-8 lg:grid lg:grid-cols-3 sm:gap-6 xl:gap-10 lg:space-y-0">
@@ -262,7 +272,7 @@ const Home = async ({ searchParams: { category, endcursor } }: Props) => {
               </p>
               <div className="flex justify-center items-baseline my-8">
                 <span className="mr-2 text-5xl font-extrabold text-zinc-800">
-                  $29
+                  $25
                 </span>
                 <span className="text-gray-500 dark:text-gray-400">/month</span>
               </div>
@@ -486,7 +496,9 @@ const Home = async ({ searchParams: { category, endcursor } }: Props) => {
                 <span className="mr-2 text-5xl font-extrabold text-zinc-800">
                   $99
                 </span>
-                <span className="text-gray-500 dark:text-gray-400">/one-time</span>
+                <span className="text-gray-500 dark:text-gray-400">
+                  /one-time
+                </span>
               </div>
               <ul role="list" className="mb-8 space-y-4 text-left">
                 <li className="flex items-center space-x-3">
@@ -532,12 +544,16 @@ const Home = async ({ searchParams: { category, endcursor } }: Props) => {
                       clipRule="evenodd"
                     ></path>
                   </svg>
-                  <span className="text-zinc-600">All future updates included</span>
+                  <span className="text-zinc-600">
+                    All future updates included
+                  </span>
                 </li>
               </ul>
               <div className="flex items-center">
                 <input type="checkbox" id="terms" className="mr-2" />
-                <label htmlFor="terms" className="text-teal-900">Include resume redesign</label>
+                <label htmlFor="terms" className="text-teal-900">
+                  Include resume redesign
+                </label>
               </div>
             </div>
           </div>
