@@ -7,17 +7,21 @@ const Submit = () => {
   const [location, setLocation] = useState<string>("");
   const [salary, setSalary] = useState<number | "">("");
   const [position, setPosition] = useState<string>("");
+  const [showPricing, setShowPricing] = useState<boolean>(false); // New state for pricing section
+  const [selectedPricing, setSelectedPricing] = useState<string | null>('normal'); // State to track selected pricing
+  const [message, setMessage] = useState<string>("Apply to approximately 70 jobs each month."); // New state for message
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     // Handle form submission logic here
     console.log({ email, location, salary });
+    setShowPricing(true); // Show pricing section after submit
   };
 
   return (
     <div className="flex flex-col items-center mt-20">
       <h1 className="text-2xl mb-10">Enter your information</h1>
-      <form onSubmit={handleSubmit} className="w-1/3">
+     {!showPricing &&  <form onSubmit={handleSubmit} className="w-1/3">
         <div className="mb-4">
           <label htmlFor="email" className="block mb-2">
             Email:
@@ -76,11 +80,38 @@ const Submit = () => {
           type="submit"
           className="bg-primary-green text-white rounded-md p-4 w-full mb-20 mt-5"
         >
-          {" "}
-          {/* Increased padding and width */}
           Submit
         </button>
-      </form>
+      </form>}
+      {showPricing && ( // Conditional rendering for pricing section
+        <div className="mt-10">
+          <h2 className="text-xl mb-4">Choose Pricing</h2>
+          <p>{message}</p> {/* Display the message */}
+
+          <div className="flex space-x-4">
+            {["normal", "intensive"].map((option) => (
+              <>
+                <button
+                  key={option}
+                  onClick={() => {
+                    setSelectedPricing(option); // Set selected pricing on click
+                    // Show message based on selected pricing
+                    const newMessage = option === "normal" 
+                      ? "Apply to approximately 70 jobs each month." 
+                      : "Apply to approximately 150 jobs each month.";
+                    setMessage(newMessage); // Update message state
+                  }}
+                  className={`border border-gray-300 rounded-md p-4 w-full transition duration-200 ${
+                    selectedPricing === option ? "bg-primary-green text-white" : "hover:bg-gray-200"
+                  }`}
+                >
+                  {option.charAt(0).toUpperCase() + option.slice(1)} {/* Capitalize option */}
+                </button>
+              </>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 };
