@@ -8,8 +8,12 @@ const Submit = () => {
   const [salary, setSalary] = useState<number | "">("");
   const [position, setPosition] = useState<string>("");
   const [showPricing, setShowPricing] = useState<boolean>(false); // New state for pricing section
-  const [selectedPricing, setSelectedPricing] = useState<string | null>('normal'); // State to track selected pricing
-  const [message, setMessage] = useState<string>("Apply to approximately 70 jobs each month."); // New state for message
+  const [selectedPricing, setSelectedPricing] = useState<string | null>(
+    "normal"
+  ); // State to track selected pricing
+  const [message, setMessage] = useState<string>(
+    "Apply to approximately 70 jobs each month."
+  ); // New state for message
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
@@ -21,73 +25,74 @@ const Submit = () => {
   return (
     <div className="flex flex-col items-center mt-20">
       <h1 className="text-2xl mb-10">Enter your information</h1>
-     {!showPricing &&  <form onSubmit={handleSubmit} className="w-1/3">
-        <div className="mb-4">
-          <label htmlFor="email" className="block mb-2">
-            Email:
-          </label>
-          <input
-            type="email"
-            id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-            className="border border-gray-300 rounded-md p-2 w-full"
-            placeholder="Enter your email"
-          />
-        </div>
-        <div className="mb-4">
-          <label htmlFor="position" className="block mb-2">
-            Position:
-          </label>
-          <input
-            type="text"
-            id="position"
-            value={position}
-            onChange={(e) => setPosition(e.target.value)}
-            required
-            className="border border-gray-300 rounded-md p-2 w-full"
-            placeholder="Software Engineer, Product Manager, etc."
-          />
-        </div>
-        <div className="mb-4">
-          <label htmlFor="location" className="block mb-2">
-            Location:
-          </label>
-          <input
-            type="text"
-            id="location"
-            value={location}
-            onChange={(e) => setLocation(e.target.value)}
-            className="border border-gray-300 rounded-md p-2 w-full"
-            placeholder="Remote or City, State"
-          />
-        </div>
-        <div className="mb-4">
-          <label htmlFor="salary" className="block mb-2">
-            Expected Salary:
-          </label>
-          <input
-            type="number"
-            id="salary"
-            value={salary}
-            onChange={(e) => setSalary(Number(e.target.value))}
-            className="border border-gray-300 rounded-md p-2 w-full"
-            placeholder="Enter your expected salary in USD"
-          />
-        </div>
-        <button
-          type="submit"
-          className="bg-primary-green text-white rounded-md p-4 w-full mb-20 mt-5"
-        >
-          Submit
-        </button>
-      </form>}
+      {!showPricing && (
+        <form onSubmit={handleSubmit} className="w-1/3">
+          <div className="mb-4">
+            <label htmlFor="email" className="block mb-2">
+              Email:
+            </label>
+            <input
+              type="email"
+              id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              className="border border-gray-300 rounded-md p-2 w-full"
+              placeholder="Enter your email"
+            />
+          </div>
+          <div className="mb-4">
+            <label htmlFor="position" className="block mb-2">
+              Position:
+            </label>
+            <input
+              type="text"
+              id="position"
+              value={position}
+              onChange={(e) => setPosition(e.target.value)}
+              required
+              className="border border-gray-300 rounded-md p-2 w-full"
+              placeholder="Software Engineer, Product Manager, etc."
+            />
+          </div>
+          <div className="mb-4">
+            <label htmlFor="location" className="block mb-2">
+              Location:
+            </label>
+            <input
+              type="text"
+              id="location"
+              value={location}
+              onChange={(e) => setLocation(e.target.value)}
+              className="border border-gray-300 rounded-md p-2 w-full"
+              placeholder="Remote or City, State"
+            />
+          </div>
+          <div className="mb-4">
+            <label htmlFor="salary" className="block mb-2">
+              Expected Salary:
+            </label>
+            <input
+              type="number"
+              id="salary"
+              value={salary}
+              onChange={(e) => setSalary(Number(e.target.value))}
+              className="border border-gray-300 rounded-md p-2 w-full"
+              placeholder="Enter your expected salary in USD"
+            />
+          </div>
+          <button
+            type="submit"
+            className="bg-primary-green text-white rounded-md p-4 w-full mb-20 mt-5"
+          >
+            Submit
+          </button>
+        </form>
+      )}
       {showPricing && ( // Conditional rendering for pricing section
         <div className="mt-10">
           <h2 className="text-xl mb-4">Choose Pricing</h2>
           <p>{message}</p> {/* Display the message */}
-
           <div className="flex space-x-4">
             {["normal", "intensive"].map((option) => (
               <>
@@ -96,16 +101,20 @@ const Submit = () => {
                   onClick={() => {
                     setSelectedPricing(option); // Set selected pricing on click
                     // Show message based on selected pricing
-                    const newMessage = option === "normal" 
-                      ? "Apply to approximately 70 jobs each month." 
-                      : "Apply to approximately 150 jobs each month.";
+                    const newMessage =
+                      option === "normal"
+                        ? "Apply to approximately 70 jobs each month."
+                        : "Apply to approximately 150 jobs each month.";
                     setMessage(newMessage); // Update message state
                   }}
                   className={`border border-gray-300 rounded-md p-4 w-full transition duration-200 ${
-                    selectedPricing === option ? "bg-primary-green text-white" : "hover:bg-gray-200"
+                    selectedPricing === option
+                      ? "bg-primary-green text-white"
+                      : "hover:bg-gray-200"
                   }`}
                 >
-                  {option.charAt(0).toUpperCase() + option.slice(1)} {/* Capitalize option */}
+                  {option.charAt(0).toUpperCase() + option.slice(1)}{" "}
+                  {/* Capitalize option */}
                 </button>
               </>
             ))}
