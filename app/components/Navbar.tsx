@@ -1,13 +1,18 @@
+'use client';
+
 import { NavLinks } from "@/constants";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import AuthProviders from "./AuthProviders";
 import Button from "./Button";
+import { usePathname } from "next/navigation"; // Import usePathname
 
 const Navbar = () => {
-  const session = null;
-  const isDashboard = false; // Replace with actual logic to determine if the route is dashboard
+  const pathname = usePathname(); // Get current pathname
+  const isDashboard = pathname === "/dashboard"; // Check if current route is dashboard
+
+  if (isDashboard) return null; // Hide header if on dashboard
 
   return (
     <nav className="flexBetween navbar h-16"> {/* Reduced height */}
