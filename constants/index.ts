@@ -1,7 +1,7 @@
 export const NavLinks = [
   // { href: '/', key: 'Templates', text: 'Limited Templates' },
   // { href: '/', key: 'Hire Us', text: 'Hire Us' },
-  { href: "/hire", key: "Hire Us", text: "Pricing" },
+  { href: "/login", key: "Hire Us", text: "Login" },
   // { href: '/jobs', key: 'Jobs', text: 'Get Started' },
   { href: "/jobs", key: "Jobs", text: "Privacy Policy" },
 ];

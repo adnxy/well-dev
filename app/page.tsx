@@ -15,6 +15,14 @@ import projectDefault8 from "../public/project-dribble3.png";
 import projectDefault9 from "../public/project-dribble4.png";
 import projectDefault10 from "../public/project-dribble5.png";
 import projectDefault11 from "../public/project-dribble6.png";
+import uber from "../public/uber.svg";
+import adobe from "../public/adobe.svg";
+import pg from "../public/procter-and-gamble.svg";
+import wordpress from "../public/wordpress.svg";
+import airbnb from "../public/airbnb.svg";
+import rb from "../public/red-bull.svg";
+import grab from "../public/grab.svg";
+
 import Button from "./components/Button";
 import "@fontsource/space-grotesk"; // Defaults to weight 400
 import Image from "next/image";
@@ -171,6 +179,17 @@ const Home = async ({ searchParams: { category, endcursor } }: Props) => {
     },
   ];
 
+  const testimonials = [
+    {
+      name: "John Doe",
+      feedback: "This service saved me so much time! I landed a job within weeks.",
+    },
+    {
+      name: "Jane Smith",
+      feedback: "I love how easy it is to apply for multiple jobs at once!",
+    },
+  ];
+
   const projectsToDisplay = data?.projectSearch?.edges || [];
 
   if (projectsToDisplay.length === 0) {
@@ -198,11 +217,27 @@ const Home = async ({ searchParams: { category, endcursor } }: Props) => {
         You Upload The Resume, We Do The Rest
       </h1>
       <p className="text-subheadline font-subheadline mt-2">
-        Auto apply to hundreds of jobs across the web.{" "}
+        Auto apply to hundreds of jobs across the web and get interview invites.{" "}
       </p>
       <ResumeUpload />
 
-      <div className="mb-80"></div>
+      {/* New Section for Users Hired By */}
+      <section className="flexStart flex-col paddings mb-16">
+        <p className="text-subheadline font-subheadline mt-40 mb-5">
+        Our customers had interviews with leading companies around the world.
+        </p>
+        <div className="flex justify-center items-center mt-4 space-x-8">
+          <Image src={uber} alt="Uber" width={60} height={30} />
+          <Image src={adobe} alt="Adobe" width={40} height={30} />
+          <Image src={airbnb} alt="Airbnb" width={100} height={30} />
+          <Image src={pg} alt="Procter and Gamble" width={60} height={30} />
+          <Image src={wordpress} alt="Wordpress" width={40} height={30} />
+          <Image src={grab} alt="Grab" width={80} height={30} />
+          {/* <Image src={rb} alt="Red Bull" width={80} height={30} /> */}
+        </div>
+      </section>
+
+      <div className="mb-30"></div>
       <section className="flexStart flex-col paddings mb-16">
         <h2 className="text-headline font-headline mt-10">How it works</h2>
         <p className="text-subheadline font-subheadline mt-2">
@@ -559,6 +594,20 @@ const Home = async ({ searchParams: { category, endcursor } }: Props) => {
           </div>
         </div>
       </section>
+
+      {/* New Testimonials Section */}
+      <section className="flexStart flex-col paddings mb-16">
+        <h2 className="text-headline font-headline mt-10">What our users are saying</h2>
+        <div className="flex flex-col mt-4">
+          {testimonials.map((testimonial, index) => (
+            <div key={index} className="border p-4 m-2 rounded-md shadow-md">
+              <p className="font-bold">{testimonial.name}</p>
+              <p>{testimonial.feedback}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
       <Faq faqData={faqData} />
     </section>
   );

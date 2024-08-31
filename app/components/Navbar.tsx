@@ -7,9 +7,10 @@ import Button from "./Button";
 
 const Navbar = () => {
   const session = null;
+  const isDashboard = false; // Replace with actual logic to determine if the route is dashboard
 
   return (
-    <nav className="flexBetween navbar">
+    <nav className="flexBetween navbar h-16"> {/* Reduced height */}
       <div className="flex-1 flexStart gap-5">
         <Link href="/">
           <Image
@@ -17,15 +18,15 @@ const Navbar = () => {
             width={80}
             height={80}
             alt="framewell-logo"
-            style={{ marginLeft: 35, paddingTop: 20 }}
+            style={{ marginLeft: 35, paddingTop: 10 }} // Adjusted padding for less height
           ></Image>
         </Link>
         <ul className="flex-1 flex justify-end items-center pr-10 mr-20">
-        {NavLinks.map((link, index) => (
+        {!isDashboard && NavLinks.map((link, index) => ( // Conditional rendering based on route
             <li key={index}>
                 <Link
                   href={link.href}
-                  className="text-teal-900 font-medium mr-5 hover:underline" // Updated for header link style
+                  className="text-teal-900 font-medium mr-5 hover:underline"
                 >
                   {link.text}
                 </Link>
