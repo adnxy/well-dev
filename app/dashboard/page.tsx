@@ -42,15 +42,12 @@ const Dashboard = () => {
   const router = useRouter();
 
   useEffect(() => {
-    // Fetch logo from the web
     setLogoUrl(
       "https://logowik.com/content/uploads/images/google-tasks7052.logowik.com.webp"
-    ); // Replace with actual logo URL
+    );
   }, []);
 
   const handleLogout = () => {
-    // Add any logout logic here (e.g., clearing session, tokens, etc.)
-    // For now, we'll just navigate to the landing page
     router.push("/");
   };
 
@@ -74,10 +71,10 @@ const Dashboard = () => {
             <FaChevronRight size={15} />
           )}
         </button>
-        <nav>
+        <nav className="mt-5"> {/* Increased margin-top here */}
           <a
             href="/dashboard"
-            className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-200"
+            className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-200 mt-12"
           >
             {sidebarOpen ? "Applications" : <FaFileAlt size={20} />}
           </a>
@@ -94,12 +91,10 @@ const Dashboard = () => {
       <div className="flex-1 flex flex-col overflow-hidden">
         <header className="flex justify-between items-center p-4 bg-white border-b border-gray-200 h-20">
           <div className="flex items-center">
-            {/* Logo from URL */}
             <div className="mr-20">
               {logoUrl && (
                 <img src={logoUrl} alt="Logo" className="h-10 mr-10" />
-              )}{" "}
-              {/* Logo image */}
+              )}
             </div>
             <button
               onClick={() => setSidebarOpen(!sidebarOpen)}
