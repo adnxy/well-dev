@@ -213,17 +213,19 @@ const Home = async ({ searchParams: { category, endcursor } }: Props) => {
         backgroundRepeat: 'no-repeat' 
       }}
     >
-      <h1 className="text-headline font-headline mt-40 mb-50 font-bold">
-        You Upload The Resume, We Do The Rest
-      </h1>
-      <p className="text-subheadline font-subheadline mt-2">
-        Auto apply to hundreds of jobs across the web and get interview invites.{" "}
-      </p>
-      <ResumeUpload />
+      <div className="mt-60"> {/* Added this div with margin-top */}
+        <h1 className="text-headline font-headline mb-50 font-bold">
+          You Upload The Resume, We Do The Rest
+        </h1>
+        <p className="text-subheadline font-subheadline mt-2">
+          Auto apply to hundreds of jobs across the web and get interview invites.{" "}
+        </p>
+        <ResumeUpload />
+      </div>
 
       {/* New Section for Users Hired By */}
       <section className="flexStart flex-col paddings mb-16">
-        <p className="text-subheadline font-subheadline mt-40 mb-5">
+        <p className="text-subheadline font-subheadline mt-80 mb-5">
         Our customers had interviews with leading companies around the world.
         </p>
         <div className="flex justify-center items-center mt-4 space-x-8">

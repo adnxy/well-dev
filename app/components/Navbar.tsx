@@ -15,7 +15,7 @@ const Navbar = () => {
   if (isDashboard) return null; // Hide header if on dashboard
 
   return (
-    <nav className="flexBetween navbar h-16"> {/* Reduced height */}
+    <nav className="flexBetween navbar h-20"> {/* Reduced height */}
       <div className="flex-1 flexStart gap-5">
         <Link href="/">
           <Image
