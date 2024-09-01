@@ -24,7 +24,7 @@ const Submit = () => {
 
   return (
     <div className="flex flex-col items-center mt-20">
-      <h1 className="text-2xl mb-10">Enter your information</h1>
+      <h1 className="text-2xl mb-10">Enter your details</h1>
       {!showPricing && (
         <form onSubmit={handleSubmit} className="w-1/3">
           <div className="mb-4">
@@ -43,7 +43,7 @@ const Submit = () => {
           </div>
           <div className="mb-4">
             <label htmlFor="position" className="block mb-2">
-              Position:
+              Desired Position:
             </label>
             <input
               type="text"
@@ -57,7 +57,7 @@ const Submit = () => {
           </div>
           <div className="mb-4">
             <label htmlFor="location" className="block mb-2">
-              Location:
+              Job Location:
             </label>
             <input
               type="text"
@@ -85,7 +85,7 @@ const Submit = () => {
             type="submit"
             className="bg-primary-green text-white rounded-md p-4 w-full mb-20 mt-5"
           >
-            Submit
+            Start applying to jobs
           </button>
         </form>
       )}

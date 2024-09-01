@@ -10,7 +10,7 @@ import { usePathname } from "next/navigation"; // Import usePathname
 
 const Navbar = () => {
   const pathname = usePathname(); // Get current pathname
-  const isDashboard = pathname === "/dashboard"; // Check if current route is dashboard
+  const isDashboard = pathname === "/dashboard" || pathname === "/profile"; // Check if current route is dashboard
 
   if (isDashboard) return null; // Hide header if on dashboard
 

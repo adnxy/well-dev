@@ -293,7 +293,7 @@ const Home = async ({ searchParams: { category, endcursor } }: Props) => {
               Pricing
             </h2>
             <p className="mb-5 font-light text-gray-500 sm:text-xl dark:text-gray-400">
-              Here at Applysnap we focus on markets where technology and
+              Here at Applyinbox we focus on markets where technology and
               inovation can unlock long-term value and drive economic growth.
             </p>
           </div>

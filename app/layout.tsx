@@ -7,9 +7,9 @@ import Footer from "./components/Footer";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Applysnap - Outsource your job applications",
+  title: "Applyinbox - Automate your job applications",
   description:
-    "Applysnap is a platform that allows you to outsource your job applications to a virtual assistant. We apply to jobs across the web and schedule interviews for you.",
+    "Applyinbox is a platform that allows you to automate your job applications. We apply to jobs across the web and schedule interviews for you.",
 };
 
 export default function RootLayout({

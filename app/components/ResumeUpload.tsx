@@ -1,71 +1,80 @@
 "use client"; 
 import React, { useState } from 'react';
-import { ToastContainer, toast } from 'react-toastify'; // {{ edit_1 }}
-import 'react-toastify/dist/ReactToastify.css'; // {{ edit_2 }}
-
-import { useEffect } from 'react';
+import { FaUpload } from 'react-icons/fa';
+import { useRouter } from 'next/navigation';
 
 const ResumeUpload = () => {
-  const [file, setFile] = useState<File | null>(null);
-  const [loading, setLoading] = useState<boolean>(false);
-  const [message, setMessage] = useState<string>('');
-  const [showToast, setShowToast] = useState<boolean>(false);
-  const [error, setError] = useState<string | null>(null);
-  const [navigate, setNavigate] = useState<boolean>(false);
+  const [resumeFile, setResumeFile] = useState<File | null>(null);
+  const [uploadStatus, setUploadStatus] = useState<string>('');
+  const router = useRouter();
 
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.files) {
-      setFile(event.target.files[0]);
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      setResumeFile(e.target.files[0]);
     }
   };
 
   const handleUpload = async () => {
-    if (!file) return;
+    if (!resumeFile) {
+      setUploadStatus('Please select a file first.');
+      return;
+    }
 
-    const formData = new FormData();
-    formData.append('pdfFile', file);
-    setLoading(true);
+    setUploadStatus('Uploading...');
 
+    // Here you would implement the actual upload logic
+    // For now, we'll simulate an upload with a timeout
     try {
-      const response = await fetch('http://localhost:4500/api/upload', {
-        method: 'POST',
-        body: formData,
-      });
-      if (response.ok) {
-        toast.success('Upload successful!'); // {{ edit_1 }}
-        window.location.href = '/submit'; // {{ edit_2 }} // Navigate to the next page
-      } else {
-        setError('Upload failed.');
-        toast.error('Upload failed.');
-      }
+      await new Promise(resolve => setTimeout(resolve, 2000)); // Simulate 2 second upload
+      console.log('Uploading file:', resumeFile.name);
+      setUploadStatus('Resume uploaded successfully!');
+      
+      // After successful upload, navigate to the submit page
+      setTimeout(() => {
+        router.push('/submit');
+      }, 1000); // Wait 1 second before navigating
     } catch (error) {
-      setError('Error uploading file.');
-      toast.error('Error uploading file.');
-    } finally {
-      setLoading(false); // {{ edit_3 }}
+      console.error('Upload failed:', error);
+      setUploadStatus('Upload failed. Please try again.');
     }
   };
 
   return (
-    <div className="flex justify-end mt-20 mb-30">
-      <input
-        type="file"
-        accept="application/pdf"
-        className="border border-gray-300 rounded-md p-3 mr-4 w-1/1"
-        aria-label="Upload your resume"
-        id="resume-upload"
-        onChange={handleFileChange}
-      />
-      <button className="bg-primary-green text-gray rounded-md p-2" onClick={handleUpload} disabled={loading}> 
-        {loading ? 'Uploading...' : 'Upload Resume'} 
-      </button>
-      {showToast && (
-        <div className="toast-message">
-          {message}
-        </div>
+    <div className="mt-8">
+      <div className="flex items-center justify-center flex-col">
+        <input
+          type="file"
+          id="resume"
+          accept=".pdf"
+          onChange={handleFileChange}
+          className="sr-only"
+        />
+        <label
+          htmlFor="resume"
+          className="w-full max-w-md flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-lg font-medium text-white bg-[#40A578] hover:bg-[#368f68] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#40A578] transition duration-150 ease-in-out cursor-pointer mb-4"
+        >
+          <FaUpload className="h-5 w-5 inline-block mr-2" />
+          {resumeFile ? resumeFile.name : 'Select Resume'}
+        </label>
+        {resumeFile && (
+          <button
+            onClick={handleUpload}
+            className="w-full max-w-md flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-lg font-medium text-white bg-[#40A578] hover:bg-[#368f68] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#40A578] transition duration-150 ease-in-out"
+          >
+            Upload Resume
+          </button>
+        )}
+      </div>
+      {uploadStatus && (
+        <p className="mt-2 text-center text-sm text-gray-600">
+          {uploadStatus}
+        </p>
       )}
-      {error && <div className="error-message">{error}</div>}
-      <ToastContainer />
+      {resumeFile && !uploadStatus && (
+        <p className="mt-2 text-center text-sm text-gray-600">
+          File selected: {resumeFile.name}
+        </p>
+      )}
     </div>
   );
 };
