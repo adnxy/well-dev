@@ -17,13 +17,13 @@ const Dashboard = () => {
       id: 1,
       title: "Software Engineer",
       description: "Full-stack position at Tech Co.",
-      status: "Pending",
+      status: "Applied",
     },
     {
       id: 2,
       title: "UX Designer",
       description: "Senior role at Design Studio",
-      status: "Interviewed",
+      status: "Interview Invitation",
     },
     {
       id: 3,
@@ -37,6 +37,30 @@ const Dashboard = () => {
       description: "Entry-level position at Data Corp",
       status: "Offered",
     },
+    {
+      id: 5,
+      title: "Frontend Developer",
+      description: "React specialist at Web Solutions Inc.",
+      status: "Pending",
+    },
+    {
+      id: 6,
+      title: "DevOps Engineer",
+      description: "Cloud infrastructure role at CloudTech",
+      status: "Applied",
+    },
+    {
+      id: 7,
+      title: "AI Research Scientist",
+      description: "Machine learning focus at AI Innovations",
+      status: "Interview Invitation",
+    },
+    {
+      id: 8,
+      title: "Mobile App Developer",
+      description: "iOS specialist at App Creators",
+      status: "Interviewed",
+    },
   ]);
   const [logoUrl, setLogoUrl] = useState("");
   const router = useRouter();
@@ -49,6 +73,25 @@ const Dashboard = () => {
 
   const handleLogout = () => {
     router.push("/");
+  };
+
+  const getStatusColor = (status: string) => {
+    switch (status) {
+      case "Applied":
+        return "bg-purple-200 text-purple-800";
+      case "Interview Invitation":
+        return "bg-green-200 text-green-800"; // Changed to mint green
+      case "Pending":
+        return "bg-yellow-200 text-yellow-800";
+      case "Interviewed":
+        return "bg-blue-200 text-blue-800";
+      case "Rejected":
+        return "bg-red-200 text-red-800";
+      case "Offered":
+        return "bg-green-200 text-green-800";
+      default:
+        return "bg-gray-200 text-gray-800";
+    }
   };
 
   return (
@@ -71,7 +114,7 @@ const Dashboard = () => {
             <FaChevronRight size={15} />
           )}
         </button>
-        <nav className="mt-5"> {/* Increased margin-top here */}
+        <nav className="mt-5">
           <a
             href="/dashboard"
             className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-200 mt-12"
@@ -126,15 +169,9 @@ const Dashboard = () => {
                   <h3 className="font-semibold text-blue-800">{job.title}</h3>
                   <p className="text-sm text-blue-600">{job.description}</p>
                   <span
-                    className={`inline-block px-2 py-1 mt-2 text-xs font-semibold rounded-full ${
-                      job.status === "Pending"
-                        ? "bg-yellow-200 text-yellow-800"
-                        : job.status === "Interviewed"
-                        ? "bg-blue-200 text-blue-800"
-                        : job.status === "Rejected"
-                        ? "bg-red-200 text-red-800"
-                        : "bg-green-200 text-green-800"
-                    }`}
+                    className={`inline-block px-2 py-1 mt-2 text-xs font-semibold rounded-full ${getStatusColor(
+                      job.status
+                    )}`}
                   >
                     {job.status}
                   </span>
