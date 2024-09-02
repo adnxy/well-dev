@@ -75,7 +75,7 @@ const Dashboard = () => {
     router.push("/");
   };
 
-  const getStatusColor = (status: string) => {
+  const getStatusColor = (status: string    ) => {
     switch (status) {
       case "Applied":
         return "bg-purple-200 text-purple-800";
@@ -134,14 +134,15 @@ const Dashboard = () => {
       <div className="flex-1 flex flex-col overflow-hidden">
         <header className="flex justify-between items-center p-4 bg-white border-b border-gray-200 h-20">
           <div className="flex items-center">
-            <div className="mr-20">
-              {logoUrl && (
-                <img src={logoUrl} alt="Logo" className="h-10 mr-10" />
-              )}
-            </div>
+            {/* Logo that hides when sidebar is closed */}
+            {sidebarOpen && logoUrl && (
+              <div className="absolute top-4 left-4"> {/* Moved logo to top left corner */}
+                <img src={logoUrl} alt="Logo" className="h-10" />
+              </div>
+            )}
             <button
               onClick={() => setSidebarOpen(!sidebarOpen)}
-              className="md:hidden mr-4"
+              className="md:hidden mr-3"
             >
               <FaBars size={24} />
             </button>
@@ -155,19 +156,43 @@ const Dashboard = () => {
         </header>
 
         <main className="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200 p-4">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4"> {/* Increased gap between cards */}
+            <div className="bg-white rounded-lg shadow p-8 flex flex-col justify-center"> {/* Increased padding and centered content */}
+              <h3 className="font-semibold">Total Job Applications</h3>
+              <p className="text-2xl font-semibold">{jobApplications.length}</p>
+              <hr className="my-2" />
+              <p className="text-gray-300">All applications submitted.</p>
+            </div>
+            <div className="bg-white rounded-lg shadow p-8 flex flex-col justify-center"> {/* Increased padding and centered content */}
+              <h3 className="font-semibold">Pending Applications</h3>
+              <p className="text-2xl font-semibold">{jobApplications.filter(job => job.status === "Pending").length}</p>
+              <hr className="my-2" />
+              <p>Applications awaiting response.</p>
+            </div>
+            <div className="bg-white rounded-lg shadow p-8 flex flex-col justify-center"> {/* Increased padding and centered content */}
+              <h3 className="font-semibold">Interviews</h3>
+              <p className="text-2xl font-semibold">{jobApplications.filter(job => job.status === "Interview Invitation").length}</p>
+              <hr className="my-2" />
+              <p>Applications with scheduled interviews.</p>
+            </div>
+            <div className="bg-white rounded-lg shadow p-8 flex flex-col justify-center"> {/* Increased padding and centered content */}
+              <h3 className="font-semibold">Current Plan</h3>
+              <p className="text-2xl font-semibold">Normal</p>
+              <hr className="my-2" />
+              <p>Your current job search strategy.</p>
+            </div>
+          </div>
+
           <div className="bg-white rounded-lg shadow p-6">
             <h2 className="text-xl font-semibold mb-4">Job Applications</h2>
-            <p className="text-gray-600 mb-4">
-              Total Applications: {jobApplications.length}
-            </p>
             <ul className="space-y-4">
               {jobApplications.map((job) => (
                 <li
                   key={job.id}
-                  className="bg-white p-4 rounded-md shadow hover:bg-gray-50 transition duration-150 ease-in-out"
+                  className="bg-white p-6 rounded-md shadow hover:bg-gray-50 transition duration-150 ease-in-out" // Increased padding for larger height
                 >
                   <h3 className="font-semibold text-blue-800">{job.title}</h3>
-                  <p className="text-sm text-blue-600">{job.description}</p>
+                  <p className="text-sm text-gray-600">{job.description}</p> {/* Changed text color to gray */}
                   <span
                     className={`inline-block px-2 py-1 mt-2 text-xs font-semibold rounded-full ${getStatusColor(
                       job.status
