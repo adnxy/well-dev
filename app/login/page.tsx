@@ -14,14 +14,14 @@ const Login = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100"> {/* Changed background color to light gray */}
-      <div className="p-12 bg-white rounded-lg shadow-xl w-full max-w-xl"> {/* Increased max-width and padding */}
-        <h1 className="text-4xl font-bold mb-10 text-center text-gray-800">Login</h1> {/* Increased font size and margin */}
-        <form className="space-y-8" onSubmit={handleLogin}> {/* Increased space between form elements */}
+    <div className="flex items-center justify-center min-h-screen bg-gray-30"> 
+      <div className="p-10 bg-white rounded-lg shadow-xl w-full max-w-md">
+        <h1 className="text-3xl font-bold mb-8 text-center text-gray-800">Welcome back!</h1>
+        <form className="space-y-6" onSubmit={handleLogin}>
           <div>
             <label
               htmlFor="email"
-              className="block text-sm font-medium text-gray-700 mb-2" {/* Added margin-bottom */}
+              className="block text-sm font-medium text-gray-700"
             >
               Email
             </label>
@@ -29,14 +29,14 @@ const Login = () => {
               type="email"
               id="email"
               name="email"
-              className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#40A578] focus:border-[#40A578]" {/* Increased padding and changed focus colors */}
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
               required
             />
           </div>
           <div>
             <label
               htmlFor="password"
-              className="block text-sm font-medium text-gray-700 mb-2" {/* Added margin-bottom */}
+              className="block text-sm font-medium text-gray-700"
             >
               Password
             </label>
@@ -44,13 +44,13 @@ const Login = () => {
               type="password"
               id="password"
               name="password"
-              className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#40A578] focus:border-[#40A578]" {/* Increased padding and changed focus colors */}
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
               required
             />
           </div>
           <button
             type="submit"
-            className="w-full py-4 px-6 border border-transparent rounded-md shadow-sm text-lg font-medium text-white bg-[#40A578] hover:bg-[#368f68] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#40A578]" {/* Updated button color and increased padding and font size */}
+            className="w-full py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-500 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
           >
             Sign in
           </button>

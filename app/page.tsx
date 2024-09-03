@@ -296,9 +296,9 @@ const Home = ({ searchParams: { category, endcursor } }: Props) => {
           <Image src={uber} alt="Uber" width={60} height={30} />
           <Image src={adobe} alt="Adobe" width={40} height={30} />
           <Image src={airbnb} alt="Airbnb" width={100} height={30} />
-          <Image src={pg} alt="Procter and Gamble" width={60} height={30} />
           <Image src={wordpress} alt="Wordpress" width={40} height={30} />
-          <Image src={grab} alt="Grab" width={80} height={30} />
+          <Image src={pg} alt="Procter and Gamble" width={60} height={30} />
+          {/* <Image src={grab} alt="Grab" width={80} height={30} /> */}
           {/* <Image src={rb} alt="Red Bull" width={80} height={30} /> */}
         </div>
       </section>

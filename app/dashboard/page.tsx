@@ -95,9 +95,9 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="flex h-screen bg-gray-100 font-sans">
+    <div className="flex h-screen bg-gray-100 font-sans mx-40 rounded-lg"> {/* Added border radius */}
       {/* Sidebar */}
-      <div
+      {/* <div
         className={`bg-white text-gray-800 ${
           sidebarOpen ? "w-64" : "w-16"
         } space-y-6 py-7 px-2 absolute inset-y-0 left-0 transform ${
@@ -128,10 +128,10 @@ const Dashboard = () => {
             {sidebarOpen ? "Profile" : <FaUser size={20} />}
           </a>
         </nav>
-      </div>
+      </div> */}
 
       {/* Main Content */}
-      <div className="flex-1 flex flex-col overflow-hidden">
+      <div className="flex-1 flex flex-col overflow-hidden rounded-lg">
         <header className="flex justify-between items-center p-4 bg-white border-b border-gray-200 h-20">
           <div className="flex items-center">
             {/* Logo that hides when sidebar is closed */}
@@ -147,15 +147,24 @@ const Dashboard = () => {
               <FaBars size={24} />
             </button>
           </div>
+          {/* Moved sidebar elements to the left of the page */}
+          <div className="flex space-x-4 absolute left-40">
+            <a href="/dashboard" className="flex items-center text-gray-500 hover:text-gray-800 mr-5">
+              <FaFileAlt size={16} className="mr-2" /> Applications
+            </a>
+            <a href="/profile" className="flex items-center text-gray-500 hover:text-gray-800">
+              <FaUser size={16} className="mr-2" /> Profile
+            </a>
+          </div>
           <button
             onClick={handleLogout}
-            className="text-gray-500 hover:text-gray-800 flex items-center mr-5"
+            className="text-gray-500 hover:text-gray-800 flex items-center"
           >
             <FaSignOutAlt size={20} className="mr-2" /> Logout
           </button>
         </header>
 
-        <main className="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200 p-4">
+        <main className="flex-1 overflow-hidden bg-gray-200 p-4"> {/* Removed scrollbar */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
             <div className="bg-white rounded-lg shadow p-8 flex flex-col justify-center">
               <h3 className="font-semibold">Notifications</h3>
