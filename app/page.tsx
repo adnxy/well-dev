@@ -256,22 +256,8 @@ const Home = ({ searchParams: { category, endcursor } }: Props) => {
         <ResumeUpload />
       </div>
 
-      {/* New Section for Users Hired By */}
-      <section className="flexStart flex-col paddings mb-16">
-        <p className="text-subheadline font-subheadline mt-40 mb-5 text-gray-400">
-        Our customers had interviews with leading companies around the world.
-        </p>
-        <div className="flex justify-center items-center mt-4 space-x-8">
-          <Image src={uber} alt="Uber" width={60} height={30} />
-          <Image src={adobe} alt="Adobe" width={40} height={30} />
-          <Image src={airbnb} alt="Airbnb" width={100} height={30} />
-          <Image src={pg} alt="Procter and Gamble" width={60} height={30} />
-          <Image src={wordpress} alt="Wordpress" width={40} height={30} />
-          <Image src={grab} alt="Grab" width={80} height={30} />
-          {/* <Image src={rb} alt="Red Bull" width={80} height={30} /> */}
-        </div>
-      </section>
-      <section ref={sectionRef} className="flexStart flex-col paddings mb-16 w-full max-w-4xl mx-auto">
+
+      <section ref={sectionRef} className="flexStart flex-col paddings mb-16 w-full max-w-4xl mx-auto mt-40">
         <h2 className="text-2xl font-bold mb-4">Your Job Applications</h2>
         <div className="flex flex-col w-full">
           {jobApplications.map((application, index) => (
@@ -300,6 +286,20 @@ const Home = ({ searchParams: { category, endcursor } }: Props) => {
               </div>
             </div>
           ))}
+        </div>
+      </section>
+      <section className="flexStart flex-col paddings mb-16">
+        <p className="text-subheadline font-subheadline mt-5 mb-5 text-gray-400">
+        Our customers had interviews with leading companies around the world.
+        </p>
+        <div className="flex justify-center items-center mt-4 space-x-8">
+          <Image src={uber} alt="Uber" width={60} height={30} />
+          <Image src={adobe} alt="Adobe" width={40} height={30} />
+          <Image src={airbnb} alt="Airbnb" width={100} height={30} />
+          <Image src={pg} alt="Procter and Gamble" width={60} height={30} />
+          <Image src={wordpress} alt="Wordpress" width={40} height={30} />
+          <Image src={grab} alt="Grab" width={80} height={30} />
+          {/* <Image src={rb} alt="Red Bull" width={80} height={30} /> */}
         </div>
       </section>
 
