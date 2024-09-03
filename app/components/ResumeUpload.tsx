@@ -51,7 +51,7 @@ const ResumeUpload = () => {
         />
         <label
           htmlFor="resume"
-          className={`flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-lg font-medium text-white bg-[#40A578] hover:bg-[#368f68] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#40A578] transition duration-150 ease-in-out cursor-pointer mb-2 ${resumeFile ? 'w-auto max-w-full' : 'w-64'}`}
+          className={`flex justify-center py-2.5 px-2.5 border border-transparent rounded-md shadow-sm text-lg font-medium text-white  bg-green-500  hover:bg-green-600  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#40A578] transition duration-150 ease-in-out cursor-pointer mb-2 ${resumeFile ? 'w-auto max-w-full' : 'w-64'}`}
         >
           <FaUpload className="h-5 w-5 inline-block mr-2" />
           <span className="truncate">
@@ -66,7 +66,7 @@ const ResumeUpload = () => {
         {resumeFile && (
           <button
             onClick={handleUpload}
-            className="w-64 flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-lg font-medium text-white bg-[#207DFF] hover:bg-[#1c6fe6] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#207DFF] transition duration-150 ease-in-out"
+            className="w-64 flex justify-center py-2.5 px-2.5 border border-transparent rounded-md shadow-sm text-lg font-medium text-white bg-[#207DFF] hover:bg-[#1c6fe6] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#207DFF] transition duration-150 ease-in-out mt-5"
           >
             Upload Resume
           </button>

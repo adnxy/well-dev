@@ -156,30 +156,30 @@ const Dashboard = () => {
         </header>
 
         <main className="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200 p-4">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4"> {/* Increased gap between cards */}
-            <div className="bg-white rounded-lg shadow p-8 flex flex-col justify-center"> {/* Increased padding and centered content */}
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
+            <div className="bg-white rounded-lg shadow p-8 flex flex-col justify-center">
+              <h3 className="font-semibold">Notifications</h3>
+              <p className="text-2xl font-semibold">{jobApplications.filter(job => job.status === "Interview Invitation" || job.status === "Offered").length}</p>
+              <hr className="my-2" />
+              <p>Updates on your job applications.</p>
+            </div>
+            <div className="bg-white rounded-lg shadow p-8 flex flex-col justify-center">
               <h3 className="font-semibold">Total Job Applications</h3>
               <p className="text-2xl font-semibold">{jobApplications.length}</p>
               <hr className="my-2" />
               <p className="text-gray-300">All applications submitted.</p>
             </div>
-            <div className="bg-white rounded-lg shadow p-8 flex flex-col justify-center"> {/* Increased padding and centered content */}
+            <div className="bg-white rounded-lg shadow p-8 flex flex-col justify-center">
               <h3 className="font-semibold">Pending Applications</h3>
               <p className="text-2xl font-semibold">{jobApplications.filter(job => job.status === "Pending").length}</p>
               <hr className="my-2" />
               <p>Applications awaiting response.</p>
             </div>
-            <div className="bg-white rounded-lg shadow p-8 flex flex-col justify-center"> {/* Increased padding and centered content */}
+            <div className="bg-white rounded-lg shadow p-8 flex flex-col justify-center">
               <h3 className="font-semibold">Interviews</h3>
               <p className="text-2xl font-semibold">{jobApplications.filter(job => job.status === "Interview Invitation").length}</p>
               <hr className="my-2" />
               <p>Applications with scheduled interviews.</p>
-            </div>
-            <div className="bg-white rounded-lg shadow p-8 flex flex-col justify-center"> {/* Increased padding and centered content */}
-              <h3 className="font-semibold">Current Plan</h3>
-              <p className="text-2xl font-semibold">Normal</p>
-              <hr className="my-2" />
-              <p>Your current job search strategy.</p>
             </div>
           </div>
 

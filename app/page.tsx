@@ -1,3 +1,4 @@
+"use client"
 import { ProjectInterface } from "@/common.types";
 import Categories from "./components/Categories";
 import ProjectCard from "./components/ProjectCard";
@@ -29,6 +30,7 @@ import Image from "next/image";
 import Framer from "../public/framer-logo.svg";
 import Faq from "./components/FAQ";
 import ResumeUpload from "./components/ResumeUpload";
+import { useEffect, useState, useRef } from 'react';
 
 // import "@fontsource/space-grotesk/400.css"; // Specify weight
 // import "@fontsource/space-grotesk/400-italic.css"; // Specify weight and style
@@ -56,9 +58,9 @@ type ProjectSearch = {
 
 export const dynamic = "force-dynamic";
 export const dynamicParams = true;
-export const revalidate = 0;
+// export const revalidate = 60;
 
-const Home = async ({ searchParams: { category, endcursor } }: Props) => {
+const Home = ({ searchParams: { category, endcursor } }: Props) => {
   // const data = await fetchAllProjects(category, endcursor) as ProjectSearch
 
   const yourBackgroundImage = "../public/pattern-background.png";
@@ -192,6 +194,34 @@ const Home = async ({ searchParams: { category, endcursor } }: Props) => {
 
   const projectsToDisplay = data?.projectSearch?.edges || [];
 
+  const [visibleItems, setVisibleItems] = useState(1); // Start with one visible item
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  const jobApplications = [
+    { title: "Software Engineer", company: "TechCorp", status: "Application Submitted", logo: pg },
+    { title: "Software Engineer", company: "TechCorp", status: "Pending Application", logo: pg },
+    { title: "Software Engineer", company: "TechCorp", status: "Interview Scheduled", logo: pg },
+    // Add more items as needed
+  ];
+
+  useEffect(() => {
+    const handleScroll = () => {
+        if (sectionRef.current) {
+            const sectionTop = sectionRef.current.getBoundingClientRect().top;
+            const windowHeight = window.innerHeight;
+
+            if (sectionTop < windowHeight * 0.8) {
+                setTimeout(() => {
+                    setVisibleItems(prev => Math.min(prev + 1, jobApplications.length));
+                }, 1000); // Delay of 1000ms (1 second) for a slower transition
+            }
+        }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   if (projectsToDisplay.length === 0) {
     return (
       <section className="flexStart flex-col paddings">
@@ -213,6 +243,9 @@ const Home = async ({ searchParams: { category, endcursor } }: Props) => {
         backgroundRepeat: 'no-repeat' 
       }}
     >
+      {/* New Job Applications Section */}
+
+
       <div className="mt-60"> {/* Added this div with margin-top */}
         <h1 className="text-headline font-headline mb-50 font-bold">
           You Upload The Resume, We Do The Rest
@@ -225,7 +258,7 @@ const Home = async ({ searchParams: { category, endcursor } }: Props) => {
 
       {/* New Section for Users Hired By */}
       <section className="flexStart flex-col paddings mb-16">
-        <p className="text-subheadline font-subheadline mt-80 mb-5">
+        <p className="text-subheadline font-subheadline mt-40 mb-5 text-gray-400">
         Our customers had interviews with leading companies around the world.
         </p>
         <div className="flex justify-center items-center mt-4 space-x-8">
@@ -236,6 +269,37 @@ const Home = async ({ searchParams: { category, endcursor } }: Props) => {
           <Image src={wordpress} alt="Wordpress" width={40} height={30} />
           <Image src={grab} alt="Grab" width={80} height={30} />
           {/* <Image src={rb} alt="Red Bull" width={80} height={30} /> */}
+        </div>
+      </section>
+      <section ref={sectionRef} className="flexStart flex-col paddings mb-16 w-full max-w-4xl mx-auto">
+        <h2 className="text-2xl font-bold mb-4">Your Job Applications</h2>
+        <div className="flex flex-col w-full">
+          {jobApplications.map((application, index) => (
+            <div 
+              key={index} 
+              className={`flex items-center justify-between p-4 mb-4 bg-white rounded-lg shadow-md transition-all duration-1000 ${
+                index < visibleItems ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+              }`}
+            >
+              <div className="flex items-center">
+                {/* <img src={application.logo} alt={`${application.company} logo`} className="w-12 h-12 mr-4 rounded-full" /> */}
+                <div>
+                  <h3 className="font-semibold text-lg">{application.title}</h3>
+                  <p className="text-gray-600">{application.company}</p>
+                </div>
+              </div>
+              <div className="flex items-center">
+                <span className={`px-3 py-1 text-sm font-semibold rounded-full ${
+                  application.status === "Application Submitted" ? "text-orange-800 bg-orange-200" :
+                  application.status === "Pending Application" ? "text-yellow-800 bg-yellow-200" :
+                  application.status === "Interview Scheduled" ? "text-green-800 bg-green-200" :
+                  "text-gray-800 bg-gray-200"
+                }`}>
+                  {application.status}
+                </span>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -309,7 +373,7 @@ const Home = async ({ searchParams: { category, endcursor } }: Props) => {
               </p>
               <div className="flex justify-center items-baseline my-8">
                 <span className="mr-2 text-5xl font-extrabold text-zinc-800">
-                  $25
+                  $29
                 </span>
                 <span className="text-gray-500 dark:text-gray-400">/month</span>
               </div>
@@ -616,3 +680,4 @@ const Home = async ({ searchParams: { category, endcursor } }: Props) => {
 };
 
 export default Home;
+
