@@ -61,38 +61,7 @@ const Profile = () => {
   return (
     <div className="flex h-screen bg-gray-100 font-sans">
       {/* Sidebar */}
-      <div
-        className={`bg-white text-gray-800 ${
-          sidebarOpen ? "w-64" : "w-16"
-        } space-y-6 py-7 px-2 absolute inset-y-0 left-0 transform ${
-          sidebarOpen ? "translate-x-0" : "translate-x-0"
-        } md:relative transition duration-200 ease-in-out`}
-      >
-        <button
-          onClick={() => setSidebarOpen(!sidebarOpen)}
-          className="absolute top-8 right-5 text-gray-500 hover:text-gray-800"
-        >
-          {sidebarOpen ? (
-            <FaChevronLeft size={15} />
-          ) : (
-            <FaChevronRight size={15} />
-          )}
-        </button>
-        <nav>
-          <Link
-            href="/dashboard"
-            className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-200"
-          >
-            {sidebarOpen ? "Applications" : <FaFileAlt size={20} />}
-          </Link>
-          <Link
-            href="/profile"
-            className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-200"
-          >
-            {sidebarOpen ? "Profile" : <FaUser size={20} />}
-          </Link>
-        </nav>
-      </div>
+
 
       {/* Main Content */}
       <div className="flex-1 flex flex-col overflow-hidden">

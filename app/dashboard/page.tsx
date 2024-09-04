@@ -7,6 +7,7 @@ import {
   FaFileAlt,
   FaUser,
   FaSignOutAlt,
+  FaBell,
 } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 
@@ -95,51 +96,14 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="flex h-screen bg-gray-100 font-sans mx-40 rounded-lg"> {/* Added border radius */}
-      {/* Sidebar */}
-      {/* <div
-        className={`bg-white text-gray-800 ${
-          sidebarOpen ? "w-64" : "w-16"
-        } space-y-6 py-7 px-2 absolute inset-y-0 left-0 transform ${
-          sidebarOpen ? "translate-x-0" : "translate-x-0"
-        } md:relative transition duration-200 ease-in-out`}
-      >
-        <button
-          onClick={() => setSidebarOpen(!sidebarOpen)}
-          className="absolute top-8 right-5 text-gray-500 hover:text-gray-800"
-        >
-          {sidebarOpen ? (
-            <FaChevronLeft size={15} />
-          ) : (
-            <FaChevronRight size={15} />
-          )}
-        </button>
-        <nav className="mt-5">
-          <a
-            href="/dashboard"
-            className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-200 mt-12"
-          >
-            {sidebarOpen ? "Applications" : <FaFileAlt size={20} />}
-          </a>
-          <a
-            href="/profile"
-            className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-200"
-          >
-            {sidebarOpen ? "Profile" : <FaUser size={20} />}
-          </a>
-        </nav>
-      </div> */}
-
+    <div className="flex h-screen bg-gray-100 font-sans mx-40 rounded-lg" style={{ }}> {/* Added Goretsk font */}
       {/* Main Content */}
       <div className="flex-1 flex flex-col overflow-hidden rounded-lg">
         <header className="flex justify-between items-center p-4 bg-white border-b border-gray-200 h-20">
           <div className="flex items-center">
+            {/* Added logo to the left of Applications */}
             {/* Logo that hides when sidebar is closed */}
-            {sidebarOpen && logoUrl && (
-              <div className="absolute top-4 left-4"> {/* Moved logo to top left corner */}
-                <img src={logoUrl} alt="Logo" className="h-10" />
-              </div>
-            )}
+
             <button
               onClick={() => setSidebarOpen(!sidebarOpen)}
               className="md:hidden mr-3"
@@ -149,11 +113,13 @@ const Dashboard = () => {
           </div>
           {/* Moved sidebar elements to the left of the page */}
           <div className="flex space-x-4 absolute left-40">
-            <a href="/dashboard" className="flex items-center text-gray-500 hover:text-gray-800 mr-5">
-              <FaFileAlt size={16} className="mr-2" /> Applications
+          <img src={logoUrl} alt="Logo" className="h-11 mr-0" /> {/* Added logo */}
+
+            <a href="/dashboard" className="flex items-center text-gray-500 hover:text-blue-500 transition duration-300 mr-5">
+            Applications
             </a>
-            <a href="/profile" className="flex items-center text-gray-500 hover:text-gray-800">
-              <FaUser size={16} className="mr-2" /> Profile
+            <a href="/profile" className="flex items-center text-gray-500 hover:text-blue-500 transition duration-300">
+      Profile
             </a>
           </div>
           <button
@@ -164,7 +130,13 @@ const Dashboard = () => {
           </button>
         </header>
 
-        <main className="flex-1 overflow-hidden bg-gray-200 p-4"> {/* Removed scrollbar */}
+        <main className="flex-1 bg-gray-200 p-4 overflow-auto"> {/* Added overflow-auto for scrollable content */}
+          {/* Notification Box */}
+          <div className="bg-green-200 text-green-800 p-4 rounded-lg flex items-center mb-4">
+            <FaBell size={20} className="mr-2" /> {/* Notification icon */}
+            <span>You have new job application updates!</span>
+          </div>
+
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
             <div className="bg-white rounded-lg shadow p-8 flex flex-col justify-center">
               <h3 className="font-semibold">Notifications</h3>
@@ -193,15 +165,20 @@ const Dashboard = () => {
           </div>
 
           <div className="bg-white rounded-lg shadow p-6">
-            <h2 className="text-xl font-semibold mb-4">Job Applications</h2>
+            <h2 className="text-xl font-medium mb-4 p-2">Recent Applications</h2> {/* Added padding around the title */}
             <ul className="space-y-4">
               {jobApplications.map((job) => (
                 <li
                   key={job.id}
                   className="bg-white p-6 rounded-md shadow hover:bg-gray-50 transition duration-150 ease-in-out" // Increased padding for larger height
                 >
-                  <h3 className="font-semibold text-blue-800">{job.title}</h3>
-                  <p className="text-sm text-gray-600">{job.description}</p> {/* Changed text color to gray */}
+                  <div className="flex justify-between"> {/* Added flex for alignment */}
+                    <div>
+                      <h3 className="font-semibold text-blue-800">{job.title}</h3>
+                      <p className="text-sm text-gray-600">{job.description}</p> {/* Changed text color to gray */}
+                    </div>
+                    <span className="text-sm text-gray-500">{new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span> {/* Formatted date */}
+                  </div>
                   <span
                     className={`inline-block px-2 py-1 mt-2 text-xs font-semibold rounded-full ${getStatusColor(
                       job.status

@@ -32,7 +32,7 @@ module.exports = {
         '10xl': '1680px'
       },
       fontFamily: {
-        'clash-grotesk': ['Clash Grotesk', 'sans-serif'],
+        'clash-grotesk': ['Space Grotesk', 'sans-serif'],
       },
       fontSize: {
         'headline': '2.45rem', // Adjust the size as needed
