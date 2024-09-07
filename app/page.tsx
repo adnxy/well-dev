@@ -29,6 +29,7 @@ import { FaGoogle } from "react-icons/fa";
 import { MdDesignServices } from "react-icons/md";
 import { CiDatabase, CiDesktop } from "react-icons/ci";
 import { FaUpload, FaSearch as FaSearchIcon, FaCalendarAlt, FaBriefcase } from 'react-icons/fa';
+import { FaCheckSquare } from 'react-icons/fa'; // Import the checkbox icon
 
 import Button from "./components/Button";
 import "@fontsource/space-grotesk"; // Defaults to weight 400
@@ -282,7 +283,7 @@ const Home = ({ searchParams: { category, endcursor } }: Props) => {
               { type: "SEO", icon: <FaSearch /> },
               { type: "UI/UX Design", icon: <MdDesignServices /> },
             ].map((job, index) => (
-              <div key={index} className={`${styles.scrollItem} bg-slate-50 p-4 rounded-md flex items-center`}>
+              <div key={index} className={`${styles.scrollItem} bg-slate-50 p-4 rounded-md flex items-center mx-2 shadow-sm`}>
                 <span className="mr-2">{job.icon}</span>
                 {job.type}
               </div>
@@ -294,7 +295,7 @@ const Home = ({ searchParams: { category, endcursor } }: Props) => {
         <p className="text-subheadline font-subheadline mt-5 mb-5 text-gray-400">
         Our customers had interviews with leading companies around the world.
         </p>
-        <div className="flex justify-center items-center mt-4 space-x-8">
+        <div className="flex justify-start items-center mt-4 space-x-8">
           <Image src={uber} alt="Uber" width={60} height={30} />
           <Image src={adobe} alt="Adobe" width={40} height={30} />
           <Image src={airbnb} alt="Airbnb" width={100} height={30} />
@@ -305,7 +306,8 @@ const Home = ({ searchParams: { category, endcursor } }: Props) => {
         </div>
       </section>
       <section ref={sectionRef} className="flexStart flex-col paddings mb-16 w-full max-w-4xl mx-auto mt-20">
-        <h2 className="text-2xl font-bold mb-4">Your Job Applications</h2>
+        <h2 className="text-2xl font-semibold text-gray-800 mb-4">Your Job Applications</h2>
+        <p className="text-md text-gray-500">Track your applications effortlessly.</p>
         <div className="flex flex-col w-full">
           {jobApplications.map((application, index) => (
             <div 
@@ -338,389 +340,180 @@ const Home = ({ searchParams: { category, endcursor } }: Props) => {
 
 
       <div className="mb-30"></div>
-      <section className="flexStart flex-col paddings mb-16">
-        <h2 className="text-headline font-headline mt-10">How it works</h2>
-        <p className="text-subheadline font-subheadline mt-2">
-          Automate the way you apply to jobs.
-        </p>
-        <div className="grid grid-cols-2 gap-6 mt-10"> {/* Changed to grid layout */}
-          <div className="p-6 m-2 rounded-md shadow-lg bg-white"> {/* Removed border, added shadow */}
-            <div className="flex items-center">
-              <FaUpload className="mr-2" /> {/* Added icon */}
-              <h3 className="font-bold">Step 1</h3>
+      <section className="flex flex-col paddings mb-16 max-w-6xl mx-auto w-full">
+        <div className="mb-10">
+          <h2 className="text-3xl font-semibold text-gray-800 mb-4">How it works</h2>
+          <p className="text-md text-gray-500">Streamline your job application process.</p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10">
+          <div className="p-6 rounded-md shadow-lg bg-white flex items-start">
+            <FaUpload className="text-blue-500 mr-4 mt-1 flex-shrink-0" size={20} /> {/* Added icon */}
+            <div>
+              <h3 className="font-semibold text-xl mb-2">Step 1</h3>
+              <p>Upload your resume</p>
             </div>
-            <p>Upload your resume</p>
           </div>
-          <div className="p-6 m-2 rounded-md shadow-lg bg-white"> {/* Removed border, added shadow */}
-            <div className="flex items-center">
-              <FaCheck   className="mr-2" /> {/* Added icon */}
-              <h3 className="font-bold">Step 2</h3>
+          <div className="p-6 rounded-md shadow-lg bg-white flex items-start">
+            <FaCheck className="text-blue-500 mr-4 mt-1 flex-shrink-0" size={20} /> {/* Added icon */}
+            <div>
+              <h3 className="font-semibold text-xl mb-2">Step 2</h3>
+              <p>We apply to jobs across the web.</p>
             </div>
-            <p>We apply to jobs across the web.</p>
           </div>
-          <div className="p-6 m-2 rounded-md shadow-lg bg-white"> {/* Removed border, added shadow */}
-            <div className="flex items-center">
-              <FaCalendarAlt className="mr-2" /> {/* Added icon */}
-              <h3 className="font-bold">Step 3</h3>
+          <div className="p-6 rounded-md shadow-lg bg-white flex items-start">
+            <FaCalendarAlt className="text-blue-500 mr-4 mt-1 flex-shrink-0" size={20} /> {/* Added icon */}
+            <div>
+              <h3 className="font-semibold text-xl mb-2">Step 3</h3>
+              <p>Schedule interviews and get weekly reports</p>
             </div>
-            <p>Schedule interviews and get weekly reports</p>
           </div>
-          <div className="p-6 m-2 rounded-md shadow-lg bg-white"> {/* Removed border, added shadow */}
-            <div className="flex items-center">
-              <FaBriefcase className="mr-2" /> {/* Added icon */}
-              <h3 className="font-bold">Step 4</h3>
+          <div className="p-6 rounded-md shadow-lg bg-white flex items-start">
+            <FaBriefcase className="text-blue-500 mr-4 mt-1 flex-shrink-0" size={20} /> {/* Added icon */}
+            <div>
+              <h3 className="font-semibold text-xl mb-2">Step 4</h3>
+              <p>Track your application progress and get hired.</p>
             </div>
-            <p>Get Hired.</p>
           </div>
         </div>
       </section>
-      <section className="flexStart flex-col paddings mb-16">
-        <h2 className="text-headline font-headline mt-10">Benefits</h2>
-        <p className="text-subheadline font-subheadline mt-2">
-          Automate the way you apply to jobs.
-        </p>
-        <div className="flex justify-between mt-10">
-          <div className="border p-4 m-2 rounded-md shadow-md w-1/4">
-            <h3 className="font-bold">Benefit 1</h3>
-            <p>Get more job opportunities.</p>
+
+      <section className="flex flex-col paddings mb-16 max-w-6xl mx-auto w-full">
+        <div className="mb-10">
+          <h2 className="text-3xl font-semibold text-gray-800 mb-4">Benefits</h2>
+          <p className="text-md text-gray-500">Why choose our platform.</p>
+        </div>
+        <div className="grid grid-cols-1 gap-6 mt-10">
+          <div className="p-6 rounded-md shadow-lg bg-white flex items-start">
+            <FaCheck className="text-green-500 mr-4 mt-1 flex-shrink-0" size={18} />
+            <div>
+              <h3 className="font-semibold text-xl mb-2">Get more job opportunities</h3>
+              <p className="text-gray-600">Access a wider range of job listings across multiple platforms.</p>
+            </div>
           </div>
-          <div className="border p-4 m-2 rounded-md shadow-md w-1/4">
-            <h3 className="font-bold">Benefit 2</h3>
-            <p>Save time on applications.</p>
+          <div className="p-6 rounded-md shadow-lg bg-white flex items-start">
+            <FaCheck className="text-green-500 mr-4 mt-1 flex-shrink-0" size={18} />
+            <div>
+              <h3 className="font-semibold text-xl mb-2">Save time on applications</h3>
+              <p className="text-gray-600">Streamline your application process and apply to multiple jobs efficiently.</p>
+            </div>
           </div>
-          <div className="border p-4 m-2 rounded-md shadow-md w-1/4">
-            <h3 className="font-bold">Benefit 3</h3>
-            <p>Receive personalized job matches.</p>
+          <div className="p-6 rounded-md shadow-lg bg-white flex items-start">
+            <FaCheck className="text-green-500 mr-4 mt-1 flex-shrink-0" size={18} />
+            <div>
+              <h3 className="font-semibold text-xl mb-2">Receive personalized job matches</h3>
+              <p className="text-gray-600">Get tailored job recommendations based on your skills and preferences.</p>
+            </div>
           </div>
-          <div className="border p-4 m-2 rounded-md shadow-md w-1/4">
-            <h3 className="font-bold">Benefit 4</h3>
-            <p>Track your application progress.</p>
+          <div className="p-6 rounded-md shadow-lg bg-white flex items-start">
+            <FaCheck className="text-green-500 mr-4 mt-1 flex-shrink-0" size={18} />
+            <div>
+              <h3 className="font-semibold text-xl mb-2">Track your application progress</h3>
+              <p className="text-gray-600">Stay organized with real-time updates on your job applications.</p>
+            </div>
           </div>
         </div>
       </section>
-      <section className="bg-white dark:bg-gray-900">
-        <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
-          <div className="mx-auto max-w-screen-md text-center mb-8 lg:mb-12">
-            <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
-              Pricing
-            </h2>
-            <p className="mb-5 font-light text-gray-500 sm:text-xl dark:text-gray-400">
-              Here at Applyinbox we focus on markets where technology and
-              inovation can unlock long-term value and drive economic growth.
-            </p>
+
+      <section className="bg-white dark:bg-gray-900 max-w-5xl mx-auto w-full">
+        <div className="py-8 px-0 mx-auto lg:py-0 lg:px-0">
+          <div className="mb-10">
+            <h2 className="text-3xl font-semibold text-gray-800 mb-4">Pricing Plans</h2>
+            <p className="text-md text-gray-500">Choose the perfect plan for your needs.</p>
           </div>
           <div className="space-y-8 lg:grid lg:grid-cols-3 sm:gap-6 xl:gap-10 lg:space-y-0">
-            <div className="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white">
-              <h3 className="mb-4 text-2xl font-semibold text-zinc-800">
-                Normal
-              </h3>
-              <p className="font-light text-zinc-800 sm:text-lg dark:text-gray-400">
-                Relevant for multiple users, extended & premium support.
-              </p>
-              <div className="flex justify-center items-baseline my-8">
-                <span className="mr-2 text-5xl font-extrabold text-zinc-800">
-                  $29
-                </span>
-                <span className="text-gray-500 dark:text-gray-400">/month</span>
+            {[
+              {
+                title: "Normal",
+                price: "29 USD",
+                features: [
+                  "Up to 25-50 job applications per month.",
+                  "Dashboard",
+                  "Dedicated hiring manager.",
+                  "Weekly reports in email inbox.",
+                  "Customer support.",
+                ],
+              },
+              {
+                title: "Intense",
+                price: "49 USD",
+                features: [
+                  "100+ job applications per month.",
+                  "Assigned hiring manager.",
+                  "Priority listing and application processing.",
+                  "Dashboard.",
+                  "Customer support.",
+                  "Dedicated hiring manager.",
+                  "Weekly reports in email inbox.",
+                ],
+              },
+              {
+                title: "One-Time Add-On",
+                price: "$99",
+                features: [
+                  "Resume redesign.",
+                  "No recurring fees.",
+                  "Unlimited revisions",
+                ],
+                isAddOn: true,
+              },
+            ].map((plan, index) => (
+              <div key={index} className="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white h-full justify-between">
+                <div>
+                  <h3 className="mb-4 text-2xl font-semibold text-zinc-800">{plan.title}</h3>
+                  <p className="font-light text-zinc-800 sm:text-lg dark:text-gray-400">{plan.price}</p>
+                  <ul role="list" className="mb-8 space-y-4 text-left mt-6">
+                    {plan.features.map((feature, featureIndex) => (
+                      <li key={featureIndex} className="flex items-center text-black">
+                        <svg className="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"></path>
+                        </svg>
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="mt-auto">
+                  {plan.isAddOn && (
+                    <div className="flex items-center justify-center mb-4">
+                      <input type="checkbox" id="terms" className="mr-2" />
+                      <label htmlFor="terms" className="text-teal-900">Include resume redesign</label>
+                    </div>
+                  )}
+                  <a
+                    href="#"
+                    className="bg-blue-300 text-teal-900 px-10 py-3 rounded-md hover:bg-blue-200 hover:text-teal-900 font-medium block w-full"
+                  >
+                    Get started
+                  </a>
+                </div>
               </div>
-              <ul role="list" className="mb-8 space-y-4 text-left">
-                <li className="flex items-center space-x-3">
-                  <svg
-                    className="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clipRule="evenodd"
-                    ></path>
-                  </svg>
-                  <span className="text-zinc-600">
-                    Individual configuration
-                  </span>
-                </li>
-                <li className="flex items-center space-x-3">
-                  <svg
-                    className="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clip-rule="evenodd"
-                    ></path>
-                  </svg>
-                  <span className="text-zinc-600">
-                    No setup, or hidden fees
-                  </span>
-                </li>
-                <li className="flex items-center space-x-3">
-                  <svg
-                    className="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clip-rule="evenodd"
-                    ></path>
-                  </svg>
-                  <span className="text-zinc-600">
-                    Team size:{" "}
-                    <span className="font-semibold">10 developers</span>
-                  </span>
-                </li>
-                <li className="flex items-center space-x-3">
-                  <svg
-                    className="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clip-rule="evenodd"
-                    ></path>
-                  </svg>
-                  <span className="text-zinc-600">
-                    Premium support:{" "}
-                    <span className="font-semibold">24 months</span>
-                  </span>
-                </li>
-                <li className="flex items-center space-x-3">
-                  <svg
-                    className="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clip-rule="evenodd"
-                    ></path>
-                  </svg>
-                  <span className="text-zinc-600">
-                    Free updates:{" "}
-                    <span className="font-semibold">24 months</span>
-                  </span>
-                </li>
-              </ul>
-              <a
-                href="#"
-                className="bg-blue-300 text-teal-900 px-10 py-3 rounded-md hover:bg-blue-200 hover:text-teal-900 font-medium"
-              >
-                Get started
-              </a>
-            </div>
-
-            <div className="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white">
-              <h3 className="mb-4 text-2xl font-semibold text-zinc-800">
-                Intensive
-              </h3>
-              <p className="font-light text-gray-500 sm:text-lg dark:text-gray-400 text-zinc-800">
-                Best for large scale uses and extended redistribution rights.
-              </p>
-              <div className="flex justify-center items-baseline my-8">
-                <span className="mr-2 text-5xl font-extrabold text-zinc-800">
-                  $49
-                </span>
-                <span className="text-gray-500 dark:text-gray-400">/month</span>
-              </div>
-              <ul role="list" className="mb-8 space-y-4 text-left">
-                <li className="flex items-center space-x-3">
-                  <svg
-                    className="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clip-rule="evenodd"
-                    ></path>
-                  </svg>
-                  <span className="text-zinc-600">
-                    Individual configuration
-                  </span>
-                </li>
-                <li className="flex items-center space-x-3">
-                  <svg
-                    className="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clip-rule="evenodd"
-                    ></path>
-                  </svg>
-                  <span className="text-zinc-600">
-                    No setup, or hidden fees
-                  </span>
-                </li>
-                <li className="flex items-center space-x-3">
-                  <svg
-                    className="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clip-rule="evenodd"
-                    ></path>
-                  </svg>
-                  <span className="text-zinc-600">
-                    Team size:{" "}
-                    <span className="font-semibold">100+ developers</span>
-                  </span>
-                </li>
-                <li className="flex items-center space-x-3">
-                  <svg
-                    className="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clip-rule="evenodd"
-                    ></path>
-                  </svg>
-                  <span className="text-zinc-600">
-                    Premium support:{" "}
-                    <span className="font-semibold">36 months</span>
-                  </span>
-                </li>
-                <li className="flex items-center space-x-3">
-                  <svg
-                    className="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clip-rule="evenodd"
-                    ></path>
-                  </svg>
-                  <span className="text-zinc-600">
-                    Free updates:{" "}
-                    <span className="font-semibold">36 months</span>
-                  </span>
-                </li>
-              </ul>
-              <a
-                href="#"
-                className="bg-blue-300 text-teal-900 px-10 py-3 rounded-md hover:bg-blue-200 hover:text-teal-900 font-medium"
-              >
-                Get started
-              </a>
-            </div>
-
-            <div className="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white">
-              <h3 className="mb-4 text-2xl font-semibold text-zinc-800">
-                One-Time Add-On
-              </h3>
-              <p className="font-light text-zinc-800 sm:text-lg dark:text-gray-400">
-                One-time payment for resume redesign.
-              </p>
-              <div className="flex justify-center items-baseline my-8">
-                <span className="mr-2 text-5xl font-extrabold text-zinc-800">
-                  $99
-                </span>
-                <span className="text-gray-500 dark:text-gray-400">
-                  /one-time
-                </span>
-              </div>
-              <ul role="list" className="mb-8 space-y-4 text-left">
-                <li className="flex items-center space-x-3">
-                  <svg
-                    className="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clipRule="evenodd"
-                    ></path>
-                  </svg>
-                  <span className="text-zinc-600">Lifetime access</span>
-                </li>
-                <li className="flex items-center space-x-3">
-                  <svg
-                    className="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clipRule="evenodd"
-                    ></path>
-                  </svg>
-                  <span className="text-zinc-600">No recurring fees</span>
-                </li>
-                <li className="flex items-center space-x-3">
-                  <svg
-                    className="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clipRule="evenodd"
-                    ></path>
-                  </svg>
-                  <span className="text-zinc-600">
-                    All future updates included
-                  </span>
-                </li>
-              </ul>
-              <div className="flex items-center">
-                <input type="checkbox" id="terms" className="mr-2" />
-                <label htmlFor="terms" className="text-teal-900">
-                  Include resume redesign
-                </label>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* New Testimonials Section */}
-      <section className="flexStart flex-col paddings mb-16">
-        <h2 className="text-headline font-headline mt-10">What our users are saying</h2>
-        <div className="flex flex-col mt-4">
+      <section className="flex flex-col paddings mb-16 max-w-6xl mx-auto w-full">
+        <div className="mb-10">
+          {/* <h2 className="text-3xl font-semibold text-gray-800 mb-4">Testimonials</h2>
+          <p className="text-md text-gray-500">What our users are saying.</p> */}
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
           {testimonials.map((testimonial, index) => (
-            <div key={index} className="border p-4 m-2 rounded-md shadow-md">
-              <p className="font-bold">{testimonial.name}</p>
-              <p>{testimonial.feedback}</p>
+            <div key={index} className="bg-white p-6 rounded-lg shadow-md">
+              <p className="text-gray-600 italic mb-4">"{testimonial.feedback}"</p>
+              <p className="font-semibold text-gray-800">{testimonial.name}</p>
             </div>
           ))}
         </div>
       </section>
 
-      <Faq faqData={faqData} />
+      <section className="flex flex-col paddings mb-16 max-w-6xl mx-auto w-full">
+        <div className="mb-10">
+          <h2 className="text-3xl font-semibold text-gray-800 mb-4">FAQ</h2>
+          <p className="text-md text-gray-500">Frequently asked questions.</p>
+        </div>
+        <Faq faqData={faqData} />
+      </section>
     </section>
   );
 };

@@ -55,7 +55,7 @@ const ResumeUpload = () => {
         >
           <FaUpload className="h-5 w-5 inline-block mr-2" />
           <span className="truncate">
-            {resumeFile ? resumeFile.name : 'Select Resume (.pdf)'}
+            {resumeFile ? resumeFile.name : 'Select Resume (pdf)'}
           </span>
         </label>
         {!resumeFile && (
