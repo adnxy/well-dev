@@ -2,20 +2,20 @@
   width: 100%;
   overflow: hidden;
   position: relative;
-  margin-top: 10%;
+  margin-bottom: 5%;
 }
 
 .scrollContent {
   display: flex;
-  animation: scroll 30s linear infinite;
+  animation: scroll 45s linear infinite; /* Increased duration to 60s for slower animation */
 }
 
 @keyframes scroll {
   0% {
-    transform: translateX(0);
+    transform: translateX(0); /* Start from the beginning */
   }
   100% {
-    transform: translateX(-50%);
+    transform: translateX(-100%); /* Move to the left by 100% of the content width */
   }
 }
 

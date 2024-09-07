@@ -261,34 +261,7 @@ const Home = ({ searchParams: { category, endcursor } }: Props) => {
         <ResumeUpload />
         
         {/* Updated Horizontal Scrolling Job Types Section */}
-        <div className={styles.scrollContainer}>
-          <div className={styles.scrollContent}>
-            {[
-              { type: "Software Developer", icon: <FaCode /> },
-              { type: "Marketing", icon: <SiGooglemarketingplatform /> },
-              { type: "SEO", icon: <FaSearch /> },
-              { type: "UI/UX Design", icon: <MdDesignServices /> },
-              { type: "Data Analyst", icon: <CiDatabase /> },
-              { type: "Product Manager", icon: <CiDesktop /> },
-              { type: "Content Writer", icon: <FaPen /> },
-              { type: "3D Modelling", icon: <FaCube /> },
-              { type: "Video Editing", icon: <FaVideo /> },
-              { type: "Graphic Design", icon: <FaImage /> },
-              { type: "Copywriting", icon: <FaPen /> },
-              { type: "Social Media Manager", icon: <FaFacebook /> },
-              // Duplicate items to create a seamless loop
-              { type: "Software Developer", icon: <FaCode /> },
-              { type: "Marketing", icon: <SiGooglemarketingplatform /> },
-              { type: "SEO", icon: <FaSearch /> },
-              { type: "UI/UX Design", icon: <MdDesignServices /> },
-            ].map((job, index) => (
-              <div key={index} className={`${styles.scrollItem} bg-slate-50 p-4 rounded-md flex items-center`}>
-                <span className="mr-2">{job.icon}</span>
-                {job.type}
-              </div>
-            ))}
-          </div>
-        </div>
+
       </div>
 
       <section ref={sectionRef} className="flexStart flex-col paddings mb-16 w-full max-w-4xl mx-auto mt-40">
@@ -322,6 +295,34 @@ const Home = ({ searchParams: { category, endcursor } }: Props) => {
           ))}
         </div>
       </section>
+      <div className={styles.scrollContainer}>
+          <div className={styles.scrollContent}>
+            {[
+              { type: "Software Developer", icon: <FaCode /> },
+              { type: "Marketing", icon: <SiGooglemarketingplatform /> },
+              { type: "SEO", icon: <FaSearch /> },
+              { type: "UI/UX Design", icon: <MdDesignServices /> },
+              { type: "Data Analyst", icon: <CiDatabase /> },
+              { type: "Product Manager", icon: <CiDesktop /> },
+              { type: "Content Writer", icon: <FaPen /> },
+              { type: "3D Modelling", icon: <FaCube /> },
+              { type: "Video Editing", icon: <FaVideo /> },
+              { type: "Graphic Design", icon: <FaImage /> },
+              { type: "Copywriting", icon: <FaPen /> },
+              { type: "Social Media Manager", icon: <FaFacebook /> },
+              // Duplicate items to create a seamless loop
+              { type: "Software Developer", icon: <FaCode /> },
+              { type: "Marketing", icon: <SiGooglemarketingplatform /> },
+              { type: "SEO", icon: <FaSearch /> },
+              { type: "UI/UX Design", icon: <MdDesignServices /> },
+            ].map((job, index) => (
+              <div key={index} className={`${styles.scrollItem} bg-slate-50 p-4 rounded-md flex items-center`}>
+                <span className="mr-2">{job.icon}</span>
+                {job.type}
+              </div>
+            ))}
+          </div>
+        </div>
       <section className="flexStart flex-col paddings mb-16">
         <p className="text-subheadline font-subheadline mt-5 mb-5 text-gray-400">
         Our customers had interviews with leading companies around the world.
