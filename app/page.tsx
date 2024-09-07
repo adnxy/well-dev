@@ -23,6 +23,11 @@ import wordpress from "../public/wordpress.svg";
 import airbnb from "../public/airbnb.svg";
 import rb from "../public/red-bull.svg";
 import grab from "../public/grab.svg";
+import { FaCode, FaCube, FaFacebook, FaImage, FaPen, FaSearch, FaVideo } from "react-icons/fa";
+import { SiGooglemarketingplatform } from "react-icons/si";
+import { FaGoogle } from "react-icons/fa";
+import { MdDesignServices } from "react-icons/md";
+import { CiDatabase, CiDesktop } from "react-icons/ci";
 
 import Button from "./components/Button";
 import "@fontsource/space-grotesk"; // Defaults to weight 400
@@ -31,6 +36,7 @@ import Framer from "../public/framer-logo.svg";
 import Faq from "./components/FAQ";
 import ResumeUpload from "./components/ResumeUpload";
 import { useEffect, useState, useRef } from 'react';
+import styles from './page.module.css'; // Add this import
 
 // import "@fontsource/space-grotesk/400.css"; // Specify weight
 // import "@fontsource/space-grotesk/400-italic.css"; // Specify weight and style
@@ -245,17 +251,45 @@ const Home = ({ searchParams: { category, endcursor } }: Props) => {
     >
       {/* New Job Applications Section */}
 
-
-      <div className="mt-60"> {/* Added this div with margin-top */}
+      <div className="mt-60 text-center"> {/* Added text-center class */}
         <h1 className="text-headline font-headline mb-50 font-bold">
           You Upload The Resume, We Do The Rest
         </h1>
-        <p className="text-subheadline font-subheadline mt-2">
-          Auto apply to hundreds of jobs across the web and get interview invites.{" "}
+        <p className="text-subheadline font-subheadline mt-2 mb-8"> {/* Added mb-8 for spacing */}
+          Auto apply to hundreds of jobs across the web and get interview invites.
         </p>
         <ResumeUpload />
+        
+        {/* Updated Horizontal Scrolling Job Types Section */}
+        <div className={styles.scrollContainer}>
+          <div className={styles.scrollContent}>
+            {[
+              { type: "Software Developer", icon: <FaCode /> },
+              { type: "Marketing", icon: <SiGooglemarketingplatform /> },
+              { type: "SEO", icon: <FaSearch /> },
+              { type: "UI/UX Design", icon: <MdDesignServices /> },
+              { type: "Data Analyst", icon: <CiDatabase /> },
+              { type: "Product Manager", icon: <CiDesktop /> },
+              { type: "Content Writer", icon: <FaPen /> },
+              { type: "3D Modelling", icon: <FaCube /> },
+              { type: "Video Editing", icon: <FaVideo /> },
+              { type: "Graphic Design", icon: <FaImage /> },
+              { type: "Copywriting", icon: <FaPen /> },
+              { type: "Social Media Manager", icon: <FaFacebook /> },
+              // Duplicate items to create a seamless loop
+              { type: "Software Developer", icon: <FaCode /> },
+              { type: "Marketing", icon: <SiGooglemarketingplatform /> },
+              { type: "SEO", icon: <FaSearch /> },
+              { type: "UI/UX Design", icon: <MdDesignServices /> },
+            ].map((job, index) => (
+              <div key={index} className={`${styles.scrollItem} bg-slate-50 p-4 rounded-md flex items-center`}>
+                <span className="mr-2">{job.icon}</span>
+                {job.type}
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
-
 
       <section ref={sectionRef} className="flexStart flex-col paddings mb-16 w-full max-w-4xl mx-auto mt-40">
         <h2 className="text-2xl font-bold mb-4">Your Job Applications</h2>

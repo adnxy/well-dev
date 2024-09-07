@@ -1,0 +1,31 @@
+.scrollContainer {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  margin-top: 10%;
+}
+
+.scrollContent {
+  display: flex;
+  animation: scroll 30s linear infinite;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.scrollItem {
+  flex: 0 0 auto;
+  margin-right: 16px;
+  white-space: nowrap;
+}
+
+/* Pause animation on hover */
+.scrollContainer:hover .scrollContent {
+  animation-play-state: paused;
+}

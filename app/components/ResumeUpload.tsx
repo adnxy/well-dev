@@ -51,7 +51,7 @@ const ResumeUpload = () => {
         />
         <label
           htmlFor="resume"
-          className={`flex justify-center py-2.5 px-2.5 border border-transparent rounded-md shadow-sm text-lg font-medium text-white  bg-green-500  hover:bg-green-600  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#40A578] transition duration-150 ease-in-out cursor-pointer mb-2 ${resumeFile ? 'w-auto max-w-full' : 'w-64'}`}
+          className={`flex justify-center py-2.5 px-2.5 border border-transparent rounded-md shadow-sm text-lg font-medium text-white  bg-blue-500  hover:bg-blue-600  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#40A578] transition duration-150 ease-in-out cursor-pointer mb-2 ${resumeFile ? 'w-auto max-w-full' : 'w-64'}`}
         >
           <FaUpload className="h-5 w-5 inline-block mr-2" />
           <span className="truncate">

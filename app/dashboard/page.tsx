@@ -130,7 +130,7 @@ const Dashboard = () => {
           </button>
         </header>
 
-        <main className="flex-1 bg-gray-200 p-4 overflow-auto"> {/* Added overflow-auto for scrollable content */}
+        <main className="flex-1 bg-gray-200 p-8 overflow-hidden overflow-y-auto"> {/* Added overflow-auto for scrollable content */}
           {/* Notification Box */}
           <div className="bg-green-200 text-green-800 p-4 rounded-lg flex items-center mb-4">
             <FaBell size={20} className="mr-2" /> {/* Notification icon */}

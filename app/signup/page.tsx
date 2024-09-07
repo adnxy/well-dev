@@ -89,7 +89,7 @@ const Signup = () => {
                             />
                             <label
                                 htmlFor="resume"
-                                className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-lg font-medium text-white bg-[#40A578] hover:bg-[#368f68] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#40A578] transition duration-150 ease-in-out cursor-pointer"
+                                className="w-full flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm text-lg font-medium text-gray-700 bg-transparent hover:bg-green-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 transition duration-150 ease-in-out cursor-pointer"
                             >
                                 <FaUpload className="h-5 w-5 inline-block mr-2" />
                                 {resumeFile ? resumeFile.name : 'Upload Resume'}
@@ -98,7 +98,7 @@ const Signup = () => {
                     </div>
                     <button
                         type="submit"
-                        className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-lg font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                        className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-lg font-medium text-white bg-blue-500  hover:bg-blue-600  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                     >
                         Sign Up
                     </button>
