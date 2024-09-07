@@ -23,11 +23,12 @@ import wordpress from "../public/wordpress.svg";
 import airbnb from "../public/airbnb.svg";
 import rb from "../public/red-bull.svg";
 import grab from "../public/grab.svg";
-import { FaCode, FaCube, FaFacebook, FaImage, FaPen, FaSearch, FaVideo } from "react-icons/fa";
+import { FaCheck, FaCode, FaCube, FaFacebook, FaImage, FaPen, FaSearch, FaVideo } from "react-icons/fa";
 import { SiGooglemarketingplatform } from "react-icons/si";
 import { FaGoogle } from "react-icons/fa";
 import { MdDesignServices } from "react-icons/md";
 import { CiDatabase, CiDesktop } from "react-icons/ci";
+import { FaUpload, FaSearch as FaSearchIcon, FaCalendarAlt, FaBriefcase } from 'react-icons/fa';
 
 import Button from "./components/Button";
 import "@fontsource/space-grotesk"; // Defaults to weight 400
@@ -249,22 +250,61 @@ const Home = ({ searchParams: { category, endcursor } }: Props) => {
         backgroundRepeat: 'no-repeat' 
       }}
     >
-      {/* New Job Applications Section */}
 
-      <div className="mt-60 text-center"> {/* Added text-center class */}
+      <div className="mt-60 text-center"> 
         <h1 className="text-headline font-headline mb-50 font-bold">
           You Upload The Resume, We Do The Rest
         </h1>
-        <p className="text-subheadline font-subheadline mt-2 mb-8"> {/* Added mb-8 for spacing */}
+        <p className="text-subheadline font-subheadline mt-2 mb-8"> 
           Auto apply to hundreds of jobs across the web and get interview invites.
         </p>
         <ResumeUpload />
         
         {/* Updated Horizontal Scrolling Job Types Section */}
-
+        <div className={styles.scrollContainer}>
+          <div className={styles.scrollContent}>
+            {[
+              { type: "Software Developer", icon: <FaCode /> },
+              { type: "Marketing", icon: <SiGooglemarketingplatform /> },
+              { type: "SEO", icon: <FaSearch /> },
+              { type: "UI/UX Design", icon: <MdDesignServices /> },
+              { type: "Data Analyst", icon: <CiDatabase /> },
+              { type: "Product Manager", icon: <CiDesktop /> },
+              { type: "Content Writer", icon: <FaPen /> },
+              { type: "3D Modelling", icon: <FaCube /> },
+              { type: "Video Editing", icon: <FaVideo /> },
+              { type: "Graphic Design", icon: <FaImage /> },
+              { type: "Copywriting", icon: <FaPen /> },
+              { type: "Social Media Manager", icon: <FaFacebook /> },
+              // Duplicate items to create a seamless loop
+              { type: "Software Developer", icon: <FaCode /> },
+              { type: "Marketing", icon: <SiGooglemarketingplatform /> },
+              { type: "SEO", icon: <FaSearch /> },
+              { type: "UI/UX Design", icon: <MdDesignServices /> },
+            ].map((job, index) => (
+              <div key={index} className={`${styles.scrollItem} bg-slate-50 p-4 rounded-md flex items-center`}>
+                <span className="mr-2">{job.icon}</span>
+                {job.type}
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
-
-      <section ref={sectionRef} className="flexStart flex-col paddings mb-16 w-full max-w-4xl mx-auto mt-40">
+      <section className="flexStart flex-col paddings mb-16">
+        <p className="text-subheadline font-subheadline mt-5 mb-5 text-gray-400">
+        Our customers had interviews with leading companies around the world.
+        </p>
+        <div className="flex justify-center items-center mt-4 space-x-8">
+          <Image src={uber} alt="Uber" width={60} height={30} />
+          <Image src={adobe} alt="Adobe" width={40} height={30} />
+          <Image src={airbnb} alt="Airbnb" width={100} height={30} />
+          <Image src={wordpress} alt="Wordpress" width={40} height={30} />
+          <Image src={pg} alt="Procter and Gamble" width={60} height={30} />
+          {/* <Image src={grab} alt="Grab" width={80} height={30} /> */}
+          {/* <Image src={rb} alt="Red Bull" width={80} height={30} /> */}
+        </div>
+      </section>
+      <section ref={sectionRef} className="flexStart flex-col paddings mb-16 w-full max-w-4xl mx-auto mt-20">
         <h2 className="text-2xl font-bold mb-4">Your Job Applications</h2>
         <div className="flex flex-col w-full">
           {jobApplications.map((application, index) => (
@@ -295,48 +335,7 @@ const Home = ({ searchParams: { category, endcursor } }: Props) => {
           ))}
         </div>
       </section>
-      <div className={styles.scrollContainer}>
-          <div className={styles.scrollContent}>
-            {[
-              { type: "Software Developer", icon: <FaCode /> },
-              { type: "Marketing", icon: <SiGooglemarketingplatform /> },
-              { type: "SEO", icon: <FaSearch /> },
-              { type: "UI/UX Design", icon: <MdDesignServices /> },
-              { type: "Data Analyst", icon: <CiDatabase /> },
-              { type: "Product Manager", icon: <CiDesktop /> },
-              { type: "Content Writer", icon: <FaPen /> },
-              { type: "3D Modelling", icon: <FaCube /> },
-              { type: "Video Editing", icon: <FaVideo /> },
-              { type: "Graphic Design", icon: <FaImage /> },
-              { type: "Copywriting", icon: <FaPen /> },
-              { type: "Social Media Manager", icon: <FaFacebook /> },
-              // Duplicate items to create a seamless loop
-              { type: "Software Developer", icon: <FaCode /> },
-              { type: "Marketing", icon: <SiGooglemarketingplatform /> },
-              { type: "SEO", icon: <FaSearch /> },
-              { type: "UI/UX Design", icon: <MdDesignServices /> },
-            ].map((job, index) => (
-              <div key={index} className={`${styles.scrollItem} bg-slate-50 p-4 rounded-md flex items-center`}>
-                <span className="mr-2">{job.icon}</span>
-                {job.type}
-              </div>
-            ))}
-          </div>
-        </div>
-      <section className="flexStart flex-col paddings mb-16">
-        <p className="text-subheadline font-subheadline mt-5 mb-5 text-gray-400">
-        Our customers had interviews with leading companies around the world.
-        </p>
-        <div className="flex justify-center items-center mt-4 space-x-8">
-          <Image src={uber} alt="Uber" width={60} height={30} />
-          <Image src={adobe} alt="Adobe" width={40} height={30} />
-          <Image src={airbnb} alt="Airbnb" width={100} height={30} />
-          <Image src={wordpress} alt="Wordpress" width={40} height={30} />
-          <Image src={pg} alt="Procter and Gamble" width={60} height={30} />
-          {/* <Image src={grab} alt="Grab" width={80} height={30} /> */}
-          {/* <Image src={rb} alt="Red Bull" width={80} height={30} /> */}
-        </div>
-      </section>
+
 
       <div className="mb-30"></div>
       <section className="flexStart flex-col paddings mb-16">
@@ -344,21 +343,33 @@ const Home = ({ searchParams: { category, endcursor } }: Props) => {
         <p className="text-subheadline font-subheadline mt-2">
           Automate the way you apply to jobs.
         </p>
-        <div className="flex justify-between mt-10">
-          <div className="border p-4 m-2 rounded-md shadow-md w-1/4">
-            <h3 className="font-bold">Step 1</h3>
+        <div className="grid grid-cols-2 gap-6 mt-10"> {/* Changed to grid layout */}
+          <div className="p-6 m-2 rounded-md shadow-lg bg-white"> {/* Removed border, added shadow */}
+            <div className="flex items-center">
+              <FaUpload className="mr-2" /> {/* Added icon */}
+              <h3 className="font-bold">Step 1</h3>
+            </div>
             <p>Upload your resume</p>
           </div>
-          <div className="border p-4 m-2 rounded-md shadow-md w-1/4">
-            <h3 className="font-bold">Step 2</h3>
+          <div className="p-6 m-2 rounded-md shadow-lg bg-white"> {/* Removed border, added shadow */}
+            <div className="flex items-center">
+              <FaCheck   className="mr-2" /> {/* Added icon */}
+              <h3 className="font-bold">Step 2</h3>
+            </div>
             <p>We apply to jobs across the web.</p>
           </div>
-          <div className="border p-4 m-2 rounded-md shadow-md w-1/4">
-            <h3 className="font-bold">Step 3</h3>
+          <div className="p-6 m-2 rounded-md shadow-lg bg-white"> {/* Removed border, added shadow */}
+            <div className="flex items-center">
+              <FaCalendarAlt className="mr-2" /> {/* Added icon */}
+              <h3 className="font-bold">Step 3</h3>
+            </div>
             <p>Schedule interviews and get weekly reports</p>
           </div>
-          <div className="border p-4 m-2 rounded-md shadow-md w-1/4">
-            <h3 className="font-bold">Step 4</h3>
+          <div className="p-6 m-2 rounded-md shadow-lg bg-white"> {/* Removed border, added shadow */}
+            <div className="flex items-center">
+              <FaBriefcase className="mr-2" /> {/* Added icon */}
+              <h3 className="font-bold">Step 4</h3>
+            </div>
             <p>Get Hired.</p>
           </div>
         </div>

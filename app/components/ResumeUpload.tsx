@@ -1,6 +1,6 @@
 "use client"; 
 import React, { useState } from 'react';
-import { FaUpload } from 'react-icons/fa';
+import { FaUpload, FaCheck } from 'react-icons/fa'; // Add FaCheck import
 import { useRouter } from 'next/navigation';
 
 const ResumeUpload = () => {
@@ -55,12 +55,15 @@ const ResumeUpload = () => {
         >
           <FaUpload className="h-5 w-5 inline-block mr-2" />
           <span className="truncate">
-            {resumeFile ? resumeFile.name : 'Select Resume'}
+            {resumeFile ? resumeFile.name : 'Select Resume (.pdf)'}
           </span>
         </label>
         {!resumeFile && (
-          <div className="text-xs text-gray-500 mb-4">
-            <p>Upload .pdf file</p>
+          <div className="text-xs text-gray-400 mb-4">
+            <p className="text-gray-100 mt-2 flex items-center">
+              <FaCheck className="mr-2 text-green-500" /> {/* Add checkmark icon */}
+              We don't share your data
+            </p>
           </div>
         )}
         {resumeFile && (
