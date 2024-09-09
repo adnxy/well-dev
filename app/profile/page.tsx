@@ -146,7 +146,7 @@ const Profile = () => {
                   />
                   <label
                     htmlFor="resume"
-                    className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-150 ease-in-out cursor-pointer"
+                    className="w-full flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 transition duration-150 ease-in-out cursor-pointer"
                   >
                     <FaUpload className="h-5 w-5 inline-block mr-2" />
                     {resumeFile ? resumeFile.name : 'Upload Resume'}
@@ -182,6 +182,72 @@ const Profile = () => {
                   )}
                 </button>
               </div>
+              {membershipStatus !== "Active" && (
+                <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="border rounded-lg p-4 shadow-md">
+                    <h3 className="text-lg font-semibold">Normal Package</h3>
+                    <p className="text-gray-600">$27/month</p>
+            
+                    <div className="mt-2">
+                      <label className="flex items-center">
+                        <input type="checkbox" className="mr-2" defaultChecked />
+                        Up to 50 job applications per month.
+                      </label>
+                      <label className="flex items-center">
+                        <input type="checkbox" className="mr-2" defaultChecked />
+                        Dedicated hiring manager
+                      </label>
+                      <label className="flex items-center">
+                        <input type="checkbox" className="mr-2" defaultChecked />
+                        Applications status
+                      </label>
+                      <label className="flex items-center">
+                        <input type="checkbox" className="mr-2" defaultChecked />
+                        Weekly reports in email inbox.
+                      </label>
+                      <label className="flex items-center">
+                        <input type="checkbox" className="mr-2" defaultChecked />
+                        Customer support
+                      </label>
+                    </div>
+                    <button className="mt-2 w-full py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">
+                      Get Started
+                    </button>
+                  </div>
+                  <div className="border rounded-lg p-4 shadow-md">
+                    <h3 className="text-lg font-semibold">Intense Package</h3>
+                    <p className="text-gray-600">$47/month</p>
+                    <div className="mt-2">
+                      <label className="flex items-center">
+                        <input type="checkbox" className="mr-2" defaultChecked />
+                        100+ job applications per month.
+                      </label>
+                      <label className="flex items-center">
+                        <input type="checkbox" className="mr-2" defaultChecked />
+                        Dedicated hiring manager
+                      </label>
+                      <label className="flex items-center">
+                        <input type="checkbox" className="mr-2" defaultChecked />
+                        Applications status
+                      </label>
+                      <label className="flex items-center">
+                        <input type="checkbox" className="mr-2" defaultChecked />
+                        Weekly reports in email inbox.
+                      </label>
+                      <label className="flex items-center">
+                        <input type="checkbox" className="mr-2" defaultChecked />
+                        Customer support
+                      </label>
+                    </div>
+                    <button className="mt-2 w-full py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">
+                      Get Started
+                    </button>
+                  </div>
+                </div>
+              )}
+              <p className="mt-4 text-gray-500">
+                Choose a package that best fits your job application needs.
+              </p>
               <div>
                 <button
                   type="submit"

@@ -2,8 +2,10 @@
 
 import React, { useState } from "react";
 import { FaCheckSquare } from 'react-icons/fa';
+import { useRouter } from 'next/navigation';
 
 const Submit = () => {
+  const router = useRouter(); // Initialize router
   const [email, setEmail] = useState<string>("");
   const [location, setLocation] = useState<string>("");
   const [salary, setSalary] = useState<number | "">("");
@@ -43,6 +45,7 @@ const Submit = () => {
     // Handle form submission logic here
     console.log({ email, location, salary });
     setShowPricing(true); // Show pricing section after submit
+    router.push('/dashboard'); // Navigate to dashboard after submission
   };
 
   return (
@@ -100,10 +103,10 @@ const Submit = () => {
             value={salary}
             onChange={(e) => setSalary(Number(e.target.value))}
             className="border border-gray-300 rounded-md p-2 w-full"
-            placeholder="Enter your expected salary in USD"
+            placeholder="Enter your expected yearly salary in USD"
           />
         </div>
-        {showPricing && (
+        {/* {showPricing && (
           <div className="mt-10">
             <h2 className="text-3xl font-semibold text-gray-800 mb-4">Choose Your Plan</h2>
             <p className="text-md text-gray-500 mb-6">Select the perfect plan for your needs.</p>
@@ -141,7 +144,7 @@ const Submit = () => {
               ))}
             </div>
           </div>
-        )}
+        )} */}
 
         <button
           type="submit"

@@ -96,16 +96,31 @@ const Dashboard = () => {
     }
   };
 
+  const handleSubscribe = () => {
+    router.push("/profile"); // Navigate to profile settings on subscribe
+  };
+
   return (
     <div className="flex h-screen bg-gray-100 font-sans mx-40 rounded-lg" style={{ }}> {/* Added Goretsk font */}
       {/* Main Content */}
       <div className="flex-1 flex flex-col overflow-hidden rounded-lg">
    <Header setSidebarOpen={setSidebarOpen} sidebarOpen={sidebarOpen} />
         <main className="flex-1 bg-gray-200 p-10 overflow-hidden overflow-y-auto "> {/* Added overflow-auto for scrollable content */}
-          {/* Notification Box */}
-          <div className="bg-green-200 text-green-800 p-3 rounded-lg flex items-center mb-4">
-            <FaBell size={20} className="mr-2" /> {/* Notification icon */}
+
+          {/* <div className="bg-green-200 text-green-800 p-3 rounded-lg flex items-center mb-4">
+            <FaBell size={20} className="mr-2" />
             <span>You have new job application updates!</span>
+          </div> */}
+
+          <div className="bg-red-200 text-red-800 p-3 rounded-lg flex items-center mb-4">
+            <FaBell size={20} className="mr-2" /> {/* Notification icon */}
+            <span>Subscribe to start applying to jobs!</span> {/* New notification */}
+            <button 
+              className="ml-auto bg-blue-500 text-white px-3 py-1.5 rounded hover:bg-blue-600" 
+              onClick={handleSubscribe} // Updated to handle subscribe click
+            >
+              Subscribe
+            </button> {/* Subscribe button */}
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
