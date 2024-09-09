@@ -21,7 +21,7 @@ const Faq = ({ faqData }: FaqProps) => {
   return (
     <section className="bg-white dark:bg-gray-800">
       <div className="py-8 px-6 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
-        <div className="space-y-5">
+        <div className="space-y-3"> {/* Changed space-y-5 to space-y-3 for smaller margin */}
           {faqData.map((faq, index) => (
             <div key={index} className="rounded-md shadow-md bg-white dark:bg-gray-800"> {/* Added bg-white for visibility */}
               <button

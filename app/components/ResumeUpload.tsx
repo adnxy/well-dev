@@ -55,14 +55,18 @@ const ResumeUpload = () => {
         >
           <FaUpload className="h-5 w-5 inline-block mr-2" />
           <span className="truncate">
-            {resumeFile ? resumeFile.name : 'Select Resume (pdf)'}
+            {resumeFile ? resumeFile.name : 'Select Resume'}
           </span>
         </label>
         {!resumeFile && (
-          <div className="text-xs text-gray-400 mb-4">
-            <p className="text-gray-100 mt-2 flex items-center">
-              <FaCheck className="mr-2 text-green-500" /> {/* Add checkmark icon */}
+          <div className="text-xs text-gray-400 mb-4 flex justify-center space-x-4">
+            <p className="text-gray-100 flex items-center">
+              <FaCheck className="mr-2 text-green-500" />
               We don't share your data
+            </p>
+            <p className="text-gray-100 flex items-center">
+              <FaCheck className="mr-2 text-green-500" />
+              We only accept .pdf files
             </p>
           </div>
         )}

@@ -400,7 +400,7 @@ const Home = ({ searchParams: { category, endcursor } }: Props) => {
           <div className="p-6 rounded-md shadow-lg bg-white flex items-start">
             <FaCheck className="text-green-500 mr-4 mt-1 flex-shrink-0" size={18} />
             <div>
-              <h3 className="font-semibold text-xl mb-2">Receive personalized job matches</h3>
+              <h3 className="font-semibold text-xl mb-2">Apply to jobs using over 70+ job sites</h3>
               <p className="text-gray-600">Get tailored job recommendations based on your skills and preferences.</p>
             </div>
           </div>
@@ -414,50 +414,38 @@ const Home = ({ searchParams: { category, endcursor } }: Props) => {
         </div>
       </section>
 
-      <section className="bg-white dark:bg-gray-900 max-w-5xl mx-auto w-full">
-        <div className="py-8 px-0 mx-auto lg:py-0 lg:px-0">
+      <section className="bg-white dark:bg-gray-900 max-w-4xl mx-auto w-full">
+        <div className="py-8 px-0 mx-auto lg:py-16 lg:px-0"> {/* Removed horizontal padding */}
           <div className="mb-10">
             <h2 className="text-3xl font-semibold text-gray-800 mb-4">Pricing Plans</h2>
             <p className="text-md text-gray-500">Choose the perfect plan for your needs.</p>
           </div>
-          <div className="space-y-8 lg:grid lg:grid-cols-3 sm:gap-6 xl:gap-10 lg:space-y-0">
+          <div className="space-y-8 lg:grid lg:grid-cols-2 lg:gap-8 xl:gap-12 lg:space-y-0">
             {[
               {
                 title: "Normal",
-                price: <span className="text-2xl font-bold text-blue-600">29 USD</span>, // Updated for distinct appearance
+                price: <span className="text-2xl font-bold text-blue-600">28 USD</span>,
                 features: [
-                  "Up to 25-50 job applications per month.",
-                  "Dashboard",
-                  "Dedicated hiring manager.",
+                  "Up to 50 job applications per month.",
+                  "Dedicated hiring manager",
+                  "Applications status",
                   "Weekly reports in email inbox.",
-                  "Customer support.",
+                  "Customer support",
                 ],
               },
               {
                 title: "Intense",
-                price: <span className="text-2xl font-bold text-blue-600">49 USD</span>, // Updated for distinct appearance
+                price: <span className="text-2xl font-bold text-blue-600">47 USD</span>,
                 features: [
                   "100+ job applications per month.",
-                  "Assigned hiring manager.",
-                  "Priority listing and application processing.",
-                  "Dashboard.",
-                  "Customer support.",
-                  "Dedicated hiring manager.",
+                  "Dedicated hiring manager",
+                  "Applications status",
                   "Weekly reports in email inbox.",
+                  "Customer support",
                 ],
-              },
-              {
-                title: "Resume Redesign",
-                price: <span className="text-2xl font-bold text-blue-600">$99</span>, // Updated for distinct appearance
-                features: [
-                  "Resume redesign.",
-                  "No recurring fees.",
-                  "Unlimited revisions",
-                ],
-                isAddOn: true,
               },
             ].map((plan, index) => (
-              <div key={index} className="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white h-full justify-between">
+              <div key={index} className="flex flex-col p-6 mx-auto w-full max-w-md text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white h-full justify-between">
                 <div>
                   <h3 className="mb-4 text-2xl font-semibold text-zinc-800">{plan.title}</h3>
                   <p className="font-light text-zinc-800 sm:text-lg dark:text-gray-400">{plan.price}</p>
@@ -473,10 +461,9 @@ const Home = ({ searchParams: { category, endcursor } }: Props) => {
                   </ul>
                 </div>
                 <div className="mt-auto">
-       
                   <a
                     href="#"
-                    className="bg-blue-500 text-white-900 px-10 py-3 rounded-md hover:bg-blue-600 hover:text-whit-900 font-medium block w-full"
+                    className="bg-blue-500 text-white px-10 py-3 rounded-md hover:bg-blue-600 font-medium block w-full"
                   >
                     Get started
                   </a>

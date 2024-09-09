@@ -52,7 +52,7 @@ const Header: React.FC<HeaderProps> = ({ setSidebarOpen, sidebarOpen }) => {
       <div className="flex items-center">
         <button
           onClick={handleNotificationClick}
-          className="text-[#232b2b] hover:text-gray-800 mr-4 relative mr-5"
+          className="text-[#232b2b] hover:text-gray-800 mr-4 relative"
         >
           <FaBell size={22} />
           {hasNewNotifications && (
