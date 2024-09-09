@@ -22,13 +22,13 @@ const Signup = () => {
     };
 
     return (
-        <div className="flex items-center justify-center min-h-screen bg-gray-50">
-            <div className="p-10 bg-white rounded-lg shadow-xl w-full max-w-md">
+        <div className="flex items-center justify-center min-h-screen bg-login-background"> {/* Updated background class */}
+            <div className="p-10 bg-white rounded-lg shadow-xl w-full max-w-md border-gray-300"> {/* Added border for distinction */}
                 <h1 className="text-3xl font-bold mb-8 text-center text-gray-800">Sign Up</h1>
                 <form className="space-y-6" onSubmit={handleSignup}>
                     <div>
                         <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                            Email
+                            *Email
                         </label>
                         <input
                             type="email"

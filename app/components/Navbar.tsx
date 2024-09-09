@@ -19,7 +19,7 @@ const Navbar = () => {
       <div className="flex-1 flexStart gap-5">
         <Link href="/">
           <Image
-            src="/taskdone-logo.png"
+            src="https://logowik.com/content/uploads/images/google-tasks7052.logowik.com.web"
             width={80}
             height={80}
             alt="framewell-logo"

@@ -265,23 +265,23 @@ const Home = ({ searchParams: { category, endcursor } }: Props) => {
         <div className={styles.scrollContainer}>
           <div className={styles.scrollContent}>
             {[
-              { type: "Software Developer", icon: <FaCode /> },
-              { type: "Marketing", icon: <SiGooglemarketingplatform /> },
-              { type: "SEO", icon: <FaSearch /> },
-              { type: "UI/UX Design", icon: <MdDesignServices /> },
-              { type: "Data Analyst", icon: <CiDatabase /> },
-              { type: "Product Manager", icon: <CiDesktop /> },
-              { type: "Content Writer", icon: <FaPen /> },
-              { type: "3D Modelling", icon: <FaCube /> },
-              { type: "Video Editing", icon: <FaVideo /> },
-              { type: "Graphic Design", icon: <FaImage /> },
-              { type: "Copywriting", icon: <FaPen /> },
-              { type: "Social Media Manager", icon: <FaFacebook /> },
+              { type: "Software Developer", icon: <FaCode size={18} /> },
+              { type: "Marketing", icon: <SiGooglemarketingplatform size={18} /> },
+              { type: "SEO", icon: <FaSearch size={18} /> },
+              { type: "UI/UX Design", icon: <MdDesignServices size={18} /> },
+              { type: "Data Analyst", icon: <CiDatabase size={18} /> },
+              { type: "Product Manager", icon: <CiDesktop size={18} /> },
+              { type: "Content Writer", icon: <FaPen size={18} /> },
+                { type: "3D Modelling", icon: <FaCube size={18} /> },
+              { type: "Video Editing", icon: <FaVideo size={18} /> },
+              { type: "Graphic Design", icon: <FaImage size={18} /> },
+              { type: "Copywriting", icon: <FaPen size={18} /> },
+              { type: "Social Media Manager", icon: <FaFacebook size={18} /> },
               // Duplicate items to create a seamless loop
-              { type: "Software Developer", icon: <FaCode /> },
-              { type: "Marketing", icon: <SiGooglemarketingplatform /> },
-              { type: "SEO", icon: <FaSearch /> },
-              { type: "UI/UX Design", icon: <MdDesignServices /> },
+              { type: "Software Developer", icon: <FaCode size={18} /> },
+              { type: "Marketing", icon: <SiGooglemarketingplatform size={18} /> },
+              { type: "SEO", icon: <FaSearch size={18} /> },
+              { type: "UI/UX Design", icon: <MdDesignServices size={18} /> },
             ].map((job, index) => (
               <div key={index} className={`${styles.scrollItem} bg-slate-50 p-4 rounded-md flex items-center mx-2 shadow-sm`}>
                 <span className="mr-2">{job.icon}</span>
@@ -347,28 +347,28 @@ const Home = ({ searchParams: { category, endcursor } }: Props) => {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10">
           <div className="p-6 rounded-md shadow-lg bg-white flex items-start">
-            <FaUpload className="text-blue-500 mr-4 mt-1 flex-shrink-0" size={20} /> {/* Added icon */}
+            <FaUpload className="text-blue-500 mr-4 mt-1 flex-shrink-0" size={18} /> {/* Added icon */}
             <div>
               <h3 className="font-semibold text-xl mb-2">Step 1</h3>
               <p>Upload your resume</p>
             </div>
           </div>
           <div className="p-6 rounded-md shadow-lg bg-white flex items-start">
-            <FaCheck className="text-blue-500 mr-4 mt-1 flex-shrink-0" size={20} /> {/* Added icon */}
+            <FaCheck className="text-blue-500 mr-4 mt-1 flex-shrink-0" size={18} /> {/* Added icon */}
             <div>
               <h3 className="font-semibold text-xl mb-2">Step 2</h3>
               <p>We apply to jobs across the web.</p>
             </div>
           </div>
           <div className="p-6 rounded-md shadow-lg bg-white flex items-start">
-            <FaCalendarAlt className="text-blue-500 mr-4 mt-1 flex-shrink-0" size={20} /> {/* Added icon */}
+            <FaCalendarAlt className="text-blue-500 mr-4 mt-1 flex-shrink-0" size={18} /> {/* Added icon */}
             <div>
               <h3 className="font-semibold text-xl mb-2">Step 3</h3>
               <p>Schedule interviews and get weekly reports</p>
             </div>
           </div>
           <div className="p-6 rounded-md shadow-lg bg-white flex items-start">
-            <FaBriefcase className="text-blue-500 mr-4 mt-1 flex-shrink-0" size={20} /> {/* Added icon */}
+            <FaBriefcase className="text-blue-500 mr-4 mt-1 flex-shrink-0" size={18} /> {/* Added icon */}
             <div>
               <h3 className="font-semibold text-xl mb-2">Step 4</h3>
               <p>Track your application progress and get hired.</p>
@@ -424,7 +424,7 @@ const Home = ({ searchParams: { category, endcursor } }: Props) => {
             {[
               {
                 title: "Normal",
-                price: "29 USD",
+                price: <span className="text-2xl font-bold text-blue-600">29 USD</span>, // Updated for distinct appearance
                 features: [
                   "Up to 25-50 job applications per month.",
                   "Dashboard",
@@ -435,7 +435,7 @@ const Home = ({ searchParams: { category, endcursor } }: Props) => {
               },
               {
                 title: "Intense",
-                price: "49 USD",
+                price: <span className="text-2xl font-bold text-blue-600">49 USD</span>, // Updated for distinct appearance
                 features: [
                   "100+ job applications per month.",
                   "Assigned hiring manager.",
@@ -447,8 +447,8 @@ const Home = ({ searchParams: { category, endcursor } }: Props) => {
                 ],
               },
               {
-                title: "One-Time Add-On",
-                price: "$99",
+                title: "Resume Redesign",
+                price: <span className="text-2xl font-bold text-blue-600">$99</span>, // Updated for distinct appearance
                 features: [
                   "Resume redesign.",
                   "No recurring fees.",
@@ -473,15 +473,10 @@ const Home = ({ searchParams: { category, endcursor } }: Props) => {
                   </ul>
                 </div>
                 <div className="mt-auto">
-                  {plan.isAddOn && (
-                    <div className="flex items-center justify-center mb-4">
-                      <input type="checkbox" id="terms" className="mr-2" />
-                      <label htmlFor="terms" className="text-teal-900">Include resume redesign</label>
-                    </div>
-                  )}
+       
                   <a
                     href="#"
-                    className="bg-blue-300 text-teal-900 px-10 py-3 rounded-md hover:bg-blue-200 hover:text-teal-900 font-medium block w-full"
+                    className="bg-blue-500 text-white-900 px-10 py-3 rounded-md hover:bg-blue-600 hover:text-whit-900 font-medium block w-full"
                   >
                     Get started
                   </a>

@@ -10,6 +10,7 @@ import {
   FaBell,
 } from "react-icons/fa";
 import { useRouter } from "next/navigation";
+import Header from "../components/Header";
 
 const Dashboard = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -99,40 +100,10 @@ const Dashboard = () => {
     <div className="flex h-screen bg-gray-100 font-sans mx-40 rounded-lg" style={{ }}> {/* Added Goretsk font */}
       {/* Main Content */}
       <div className="flex-1 flex flex-col overflow-hidden rounded-lg">
-        <header className="flex justify-between items-center p-4 bg-white border-b border-gray-200 h-20">
-          <div className="flex items-center">
-            {/* Added logo to the left of Applications */}
-            {/* Logo that hides when sidebar is closed */}
-
-            <button
-              onClick={() => setSidebarOpen(!sidebarOpen)}
-              className="md:hidden mr-3"
-            >
-              <FaBars size={24} />
-            </button>
-          </div>
-          {/* Moved sidebar elements to the left of the page */}
-          <div className="flex space-x-4 absolute left-40">
-          <img src={logoUrl} alt="Logo" className="h-11 mr-0" /> {/* Added logo */}
-
-            <a href="/dashboard" className="flex items-center text-gray-500 hover:text-blue-500 transition duration-300 mr-5">
-            Applications
-            </a>
-            <a href="/profile" className="flex items-center text-gray-500 hover:text-blue-500 transition duration-300">
-      Profile
-            </a>
-          </div>
-          <button
-            onClick={handleLogout}
-            className="text-gray-500 hover:text-gray-800 flex items-center"
-          >
-            <FaSignOutAlt size={20} className="mr-2" /> Logout
-          </button>
-        </header>
-
-        <main className="flex-1 bg-gray-200 p-8 overflow-hidden overflow-y-auto"> {/* Added overflow-auto for scrollable content */}
+   <Header setSidebarOpen={setSidebarOpen} sidebarOpen={sidebarOpen} />
+        <main className="flex-1 bg-gray-200 p-10 overflow-hidden overflow-y-auto "> {/* Added overflow-auto for scrollable content */}
           {/* Notification Box */}
-          <div className="bg-green-200 text-green-800 p-4 rounded-lg flex items-center mb-4">
+          <div className="bg-green-200 text-green-800 p-3 rounded-lg flex items-center mb-4">
             <FaBell size={20} className="mr-2" /> {/* Notification icon */}
             <span>You have new job application updates!</span>
           </div>
@@ -170,7 +141,7 @@ const Dashboard = () => {
               {jobApplications.map((job) => (
                 <li
                   key={job.id}
-                  className="bg-white p-6 rounded-md shadow hover:bg-gray-50 transition duration-150 ease-in-out" // Increased padding for larger height
+                  className="bg-white p-6 rounded-md shadow hover:bg-slate-100 transition duration-150 ease-in-out" // Increased padding for larger height
                 >
                   <div className="flex justify-between"> {/* Added flex for alignment */}
                     <div>
