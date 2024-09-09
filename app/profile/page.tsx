@@ -57,13 +57,13 @@ const Profile = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-100 font-sans">
+    <div className="flex flex-col min-h-screen bg-white font-sans"> {/* Changed background to white */}
       {/* Header */}
       <Header setSidebarOpen={setSidebarOpen} sidebarOpen={sidebarOpen} />
 
       {/* Main Content */}
-      <main className="flex-grow bg-gray-50 p-8">
-        <div className="max-w-3xl mx-auto bg-white shadow-md rounded-lg overflow-hidden">
+      <main className="flex-grow p-8"> {/* Removed bg-gray-50 */}
+        <div className="max-w-3xl mx-auto bg-white shadow-md rounded-lg overflow-hidden"> {/* Kept white background */}
           <div className="px-4 py-5 sm:p-6">
             <h1 className="text-2xl font-semibold text-gray-900 mb-6">
               Profile Settings

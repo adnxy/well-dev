@@ -21,8 +21,8 @@ const FooterColumn = ({ title, links }: ColumnProps) => (
 );
 
 const Footer = () => (
-  <section className="flexStart footer" style={{ borderTop: '1px solid #d3d3d3' }}>
-    <div className="flex flex-col gap-12 w-full  flex-col text-white">
+  <section className="flexStart footer" style={{ borderTop: '1px solid #d3d3d3', backgroundColor: '#FAF3EA', color: '#B0B0B0' }}>
+    <div className="flex flex-col gap-12 w-full  flex-col text-black">
       <div className="flex items-start">
         {/* <Image src="/logo.svg" width={150} height={60} alt="logo" /> */}
 
@@ -61,7 +61,7 @@ const Footer = () => (
       </div>
     </div>
 
-    <div className="flexBetween footer_copyright text-white">
+    <div className="flexBetween footer_copyright text-black">
       <p>@ 2024 Applyinbox. All rights reserved</p>
       {/* <p className="text-gray">
         <span className="text-black font-semibold">10,214</span> projects

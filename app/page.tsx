@@ -253,11 +253,9 @@ const Home = ({ searchParams: { category, endcursor } }: Props) => {
     >
 
       <div className="mt-60 text-center"> 
-        <h1 className="text-headline font-headline mb-50 font-bold">
-          You Upload The Resume, We Do The Rest
-        </h1>
-        <p className="text-subheadline font-subheadline mt-2 mb-8"> 
-          Auto apply to hundreds of jobs across the web and get interview invites.
+        <h1 className="text-4xl font-bold mb-6">Upload Your Resume, We Handle the Rest</h1>
+        <p className="text-lg text-gray-600 mb-8"> 
+          Auto-apply to hundreds of jobs and receive interview invites.
         </p>
         <ResumeUpload />
         
@@ -292,8 +290,8 @@ const Home = ({ searchParams: { category, endcursor } }: Props) => {
         </div>
       </div>
       <section className="flexStart flex-col paddings mb-16">
-        <p className="text-subheadline font-subheadline mt-5 mb-5 text-gray-400">
-        Our customers had interviews with leading companies around the world.
+        <p className="text-gray-500 mt-5 mb-5">
+          Our customers have interviewed with leading companies worldwide.
         </p>
         <div className="flex justify-start items-center mt-4 space-x-8">
           <Image src={uber} alt="Uber" width={60} height={30} />
@@ -306,8 +304,8 @@ const Home = ({ searchParams: { category, endcursor } }: Props) => {
         </div>
       </section>
       <section ref={sectionRef} className="flexStart flex-col paddings mb-16 w-full max-w-4xl mx-auto mt-20">
-        <h2 className="text-2xl font-semibold text-gray-800 mb-4">Your Job Applications</h2>
-        <p className="text-md text-gray-500">Track your applications effortlessly.</p>
+        <h2 className="text-2xl font-semibold text-gray-800 mb-4">Job Applications</h2>
+        <p className="text-lg text-gray-500">Effortlessly track your applications.</p>
         <div className="flex flex-col w-full">
           {jobApplications.map((application, index) => (
             <div 
@@ -342,8 +340,8 @@ const Home = ({ searchParams: { category, endcursor } }: Props) => {
       <div className="mb-30"></div>
       <section className="flex flex-col paddings mb-16 max-w-6xl mx-auto w-full">
         <div className="mb-10">
-          <h2 className="text-3xl font-semibold text-gray-800 mb-4">How it works</h2>
-          <p className="text-md text-gray-500">Streamline your job application process.</p>
+          <h2 className="text-3xl font-semibold text-gray-800 mb-4">How It Works</h2>
+          <p className="text-lg text-gray-500">Streamline your job application process.</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10">
           <div className="p-6 rounded-md shadow-lg bg-white flex items-start">
@@ -378,9 +376,9 @@ const Home = ({ searchParams: { category, endcursor } }: Props) => {
       </section>
 
       <section className="flex flex-col paddings mb-16 max-w-6xl mx-auto w-full">
-        <div className="mb-10">
+        <div className="">
           <h2 className="text-3xl font-semibold text-gray-800 mb-4">Benefits</h2>
-          <p className="text-md text-gray-500">Why choose our platform.</p>
+          <p className="text-lg text-gray-500">Why choose our platform?</p>
         </div>
         <div className="grid grid-cols-1 gap-6 mt-10">
           <div className="p-6 rounded-md shadow-lg bg-white flex items-start">
@@ -414,11 +412,11 @@ const Home = ({ searchParams: { category, endcursor } }: Props) => {
         </div>
       </section>
 
-      <section className="bg-white dark:bg-gray-900 max-w-4xl mx-auto w-full">
-        <div className="py-8 px-0 mx-auto lg:py-16 lg:px-0"> {/* Removed horizontal padding */}
+      <section className="bg-white dark:bg-gray-900 max-w-5xl mx-auto w-full">
+        <div className="py-8 px-30 mx-auto lg:py-100 lg:px-0">
           <div className="mb-10">
             <h2 className="text-3xl font-semibold text-gray-800 mb-4">Pricing Plans</h2>
-            <p className="text-md text-gray-500">Choose the perfect plan for your needs.</p>
+            <p className="text-lg text-gray-500">Choose the perfect plan for your needs.</p>
           </div>
           <div className="space-y-8 lg:grid lg:grid-cols-2 lg:gap-8 xl:gap-12 lg:space-y-0">
             {[
@@ -445,10 +443,10 @@ const Home = ({ searchParams: { category, endcursor } }: Props) => {
                 ],
               },
             ].map((plan, index) => (
-              <div key={index} className="flex flex-col p-6 mx-auto w-full max-w-md text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white h-full justify-between">
+              <div key={index} className="flex flex-col p-3 mx-auto w-full max-w-md text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white h-full justify-between">
                 <div>
-                  <h3 className="mb-4 text-2xl font-semibold text-zinc-800">{plan.title}</h3>
-                  <p className="font-light text-zinc-800 sm:text-lg dark:text-gray-400">{plan.price}</p>
+                  <h3 className="mb-2 text-2xl font-semibold text-zinc-800">{plan.title}</h3>
+                  <p className="font-light text-zinc-800 sm:text-lg dark:text-gray-400 mb-4">{plan.price}</p>
                   <ul role="list" className="mb-8 space-y-4 text-left mt-6">
                     {plan.features.map((feature, featureIndex) => (
                       <li key={featureIndex} className="flex items-center text-black">
@@ -477,7 +475,7 @@ const Home = ({ searchParams: { category, endcursor } }: Props) => {
       <section className="flex flex-col paddings mb-16 max-w-6xl mx-auto w-full">
         <div className="mb-10">
           {/* <h2 className="text-3xl font-semibold text-gray-800 mb-4">Testimonials</h2>
-          <p className="text-md text-gray-500">What our users are saying.</p> */}
+          <p className="text-lg text-gray-500">What our users are saying.</p> */}
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
           {testimonials.map((testimonial, index) => (
@@ -492,7 +490,7 @@ const Home = ({ searchParams: { category, endcursor } }: Props) => {
       <section className="flex flex-col paddings mb-16 max-w-6xl mx-auto w-full">
         <div className="mb-10">
           <h2 className="text-3xl font-semibold text-gray-800 mb-4">FAQ</h2>
-          <p className="text-md text-gray-500">Frequently asked questions.</p>
+          <p className="text-lg text-gray-500">Frequently asked questions.</p>
         </div>
         <Faq faqData={faqData} />
       </section>
