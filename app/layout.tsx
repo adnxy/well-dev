@@ -7,9 +7,9 @@ import Footer from "./components/Footer";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "OneApply - Automate your job applications",
+  title: "Oneapply - Automate your job applications",
   description:
-    "OneApply is a platform that allows you to automate your job applications. We apply to jobs across the web and schedule interviews for you.",
+    "Oneapply is a platform that allows you to automate your job applications. We apply to jobs across the web and schedule interviews for you.",
 };
 
 export default function RootLayout({

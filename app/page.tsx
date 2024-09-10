@@ -253,12 +253,25 @@ const Home = ({ searchParams: { category, endcursor } }: Props) => {
     >
 
       <div className="mt-20 md:mt-60 text-center"> 
-        <h1 className="text-3xl font-bold mb-4">Upload Your Resume, We Handle the Rest</h1> {/* Updated font size */}
-        <p className="text-lg text-gray-600 mb-6"> {/* Updated font size */}
+        <h1 className="text-4xl font-bold mb-4 text-gray-800">Upload Your Resume, We Handle the Rest</h1> {/* Updated font size and color */}
+        <p className="text-lg text-gray-500 mb-6"> {/* Updated font size and color */}
           Auto-apply to hundreds of jobs and receive interview invites.
         </p>
         <ResumeUpload />
-        
+        <section className="flexStart flex-col paddings mt-40 mb-16">
+        <p className="text-gray-400 mt-5 mb-5 text-lg text-center"> {/* Updated to lighter color */}
+          Our customers got interviewes with leading companies worldwide
+        </p>
+        <div className="flex justify-start items-center mt-4 space-x-8">
+          <Image src={uber} alt="Uber" width={60} height={30} />
+          <Image src={adobe} alt="Adobe" width={40} height={30} />
+          <Image src={airbnb} alt="Airbnb" width={100} height={30} />
+          <Image src={wordpress} alt="Wordpress" width={40} height={30} className="hidden md:block" /> {/* Hide on mobile */}
+          <Image src={pg} alt="Procter and Gamble" width={60} height={30} />
+          {/* <Image src={grab} alt="Grab" width={80} height={30} /> */}
+          {/* <Image src={rb} alt="Red Bull" width={80} height={30} /> */}
+        </div>
+      </section>
         {/* Updated Horizontal Scrolling Job Types Section */}
         <div className={styles.scrollContainer}>
           <div className={styles.scrollContent}>
@@ -289,23 +302,10 @@ const Home = ({ searchParams: { category, endcursor } }: Props) => {
           </div>
         </div>
       </div>
-      <section className="flexStart flex-col paddings mb-16">
-        <p className="text-gray-500 mt-5 mb-5 text-lg text-center"> {/* Updated to center text */}
-          Our customers had interviewed with leading companies worldwide.
-        </p>
-        <div className="flex justify-start items-center mt-4 space-x-8">
-          <Image src={uber} alt="Uber" width={60} height={30} />
-          <Image src={adobe} alt="Adobe" width={40} height={30} />
-          <Image src={airbnb} alt="Airbnb" width={100} height={30} />
-          <Image src={wordpress} alt="Wordpress" width={40} height={30} className="hidden md:block" /> {/* Hide on mobile */}
-          <Image src={pg} alt="Procter and Gamble" width={60} height={30} />
-          {/* <Image src={grab} alt="Grab" width={80} height={30} /> */}
-          {/* <Image src={rb} alt="Red Bull" width={80} height={30} /> */}
-        </div>
-      </section>
+
       <section ref={sectionRef} className="flexStart flex-col paddings mb-16 w-full max-w-4xl mx-auto mt-20">
         <h2 className="text-2xl font-semibold text-gray-800 mb-4">Job Applications</h2>
-        <p className="text-lg text-gray-500">Effortlessly track your applications.</p>
+        <p className="text-lg text-gray-500">Real-time tracking of your applications.</p>
         <div className="flex flex-col w-full">
           {jobApplications.map((application, index) => (
             <div 
@@ -340,7 +340,7 @@ const Home = ({ searchParams: { category, endcursor } }: Props) => {
       <div className="mb-30"></div>
       <section className="flex flex-col paddings mb-16 max-w-6xl mx-auto w-full">
         <div className="mb-10">
-          <h2 className="text-3xl font-semibold text-gray-800 mb-4">How It Works</h2>
+          <h2 className="text-3xl font-semibold text-gray-700 mb-4">How It Works</h2> {/* Updated color */}
           <p className="text-lg text-gray-500">Streamline your job application process.</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10">
@@ -348,7 +348,7 @@ const Home = ({ searchParams: { category, endcursor } }: Props) => {
             <FaUpload className="text-blue-500 mr-4 mt-1 flex-shrink-0" size={18} /> {/* Added icon */}
             <div>
               <h3 className="font-semibold text-xl mb-2">Step 1</h3>
-              <p>Upload your resume</p>
+              <p>Upload your resume.</p>
             </div>
           </div>
           <div className="p-6 rounded-md shadow-lg bg-white flex items-start">
@@ -362,14 +362,14 @@ const Home = ({ searchParams: { category, endcursor } }: Props) => {
             <FaCalendarAlt className="text-blue-500 mr-4 mt-1 flex-shrink-0" size={18} /> {/* Added icon */}
             <div>
               <h3 className="font-semibold text-xl mb-2">Step 3</h3>
-              <p>Schedule interviews and get weekly reports</p>
+              <p>Schedule interviews and get reports.</p>
             </div>
           </div>
           <div className="p-6 rounded-md shadow-lg bg-white flex items-start">
             <FaBriefcase className="text-blue-500 mr-4 mt-1 flex-shrink-0" size={18} /> {/* Added icon */}
             <div>
               <h3 className="font-semibold text-xl mb-2">Step 4</h3>
-              <p>Track your application progress and get hired.</p>
+              <p>Track your progress and get hired.</p>
             </div>
           </div>
         </div>
@@ -377,33 +377,33 @@ const Home = ({ searchParams: { category, endcursor } }: Props) => {
 
       <section className="flex flex-col paddings mb-16 max-w-6xl mx-auto w-full">
         <div className="">
-          <h2 className="text-3xl font-semibold text-gray-800 mb-4">Benefits</h2>
+          <h2 className="text-3xl font-semibold text-gray-700 mb-4">Benefits</h2> {/* Updated color */}
           <p className="text-lg text-gray-500">Why choose our platform?</p>
         </div>
         <div className="grid grid-cols-1 gap-6 mt-10">
           <div className="p-6 rounded-md shadow-lg bg-white flex items-start">
-            <FaCheck className="text-green-500 mr-4 mt-1 flex-shrink-0" size={18} />
+            <FaCheck className="text-blue-500 mr-4 mt-1 flex-shrink-0" size={18} />
             <div>
               <h3 className="font-semibold text-xl mb-2">Get more job opportunities</h3>
               <p className="text-gray-600">Access a wider range of job listings across multiple platforms.</p>
             </div>
           </div>
           <div className="p-6 rounded-md shadow-lg bg-white flex items-start">
-            <FaCheck className="text-green-500 mr-4 mt-1 flex-shrink-0" size={18} />
+            <FaCheck className="text-blue-500 mr-4 mt-1 flex-shrink-0" size={18} />
             <div>
               <h3 className="font-semibold text-xl mb-2">Save time on applications</h3>
               <p className="text-gray-600">Streamline your application process and apply to multiple jobs efficiently.</p>
             </div>
           </div>
           <div className="p-6 rounded-md shadow-lg bg-white flex items-start">
-            <FaCheck className="text-green-500 mr-4 mt-1 flex-shrink-0" size={18} />
+            <FaCheck className="text-blue-500 mr-4 mt-1 flex-shrink-0" size={18} />
             <div>
               <h3 className="font-semibold text-xl mb-2">Apply to jobs using over 70+ job sites</h3>
               <p className="text-gray-600">Get tailored job recommendations based on your skills and preferences.</p>
             </div>
           </div>
           <div className="p-6 rounded-md shadow-lg bg-white flex items-start">
-            <FaCheck className="text-green-500 mr-4 mt-1 flex-shrink-0" size={18} />
+            <FaCheck className="text-blue-500 mr-4 mt-1 flex-shrink-0" size={18} />
             <div>
               <h3 className="font-semibold text-xl mb-2">Track your application progress</h3>
               <p className="text-gray-600">Stay organized with real-time updates on your job applications.</p>
@@ -415,19 +415,19 @@ const Home = ({ searchParams: { category, endcursor } }: Props) => {
       <section className="bg-white dark:bg-gray-900 max-w-5xl mx-auto w-full">
         <div className="py-8 px-30 mx-auto lg:py-100 lg:px-0">
           <div className="mb-10">
-            <h2 className="text-3xl font-semibold text-gray-800 mb-4">Pricing Plans</h2>
+            <h2 className="text-3xl font-semibold text-gray-700 mb-4">Pricing Plans</h2> {/* Updated color */}
             <p className="text-lg text-gray-500">Choose the perfect plan for your needs.</p>
           </div>
-          <div className="space-y-8 lg:grid lg:grid-cols-2 lg:gap-8 xl:gap-12 lg:space-y-0">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {[
               {
                 title: "Normal",
                 price: <span className="text-2xl font-bold text-blue-600">28 USD</span>,
                 features: [
-                  "Up to 50 job applications per month.",
+                  "50 job applications/month",
                   "Dedicated hiring manager",
-                  "Applications status",
-                  "Weekly reports in email inbox.",
+                  "Application status",
+                  "Weekly email reports",
                   "Customer support",
                 ],
               },
@@ -435,37 +435,33 @@ const Home = ({ searchParams: { category, endcursor } }: Props) => {
                 title: "Intense",
                 price: <span className="text-2xl font-bold text-blue-600">47 USD</span>,
                 features: [
-                  "100+ job applications per month.",
+                  "100+ job applications/month",
                   "Dedicated hiring manager",
-                  "Applications status",
-                  "Weekly reports in email inbox.",
+                  "Application status",
+                  "Weekly email reports",
                   "Customer support",
                 ],
               },
             ].map((plan, index) => (
-              <div key={index} className="flex flex-col p-3 mx-auto w-full max-w-md text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white h-full justify-between">
-                <div>
-                  <h3 className="mb-2 text-2xl font-semibold text-zinc-800">{plan.title}</h3>
-                  <p className="font-light text-zinc-800 sm:text-lg dark:text-gray-400 mb-4">{plan.price}</p>
-                  <ul role="list" className="mb-8 space-y-4 text-left mt-6">
-                    {plan.features.map((feature, featureIndex) => (
-                      <li key={featureIndex} className="flex items-center text-black">
-                        <svg className="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"></path>
-                        </svg>
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div className="mt-auto">
-                  <a
-                    href="#"
-                    className="bg-blue-500 text-white px-10 py-3 rounded-md hover:bg-blue-600 font-medium block w-full"
-                  >
-                    Get started
-                  </a>
-                </div>
+              <div key={index} className="flex flex-col p-6 mx-auto w-full max-w-md text-center text-gray-900 bg-white rounded-lg shadow-lg transition-transform transform hover:scale-105">
+                <h3 className="mb-2 text-2xl font-semibold text-gray-800">{plan.title}</h3>
+                <p className="font-light text-gray-600 mb-4">{plan.price}</p>
+                <ul role="list" className="mb-8 space-y-2 text-left">
+                  {plan.features.map((feature, featureIndex) => (
+                    <li key={featureIndex} className="flex items-center text-black">
+                      <svg className="flex-shrink-0 w-5 h-5 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"></path>
+                      </svg>
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+                <a
+                  href="#"
+                  className="bg-blue-500 text-white px-6 py-2 rounded-md hover:bg-blue-600 font-medium block"
+                >
+                  Get started
+                </a>
               </div>
             ))}
           </div>

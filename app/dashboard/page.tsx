@@ -96,6 +96,10 @@ const Dashboard = () => {
     router.push("/profile"); // Navigate to profile settings on subscribe
   };
 
+  const renderDot = () => (
+    <span className="inline-block h-2 w-2 rounded-full bg-green-500 mr-1"></span>
+  );
+
   return (
     <div className="flex flex-col h-screen bg-white font-sans mx-4 sm:mx-10 lg:mx-40 rounded-lg"> {/* Adjusted margins for mobile */}
       {/* Main Content */}
@@ -119,25 +123,33 @@ const Dashboard = () => {
 
           <div className="flex overflow-x-auto space-x-4 mb-4 w-full"> {/* Added w-full for full width */}
             <div className="bg-white rounded-lg shadow p-4 sm:p-6 flex flex-col justify-center w-full"> {/* Changed min-w to w-full */}
-              <h3 className="font-semibold">Notifications</h3>
+              <h3 className="font-semibold flex items-center">
+        Notifications
+              </h3>
               <p className="text-2xl font-semibold">{jobApplications.filter(job => job.status === "Interview Invitation" || job.status === "Offered").length}</p>
               <hr className="my-2" />
               <p>Latest job notifications.</p>
             </div>
             <div className="bg-white rounded-lg shadow p-4 sm:p-6 flex flex-col justify-center w-full"> {/* Changed min-w to w-full */}
-              <h3 className="font-semibold">Total Job Applications</h3>
+              <h3 className="font-semibold flex items-center">
+           Total Job Applications
+              </h3>
               <p className="text-2xl font-semibold">{jobApplications.length}</p>
               <hr className="my-2" />
               <p className="text-gray-300">All applications submitted.</p>
             </div>
             <div className="bg-white rounded-lg shadow p-4 sm:p-6 flex flex-col justify-center w-full"> {/* Changed min-w to w-full */}
-              <h3 className="font-semibold">Pending Applications</h3>
+              <h3 className="font-semibold flex items-center">
+           Pending Applications
+              </h3>
               <p className="text-2xl font-semibold">{jobApplications.filter(job => job.status === "Pending").length}</p>
               <hr className="my-2" />
               <p>Applications awaiting response.</p>
             </div>
             <div className="bg-white rounded-lg shadow p-4 sm:p-6 flex flex-col justify-center w-full"> {/* Changed min-w to w-full */}
-              <h3 className="font-semibold">Interviews</h3>
+              <h3 className="font-semibold flex items-center">
+                {renderDot()} Interviews
+              </h3>
               <p className="text-2xl font-semibold">{jobApplications.filter(job => job.status === "Interview Invitation").length}</p>
               <hr className="my-2" />
               <p>Number of scheduled interviews.</p>
@@ -156,7 +168,7 @@ const Dashboard = () => {
                   >
                     <div className="flex justify-between"> {/* Added flex for alignment */}
                       <div>
-                        <h3 className="font-semibold text-blue-800">{job.title}</h3>
+                        <h3 className="font-semibold text-black">{job.title}</h3> {/* Changed job title color to black */}
                         <p className="text-sm text-gray-600">{job.description}</p> {/* Changed text color to gray */}
                       </div>
                       <span className="text-sm text-gray-500">{new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span> {/* Formatted date */}

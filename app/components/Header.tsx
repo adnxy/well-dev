@@ -42,7 +42,7 @@ const Header: React.FC<HeaderProps> = ({ setSidebarOpen, sidebarOpen }) => {
         </Link>
         <Link href="/profile" className={`flex items-center text-[#232b2b] hover:text-blue-500 transition duration-300 ${isProfile ? 'text-blue-500' : ''}`}>
           <FaCog className="mr-2" /> Settings
-        </Link>
+        </Link> {/* Ensure the entire link is clickable */}
       </div>
       <div className="flex items-center justify-end w-full"> {/* Align notifications to the right */}
         <button
