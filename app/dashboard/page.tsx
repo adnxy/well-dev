@@ -102,7 +102,21 @@ const Dashboard = () => {
       <div className="flex-1 flex flex-col overflow-hidden rounded-lg">
         <Header setSidebarOpen={setSidebarOpen} sidebarOpen={sidebarOpen} />
         <main className="flex-1 bg-gray-200 p-4 sm:p-7 overflow-hidden overflow-y-auto"> {/* Adjusted padding for mobile */}
-          {/* Carousel for stats */}
+     
+          {/* Notification Message */}
+          <div className="flex items-center justify-between bg-blue-100 p-4 rounded-lg mb-4">
+            <div className="flex items-center">
+              <FaBell className="text-blue-500 mr-2 text-2xl" /> {/* Increased size of the icon */}
+              <span className="text-blue-800 text-md">Subscribe to start applying to jobs.</span> {/* Changed font size to 18px */}
+            </div>
+            <button 
+              onClick={handleSubscribe} 
+              className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition duration-150"
+            >
+              Subscribe
+            </button>
+          </div>
+
           <div className="flex overflow-x-auto space-x-4 mb-4 w-full"> {/* Added w-full for full width */}
             <div className="bg-white rounded-lg shadow p-4 sm:p-6 flex flex-col justify-center w-full"> {/* Changed min-w to w-full */}
               <h3 className="font-semibold">Notifications</h3>
