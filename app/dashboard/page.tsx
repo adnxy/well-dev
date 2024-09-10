@@ -19,7 +19,7 @@ const Dashboard = () => {
       id: 1,
       title: "Software Engineer",
       description: "Full-stack position at Tech Co.",
-      status: "Applied",
+      status: "Pending",
     },
     {
       id: 2,
@@ -37,7 +37,7 @@ const Dashboard = () => {
       id: 4,
       title: "Data Analyst",
       description: "Entry-level position at Data Corp",
-      status: "Offered",
+      status: "Pending",
     },
     {
       id: 5,
@@ -61,7 +61,7 @@ const Dashboard = () => {
       id: 8,
       title: "Mobile App Developer",
       description: "iOS specialist at App Creators",
-      status: "Interviewed",
+      status: "Pending",
     },
   ]);
   const [logoUrl, setLogoUrl] = useState("");
@@ -77,16 +77,12 @@ const Dashboard = () => {
     router.push("/");
   };
 
-  const getStatusColor = (status: string    ) => {
+  const getStatusColor = (status: string) => {
     switch (status) {
-      case "Applied":
-        return "bg-purple-200 text-purple-800";
+      case "Pending": // Changed to only include Pending
+        return "bg-yellow-200 text-yellow-800"; // Yellow for Pending
       case "Interview Invitation":
-        return "bg-green-200 text-green-800"; // Changed to mint green
-      case "Pending":
-        return "bg-yellow-200 text-yellow-800";
-      case "Interviewed":
-        return "bg-blue-200 text-blue-800";
+        return "bg-green-200 text-green-800"; 
       case "Rejected":
         return "bg-red-200 text-red-800";
       case "Offered":
@@ -101,20 +97,21 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="flex h-screen bg-gray-100 font-sans mx-40 rounded-lg" style={{ }}> {/* Added Goretsk font */}
+    <div className="flex h-screen bg-white font-sans mx-40 rounded-lg" style={{ }}> {/* Added Goretsk font */}
       {/* Main Content */}
       <div className="flex-1 flex flex-col overflow-hidden rounded-lg">
    <Header setSidebarOpen={setSidebarOpen} sidebarOpen={sidebarOpen} />
-        <main className="flex-1 bg-gray-200 p-10 overflow-hidden overflow-y-auto "> {/* Added overflow-auto for scrollable content */}
+        <main className="flex-1 bg-gray-200 p-7 overflow-hidden overflow-y-auto "> {/* Added overflow-auto for scrollable content */}
 
           {/* <div className="bg-green-200 text-green-800 p-3 rounded-lg flex items-center mb-4">
             <FaBell size={20} className="mr-2" />
             <span>You have new job application updates!</span>
           </div> */}
 
-          <div className="bg-red-200 text-red-800 p-3 rounded-lg flex items-center mb-4">
+          <div               onClick={handleSubscribe} // Updated to handle subscribe click
+ className="bg-green-200 text-green-800 p-3 rounded-lg flex items-center mb-5"> {/* Changed padding to p-2 for smaller top padding */}
             <FaBell size={20} className="mr-2" /> {/* Notification icon */}
-            <span>Subscribe to start applying to jobs!</span> {/* New notification */}
+            <span>Subscribe to start applying to jobs.</span> {/* New notification */}
             <button 
               className="ml-auto bg-blue-500 text-white px-3 py-1.5 rounded hover:bg-blue-600" 
               onClick={handleSubscribe} // Updated to handle subscribe click
@@ -128,7 +125,7 @@ const Dashboard = () => {
               <h3 className="font-semibold">Notifications</h3>
               <p className="text-2xl font-semibold">{jobApplications.filter(job => job.status === "Interview Invitation" || job.status === "Offered").length}</p>
               <hr className="my-2" />
-              <p>Updates on your job applications.</p>
+              <p>Latest job notifications.</p>
             </div>
             <div className="bg-white rounded-lg shadow p-8 flex flex-col justify-center">
               <h3 className="font-semibold">Total Job Applications</h3>
@@ -146,34 +143,36 @@ const Dashboard = () => {
               <h3 className="font-semibold">Interviews</h3>
               <p className="text-2xl font-semibold">{jobApplications.filter(job => job.status === "Interview Invitation").length}</p>
               <hr className="my-2" />
-              <p>Applications with scheduled interviews.</p>
+              <p>Number of scheduled interviews.</p>
             </div>
           </div>
 
           <div className="bg-white rounded-lg shadow p-6">
             <h2 className="text-xl font-medium mb-4 p-2">Recent Applications</h2> {/* Added padding around the title */}
             <ul className="space-y-4">
-              {jobApplications.map((job) => (
-                <li
-                  key={job.id}
-                  className="bg-white p-6 rounded-md shadow hover:bg-slate-100 transition duration-150 ease-in-out" // Increased padding for larger height
-                >
-                  <div className="flex justify-between"> {/* Added flex for alignment */}
-                    <div>
-                      <h3 className="font-semibold text-blue-800">{job.title}</h3>
-                      <p className="text-sm text-gray-600">{job.description}</p> {/* Changed text color to gray */}
-                    </div>
-                    <span className="text-sm text-gray-500">{new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span> {/* Formatted date */}
-                  </div>
-                  <span
-                    className={`inline-block px-2 py-1 mt-2 text-xs font-semibold rounded-full ${getStatusColor(
-                      job.status
-                    )}`}
+              {jobApplications
+                .filter(job => job.status !== "Offered" && job.status !== "Interviewed" && job.status !== "Applied") // Filter out Offered, Interviewed, and Applied
+                .map((job) => (
+                  <li
+                    key={job.id}
+                    className="bg-white p-6 rounded-md shadow hover:bg-slate-50 transition duration-150 ease-in-out border border-slate-200" // Added light border
                   >
-                    {job.status}
-                  </span>
-                </li>
-              ))}
+                    <div className="flex justify-between"> {/* Added flex for alignment */}
+                      <div>
+                        <h3 className="font-semibold text-blue-800">{job.title}</h3>
+                        <p className="text-sm text-gray-600">{job.description}</p> {/* Changed text color to gray */}
+                      </div>
+                      <span className="text-sm text-gray-500">{new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span> {/* Formatted date */}
+                    </div>
+                    <span
+                      className={`inline-block px-2 py-1 mt-2 text-xs font-semibold rounded-full ${getStatusColor(
+                        job.status
+                      )}`}
+                    >
+                      {job.status}
+                    </span>
+                  </li>
+                ))}
             </ul>
           </div>
         </main>
