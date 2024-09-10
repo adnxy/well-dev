@@ -357,7 +357,7 @@ const PricingPage = () => {
             Designed for crafting unique solutions
           </h2>
           <p className="mb-5 font-light text-gray-500 sm:text-xl dark:text-gray-400">
-            Here at Applyinbox we focus on markets where technology and inovation can unlock long-term value and drive economic growth.
+            Here at OneApply we focus on markets where technology and inovation can unlock long-term value and drive economic growth.
           </p>
         </div>
         <div className="space-y-8 lg:grid lg:grid-cols-3 sm:gap-6 xl:gap-10 lg:space-y-0">

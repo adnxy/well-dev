@@ -27,7 +27,7 @@ const Footer = () => (
         {/* <Image src="/logo.svg" width={150} height={60} alt="logo" /> */}
 
         <p className="text-start text-sm font-normal mt-5 max-w-xs">
-           Applyinbox is a platform that allows you to outsource your job applications to a virtual assistant. We apply to jobs across the web and schedule interviews for you.
+           OneApply is a platform that allows you to outsource your job applications to a virtual assistant. We apply to jobs across the web and schedule interviews for you.
         </p>
       </div>
       <div className="flex flex-wrap gap-12">
@@ -62,7 +62,7 @@ const Footer = () => (
     </div>
 
     <div className="flexBetween footer_copyright text-black">
-      <p>@ 2024 Applyinbox. All rights reserved</p>
+      <p>@ 2024 OneApply. All rights reserved</p>
       {/* <p className="text-gray">
         <span className="text-black font-semibold">10,214</span> projects
         submitted

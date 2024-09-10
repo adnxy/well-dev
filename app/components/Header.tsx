@@ -54,6 +54,12 @@ const Header: React.FC<HeaderProps> = ({ setSidebarOpen, sidebarOpen }) => {
             <span className="absolute top-0 right-0 block h-2 w-2 rounded-full bg-red-500 transform translate-x-1/2 -translate-y-1/2"></span>
           )}
         </button>
+        <button
+          onClick={handleLogout} // Add logout functionality
+          className="text-[#232b2b] hover:text-gray-800 mr-4"
+        >
+          <FaSignOutAlt size={22} className="mr-2" /> {/* Logout icon */}
+        </button>
       </div>
     </header>
   );

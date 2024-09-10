@@ -18,13 +18,13 @@ const Navbar = () => {
     <nav className="flexBetween navbar h-20"> {/* Reduced height */}
       <div className="flex-1 flexStart gap-5">
         <Link href="/">
-          <Image
-            src="https://logowik.com/content/uploads/images/google-tasks7052.logowik.com.web"
-            width={80}
-            height={80}
-            alt="framewell-logo"
-            style={{ marginLeft: 35, paddingTop: 10 }} // Adjusted padding for less height
-          ></Image>
+        <Image
+          src="https://logowik.com/content/uploads/images/google-tasks7052.logowik.com.webp"
+          alt="Logo"
+          width={40}
+          height={40}
+          className="h-10 w-14 mr-0"
+        />
         </Link>
         <ul className="flex-1 flex justify-end items-center pr-10 mr-20">
         {!isDashboard && NavLinks.map((link, index) => ( // Conditional rendering based on route
