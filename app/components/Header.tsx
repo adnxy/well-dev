@@ -27,18 +27,9 @@ const Header: React.FC<HeaderProps> = ({ setSidebarOpen, sidebarOpen }) => {
   };
 
   return (
-    <header className={`flex justify-between items-center p-4 ${isDashboard ? 'bg-blue-500' : 'bg-white'} border-b border-gray-200 h-20`}>
-      <div className="flex items-center">
-        {setSidebarOpen && (
-          <button
-            onClick={() => setSidebarOpen(!sidebarOpen)}
-            className="md:hidden mr-3"
-          >
-            <FaBars size={24} color="#232b2b" />
-          </button>
-        )}
-      </div>
-      <div className="flex space-x-4 absolute left-40">
+    <header className={`flex justify-between items-center p-4 ${isDashboard ? 'bg-blue-500' : 'bg-white'} border-b border-gray-200 h-20 w-full`}>
+ 
+      <div className="flex items-center space-x-4"> {/* Centered items */}
         <Image
           src="https://logowik.com/content/uploads/images/google-tasks7052.logowik.com.webp"
           alt="Logo"
@@ -53,7 +44,7 @@ const Header: React.FC<HeaderProps> = ({ setSidebarOpen, sidebarOpen }) => {
           <FaCog className="mr-2" /> Settings
         </Link>
       </div>
-      <div className="flex items-center">
+      <div className="flex items-center justify-end w-full"> {/* Align notifications to the right */}
         <button
           onClick={handleNotificationClick}
           className="text-[#232b2b] hover:text-gray-800 mr-4 relative"
@@ -62,12 +53,6 @@ const Header: React.FC<HeaderProps> = ({ setSidebarOpen, sidebarOpen }) => {
           {hasNewNotifications && (
             <span className="absolute top-0 right-0 block h-2 w-2 rounded-full bg-red-500 transform translate-x-1/2 -translate-y-1/2"></span>
           )}
-        </button>
-        <button
-          onClick={handleLogout}
-          className="text-[#232b2b] hover:text-gray-800 flex items-center"
-        >
-          <FaSignOutAlt size={22} className="mr-2" /> 
         </button>
       </div>
     </header>

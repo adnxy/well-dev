@@ -252,9 +252,9 @@ const Home = ({ searchParams: { category, endcursor } }: Props) => {
       }}
     >
 
-      <div className="mt-60 text-center"> 
-        <h1 className="text-4xl font-bold mb-6">Upload Your Resume, We Handle the Rest</h1>
-        <p className="text-lg text-gray-600 mb-8"> 
+      <div className="mt-20 md:mt-60 text-center"> 
+        <h1 className="text-3xl font-bold mb-4">Upload Your Resume, We Handle the Rest</h1> {/* Updated font size */}
+        <p className="text-lg text-gray-600 mb-6"> {/* Updated font size */}
           Auto-apply to hundreds of jobs and receive interview invites.
         </p>
         <ResumeUpload />
@@ -270,7 +270,7 @@ const Home = ({ searchParams: { category, endcursor } }: Props) => {
               { type: "Data Analyst", icon: <CiDatabase size={18} /> },
               { type: "Product Manager", icon: <CiDesktop size={18} /> },
               { type: "Content Writer", icon: <FaPen size={18} /> },
-                { type: "3D Modelling", icon: <FaCube size={18} /> },
+              { type: "3D Modelling", icon: <FaCube size={18} /> },
               { type: "Video Editing", icon: <FaVideo size={18} /> },
               { type: "Graphic Design", icon: <FaImage size={18} /> },
               { type: "Copywriting", icon: <FaPen size={18} /> },
@@ -290,14 +290,14 @@ const Home = ({ searchParams: { category, endcursor } }: Props) => {
         </div>
       </div>
       <section className="flexStart flex-col paddings mb-16">
-        <p className="text-gray-500 mt-5 mb-5">
-          Our customers have interviewed with leading companies worldwide.
+        <p className="text-gray-500 mt-5 mb-5 text-lg text-center"> {/* Updated to center text */}
+          Our customers had interviewed with leading companies worldwide.
         </p>
         <div className="flex justify-start items-center mt-4 space-x-8">
           <Image src={uber} alt="Uber" width={60} height={30} />
           <Image src={adobe} alt="Adobe" width={40} height={30} />
           <Image src={airbnb} alt="Airbnb" width={100} height={30} />
-          <Image src={wordpress} alt="Wordpress" width={40} height={30} />
+          <Image src={wordpress} alt="Wordpress" width={40} height={30} className="hidden md:block" /> {/* Hide on mobile */}
           <Image src={pg} alt="Procter and Gamble" width={60} height={30} />
           {/* <Image src={grab} alt="Grab" width={80} height={30} /> */}
           {/* <Image src={rb} alt="Red Bull" width={80} height={30} /> */}

@@ -10,7 +10,7 @@
   display: inline-flex;
   width: 90%;
   max-width: 99vw;
-  animation: scroll 60s linear infinite;
+  animation: scroll 30s linear infinite;
   will-change: transform;
 }
 
