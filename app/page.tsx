@@ -263,11 +263,11 @@ const Home = ({ searchParams: { category, endcursor } }: Props) => {
           Our customers got interviewes with leading companies worldwide
         </p>
         <div className="flex justify-start items-center mt-4 space-x-8">
-          <Image src={uber} alt="Uber" width={60} height={30} />
-          <Image src={adobe} alt="Adobe" width={40} height={30} />
-          <Image src={airbnb} alt="Airbnb" width={100} height={30} />
-          <Image src={wordpress} alt="Wordpress" width={40} height={30} className="hidden md:block" /> {/* Hide on mobile */}
-          <Image src={pg} alt="Procter and Gamble" width={60} height={30} />
+          <Image src={uber} alt="Uber" width={60} height={30} className="filter grayscale" />
+          <Image src={adobe} alt="Adobe" width={40} height={30} className="filter grayscale" />
+          <Image src={airbnb} alt="Airbnb" width={100} height={30} className="filter grayscale" />
+          <Image src={wordpress} alt="Wordpress" width={40} height={30} className="filter grayscale hidden md:block" /> {/* Hide on mobile */}
+          <Image src={pg} alt="Procter and Gamble" width={60} height={30} className="filter grayscale" />
           {/* <Image src={grab} alt="Grab" width={80} height={30} /> */}
           {/* <Image src={rb} alt="Red Bull" width={80} height={30} /> */}
         </div>
@@ -303,7 +303,7 @@ const Home = ({ searchParams: { category, endcursor } }: Props) => {
         </div>
       </div>
 
-      <section ref={sectionRef} className="flexStart flex-col paddings mb-16 w-full max-w-4xl mx-auto mt-20">
+      <section ref={sectionRef} className="flexStart flex-col paddings mb-16 w-full max-w-6xl mx-auto mt-20">
         <h2 className="text-2xl font-semibold text-gray-800 mb-4">Job Applications</h2>
         <p className="text-lg text-gray-500">Real-time tracking of your applications.</p>
         <div className="flex flex-col w-full">
@@ -413,12 +413,12 @@ const Home = ({ searchParams: { category, endcursor } }: Props) => {
       </section>
 
       <section className="bg-white dark:bg-gray-900 max-w-5xl mx-auto w-full">
-        <div className="py-8 px-30 mx-auto lg:py-100 lg:px-0">
+        <div className="py-8 px-30 mx-auto lg:py-1 lg:px-2">
           <div className="mb-10">
             <h2 className="text-3xl font-semibold text-gray-700 mb-4">Pricing Plans</h2> {/* Updated color */}
             <p className="text-lg text-gray-500">Choose the perfect plan for your needs.</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-20">
             {[
               {
                 title: "Normal",

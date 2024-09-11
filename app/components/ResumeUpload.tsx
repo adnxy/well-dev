@@ -59,13 +59,9 @@ const ResumeUpload = () => {
           </span>
         </label>
         {!resumeFile && (
-          <div className="text-xs text-gray-400 mb-4 flex justify-center space-x-4">
-            <p className="text-gray-100 flex items-center">
-              <FaCheck className="mr-2 text-green-500" />
-              We don't share your data
-            </p>
-            <p className="text-gray-100 flex items-center">
-              <FaCheck className="mr-2 text-green-500" />
+          <div className="text-xs text-gray-400 mb-5 flex justify-center space-x-4">
+   
+            <p className="text-gray-100 flex items-center mt-3">
               We only accept .pdf files
             </p>
           </div>

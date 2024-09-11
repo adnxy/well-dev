@@ -62,7 +62,7 @@ const Profile = () => {
       <Header setSidebarOpen={setSidebarOpen} sidebarOpen={sidebarOpen} />
 
       {/* Main Content */}
-      <main className="flex-grow p-8 max-w-6xl mx-auto"> {/* Increased max width to 6xl */}
+      <main className="flex-grow p-10 max-w-10xl mx-auto"> {/* Increased max width to 7xl */}
         <div className="max-w-5xl mx-auto bg-white shadow-md rounded-lg overflow-hidden"> {/* Adjusted max width to 5xl */}
           <div className="px-4 py-5 sm:p-6">
             <h1 className="text-2xl font-semibold text-gray-900 mb-6">
@@ -81,7 +81,7 @@ const Profile = () => {
                   id="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                  className="mt-1 block w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500" // Updated input styles for minimal and modern look
                 />
               </div>
               <div>
@@ -146,7 +146,7 @@ const Profile = () => {
                   />
                   <label
                     htmlFor="resume"
-                    className="w-full flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 transition duration-150 ease-in-out cursor-pointer"
+                    className="w-full flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-150 ease-in-out cursor-pointer"
                   >
                     <FaUpload className="h-5 w-5 inline-block mr-2" />
                     {resumeFile ? resumeFile.name : 'Upload Resume'}

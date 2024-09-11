@@ -29,12 +29,23 @@ const Navbar = () => {
         <ul className="flex-1 flex justify-end items-center pr-10 mr-20">
         {!isDashboard && NavLinks.map((link, index) => ( // Conditional rendering based on route
             <li key={index}>
-                <Link
-                  href={link.href}
-                  className="text-teal-900 font-medium mr-5 hover:underline"
-                >
-                  {link.text}
-                </Link>
+                {link.text === "Sign up" ? ( // Check if link is "Sign up"
+                  <button className="bg-blue-500 rounded-full px-4 py-1"> {/* button with blue color and full border radius */}
+                    <Link
+                      href={link.href}
+                      className="text-white font-bold"
+                    >
+                      {link.text}
+                    </Link>
+                  </button>
+                ) : (
+                  <Link
+                    href={link.href}
+                    className="text-teal-900 font-medium mr-5 hover:underline"
+                  >
+                    {link.text}
+                  </Link>
+                )}
             </li>
           ))}
         </ul>
