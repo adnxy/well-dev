@@ -14,8 +14,8 @@ const Header: React.FC<HeaderProps> = ({ setSidebarOpen, sidebarOpen }) => {
   const [hasNewNotifications, setHasNewNotifications] = useState(true); // This should be managed by your app's state
 
   // Determine the current route
-  const isDashboard = router.pathname === "/dashboard";
-  const isProfile = router.pathname === "/profile";
+  // const isDashboard = router.pathname === "/dashboard"; // Removed
+  // const isProfile = router.pathname === "/profile"; // Removed
 
   const handleLogout = () => {
     router.push("/");
@@ -27,7 +27,7 @@ const Header: React.FC<HeaderProps> = ({ setSidebarOpen, sidebarOpen }) => {
   };
 
   return (
-    <header className={`flex justify-between items-center p-4 ${isDashboard ? 'bg-blue-500' : 'bg-white'} border-b border-gray-200 h-20 w-full`}>
+    <header className={`flex justify-between items-center p-4 bg-blue-500 border-b border-gray-200 h-20 w-full`}>
  
       <div className="flex items-center space-x-4"> {/* Centered items */}
         <Image
