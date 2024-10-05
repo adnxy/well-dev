@@ -37,10 +37,10 @@ const Header: React.FC<HeaderProps> = ({ setSidebarOpen, sidebarOpen }) => {
           height={40}
           className="h-10 w-14 mr-0"
         />
-        <Link href="/dashboard" className={`flex items-center text-[#232b2b] hover:text-blue-500 transition duration-300 mr-5 ${isDashboard ? 'text-blue-500 font-bold' : ''}`}>
+        <Link href="/dashboard" className={`flex items-center text-[#232b2b] hover:text-blue-500 transition duration-300 mr-5  text-blue-500 font-bold`}>
           <FaTh className="mr-2" /> Applications
         </Link>
-        <Link href="/profile" className={`flex items-center text-[#232b2b] hover:text-blue-500 transition duration-300 ${isProfile ? 'text-blue-500 font-bold' : ''}`}>
+        <Link href="/profile" className={`flex items-center text-[#232b2b] hover:text-blue-500 transition duration-300 text-blue-500`}>
           <FaCog className="mr-2" /> Settings
         </Link> {/* Ensure the entire link is clickable */}
       </div>
