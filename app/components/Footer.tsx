@@ -27,7 +27,7 @@ const Footer = () => (
         {/* <Image src="/logo.svg" width={150} height={60} alt="logo" /> */}
 
         <p className="text-start text-sm font-normal mt-5 max-w-xs">
-           OneApply is a platform that allows you to outsource your job applications to a virtual assistant. We apply to jobs across the web and schedule interviews for you.
+           Autoapply is a platform that allows you to outsource your job applications to a virtual assistant. We apply to jobs across the web and schedule interviews for you.
         </p>
       </div>
       <div className="flex flex-wrap gap-12">

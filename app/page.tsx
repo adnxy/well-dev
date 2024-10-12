@@ -1,9 +1,6 @@
-"use client"
+"use client";
 import { ProjectInterface } from "@/common.types";
 import Categories from "./components/Categories";
-import ProjectCard from "./components/ProjectCard";
-import LoadMore from "./components/LoadMore";
-import { fetchAllProjects } from "@/lib/actions";
 import localImage from "../public/logo.svg"; // Adjust the path according to your project structure
 import projectDefault from "../public/project.png";
 import projectDefault2 from "../public/project2.jpg";
@@ -23,13 +20,28 @@ import wordpress from "../public/wordpress.svg";
 import airbnb from "../public/airbnb.svg";
 import rb from "../public/red-bull.svg";
 import grab from "../public/grab.svg";
-import { FaCheck, FaCode, FaCube, FaFacebook, FaImage, FaPen, FaSearch, FaVideo } from "react-icons/fa";
+import {
+  FaCheck,
+  FaCode,
+  FaCube,
+  FaFacebook,
+  FaImage,
+  FaPen,
+  FaSearch,
+  FaVideo,
+} from "react-icons/fa";
 import { SiGooglemarketingplatform } from "react-icons/si";
 import { FaGoogle } from "react-icons/fa";
 import { MdDesignServices } from "react-icons/md";
 import { CiDatabase, CiDesktop } from "react-icons/ci";
-import { FaUpload, FaSearch as FaSearchIcon, FaCalendarAlt, FaBriefcase } from 'react-icons/fa';
-import { FaCheckSquare } from 'react-icons/fa'; // Import the checkbox icon
+import {
+  FaUpload,
+  FaSearch as FaSearchIcon,
+  FaCalendarAlt,
+  FaBriefcase,
+} from "react-icons/fa";
+import { FaCheckSquare } from "react-icons/fa"; // Import the checkbox icon
+import TrendingJobCategories from "./components/TrendingJobCategories";
 
 import Button from "./components/Button";
 import "@fontsource/space-grotesk"; // Defaults to weight 400
@@ -37,8 +49,8 @@ import Image from "next/image";
 import Framer from "../public/framer-logo.svg";
 import Faq from "./components/FAQ";
 import ResumeUpload from "./components/ResumeUpload";
-import { useEffect, useState, useRef } from 'react';
-import styles from './page.module.css'; // Add this import
+import { useEffect, useState, useRef } from "react";
+import styles from "./page.module.css"; // Add this import
 
 // import "@fontsource/space-grotesk/400.css"; // Specify weight
 // import "@fontsource/space-grotesk/400-italic.css"; // Specify weight and style
@@ -192,7 +204,8 @@ const Home = ({ searchParams: { category, endcursor } }: Props) => {
   const testimonials = [
     {
       name: "John Doe",
-      feedback: "This service saved me so much time! I landed a job within weeks.",
+      feedback:
+        "This service saved me so much time! I landed a job within weeks.",
     },
     {
       name: "Jane Smith",
@@ -202,32 +215,49 @@ const Home = ({ searchParams: { category, endcursor } }: Props) => {
 
   const projectsToDisplay = data?.projectSearch?.edges || [];
 
-  const [visibleItems, setVisibleItems] = useState(1); // Start with one visible item
+  const [visibleItems, setVisibleItems] = useState(1); 
   const sectionRef = useRef<HTMLDivElement>(null);
 
   const jobApplications = [
-    { title: "Software Engineer", company: "TechCorp", status: "Application Submitted", logo: pg },
-    { title: "Software Engineer", company: "TechCorp", status: "Pending Application", logo: pg },
-    { title: "Software Engineer", company: "TechCorp", status: "Interview Scheduled", logo: pg },
-    // Add more items as needed
+    {
+      title: "Software Engineer",
+      company: "TechCorp",
+      status: "Application Submitted",
+      logo: pg,
+    },
+    {
+      title: "Software Engineer",
+      company: "TechCorp",
+      status: "Pending Application",
+      logo: pg,
+    },
+    {
+      title: "Software Engineer",
+      company: "TechCorp",
+      status: "Interview Scheduled",
+      logo: pg,
+    },
   ];
 
   useEffect(() => {
     const handleScroll = () => {
-        if (sectionRef.current) {
-            const sectionTop = sectionRef.current.getBoundingClientRect().top;
-            const windowHeight = window.innerHeight;
+      if (sectionRef.current) {
+        const sectionTop = sectionRef.current.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
 
-            if (sectionTop < windowHeight * 0.8) {
-                setTimeout(() => {
-                    setVisibleItems(prev => Math.min(prev + 1, jobApplications.length));
-                }, 1000); // Delay of 1000ms (1 second) for a slower transition
-            }
+        // Check if the user has scrolled past the first job application
+        if (sectionTop < windowHeight * 1) {
+          setTimeout(() => {
+            setVisibleItems((prev) =>
+              Math.min(prev + 1, jobApplications.length)
+            );
+          }, 1000); // Delay of 1000ms (1 second) for a slower transition
         }
+      }
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   if (projectsToDisplay.length === 0) {
@@ -244,40 +274,171 @@ const Home = ({ searchParams: { category, endcursor } }: Props) => {
 
   return (
     <section
-      className="flexStart flex-col paddings mb-16"
-      style={{
-        backgroundImage: `url(${yourBackgroundImage})`,
-        backgroundPosition: 'center', 
-        backgroundRepeat: 'no-repeat' 
-      }}
+      className="mb-16" 
     >
-
-      <div className="mt-20 md:mt-60 text-center"> 
-        <h1 className="text-4xl font-bold mb-4 text-gray-800">Upload Your Resume, We Handle the Rest</h1> {/* Updated font size and color */}
-        <p className="text-lg text-gray-500 mb-6"> {/* Updated font size and color */}
-          Auto-apply to hundreds of jobs and receive interview invites.
+      <div
+        className="pt-40 pb-20 text-center"
+        style={{
+          backgroundColor: "#1c1c1c", 
+        }}
+      >
+        <h1 className="text-4xl font-bold mb-4 text-white">
+          You Upload the Resume, We Apply to the Jobs
+        </h1>
+        <p className="text-lg text-white mb-6">
+          Auto-apply to hundreds of jobs across the web and get interview
+          invites.
         </p>
         <ResumeUpload />
-        <section className="flexStart flex-col paddings mt-40 mb-16">
-        <p className="text-gray-400 mt-5 mb-5 text-lg text-center"> {/* Updated to lighter color */}
+        <section
+          className="flexCenter flex-col mt-10"
+          style={{
+            backgroundImage: "url(/dashboard-desktop.png)", // Set the background image
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "contain", // Optional: cover the entire section
+            height: "800px",
+            width: "70%", // Set a specific width (e.g., 80%)
+            margin: "0 auto", // Center the section
+          }}
+        />
+      </div>
+      <section className="flexStart flex-col paddings mt-20 ">
+        <p className="text-black mt-0 mb-5 text-lg text-center">
           Our customers got interviewes with leading companies worldwide
         </p>
         <div className="flex justify-start items-center mt-4 space-x-8">
-          <Image src={uber} alt="Uber" width={60} height={30} className="filter grayscale" />
-          <Image src={adobe} alt="Adobe" width={40} height={30} className="filter grayscale" />
-          <Image src={airbnb} alt="Airbnb" width={100} height={30} className="filter grayscale" />
-          <Image src={wordpress} alt="Wordpress" width={40} height={30} className="filter grayscale hidden md:block" /> {/* Hide on mobile */}
-          <Image src={pg} alt="Procter and Gamble" width={60} height={30} className="filter grayscale" />
-          {/* <Image src={grab} alt="Grab" width={80} height={30} /> */}
-          {/* <Image src={rb} alt="Red Bull" width={80} height={30} /> */}
+          <Image
+            src={adobe}
+            alt="Adobe"
+            width={40}
+            height={30}
+            className="filter grayscale"
+          />
+          <Image
+            src={airbnb}
+            alt="Airbnb"
+            width={100}
+            height={30}
+            className="filter grayscale"
+          />
+          <Image
+            src={wordpress}
+            alt="Wordpress"
+            width={40}
+            height={30}
+            className="filter grayscale hidden md:block"
+          />{" "}
+          <Image
+            src={pg}
+            alt="Procter and Gamble"
+            width={60}
+            height={30}
+            className="filter grayscale"
+          />
+          <Image src={grab} alt="Grab" width={80} height={30} />
+        </div>
+        <div className="mb-20" /> 
+      </section>
+      <section
+        ref={sectionRef}
+        className="flexStart flex-col paddings mb-16 w-full max-w-6xl mx-auto mt-0"
+      >
+        <h2 className="text-2xl font-semibold text-gray-800 mb-4">
+          Recent Job Applications
+        </h2>
+        <p className="text-lg text-gray-500">
+          Real-time tracking of applications.
+        </p>
+        <div className="flex flex-col w-full">
+          {jobApplications.map((application, index) => (
+            <div
+              key={index}
+              className={`flex items-center justify-between p-4 mb-4 bg-white rounded-lg shadow-md transition-all duration-1000 ${
+                index < visibleItems
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-10"
+              }`}
+            >
+              <div className="flex items-center">
+                <div>
+                  <h3 className="font-semibold text-lg">{application.title}</h3>
+                  <p className="text-gray-600">{application.company}</p>
+                </div>
+              </div>
+              <div className="flex items-center">
+                <span
+                  className={`px-3 py-1 text-sm font-semibold rounded-full ${
+                    application.status === "Application Submitted"
+                      ? "text-orange-800 bg-orange-200"
+                      : application.status === "Pending Application"
+                      ? "text-yellow-800 bg-yellow-200"
+                      : application.status === "Interview Scheduled"
+                      ? "text-green-800 bg-green-200"
+                      : "text-gray-800 bg-gray-200"
+                  }`}
+                >
+                  {application.status}
+                </span>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
-        {/* Updated Horizontal Scrolling Job Types Section */}
+
+      <section className="bg-white py-16">
+        <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 items-center gap-4">
+          <div>
+            <Image
+              src="/job-application.png"
+              alt="Job Application"
+              width={300}
+              height={150}
+              className="rounded-lg"
+            />
+          </div>
+          <div className="flex flex-col justify"> {/* Added flex and justify-center to align text vertically */}
+            <h2 className="text-4xl font-bold mb-4 tracking-wide leading-tight"> 
+              Get notified with the new application updates
+            </h2>
+            <p className="mb-6 text-lg leading-relaxed">
+              Stay up-to-date with the latest application updates. Join our
+              network and auto apply to jobs.
+            </p>
+            <button className="bg-blue-600 hover:bg-blue-700 py-3 px-6 rounded-lg text-white font-medium">
+              Create New Account
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* Companies Section */}
+      {/* <section className="py-16 bg-gray-50">
+      <div className="max-w-6xl mx-auto text-center">
+        <h3 className="text-2xl font-bold mb-4">No Spam, Just Awesome Chances</h3>
+        <p className="mb-6">Discover exclusive job listings with top companies.</p>
+        <div className="flex justify-center space-x-8">
+          <img src="company_logo_1" alt="Company 1" className="h-12" />
+          <img src="company_logo_2" alt="Company 2" className="h-12" />
+          <img src="company_logo_3" alt="Company 3" className="h-12" />
+          <img src="company_logo_4" alt="Company 4" className="h-12" />
+        </div>
+      </div>
+    </section> */}
+
+      <h1 className="text-3xl font-bold mb-8 text-center mt-20">
+        Trending Job Categories
+      </h1>
+
+      <section className="flexStart flex-col paddings mb-16 w-full max-w-6xl mx-auto">
         <div className={styles.scrollContainer}>
           <div className={styles.scrollContent}>
             {[
               { type: "Software Developer", icon: <FaCode size={18} /> },
-              { type: "Marketing", icon: <SiGooglemarketingplatform size={18} /> },
+              {
+                type: "Marketing",
+                icon: <SiGooglemarketingplatform size={18} />,
+              },
               { type: "SEO", icon: <FaSearch size={18} /> },
               { type: "UI/UX Design", icon: <MdDesignServices size={18} /> },
               { type: "Data Analyst", icon: <CiDatabase size={18} /> },
@@ -290,202 +451,35 @@ const Home = ({ searchParams: { category, endcursor } }: Props) => {
               { type: "Social Media Manager", icon: <FaFacebook size={18} /> },
               // Duplicate items to create a seamless loop
               { type: "Software Developer", icon: <FaCode size={18} /> },
-              { type: "Marketing", icon: <SiGooglemarketingplatform size={18} /> },
+              {
+                type: "Marketing",
+                icon: <SiGooglemarketingplatform size={18} />,
+              },
               { type: "SEO", icon: <FaSearch size={18} /> },
               { type: "UI/UX Design", icon: <MdDesignServices size={18} /> },
             ].map((job, index) => (
-              <div key={index} className={`${styles.scrollItem} bg-slate-50 p-4 rounded-md flex items-center mx-2 shadow-sm`}>
+              <div
+                key={index}
+                className={`${styles.scrollItem} bg-slate-50 p-4 rounded-md flex items-center mx-2 shadow-sm`}
+              >
                 <span className="mr-2">{job.icon}</span>
                 {job.type}
               </div>
             ))}
           </div>
-        </div>
-      </div>
-
-      <section ref={sectionRef} className="flexStart flex-col paddings mb-16 w-full max-w-6xl mx-auto mt-20">
-        <h2 className="text-2xl font-semibold text-gray-800 mb-4">Job Applications</h2>
-        <p className="text-lg text-gray-500">Real-time tracking of your applications.</p>
-        <div className="flex flex-col w-full">
-          {jobApplications.map((application, index) => (
-            <div 
-              key={index} 
-              className={`flex items-center justify-between p-4 mb-4 bg-white rounded-lg shadow-md transition-all duration-1000 ${
-                index < visibleItems ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-              }`}
-            >
-              <div className="flex items-center">
-                {/* <img src={application.logo} alt={`${application.company} logo`} className="w-12 h-12 mr-4 rounded-full" /> */}
-                <div>
-                  <h3 className="font-semibold text-lg">{application.title}</h3>
-                  <p className="text-gray-600">{application.company}</p>
-                </div>
-              </div>
-              <div className="flex items-center">
-                <span className={`px-3 py-1 text-sm font-semibold rounded-full ${
-                  application.status === "Application Submitted" ? "text-orange-800 bg-orange-200" :
-                  application.status === "Pending Application" ? "text-yellow-800 bg-yellow-200" :
-                  application.status === "Interview Scheduled" ? "text-green-800 bg-green-200" :
-                  "text-gray-800 bg-gray-200"
-                }`}>
-                  {application.status}
-                </span>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-
-      <div className="mb-30"></div>
-      <section className="flex flex-col paddings mb-16 max-w-6xl mx-auto w-full">
-        <div className="mb-10">
-          <h2 className="text-3xl font-semibold text-gray-700 mb-4">How It Works</h2> {/* Updated color */}
-          <p className="text-lg text-gray-500">Streamline your job application process.</p>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10">
-          <div className="p-6 rounded-md shadow-lg bg-white flex items-start">
-            <FaUpload className="text-blue-500 mr-4 mt-1 flex-shrink-0" size={18} /> {/* Added icon */}
-            <div>
-              <h3 className="font-semibold text-xl mb-2">Step 1</h3>
-              <p>Upload your resume.</p>
-            </div>
-          </div>
-          <div className="p-6 rounded-md shadow-lg bg-white flex items-start">
-            <FaCheck className="text-blue-500 mr-4 mt-1 flex-shrink-0" size={18} /> {/* Added icon */}
-            <div>
-              <h3 className="font-semibold text-xl mb-2">Step 2</h3>
-              <p>We apply to jobs across the web.</p>
-            </div>
-          </div>
-          <div className="p-6 rounded-md shadow-lg bg-white flex items-start">
-            <FaCalendarAlt className="text-blue-500 mr-4 mt-1 flex-shrink-0" size={18} /> {/* Added icon */}
-            <div>
-              <h3 className="font-semibold text-xl mb-2">Step 3</h3>
-              <p>Schedule interviews and get reports.</p>
-            </div>
-          </div>
-          <div className="p-6 rounded-md shadow-lg bg-white flex items-start">
-            <FaBriefcase className="text-blue-500 mr-4 mt-1 flex-shrink-0" size={18} /> {/* Added icon */}
-            <div>
-              <h3 className="font-semibold text-xl mb-2">Step 4</h3>
-              <p>Track your progress and get hired.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="flex flex-col paddings mb-16 max-w-6xl mx-auto w-full">
-        <div className="">
-          <h2 className="text-3xl font-semibold text-gray-700 mb-4">Benefits</h2> {/* Updated color */}
-          <p className="text-lg text-gray-500">Why choose our platform?</p>
-        </div>
-        <div className="grid grid-cols-1 gap-6 mt-10">
-          <div className="p-6 rounded-md shadow-lg bg-white flex items-start">
-            <FaCheck className="text-blue-500 mr-4 mt-1 flex-shrink-0" size={18} />
-            <div>
-              <h3 className="font-semibold text-xl mb-2">Get more job opportunities</h3>
-              <p className="text-gray-600">Access a wider range of job listings across multiple platforms.</p>
-            </div>
-          </div>
-          <div className="p-6 rounded-md shadow-lg bg-white flex items-start">
-            <FaCheck className="text-blue-500 mr-4 mt-1 flex-shrink-0" size={18} />
-            <div>
-              <h3 className="font-semibold text-xl mb-2">Save time on applications</h3>
-              <p className="text-gray-600">Streamline your application process and apply to multiple jobs efficiently.</p>
-            </div>
-          </div>
-          <div className="p-6 rounded-md shadow-lg bg-white flex items-start">
-            <FaCheck className="text-blue-500 mr-4 mt-1 flex-shrink-0" size={18} />
-            <div>
-              <h3 className="font-semibold text-xl mb-2">Apply to jobs using over 70+ job sites</h3>
-              <p className="text-gray-600">Get tailored job recommendations based on your skills and preferences.</p>
-            </div>
-          </div>
-          <div className="p-6 rounded-md shadow-lg bg-white flex items-start">
-            <FaCheck className="text-blue-500 mr-4 mt-1 flex-shrink-0" size={18} />
-            <div>
-              <h3 className="font-semibold text-xl mb-2">Track your application progress</h3>
-              <p className="text-gray-600">Stay organized with real-time updates on your job applications.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-white dark:bg-gray-900 max-w-5xl mx-auto w-full">
-        <div className="py-8 px-30 mx-auto lg:py-1 lg:px-2">
-          <div className="mb-10">
-            <h2 className="text-3xl font-semibold text-gray-700 mb-4">Pricing Plans</h2> {/* Updated color */}
-            <p className="text-lg text-gray-500">Choose the perfect plan for your needs.</p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-20">
-            {[
-              {
-                title: "Normal",
-                price: <span className="text-2xl font-bold text-blue-600">28 USD</span>,
-                features: [
-                  "50 job applications/month",
-                  "Dedicated hiring manager",
-                  "Application status",
-                  "Weekly email reports",
-                  "Customer support",
-                ],
-              },
-              {
-                title: "Intense",
-                price: <span className="text-2xl font-bold text-blue-600">47 USD</span>,
-                features: [
-                  "100+ job applications/month",
-                  "Dedicated hiring manager",
-                  "Application status",
-                  "Weekly email reports",
-                  "Customer support",
-                ],
-              },
-            ].map((plan, index) => (
-              <div key={index} className="flex flex-col p-6 mx-auto w-full max-w-md text-center text-gray-900 bg-white rounded-lg shadow-lg transition-transform transform hover:scale-105">
-                <h3 className="mb-2 text-2xl font-semibold text-gray-800">{plan.title}</h3>
-                <p className="font-light text-gray-600 mb-4">{plan.price}</p>
-                <ul role="list" className="mb-8 space-y-2 text-left">
-                  {plan.features.map((feature, featureIndex) => (
-                    <li key={featureIndex} className="flex items-center text-black">
-                      <svg className="flex-shrink-0 w-5 h-5 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"></path>
-                      </svg>
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-                <a
-                  href="#"
-                  className="bg-blue-500 text-white px-6 py-2 rounded-md hover:bg-blue-600 font-medium block"
-                >
-                  Get started
-                </a>
-              </div>
-            ))}
+          <div className="flex justify-center mt-8">
+            <button className="bg-blue-600 hover:bg-blue-700 py-3 px-6 rounded-lg text-white font-medium">
+              Explore All Categories
+            </button>
           </div>
         </div>
       </section>
 
       <section className="flex flex-col paddings mb-16 max-w-6xl mx-auto w-full">
         <div className="mb-10">
-          {/* <h2 className="text-3xl font-semibold text-gray-800 mb-4">Testimonials</h2>
-          <p className="text-lg text-gray-500">What our users are saying.</p> */}
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
-          {testimonials.map((testimonial, index) => (
-            <div key={index} className="bg-white p-6 rounded-lg shadow-md">
-              <p className="text-gray-600 italic mb-4">"{testimonial.feedback}"</p>
-              <p className="font-semibold text-gray-800">{testimonial.name}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="flex flex-col paddings mb-16 max-w-6xl mx-auto w-full">
-        <div className="mb-10">
-          <h2 className="text-3xl font-semibold text-gray-800 mb-4">FAQ</h2>
+          <h2 className="text-3xl font-semibold text-gray-800 mb-4 text-center">
+            FAQ
+          </h2>
           <p className="text-lg text-gray-500">Frequently asked questions.</p>
         </div>
         <Faq faqData={faqData} />
@@ -495,4 +489,3 @@ const Home = ({ searchParams: { category, endcursor } }: Props) => {
 };
 
 export default Home;
-

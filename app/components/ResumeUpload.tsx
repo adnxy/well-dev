@@ -61,9 +61,9 @@ const ResumeUpload = () => {
         {!resumeFile && (
           <div className="text-xs text-gray-400 mb-5 flex justify-center space-x-4">
    
-            <p className="text-gray-100 flex items-center mt-3">
+            {/* <p className="text-gray-100 flex items-center mt-3">
               We only accept .pdf files
-            </p>
+            </p> */}
           </div>
         )}
         {resumeFile && (
