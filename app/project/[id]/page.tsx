@@ -39,7 +39,7 @@ const Project = async ({ params: { id } }: { params: { id: string } }) => {
           <button className="bg-transparent hover:bg-gray-200 text-gray-700 font-semibold py-2 px-4 border border-gray-500 rounded">
             Preview
           </button>
-          <button className="bg-emerald-500 hover:bg-emerald-700 text-white font-bold py-2 px-4 rounded">
+          <button className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-2 px-4 rounded">
             Buy Now $90
           </button>
         </div>

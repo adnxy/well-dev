@@ -23,7 +23,7 @@ function TrendingJobCategories() {
             <CategoryCard key={index} name={category} />
           ))}
         </div>
-        <button className="mt-8 bg-blue-600 hover:bg-blue-700 py-3 px-6 rounded-lg text-white font-medium">Explore All Categories</button>
+        <button className="mt-8 bg-emerald-600 hover:bg-emerald-500 py-3 px-6 rounded-lg text-white font-medium">Explore All Categories</button>
       </div>
     </section>
   );

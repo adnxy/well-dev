@@ -3,69 +3,85 @@
 import { NavLinks } from "@/constants";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
-import AuthProviders from "./AuthProviders";
-import Button from "./Button";
-import { usePathname } from "next/navigation"; // Import usePathname
+import React, { useState } from "react";
+import { usePathname } from "next/navigation";
 import rb from "../../public/grab.svg";
+import { FaBars, FaTimes } from 'react-icons/fa';
 
 const Navbar = () => {
-  const pathname = usePathname(); // Get current pathname
-  const isDashboard = pathname === "/dashboard" || pathname === "/profile"; // Check if current route is dashboard
+  const pathname = usePathname();
+  const isDashboard = pathname === "/dashboard" || pathname === "/profile";
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  if (isDashboard) return null; // Hide header if on dashboard
+  if (isDashboard) return null;
 
   return (
-    <nav className="flexBetween navbar h-30 border-b-0 pt-5 pr-40" style={{ backgroundColor: '#1c1c1c' }}> {/* Removed border on bottom */}
-      <div className="flex-1 flexStart gap-5">
-        <Link href="/" className="flex justify-end ml-60"> {/* Added flex and justify-end to move image to the right */}
-          <Image className="h-10 w-20 mt-5 " // Added padding left
-            src={rb} alt="Red Bull" width={80} height={30} />
-        </Link>
-        <ul className="flex-1 flex justify-end items-center pr-10 mr-20">
-          <div style={{display: 'flex', gap: '10px', marginRight: '30px'}}>
-          <li >
-            <Link href="/pricing" className="text-white font-small mr-5 hover:underline">Pricing</Link>
+    <nav className="flex justify-between items-center h-16 px-4 md:px-10 lg:px-20 bg-[#151f2a]">
+      <Link href="/" className="flex items-center">
+        <Image className="h-8 w-16" src={rb} alt="Logo" width={64} height={32} />
+      </Link>
+
+      {/* Mobile menu button */}
+      <button 
+        className="md:hidden text-white"
+        onClick={() => setIsMenuOpen(!isMenuOpen)}
+      >
+        {isMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+      </button>
+
+      {/* Desktop menu */}
+      <ul className="hidden md:flex items-center space-x-6">
+        <li>
+          <Link href="/pricing" className="text-white text-base hover:underline">Pricing</Link>
+        </li>
+        <li>
+          <Link href="/privacy" className="text-white text-base hover:underline">Privacy</Link>
+        </li>
+        {NavLinks.map((link, index) => (
+          <li key={index}>
+            {link.text === "Sign up" ? (
+              <button className="bg-gray-800 border border-gray-500 text-gray-200 rounded px-4 py-1 text-base shadow-md hover:bg-emerald-500 hover:text-white transition">
+                <Link href={link.href} className="text-lg">
+                  {link.text}
+                </Link>
+              </button>
+            ) : (
+              <Link href={link.href} className="text-white text-lg hover:underline">
+                {link.text}
+              </Link>
+            )}
           </li>
-          <li>
-            <Link href="/privacy" className="text-white font-small mr-5 hover:underline">Privacy</Link>
-          </li>
-          </div>
-        {!isDashboard && NavLinks.map((link, index) => ( // Conditional rendering based on route
-            <li key={index}>
-                {link.text === "Sign up" ? ( // Check if link is "Sign up"
-                  <button className="bg-gray-800 border border-gray-500 text-gray-200 rounded px-6 py-2 shadow-md hover:bg-blue-500 hover:text-white transition"> {/* Changed button background to light black */}
-                    <Link
-                      href={link.href}
-                      className="font-bold"
-                    >
+        ))}
+      </ul>
+
+      {/* Mobile menu */}
+      {isMenuOpen && (
+        <div className="absolute top-16 left-0 right-0 bg-gray-900 p-4 md:hidden">
+          <ul className="flex flex-col space-y-4">
+            <li>
+              <Link href="/pricing" className="text-white text-base hover:underline">Pricing</Link>
+            </li>
+            <li>
+              <Link href="/privacy" className="text-white text-base hover:underline">Privacy</Link>
+            </li>
+            {NavLinks.map((link, index) => (
+              <li key={index}>
+                {link.text === "Sign up" ? (
+                  <button className="bg-gray-800 border border-gray-500 text-gray-200 rounded px-4 py-1 text-base shadow-md hover:bg-emerald-500 hover:text-white transition w-full text-left">
+                    <Link href={link.href} className="">
                       {link.text}
                     </Link>
                   </button>
                 ) : (
-                  <Link
-                    href={link.href}
-                    className="text-white font-small mr-5 hover:underline"
-                  >
+                  <Link href={link.href} className="text-white text-base hover:underline">
                     {link.text}
                   </Link>
                 )}
-            </li>
-          ))}
-          {/* Added new links for Pricing and Privacy */}
-
-        </ul>
-      </div>
-      <div className="flexCenter gap-4">
-        {/* {session ? (
-          <>
-            User photo
-            <Link href="/create-project"> Share your work</Link>
-          </>
-        ) : (
-          <AuthProviders />
-        )} */}
-      </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </nav>
   );
 };

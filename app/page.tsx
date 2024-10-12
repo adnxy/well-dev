@@ -201,21 +201,9 @@ const Home = ({ searchParams: { category, endcursor } }: Props) => {
     },
   ];
 
-  const testimonials = [
-    {
-      name: "John Doe",
-      feedback:
-        "This service saved me so much time! I landed a job within weeks.",
-    },
-    {
-      name: "Jane Smith",
-      feedback: "I love how easy it is to apply for multiple jobs at once!",
-    },
-  ];
-
   const projectsToDisplay = data?.projectSearch?.edges || [];
 
-  const [visibleItems, setVisibleItems] = useState(1); 
+  const [visibleItems, setVisibleItems] = useState(1);
   const sectionRef = useRef<HTMLDivElement>(null);
 
   const jobApplications = [
@@ -223,19 +211,22 @@ const Home = ({ searchParams: { category, endcursor } }: Props) => {
       title: "Software Engineer",
       company: "TechCorp",
       status: "Application Submitted",
+      salary: "120.000",
       logo: pg,
     },
     {
-      title: "Software Engineer",
-      company: "TechCorp",
+      title: "Data Scientist",
+      company: "Data Inc.",
       status: "Pending Application",
-      logo: pg,
+      salary: "110.000",
+      logo: uber,
     },
     {
-      title: "Software Engineer",
-      company: "TechCorp",
+      title: "Senior Product Manager",
+      company: "Product Co.",
       status: "Interview Scheduled",
-      logo: pg,
+      salary: "140.000",
+      logo: adobe,
     },
   ];
 
@@ -246,7 +237,7 @@ const Home = ({ searchParams: { category, endcursor } }: Props) => {
         const windowHeight = window.innerHeight;
 
         // Check if the user has scrolled past the first job application
-        if (sectionTop < windowHeight * 1) {
+        if (sectionTop < windowHeight) {
           setTimeout(() => {
             setVisibleItems((prev) =>
               Math.min(prev + 1, jobApplications.length)
@@ -273,33 +264,25 @@ const Home = ({ searchParams: { category, endcursor } }: Props) => {
   }
 
   return (
-    <section
-      className="mb-16" 
-    >
+    <section className="mb-16">
       <div
-        className="pt-40 pb-20 text-center"
+        className="pt-40 text-center"
         style={{
-          backgroundColor: "#1c1c1c", 
+          backgroundColor: "#151f2a",
         }}
       >
         <h1 className="text-4xl font-bold mb-4 text-white">
           You Upload the Resume, We Apply to the Jobs
         </h1>
-        <p className="text-lg text-white mb-6">
+        <p className="text-lg text-slate-200 mb-5 mt-5">
           Auto-apply to hundreds of jobs across the web and get interview
           invites.
         </p>
         <ResumeUpload />
         <section
-          className="flexCenter flex-col mt-10"
+          className="flexCenter flex-col mt-10 bg-center bg-no-repeat bg-contain h-[800px] w-[80%] mx-auto"
           style={{
-            backgroundImage: "url(/dashboard-desktop.png)", // Set the background image
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
-            backgroundSize: "contain", // Optional: cover the entire section
-            height: "800px",
-            width: "70%", // Set a specific width (e.g., 80%)
-            margin: "0 auto", // Center the section
+            backgroundImage: "url(/dashboard-desktop.png)",
           }}
         />
       </div>
@@ -338,32 +321,42 @@ const Home = ({ searchParams: { category, endcursor } }: Props) => {
           />
           <Image src={grab} alt="Grab" width={80} height={30} />
         </div>
-        <div className="mb-20" /> 
+        <div className="mb-20" />
       </section>
       <section
         ref={sectionRef}
-        className="flexStart flex-col paddings mb-16 w-full max-w-6xl mx-auto mt-0"
+        className="flexStart flex-col paddings mb-20 mt-20 w-full max-w-6xl mx-auto"
       >
         <h2 className="text-2xl font-semibold text-gray-800 mb-4">
-          Recent Job Applications
+          Recent Applications
         </h2>
-        <p className="text-lg text-gray-500">
+        <p className="text-lg text-gray-500 mb-5">
           Real-time tracking of applications.
         </p>
         <div className="flex flex-col w-full">
           {jobApplications.map((application, index) => (
             <div
               key={index}
-              className={`flex items-center justify-between p-4 mb-4 bg-white rounded-lg shadow-md transition-all duration-1000 ${
+              className={`flex items-center justify-between p-4 mt-1 mb-4 bg-white rounded-lg shadow-md border border-slate-200 transition-all duration-1000 cursor-pointer hover:bg-slate-100 ${
                 index < visibleItems
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-10"
               }`}
+              // onClick={() => handleApplicationClick(application)} // Add click handler
             >
               <div className="flex items-center">
+                <Image
+                  src={application.logo} // Use the logo from the application object
+                  alt={`${application.company} logo`}
+                  width={40} // Adjust size as needed
+                  height={40} // Adjust size as needed
+                  className="mr-3 rounded-full" // Add margin and make it round
+                />
                 <div>
                   <h3 className="font-semibold text-lg">{application.title}</h3>
-                  <p className="text-gray-600">{application.company}</p>
+                  <p className="text-gray-600">{application.company}</p>{" "}
+                  {/* Removed name */}
+                  <p className="text-gray-500">{`$${application.salary}`}</p>
                 </div>
               </div>
               <div className="flex items-center">
@@ -386,7 +379,7 @@ const Home = ({ searchParams: { category, endcursor } }: Props) => {
         </div>
       </section>
 
-      <section className="bg-white py-16">
+      <section className="bg-white py-5">
         <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 items-center gap-4">
           <div>
             <Image
@@ -394,18 +387,21 @@ const Home = ({ searchParams: { category, endcursor } }: Props) => {
               alt="Job Application"
               width={300}
               height={150}
-              className="rounded-lg"
+              className="rounded-md"
+              style={{ objectFit: "contain" }}
             />
           </div>
-          <div className="flex flex-col justify"> {/* Added flex and justify-center to align text vertically */}
-            <h2 className="text-4xl font-bold mb-4 tracking-wide leading-tight"> 
+          <div className="flex flex-col justify">
+            {" "}
+            {/* Added flex and justify-center to align text vertically */}
+            <h2 className="text-4xl font-bold mb-4 tracking-wide leading-tight">
               Get notified with the new application updates
             </h2>
             <p className="mb-6 text-lg leading-relaxed">
               Stay up-to-date with the latest application updates. Join our
-              network and auto apply to jobs.
+              network and sit back while we apply to jobs for you.
             </p>
-            <button className="bg-blue-600 hover:bg-blue-700 py-3 px-6 rounded-lg text-white font-medium">
+            <button className="bg-emerald-600 hover:bg-emerald-500 py-3 px-6 rounded-lg text-white font-medium">
               Create New Account
             </button>
           </div>
@@ -426,11 +422,10 @@ const Home = ({ searchParams: { category, endcursor } }: Props) => {
       </div>
     </section> */}
 
-      <h1 className="text-3xl font-bold mb-8 text-center mt-20">
-        Trending Job Categories
-      </h1>
-
       <section className="flexStart flex-col paddings mb-16 w-full max-w-6xl mx-auto">
+        <h1 className="text-3xl font-bold text-center mt-40">
+          Trending Job Categories
+        </h1>
         <div className={styles.scrollContainer}>
           <div className={styles.scrollContent}>
             {[
@@ -468,7 +463,7 @@ const Home = ({ searchParams: { category, endcursor } }: Props) => {
             ))}
           </div>
           <div className="flex justify-center mt-8">
-            <button className="bg-blue-600 hover:bg-blue-700 py-3 px-6 rounded-lg text-white font-medium">
+            <button className="bg-slate-50 hover:bg-slate-200 py-3 px-6 rounded-lg text-black font-medium mt-10">
               Explore All Categories
             </button>
           </div>
@@ -477,13 +472,14 @@ const Home = ({ searchParams: { category, endcursor } }: Props) => {
 
       <section className="flex flex-col paddings mb-16 max-w-6xl mx-auto w-full">
         <div className="mb-10">
-          <h2 className="text-3xl font-semibold text-gray-800 mb-4 text-center">
+          <h1 className="text-3xl font-semibold text-gray-800 mb-4 text-center">
             FAQ
-          </h2>
+          </h1>
           <p className="text-lg text-gray-500">Frequently asked questions.</p>
         </div>
         <Faq faqData={faqData} />
       </section>
+      <div className="mb-40" />
     </section>
   );
 };

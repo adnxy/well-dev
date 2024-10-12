@@ -8,9 +8,9 @@ type ColumnProps = {
 };
 
 const FooterColumn = ({ title, links }: ColumnProps) => (
-  <div className="footer_column">
-    <h4 className="font-semibold">{title}</h4>
-    <ul className="flex flex-col gap-2 font-normal">
+  <div className="footer_column mr-40">
+    <h4 className="font-semibold text-white">{title}</h4>
+    <ul className="flex flex-col gap-2 font-normal text-white">
       {links.map((link) => (
         <Link href="/" key={link}>
           {link}
@@ -21,14 +21,14 @@ const FooterColumn = ({ title, links }: ColumnProps) => (
 );
 
 const Footer = () => (
-  <section className="flexStart footer" style={{ borderTop: '1px solid #d3d3d3', backgroundColor: '#FAF3EA', color: '#B0B0B0' }}>
-    <div className="flex flex-col gap-12 w-full  flex-col text-black">
-      <div className="flex items-start">
+  <section className="flexStart footer pl-20 pt-10 pb-10 " style={{ borderTop: '1px solid #d3d3d3', backgroundColor: '#151f2a', color: '#B0B0B0' }}>
+    <div className="flex flex-col gap-12 w-full flex-col text-black">
+      <div className="flex items-start justify-between">
         {/* <Image src="/logo.svg" width={150} height={60} alt="logo" /> */}
 
-        <p className="text-start text-sm font-normal mt-5 max-w-xs">
+        {/* <p className="text-start text-sm font-normal mt-5 max-w-xs text-white">
            Autoapply is a platform that allows you to outsource your job applications to a virtual assistant. We apply to jobs across the web and schedule interviews for you.
-        </p>
+        </p> */}
       </div>
       <div className="flex flex-wrap gap-12">
         {/* <FooterColumn
@@ -41,10 +41,10 @@ const Footer = () => (
             title={footerLinks[1].title}
             links={footerLinks[1].links}
           /> */}
-          <FooterColumn
+          {/* <FooterColumn
             title={footerLinks[2].title}
             links={footerLinks[2].links}
-          />
+          /> */}
         </div>
         <div className="ml-auto">
           <FooterColumn
@@ -61,8 +61,9 @@ const Footer = () => (
       </div>
     </div>
 
-    <div className="flexBetween footer_copyright text-black">
+    <div className="flexBetween footer_copyright text-white">
       <p>@ 2024 OneApply. All rights reserved</p>
+      <p className="text-white pr-40">1234 Main St, Anytown, USA</p> {/* Added address */}
       {/* <p className="text-gray">
         <span className="text-black font-semibold">10,214</span> projects
         submitted
