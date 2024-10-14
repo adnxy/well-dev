@@ -1,190 +1,152 @@
-"use client";
-import React, { useState, useEffect } from "react";
-import {
-  FaBars,
-  FaChevronLeft,
-  FaChevronRight,
-  FaFileAlt,
-  FaUser,
-  FaSignOutAlt,
-  FaBell,
-} from "react-icons/fa";
-import { useRouter } from "next/navigation";
-import Header from "../components/Header";
-
+import React from 'react';
+import Sidebar from '../components/Sidebar';
+import { FaDotCircle } from 'react-icons/fa';
 const Dashboard = () => {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [jobApplications] = useState([
-    {
-      id: 1,
-      title: "Software Engineer",
-      description: "Full-stack position at Tech Co.",
-      status: "Pending",
-    },
-    {
-      id: 2,
-      title: "UX Designer",
-      description: "Senior role at Design Studio",
-      status: "Interview Invitation",
-    },
-    {
-      id: 3,
-      title: "Product Manager",
-      description: "Lead PM for new product line",
-      status: "Rejected",
-    },
-    {
-      id: 4,
-      title: "Data Analyst",
-      description: "Entry-level position at Data Corp",
-      status: "Pending",
-    },
-    {
-      id: 5,
-      title: "Frontend Developer",
-      description: "React specialist at Web Solutions Inc.",
-      status: "Pending",
-    },
-    {
-      id: 6,
-      title: "DevOps Engineer",
-      description: "Cloud infrastructure role at CloudTech",
-      status: "Applied",
-    },
-    {
-      id: 7,
-      title: "AI Research Scientist",
-      description: "Machine learning focus at AI Innovations",
-      status: "Interview Invitation",
-    },
-    {
-      id: 8,
-      title: "Mobile App Developer",
-      description: "iOS specialist at App Creators",
-      status: "Pending",
-    },
-  ]);
-  const [logoUrl, setLogoUrl] = useState("");
-  const router = useRouter();
-
-  useEffect(() => {
-    setLogoUrl(
-      "https://logowik.com/content/uploads/images/google-tasks7052.logowik.com.webp"
-    );
-  }, []);
-
-  const handleLogout = () => {
-    router.push("/");
-  };
-
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case "Pending": // Changed to only include Pending
-        return "bg-yellow-200 text-yellow-800"; // Yellow for Pending
-      case "Interview Invitation":
-        return "bg-green-200 text-green-800"; 
-      case "Rejected":
-        return "bg-red-200 text-red-800";
-      case "Offered":
-        return "bg-green-200 text-green-800";
-      default:
-        return "bg-gray-200 text-gray-800";
-    }
-  };
-
-  const handleSubscribe = () => {
-    router.push("/profile"); // Navigate to profile settings on subscribe
-  };
-
-  const renderDot = () => (
-    <span className="inline-block h-2 w-2 rounded-full bg-green-500 mr-1"></span>
-  );
-
   return (
-    <div className="flex flex-col h-screen bg-white font-sans mx-4 sm:mx-10 lg:mx-40 rounded-lg"> {/* Adjusted margins for mobile */}
-      {/* Main Content */}
-      <div className="flex-1 flex flex-col overflow-hidden rounded-lg">
-        <Header setSidebarOpen={setSidebarOpen} sidebarOpen={sidebarOpen} />
-        <main className="flex-1 bg-gray-200 p-4 sm:p-7 overflow-hidden overflow-y-auto"> {/* Adjusted padding for mobile */}
+    <div className="flex h-screen">
      
-          {/* Notification Message */}
-          <div className="flex items-center justify-between bg-blue-100 p-4 rounded-lg mb-4">
-            <div className="flex items-center">
-              <FaBell className="text-blue-500 mr-2 text-2xl" /> {/* Increased size of the icon */}
-              <span className="text-blue-800 text-md">Subscribe to start applying to jobs.</span> {/* Changed font size to 18px */}
-            </div>
-            <button 
-              onClick={handleSubscribe} 
-              className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition duration-150"
-            >
-              Subscribe
-            </button>
+<Sidebar />
+      {/* Main Content */}
+      <div className="flex-1 bg-white-50 p-6 flex flex-col"> {/* Added flex-col to allow children to stack vertically */}
+        {/* Top Bar */}
+        <div className="flex justify-between items-center mb-6">
+          {/* Move search bar to the left */}
+          <input
+            type="text"
+            placeholder="Search"
+            className="border border-slate-200 bg-slate-50 px-5 py-2 rounded-lg mr-4 w-full max-w-md focus:outline-none focus:ring-2 focus:ring-blue-500" // Updated width and added modern styles
+          />
+          <div className="flex items-center space-x-4">
+            <span className="text-sm font-semibold">Jack Byram</span>
+            {/* <img
+              src="/user-avatar.jpg"
+              alt="User Avatar"
+              className="h-10 w-10 rounded-full"
+            /> */}
           </div>
+        </div>
 
-          <div className="flex overflow-x-auto space-x-4 mb-4 w-full"> {/* Added w-full for full width */}
-            <div className="bg-white rounded-lg shadow p-4 sm:p-6 flex flex-col justify-center w-full"> {/* Changed min-w to w-full */}
-              <h3 className="font-semibold flex items-center">
-        Notifications
-              </h3>
-              <p className="text-2xl font-semibold">{jobApplications.filter(job => job.status === "Interview Invitation" || job.status === "Offered").length}</p>
-              <hr className="my-2" />
-              <p>Latest job notifications.</p>
-            </div>
-            <div className="bg-white rounded-lg shadow p-4 sm:p-6 flex flex-col justify-center w-full"> {/* Changed min-w to w-full */}
-              <h3 className="font-semibold flex items-center">
-           Total Job Applications
-              </h3>
-              <p className="text-2xl font-semibold">{jobApplications.length}</p>
-              <hr className="my-2" />
-              <p className="text-gray-300">All applications submitted.</p>
-            </div>
-            <div className="bg-white rounded-lg shadow p-4 sm:p-6 flex flex-col justify-center w-full"> {/* Changed min-w to w-full */}
-              <h3 className="font-semibold flex items-center">
-           Pending Applications
-              </h3>
-              <p className="text-2xl font-semibold">{jobApplications.filter(job => job.status === "Pending").length}</p>
-              <hr className="my-2" />
-              <p>Applications awaiting response.</p>
-            </div>
-            <div className="bg-white rounded-lg shadow p-4 sm:p-6 flex flex-col justify-center w-full"> {/* Changed min-w to w-full */}
-              <h3 className="font-semibold flex items-center">
-                {renderDot()} Interviews
-              </h3>
-              <p className="text-2xl font-semibold">{jobApplications.filter(job => job.status === "Interview Invitation").length}</p>
-              <hr className="my-2" />
-              <p>Number of scheduled interviews.</p>
+        {/* Dashboard Stats */}
+        <div className="border-b border-slate-200 mb-5 w-full"></div> {/* Added thin slate line above Dashboard */}
+        <h1 className="text-2xl font-semibold mb-5">Dashboard</h1> {/* Moved title down */}
+
+        <div className="grid grid-cols-4 gap-6 mb-6">
+          <div className="bg-red-100 p-4 rounded-lg">
+            <h2 className="text-lg font-bold">Submitted</h2>
+            <p className="text-4xl font-semibold">24</p>
+            
+          </div>
+          <div className="bg-yellow-100 p-4 rounded-lg">
+            <h2 className="text-lg font-bold">Pending</h2>
+            <p className="text-4xl font-semibold">10</p>
+          </div>
+          <div className="bg-green-100 p-4 rounded-lg">
+            <h2 className="text-lg font-bold">Interviews</h2>
+            <p className="text-4xl font-semibold">24</p>
+          </div>
+          <div style={{ backgroundColor: '#1B204A', padding: '30px'}} className=" p-4 rounded-lg py-30">
+            <h2 className="text-lg font-bold text-white">Recent Activity</h2>
+            <h3 className="text-white">You have a new job offer</h3>
+            <p className="text-white text-sm font-light">Kindly check the requirements and terms of work and make sure everything is right.</p>
+            <div className="flex justify-end">
+              <p className="text-orange-500 text-sm mt-4 cursor-pointer hover:underline">See all activity</p>
             </div>
           </div>
+        </div>
 
-          <div className="bg-white rounded-lg shadow p-4 sm:p-6"> {/* Adjusted padding for mobile */}
-            <h2 className="text-xl font-medium mb-4 p-2">Recent Applications</h2> {/* Added padding around the title */}
-            <ul className="space-y-4">
-              {jobApplications
-                .filter(job => job.status !== "Offered" && job.status !== "Interviewed" && job.status !== "Applied") // Filter out Offered, Interviewed, and Applied
-                .map((job) => (
-                  <li
-                    key={job.id}
-                    className="bg-white p-4 sm:p-6 rounded-md shadow hover:bg-slate-50 transition duration-150 ease-in-out border border-slate-200" // Added light border
-                  >
-                    <div className="flex justify-between"> {/* Added flex for alignment */}
-                      <div>
-                        <h3 className="font-semibold text-black">{job.title}</h3> {/* Changed job title color to black */}
-                        <p className="text-sm text-gray-600">{job.description}</p> {/* Changed text color to gray */}
-                      </div>
-                      <span className="text-sm text-gray-500">{new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span> {/* Formatted date */}
-                    </div>
-                    <span
-                      className={`inline-block px-2 py-1 mt-2 text-xs font-semibold rounded-full ${getStatusColor(
-                        job.status
-                      )}`}
-                    >
-                      {job.status}
-                    </span>
-                  </li>
-                ))}
+        {/* Recent Applications and Interviews */}
+        <div className="grid grid-cols-3 gap-6 flex-1"> {/* Added flex-1 to allow this section to grow */}
+          {/* Recent Applications */}
+          <div className="col-span-2 p-4 rounded-lg shadow-lg bg-blue-500 flex-1 max-100"> {/* Added flex-1 */}
+            <h3 className="text-xl font-semibold mb-4">Recent Applications</h3>
+            <ul className="max-h-41 overflow-y-auto"> {/* Updated max height for Recent Applications */}
+              <li className="mb-3 border border-slate-200 bg-slate-50 p-4 rounded-lg flex justify-between items-center"> 
+                <div className="flex items-center">
+                  <div>
+                    <span className="font-semibold">Outing schedule</span>
+                    <p className="text-sm">5 minutes ago</p>
+                    <p className="text-sm">Position: Developer | Company: XYZ Corp</p>
+                  </div>
+                </div>
+                <span className="text-sm font-semibold">Application Submitted</span>
+              </li>
+              <li className="mb-3 border border-slate-200 bg-slate-50 p-4 rounded-lg flex justify-between items-center"> 
+                <div className="flex items-center">
+                  <div>
+                    <span className="font-semibold">Meeting HR Department</span>
+                    <p className="text-sm">Yesterday, 12:30 PM</p>
+                    <p className="text-sm">Position: HR Specialist | Company: ABC Inc</p>
+                  </div>
+                </div>
+                <span className="text-sm font-semibold">Application Submitted</span>
+              </li>
+              <li className="mb-3 border border-slate-200 bg-slate-50 p-4 rounded-lg flex justify-between items-center"> 
+                <div>
+                  <span className="font-semibold">Client Feedback Session</span>
+                  <p className="text-sm">Today, 11:00 AM</p>
+                  <p className="text-sm">Position: Feedback Coordinator</p> {/* Added position */}
+                </div>
+                <span className="text-sm font-semibold">Application Submitted</span>
+              </li>
+              <li className="mb-3 border border-slate-200 bg-slate-50 p-4 rounded-lg flex justify-between items-center"> 
+                <div>
+                  <span className="font-semibold">Team Standup</span>
+                  <p className="text-sm">Today, 9:00 AM</p>
+                  <p className="text-sm">Position: Team Member</p> {/* Added position */}
+                </div>
+                <span className="text-sm font-semibold">Application Submitted</span>
+              </li>
+              <li className="mb-3 border border-slate-200 bg-slate-50 p-4 rounded-lg flex justify-between items-center"> 
+                <div>
+                  <span className="font-semibold">Project Kickoff Meeting</span>
+                  <p className="text-sm">Today, 2:00 PM</p>
+                  <p className="text-sm">Position: Project Manager</p>
+                </div>
+                <span className="text-sm font-semibold">Application Submitted</span>
+              </li>
+              <li className="mb-3 border border-slate-200 bg-slate-50 p-4 rounded-lg flex justify-between items-center"> 
+                <div>
+                  <span className="font-semibold">Code Review Session</span>
+                  <p className="text-sm">Today, 3:30 PM</p>
+                  <p className="text-sm">Position: Software Engineer</p>
+                </div>
+                <span className="text-sm font-semibold">Application Submitted</span>
+              </li>
             </ul>
           </div>
-        </main>
+
+          {/* Upcoming Interviews */}
+          <div className="bg-white p-4 rounded-lg shadow-lg bg-green-500 flex-1"> {/* Added flex-1 */}
+            <h3 className="text-xl font-bold mb-4">Upcoming Interviews</h3>
+            <ul className="max-h-81 overflow-y-auto"> {/* Updated max height for Upcoming Interviews */}
+              {/* Updated list items to match Recent Applications style */}
+              <li className="mb-3 border border-slate-200 bg-slate-50 p-4 rounded-lg flex justify-between items-center"> 
+                <div>
+                  <span className="font-semibold">Review candidate applications</span>
+                  <p className="text-sm">Today, 11:30 AM</p>
+                </div>
+              </li>
+              <li className="mb-3 border border-slate-200 bg-slate-50 p-4 rounded-lg flex justify-between items-center"> 
+                <div>
+                  <span className="font-semibold">Interview with candidates</span>
+                  <p className="text-sm">Today, 10:30 AM</p>
+                </div>
+              </li>
+              <li className="mb-3 border border-slate-200 bg-slate-50 p-4 rounded-lg flex justify-between items-center"> 
+                <div>
+                  <span className="font-semibold">Meeting product designer</span>
+                  <p className="text-sm">Today, 9:15 AM</p>
+                </div>
+              </li>
+              <li className="mb-3 border border-slate-200 bg-slate-50 p-4 rounded-lg flex justify-between items-center"> 
+                <div>
+                  <span className="font-semibold">Final Interview with CEO</span>
+                  <p className="text-sm">Tomorrow, 10:00 AM</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   );

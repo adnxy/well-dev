@@ -14,6 +14,15 @@
   will-change: transform;
 }
 
+.scrollContentBottom {
+  margin-top: 20px;
+  display: inline-flex;
+  width: 90%;
+  max-width: 99vw;
+  animation: scroll 30s linear infinite;
+  will-change: transform;
+}
+
 @keyframes scroll {
   0% {
     transform: translateX(0);
@@ -33,4 +42,6 @@
 .scrollContainer:hover .scrollContent {
   animation-play-state: paused;
 }
+
+
 

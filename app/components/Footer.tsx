@@ -21,7 +21,7 @@ const FooterColumn = ({ title, links }: ColumnProps) => (
 );
 
 const Footer = () => (
-  <section className="flexStart footer pl-20 pt-10 pb-10 " style={{ borderTop: '1px solid #d3d3d3', backgroundColor: '#151f2a', color: '#B0B0B0' }}>
+  <section className="z-10 flexStart footer pl-20 pt-10 pb-10 " style={{ borderTop: '1px solid #d3d3d3', backgroundColor: '#151f2a', color: '#B0B0B0' }}>
     <div className="flex flex-col gap-12 w-full flex-col text-black">
       <div className="flex items-start justify-between">
         {/* <Image src="/logo.svg" width={150} height={60} alt="logo" /> */}
@@ -62,7 +62,7 @@ const Footer = () => (
     </div>
 
     <div className="flexBetween footer_copyright text-white">
-      <p>@ 2024 OneApply. All rights reserved</p>
+      <p>@ 2024 Autoapply. All rights reserved</p>
       <p className="text-white pr-40">1234 Main St, Anytown, USA</p> {/* Added address */}
       {/* <p className="text-gray">
         <span className="text-black font-semibold">10,214</span> projects
