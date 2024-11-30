@@ -20,6 +20,7 @@ body {
   /* font-family: "Space Grotesk"; */
 
   font-family: "Inter";
+  overscroll-behavior: none;
 }
 
 .flexCenter {

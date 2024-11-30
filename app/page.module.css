@@ -4,14 +4,14 @@
   position: relative;
   margin-top: 5%;
   margin-bottom: 5%;
+
 }
 
 .scrollContent {
   display: inline-flex;
-  width: 90%;
-  max-width: 99vw;
-  animation: scroll 30s linear infinite;
-  will-change: transform;
+  width: 100%;
+  /* animation: scroll 30s linear infinite; */
+  /* will-change: transform; */
 }
 
 .scrollContentBottom {
@@ -19,8 +19,8 @@
   display: inline-flex;
   width: 90%;
   max-width: 99vw;
-  animation: scroll 30s linear infinite;
-  will-change: transform;
+  /* animation: scroll 30s linear infinite;
+  will-change: transform; */
 }
 
 @keyframes scroll {
