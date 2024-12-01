@@ -7,6 +7,16 @@
 
 }
 
+.fadeIn {
+  opacity: 1;
+  transition: opacity 0.75s ease-in; /* Adjust duration as needed */
+}
+
+.fadeOut {
+  opacity: 0;
+  transition: opacity 0.75s ease-out; /* Adjust duration as needed */
+}
+
 .scrollContent {
   display: inline-flex;
   width: 100%;

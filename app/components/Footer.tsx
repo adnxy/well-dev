@@ -2,6 +2,7 @@ import { footerLinks } from "@/constants";
 import Image from "next/image";
 import Link from "next/link";
 import { useTheme } from "../context/ThemeContext";
+import { FaStar } from 'react-icons/fa';
 
 type ColumnProps = {
   title: string;
@@ -52,12 +53,12 @@ const Footer = () => {
               links={footerLinks[2].links}
             /> */}
           </div>
-          <div className="ml-auto">
+          {/* <div className="ml-auto">
             <FooterColumn
               title={footerLinks[3].title}
               links={footerLinks[3].links}
             />
-          </div>
+          </div> */}
           <div className="ml-auto">
             <FooterColumn
               title={footerLinks[6].title}
@@ -68,13 +69,20 @@ const Footer = () => {
       </div>
 
       <div className="flexBetween footer_copyright text-white">
-        <p>@ 2024 Taskignite. All rights reserved</p>
-        <p className="text-white pr-40">1234 Main St, Anytown, USA</p> {/* Added address */}
+        
+        <p>@ 2024 Matchdays. All rights reserved <span className="text-white pl-10">1234 Main St, Delaware, USA</span></p>
         {/* <p className="text-gray">
           <span className="text-black font-semibold">10,214</span> projects
           submitted
         </p> */}
+              <div className="flex justify-center mt-4 pr-40">
+        <Link href="/premium" className="flex items-center bg-blue-500 text-white px-4 py-2 rounded">
+          <FaStar className="mr-2" /> Go Premium
+        </Link>
       </div>
+      </div>
+
+
     </section>
   );
 };

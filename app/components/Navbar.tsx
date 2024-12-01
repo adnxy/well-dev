@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useState, useContext, useEffect } from "react";
 import { usePathname } from "next/navigation";
-import rb from "../../public/wordpress.svg";
+import rb from "../../public/goal-post.png";
 import { FaBars, FaTimes, FaSearch, FaMoon, FaSun } from 'react-icons/fa';
 import { useTheme } from "../context/ThemeContext";
 
@@ -32,14 +32,25 @@ const Navbar = () => {
 
   return (
     <nav className={`flex justify-between items-center h-20 px-4 md:px-10 lg:px-20 transition-colors duration-350 ${theme === 'light' ? 'bg-white text-black' : 'bg-[#06231F] text-white'} shadow-lg`}>
-      <Link href="/" className="flex items-center pl-20">
-        <Image className="h-10 w-16" src={rb} alt="Logo" width={64} height={32} />
+      <div className="flex items-center pl-20">
+        <Link href="/">
+        <Image className="h-11 w-11 ml-2 mr-2 cursor-pointer" src={rb} alt="Logo" />
+        </Link>
         {theme === 'dark' ? (
-          <FaSun className="text-yellow-500 ml-2" onClick={toggleTheme} />
+          <FaSun className="text-yellow-500 ml-2 cursor-pointer w-5 h-5" onClick={toggleTheme} />
         ) : (
-          <FaMoon className="text-gray-800 ml-2" onClick={toggleTheme} />
+          <FaMoon className="text-gray-800 ml-2 cursor-pointer w-5 h-5" onClick={toggleTheme} />
         )}
-      </Link>
+             <div className="flex space-x-4 ml-5">
+             <Link href="/" className={`font-[15px] cursor-pointer hover:text-emerald-400 ${theme === 'light' ? 'text-black' : 'text-white'}`}>Analysis</Link>
+        <Link href="/" className={`font-[15px] cursor-pointer hover:text-emerald-400 ${theme === 'light' ? 'text-black' : 'text-white'}`}>How it works</Link>
+        <Link href="/" className={`font-[15px] cursor-pointer hover:text-emerald-400 ${theme === 'light' ? 'text-black' : 'text-white'}`}>Pricing</Link>
+        <Link href="/" className={`font-[15px] cursor-pointer hover:text-emerald-400 ${theme === 'light' ? 'text-black' : 'text-white'}`}>FAQs</Link>
+
+      </div>
+      </div>
+ 
+
 
       {/* Search input */}
       {/* <div className="hidden md:flex items-center flex-grow mx-10">
@@ -64,6 +75,8 @@ const Navbar = () => {
         {isMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
       </button>
 
+      {/* New Links for Blog and Pricing - Moved next to the toggle menu */}
+ 
       {/* Desktop menu */}
       <ul className="hidden md:flex items-center space-x-6">
         {/* <li>

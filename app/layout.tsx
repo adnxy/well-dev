@@ -8,9 +8,9 @@ import { ThemeProvider } from "./context/ThemeContext";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Taskignite - Automate your job applications",
+  title: "Matchdays - AI powered football/soccer predictions",
   description:
-    "Taskignite is a platform that allows you to automate your job applications. We apply to jobs across the web and schedule interviews for you.",
+    "Matchdays is a AI driven platform for football analysis and predictions",
 };
 
 export default function RootLayout({
