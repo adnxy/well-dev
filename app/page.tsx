@@ -177,6 +177,7 @@ const SoccerBetting = () => {
   };
 
   useEffect(() => {
+    console.log("Fetching predictions");
     fetchPredictions();
     fetchVipPredictions();
     fetchScorers();
