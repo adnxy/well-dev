@@ -23,26 +23,19 @@ const FooterColumn = ({ title, links }: ColumnProps) => (
 );
 
 const Footer = () => {
-  // const { theme } = useTheme();
-  // const backgroundColor = theme === 'dark' ? '#021814' : '#FFFFFF';
   const backgroundColor = '#021814';
 
   return (
-    <section className="z-10 flexStart footer pl-20 pt-10 pb-10" style={{ borderTop: 'none', backgroundColor, color: '#B0B0B0' }}>
-      <div className="flex flex-col gap-12 w-full flex-col text-black">
-        <div className="flex items-start justify-between">
+    <section className="z-10 border-rounded border-white flex flex-col items-center footer pl-20 pt-10 pb-10" style={{ borderTop: 'none', backgroundColor, color: '#B0B0B0' }}>
+      <div className="flex flex-col gap-12 w-full text-black">
+        <div className="flex items-start justify-between w-full">
           {/* <Image src="/logo.svg" width={150} height={60} alt="logo" /> */}
 
           {/* <p className="text-start text-sm font-normal l-5 max-w-xs text-white">
              Autoapply is a platform that allows you to outsource your job applications to a virtual assistant. We apply to jobs across the web and schedule interviews for you.
           </p> */}
         </div>
-        <div className="flex flex-wrap gap-12">
-          {/* <FooterColumn
-            title={footerLinks[0].title}
-            links={footerLinks[0].links}
-          /> */}
-
+        <div className="flex flex-wrap gap-12 justify-center">
           <div className="flex-1 flex flex-col gap-4">
             {/* <FooterColumn
               title={footerLinks[1].title}
@@ -53,12 +46,6 @@ const Footer = () => {
               links={footerLinks[2].links}
             /> */}
           </div>
-          {/* <div className="ml-auto">
-            <FooterColumn
-              title={footerLinks[3].title}
-              links={footerLinks[3].links}
-            />
-          </div> */}
           <div className="ml-auto">
             <FooterColumn
               title={footerLinks[6].title}
@@ -68,21 +55,14 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="flexBetween footer_copyright text-white">
-        
-        <p>@ 2024 Matchdays. All rights reserved <span className="text-white pl-10">1234 Main St, Delaware, USA</span></p>
-        {/* <p className="text-gray">
-          <span className="text-black font-semibold">10,214</span> projects
-          submitted
-        </p> */}
-              <div className="flex justify-center mt-4 pr-40">
-        <Link href="/premium" className="flex items-center bg-blue-500 text-white px-4 py-2 rounded">
-          <FaStar className="mr-2" /> Go Premium
-        </Link>
+      <div className="flex justify-between items-center w-full footer_copyright text-white">
+        <p>@ 2024 Kickpredict. All rights reserved <span className="text-white pl-10">1234 Main St, Delaware, USA</span></p>
+        <div className="flex justify-center mt-4 pr-40">
+          <Link href="/premium" className="flex items-center bg-blue-500 text-white px-4 py-2 rounded">
+            <FaStar className="mr-2" /> Go Premium
+          </Link>
+        </div>
       </div>
-      </div>
-
-
     </section>
   );
 };

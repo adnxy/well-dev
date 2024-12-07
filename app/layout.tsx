@@ -8,9 +8,9 @@ import { ThemeProvider } from "./context/ThemeContext";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Matchdays - AI powered football/soccer predictions",
+  title: "Kickpredict - AI powered football/soccer predictions",
   description:
-    "Matchdays is a AI driven platform for football analysis and predictions",
+    "Kickpredict is a AI driven platform for football analysis and predictions",
 };
 
 export default function RootLayout({

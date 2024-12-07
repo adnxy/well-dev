@@ -3,7 +3,7 @@ export const NavLinks = [
   // { href: '/', key: 'Hire Us', text: 'Hire Us' },
   // { href: "/login", key: "Hire Us", text: "Login" },
   // { href: '/jobs', key: 'Jobs', text: 'Get Started' },
-  { href: "/signup", key: "Jobs", text: "Sign in" },
+  { href: "/offers", key: "Jobs", text: "Offers" },
 ];
 
 export const categoryFilters = [

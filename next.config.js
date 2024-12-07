@@ -1,10 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['logowik.com'],
+    // domains: ['logowik.com'],
   },
   experimental: {
-    appDir: true,
+    // Remove or correct the appDir option
+    // appDir: true,
   },
 }
 

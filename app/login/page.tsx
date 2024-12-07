@@ -14,9 +14,9 @@ const Login = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen" style={{ backgroundColor: '#151f2a' }}> 
-      <div className="p-10 bg-slate-50 rounded-lg shadow-xl w-full max-w-md">
-        <h1 className="text-3xl font-bold mb-8 text-center text-gray-800">Welcome back!</h1>
+    <div className="flex items-center justify-center pt-40" style={{ backgroundColor: '#021814' }}> 
+      <div className="p-10 bg-[#f4f4f4] rounded-lg shadow-xl w-full max-w-md">
+        <h1 className="text-3xl font-medium mb-8 text-left text-gray-800">Welcome back</h1>
         <form className="space-y-6" onSubmit={handleLogin}>
           <div>
             <label

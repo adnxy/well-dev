@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { NavLinks } from "@/constants";
 import Image from "next/image";
@@ -6,7 +6,7 @@ import Link from "next/link";
 import React, { useState, useContext, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import rb from "../../public/goal-post.png";
-import { FaBars, FaTimes, FaSearch, FaMoon, FaSun } from 'react-icons/fa';
+import { FaBars, FaTimes, FaSearch, FaMoon, FaSun } from "react-icons/fa";
 import { useTheme } from "../context/ThemeContext";
 
 const Navbar = () => {
@@ -14,43 +14,74 @@ const Navbar = () => {
   const pathname = usePathname();
   const isDashboard = pathname === "/dashboard" || pathname === "/profile";
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  console.log('theme', theme);
-  
+  console.log("theme", theme);
+
   useEffect(() => {
-    const savedTheme = localStorage.getItem('theme');
-    console.log('savedTheme', savedTheme);
+    const savedTheme = localStorage.getItem("theme");
+    console.log("savedTheme", savedTheme);
     if (savedTheme) {
       toggleTheme(savedTheme);
     }
   }, []);
 
   useEffect(() => {
-    localStorage.setItem('theme', theme);
+    localStorage.setItem("theme", theme);
   }, [theme]);
 
   if (isDashboard) return null;
 
   return (
-    <nav className={`flex justify-between items-center h-20 px-4 md:px-10 lg:px-20 transition-colors duration-350 ${theme === 'light' ? 'bg-white text-black' : 'bg-[#06231F] text-white'} shadow-lg`}>
+    <nav
+      className={`flex justify-between items-center h-20 px-4 md:px-10 lg:px-20 transition-colors duration-350 ${
+        theme === "light" ? "bg-white text-black" : "bg-[#06231F] text-white"
+      } shadow-lg`}
+    >
       <div className="flex items-center pl-20">
         <Link href="/">
-        <Image className="h-11 w-11 ml-2 mr-2 cursor-pointer" src={rb} alt="Logo" />
+          <Image
+            className="h-11 w-11 ml-2 mr-2 cursor-pointer"
+            src={rb}
+            alt="Logo"
+          />
         </Link>
-        {theme === 'dark' ? (
-          <FaSun className="text-yellow-500 ml-2 cursor-pointer w-5 h-5" onClick={toggleTheme} />
+        {theme === "dark" ? (
+          <FaSun
+            className="text-yellow-500 ml-2 cursor-pointer w-5 h-5"
+            onClick={toggleTheme}
+          />
         ) : (
-          <FaMoon className="text-gray-800 ml-2 cursor-pointer w-5 h-5" onClick={toggleTheme} />
+          <FaMoon
+            className="text-gray-800 ml-2 cursor-pointer w-5 h-5"
+            onClick={toggleTheme}
+          />
         )}
-             <div className="flex space-x-4 ml-5">
-             <Link href="/" className={`font-[15px] cursor-pointer hover:text-emerald-400 ${theme === 'light' ? 'text-black' : 'text-white'}`}>Analysis</Link>
-        <Link href="/" className={`font-[15px] cursor-pointer hover:text-emerald-400 ${theme === 'light' ? 'text-black' : 'text-white'}`}>How it works</Link>
-        <Link href="/" className={`font-[15px] cursor-pointer hover:text-emerald-400 ${theme === 'light' ? 'text-black' : 'text-white'}`}>Pricing</Link>
-        <Link href="/" className={`font-[15px] cursor-pointer hover:text-emerald-400 ${theme === 'light' ? 'text-black' : 'text-white'}`}>FAQs</Link>
-
+        <div className="flex space-x-4 ml-5">
+          <Link
+            href="/how-it-works"
+            className={`font-[15px] cursor-pointer hover:text-slate-300 ${
+              theme === "light" ? "text-black" : "text-white"
+            }`}
+          >
+            How it works
+          </Link>
+          {/* <Link
+            href="/pricing"
+            className={`font-[15px] cursor-pointer hover:text-slate-300 ${
+              theme === "light" ? "text-black" : "text-white"
+            }`}
+          >
+            Pricing
+          </Link> */}
+          <Link
+            href="/faq"
+            className={`font-[15px] cursor-pointer hover:text-slate-300 ${
+              theme === "light" ? "text-black" : "text-white"
+            }`}
+          >
+            FAQs
+          </Link>
+        </div>
       </div>
-      </div>
- 
-
 
       {/* Search input */}
       {/* <div className="hidden md:flex items-center flex-grow mx-10">
@@ -65,10 +96,10 @@ const Navbar = () => {
       </div> */}
 
       {/* Mobile menu button */}
-      <button 
+      <button
         className="md:hidden text-white"
         onClick={() => {
-          toggleTheme(theme === 'dark' ? 'light' : 'dark');
+          toggleTheme(theme === "dark" ? "light" : "dark");
           setIsMenuOpen(!isMenuOpen);
         }}
       >
@@ -76,7 +107,7 @@ const Navbar = () => {
       </button>
 
       {/* New Links for Blog and Pricing - Moved next to the toggle menu */}
- 
+
       {/* Desktop menu */}
       <ul className="hidden md:flex items-center space-x-6">
         {/* <li>
@@ -85,17 +116,18 @@ const Navbar = () => {
         {/* <li>
           <Link href="/pricing" className="text-white text-md hover:text-emerald-400">Pricing</Link>
         </li> */}
-  
+
         {NavLinks.map((link, index) => (
           <li key={index}>
-            {link.text === "Sign in" ? (
+            {link.text === "Offers" ? (
               <button className="border border-emerald-500 text-emerald-500 rounded-xl px-5 py-2 text-md font-small hover:bg-emerald-500 hover:text-white transition mr-20">
-                <Link href={link.href}>
-                  {link.text}
-                </Link>
+                <Link href={link.href}>{link.text}</Link>
               </button>
             ) : (
-              <Link href={link.href} className="text-white text-md hover:text-emerald-400">
+              <Link
+                href={link.href}
+                className="text-white text-md hover:text-emerald-400"
+              >
                 {link.text}
               </Link>
             )}
@@ -108,22 +140,33 @@ const Navbar = () => {
         <div className="bg-[#222c37] p-4 md:hidden mr-60">
           <ul className="flex flex-col space-y-4">
             <li>
-              <Link href="/pricing" className="text-white text-sm hover:text-emerald-400">Pricing</Link>
+              <Link
+                href="/pricing"
+                className="text-white text-sm hover:text-emerald-400"
+              >
+                Pricing
+              </Link>
             </li>
 
             <li>
-              <Link href="/privacy" className="text-white text-sm hover:text-emerald-400">Privacy</Link>
+              <Link
+                href="/privacy"
+                className="text-white text-sm hover:text-emerald-400"
+              >
+                Privacy
+              </Link>
             </li>
             {NavLinks.map((link, index) => (
               <li key={index}>
                 {link.text === "Sign up" ? (
                   <button className="border border-emerald-500 text-emerald-500 rounded-full px-5 py-2 text-sm font-medium hover:bg-emerald-500 hover:text-white transition w-full text-center">
-                    <Link href={link.href}>
-                      {link.text}
-                    </Link>
+                    <Link href={link.href}>{link.text}</Link>
                   </button>
                 ) : (
-                  <Link href={link.href} className="text-white text-sm hover:text-emerald-400">
+                  <Link
+                    href={link.href}
+                    className="text-white text-sm hover:text-emerald-400"
+                  >
                     {link.text}
                   </Link>
                 )}

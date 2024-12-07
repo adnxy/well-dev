@@ -19,8 +19,8 @@ const Faq = ({ faqData }: FaqProps) => {
   };
 
   return (
-    <section className="bg-white">
-      <div className="py-4 mx-auto max-w-screen-xl lg:py-0"> {/* Changed top margin from py-8 to py-4 */}
+    <section className="bg-[#021814] flex flex-col items-center">
+      <div className="py-4 mx-auto max-w-screen-xl lg:py-0 bg-[#021814]"> {/* Changed top margin from py-8 to py-4 */}
         <div className="space-y-3"> {/* Changed space-y-5 to space-y-3 for smaller margin */}
           {faqData.map((faq, index) => (
             <div key={index} className="rounded-md shadow-md bg-slate-200 dark:bg-slate-800"> {/* Changed bg-slate-800 to bg-slate-200 for lighter background */}
