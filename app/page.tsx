@@ -6,6 +6,18 @@ import bannerBg2 from "../public/pitch.jpg";
 import bannerBg4 from "../public/bg-4.jpg";
 import bannerBg6 from "../public/bg-6.jpg";
 import bannerBg7 from "../public/bg-7.jpg";
+import brasilLiga from "../public/brasil-flag.png";
+import mexicoLiga from "../public/mexico-flag.png";
+import argentinaLiga from "../public/argentina.png";
+import honduras from "../public/honduras.png";
+import bolivia from "../public/bolivia.png";
+import aruba from "../public/aruba.png";
+import nicaragua from "../public/nicaragua.png";
+import salvador from "../public/el-salvador.png";
+import australia from "../public/australia.png";
+import japan from "../public/japan.png";
+import southKorea from "../public/south-korea.png";
+import hongKong from "../public/hong-kong.png";
 
 import {
   FaTrophy,
@@ -14,6 +26,10 @@ import {
   FaArrowLeft,
   FaArrowRight,
   FaDollarSign,
+  FaSun,
+  FaBook,
+  FaStar,
+  FaChartLine,
 } from "react-icons/fa";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import premierLeagueImg from "../public/england.png";
@@ -27,7 +43,7 @@ import { useTheme } from "./context/ThemeContext";
 import axios from "axios";
 
 const SoccerBetting = () => {
-  const [selectedLeague, setSelectedLeague] = useState("Top 5 Leagues");
+  const [selectedLeague, setSelectedLeague] = useState("Top Leagues");
   const { theme } = useTheme();
   const teamRef = useRef<HTMLDivElement>(null);
   const [predictions, setPredictions] = useState<any[]>([]);
@@ -36,13 +52,15 @@ const SoccerBetting = () => {
   const [loading, setLoading] = useState(true);
 
   const leagues = [
-    { name: "Top 5 Leagues", icon: <FaCrown />, tooltip: "Major 5 Leagues" },
+    { name: "Top Leagues", icon: <FaCrown />, tooltip: "Major Leagues" },
     {
       name: "Big Returns",
-      icon: <FaDollarSign />,
+      icon: <FaChartLine />,
       tooltip: "x2, x3, x4 Returns",
     },
+    { name: "Daily Picks", icon: <FaStar />, tooltip: "Daily Picks" },
     { name: "Scores", icon: <FaTrophy />, tooltip: "Match Scores" },
+
   ];
 
   const headerImages = [bannerBg2, bannerBg4, bannerBg6, bannerBg7];
@@ -138,7 +156,7 @@ const SoccerBetting = () => {
   const fetchScorers = async () => {
     const options = {
       method: "GET",
-      url: "https://today-football-prediction.p.rapidapi.com/predictions/scores?date=2024-12-07",
+      url: "https://today-football-prediction.p.rapidapi.com/predictions/scores",
       headers: {
         "x-rapidapi-key": "4bf5a37284msh5664aae3be8efa8p16009cjsnad34520195d9",
         "x-rapidapi-host": "today-football-prediction.p.rapidapi.com",
@@ -147,7 +165,6 @@ const SoccerBetting = () => {
 
     try {
       const response = await axios.request(options);
-      console.log("Setting scorers::::", response.data.matches);
       setScorers(response.data.matches);
     } catch (error) {
       console.error(error);
@@ -177,7 +194,6 @@ const SoccerBetting = () => {
   };
 
   useEffect(() => {
-    console.log("Fetching predictions");
     fetchPredictions();
     fetchVipPredictions();
     fetchScorers();
@@ -194,8 +210,10 @@ const SoccerBetting = () => {
         return "Premium Predictions";
       case "Scores":
         return "Exact Results";
-      case "Top 5 Leagues":
-        return "Top 5 Leagues";
+      case "Top Leagues":
+        return "Top Leagues";
+      case "Daily Picks":
+        return "Biggest Probabilities";
       default:
         return "Big Returns";
     }
@@ -205,7 +223,11 @@ const SoccerBetting = () => {
     switch (league) {
       case "1":
         return premierLeagueImg;
+      case "2":
+        return premierLeagueImg;
       case "5":
+        return laLigaImg;
+      case "509":
         return laLigaImg;
       case "7":
         return bundesligaImg;
@@ -213,12 +235,55 @@ const SoccerBetting = () => {
       case "8":
         return franceLeague;
 
+      case "68":
+        return mexicoLiga;
+      case "375":
+        return mexicoLiga;
+
+      case "512":
+        return argentinaLiga;
+      case "19":
+        return argentinaLiga;
+
+      case "20":
+        return brasilLiga;
+
       case "6":
         return serieAImg;
+
+      case "121":
+        return honduras;
+
+      case "111":
+        return bolivia;
+
+      case "357":
+        return aruba;
+
+      case "234":
+        return nicaragua;
+
+      case "145":
+        return salvador;
+
+      case "702":
+        return australia;
+
+      case "21":
+        return japan;
+
+
+      case "128":
+        return southKorea;
+
+      case "408":
+        return hongKong;
+
       default:
         return null;
     }
   };
+  console.log("vip league::::", vipPredictions);
 
   const renderMatches = (
     type: "predictions" | "vipPredictions" | "scorers"
@@ -239,20 +304,25 @@ const SoccerBetting = () => {
 
     if (selectedLeague === "Big Returns") {
       data = predictions;
-    } else if (selectedLeague === "Top 5 Leagues") {
+    } else if (selectedLeague === "Top Leagues") {
       data = vipPredictions;
     } else if (selectedLeague === "Scores") {
       data = scorers;
+    } else if (selectedLeague === "Daily Picks") {
+      data = predictions
+        .filter(item => item.prediction_probability)
+        .sort((a, b) => b.prediction_probability - a.prediction_probability)
+        .slice(0, 4);
     }
 
     return data.map((item, index) => {
       const leagueImage = getLeagueImage(item.league);
+      const itemClass = index % 2 === 0 && theme === "dark" ? "bg-[#06231F]" : "bg-gray-800";
+
       return (
         <li
           key={index}
-          className={`flex justify-between items-center p-6 ${
-            theme === "light" ? "bg-slate-100" : "bg-[#06231F]"
-          } text-white shadow-md rounded transition-colors duration-300 hover:bg-[#1f7a5b]`}
+          className={`flex justify-between items-center p-6 ${itemClass} text-white shadow-md rounded transition-colors duration-300 ${theme === "dark" ? "hover:bg-[#0C473F]" : "hover:bg-[#F5F5F5]"}`}
         >
           <div className="flex items-center w-1/2">
             {leagueImage && (
@@ -300,7 +370,7 @@ const SoccerBetting = () => {
                   labelSize="16"
                   bgColor="#00FF9C"
                   labelColor={theme === "light" ? "#425F57" : "#425F57"}
-                  className="w-40 h-4 pb-20"
+                  className="w-40 h-4 pb-20 text-s"
                   completed={Math.min(item.prediction_probability + 22, 99)}
                 />
               </div>
@@ -323,24 +393,10 @@ const SoccerBetting = () => {
             }`}
           >
             {(() => {
-              const date = new Date(item.date_time);
-              const now = new Date();
-              const diffTime = Math.abs(now.getTime() - date.getTime());
-              const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-
-              if (diffDays === 0)
-                return `Today at ${new Date(item.date_time).toLocaleTimeString(
-                  "en-US",
-                  { hour: "2-digit", minute: "2-digit" }
-                )}`;
-              if (diffDays === 1)
-                return `Yesterday at ${new Date(
-                  item.date_time
-                ).toLocaleTimeString("en-US", {
-                  hour: "2-digit",
-                  minute: "2-digit",
-                })}`;
-              return `${diffDays} days ago at ${new Date(
+              return `${new Date(item.date_time).toLocaleDateString("en-US", {
+                month: "long",
+                day: "numeric",
+              })} at ${new Date(
                 item.date_time
               ).toLocaleTimeString("en-US", {
                 hour: "2-digit",
@@ -399,10 +455,8 @@ const SoccerBetting = () => {
                   <button
                     className={`h-12 font-base flex items-center space-x-2 px-4 py-2 rounded mr-3 transition duration-300 ease-in-out ${
                       selectedLeague === league.name
-                        ? "bg-[#1f7a5b] text-white"
-                        : theme === "light"
-                        ? "bg-gray-300 hover:bg-gray-400 text-black-100"
-                        : "bg-[#06231F] hover:bg-[#06231F] text-white"
+                        ? theme === "light" ? "bg-[#F5F5F5] text-black-100" : "bg-[#1f7a5b] text-white"
+                        : theme === "light" ? "bg-gray-300 hover:bg-gray-400 text-black-100" : "bg-[#06231F] hover:bg-[#06231F] text-white"
                     }`}
                     onClick={() => handleLeagueChange(league.name)}
                   >
@@ -456,18 +510,18 @@ const SoccerBetting = () => {
           {completedBigReturns.map((prediction, index) => (
             <li
               key={index}
-              className={`flex justify-between items-center w-full p-6 ${
-                theme === "light" ? "bg-slate-100" : "bg-[#06231F]"
+              className={`flex justify-between items-center p-6 ${
+                theme === "light" ? "bg-[#EEEEEE]" : "bg-[#06231F]"
               } ${
                 theme === "light" ? "text-black-100" : "text-white"
-              } shadow-md rounded transition-colors duration-300 hover:bg-[#1f7a5b]`}
+              } shadow-md rounded transition-colors duration-300 ${theme === "light" ? "hover:bg-[#F5F5F5]" : "hover:bg-[#06231F]"}`}
             >
               <div className="flex items-center w-1/2">
                 <span className="flex-1">
                   {prediction.home_team} vs {prediction.away_team}
                 </span>
                 <span className="flex-1 text-center font-medium">
-                  {prediction.prediction} ({prediction.result_score})
+                  {prediction.prediction} ({prediction.result_score ? prediction.result_score : ''})
                 </span>
 
                 <div className="flex items-center justify-end">
