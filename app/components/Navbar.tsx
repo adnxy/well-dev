@@ -60,23 +60,15 @@ const Navbar = () => {
             href="/how-it-works"
             className={`font-[15px] cursor-pointer hover:text-slate-300 ${
               theme === "light" ? "text-black" : "text-white"
-            }`}
+            } hidden md:block`}
           >
             How it works
           </Link>
-          {/* <Link
-            href="/pricing"
-            className={`font-[15px] cursor-pointer hover:text-slate-300 ${
-              theme === "light" ? "text-black" : "text-white"
-            }`}
-          >
-            Pricing
-          </Link> */}
           <Link
             href="/faq"
             className={`font-[15px] cursor-pointer hover:text-slate-300 ${
               theme === "light" ? "text-black" : "text-white"
-            }`}
+            } hidden md:block`}
           >
             FAQs
           </Link>
