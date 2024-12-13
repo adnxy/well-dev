@@ -147,6 +147,34 @@ const Dashboard = () => {
             </ul>
           </div>
         </div>
+
+        {/* Soccer Predictions */}
+        <div className="grid grid-cols-1 gap-6 mb-6"> {/* Updated to a single column layout */}
+          <div className="bg-blue-100 p-4 rounded-lg shadow-lg">
+            <h3 className="text-xl font-bold mb-4">Soccer Predictions</h3>
+            <ul className="max-h-60 overflow-y-auto"> {/* Set max height for scrolling */}
+              <li className="mb-3 border border-slate-200 bg-slate-50 p-4 rounded-lg flex justify-between items-center">
+                <div>
+                  <span className="font-semibold">Team A vs Team B</span>
+                  <p className="text-sm">Prediction: Team A wins</p>
+                </div>
+              </li>
+              <li className="mb-3 border border-slate-200 bg-slate-50 p-4 rounded-lg flex justify-between items-center">
+                <div>
+                  <span className="font-semibold">Team C vs Team D</span>
+                  <p className="text-sm">Prediction: Draw</p>
+                </div>
+              </li>
+              <li className="mb-3 border border-slate-200 bg-slate-50 p-4 rounded-lg flex justify-between items-center">
+                <div>
+                  <span className="font-semibold">Team E vs Team F</span>
+                  <p className="text-sm">Prediction: Team F wins</p>
+                </div>
+              </li>
+              {/* Add more predictions as needed */}
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   );

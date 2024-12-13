@@ -1,543 +1,638 @@
 "use client";
-import { ProjectInterface } from "@/common.types";
-import Categories from "./components/Categories";
-import localImage from "../public/logo.svg"; // Adjust the path according to your project structure
-import projectDefault from "../public/project.png";
-import projectDefault2 from "../public/project2.jpg";
-import projectDefault3 from "../public/project3.jpg";
-import projectDefault4 from "../public/project-dribble1.png";
-import projectDefault6 from "../public/project6.jpg";
-import projectDefault7 from "../public/project7.jpg";
-import projectDefault5 from "../public/project-dribble2.png";
-import projectDefault8 from "../public/project-dribble3.png";
-import projectDefault9 from "../public/project-dribble4.png";
-import projectDefault10 from "../public/project-dribble5.png";
-import projectDefault11 from "../public/project-dribble6.png";
-import uber from "../public/uber.svg";
-import adobe from "../public/adobe.svg";
-import pg from "../public/procter-and-gamble.svg";
-import wordpress from "../public/wordpress.svg";
-import airbnb from "../public/airbnb.svg";
-import rb from "../public/red-bull.svg";
-import grab from "../public/grab.svg";
-import {
-  FaBell,
-  FaCheck,
-  FaCode,
-  FaCube,
-  FaFacebook,
-  FaImage,
-  FaMobile,
-  FaPen,
-  FaSearch,
-  FaVideo,
-} from "react-icons/fa";
-import { SiGooglemarketingplatform } from "react-icons/si";
-import { FaGoogle } from "react-icons/fa";
-import { MdDesignServices } from "react-icons/md";
-import { CiDatabase, CiDesktop } from "react-icons/ci";
-import {
-  FaUpload,
-  FaSearch as FaSearchIcon,
-  FaCalendarAlt,
-  FaBriefcase,
-} from "react-icons/fa";
-import { FaCheckSquare } from "react-icons/fa"; // Import the checkbox icon
-import TrendingJobCategories from "./components/TrendingJobCategories";
-import { motion, useScroll } from "framer-motion"
-
-import Button from "./components/Button";
-import "@fontsource/space-grotesk"; // Defaults to weight 400
+import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
-import Framer from "../public/framer-logo.svg";
-import Faq from "./components/FAQ";
-import ResumeUpload from "./components/ResumeUpload";
-import { useEffect, useState, useRef } from "react";
-import styles from "./page.module.css"; // Add this import
+import styles from "./page.module.css";
+import bannerBg2 from "../public/pitch.jpg";
+import bannerBg4 from "../public/bg-4.jpg";
+import bannerBg6 from "../public/bg-6.jpg";
+import bannerBg7 from "../public/bg-7.jpg";
 
-// import "@fontsource/space-grotesk/400.css"; // Specify weight
-// import "@fontsource/space-grotesk/400-italic.css"; // Specify weight and style
 
-type SearchParams = {
-  category?: string | null;
-  endcursor?: string | null;
-};
+import {
+  FaTrophy,
+  FaCrown,
+  FaInfoCircle,
+  FaArrowLeft,
+  FaArrowRight,
+  FaDollarSign,
+  FaStar,
+  FaGlobe,
+  FaLock,
+} from "react-icons/fa";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
+import ProgressBar from "@ramonak/react-progress-bar";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { useTheme } from "./context/ThemeContext";
+import axios from "axios";
+import { getLeagueImage } from "./helpers/getLeagueImage";
 
-type Props = {
-  searchParams: SearchParams;
-};
+const SoccerBetting = () => {
+  const [selectedLeague, setSelectedLeague] = useState("Free Predictions");
+  const { theme } = useTheme();
+  const teamRef = useRef<HTMLDivElement>(null);
+  const [predictions, setPredictions] = useState<any[]>([]);
+  const [vipPredictions, setVipPredictions] = useState<any[]>([]);
+  const [scorers, setScorers] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-type ProjectSearch = {
-  projectSearch: {
-    edges: { node: ProjectInterface }[];
-    pageInfo: {
-      hasPreviousPage: boolean;
-      hasNextPage: boolean;
-      startCursor: string;
-      endCursor: string;
-    };
-  };
-};
-
-export const dynamic = "force-dynamic";
-export const dynamicParams = true;
-// export const revalidate = 60;
-
-const Home = ({ searchParams: { category, endcursor } }: Props) => {
-  // const data = await fetchAllProjects(category, endcursor) as ProjectSearch
-
-  const yourBackgroundImage = "../public/pattern-background.png";
-
-  const data = {
-    projectSearch: {
-      edges: [
-        {
-          node: {
-            id: "1",
-            title: "Saas Landing Page",
-            image: projectDefault4,
-            createdBy: {
-              id: "1",
-              name: "Saas Landing Page",
-              avatarUrl: localImage,
-            },
-          },
-        },
-        {
-          node: {
-            id: "2",
-            title: "Resume Template",
-            image: projectDefault2,
-            createdBy: {
-              id: "2",
-              name: "Resume Template",
-              avatarUrl: localImage,
-            },
-          },
-        },
-        {
-          node: {
-            id: "2",
-            title: "Fintech",
-            image: projectDefault7,
-            createdBy: { id: "2", name: "Fintech", avatarUrl: localImage },
-          },
-        },
-        {
-          node: {
-            id: "2",
-            title: "Job Board",
-            image: projectDefault10,
-            createdBy: { id: "2", name: "Job Board", avatarUrl: localImage },
-          },
-        },
-        {
-          node: {
-            id: "2",
-            title: "Law Firm",
-            image: projectDefault5,
-            createdBy: { id: "2", name: "Law Firm", avatarUrl: localImage },
-          },
-        },
-        {
-          node: {
-            id: "2",
-            title: "Software Agency",
-            image: projectDefault8,
-            createdBy: {
-              id: "2",
-              name: "Software Agency",
-              avatarUrl: localImage,
-            },
-          },
-        },
-        {
-          node: {
-            id: "2",
-            title: "Dentist Template",
-            image: projectDefault3,
-            createdBy: {
-              id: "2",
-              name: "Dentist Template",
-              avatarUrl: localImage,
-            },
-          },
-        },
-        {
-          node: {
-            id: "2",
-            title: "Fashion Blog",
-            image: projectDefault11,
-            createdBy: { id: "2", name: "Fashion Blog", avatarUrl: localImage },
-          },
-        },
-      ],
-      pageInfo: {
-        hasPreviousPage: false,
-        hasNextPage: true,
-        startCursor: "test",
-        endCursor: "test",
-      },
-    },
-  };
-
-  const faqData = [
+  const leagues = [
+    //Top Picks
+    { name: "Free Predictions", icon: <FaCrown />, tooltip: "Major Leagues" },
     {
-      question: "What is the purpose of this service?",
-      answer:
-        "Our service helps automate job applications to save you time and increase your chances of getting hired.",
+      // Non European Leagues
+      name: "Non European",
+      icon: <FaGlobe />,
+      tooltip: "x2, x3, x4 Returns",
     },
-    {
-      question: "How do I upload my resume?",
-      answer:
-        "You can upload your resume using the upload button provided on the homepage.",
-    },
-    {
-      question: "Is there a free trial available?",
-      answer:
-        "Yes, we offer a 14-day free trial for new users to explore our features.",
-    },
-    {
-      question: "What types of jobs can I apply for?",
-      answer:
-        "You can apply for a wide range of jobs across various industries using our platform.",
-    },
+    { name: "Scores", icon: <FaTrophy />, tooltip: "Match Scores" },
+    { name: "Daily Picks", icon: <FaLock />, tooltip: "Vip Daily Picks" },
+    { name: "Highest Returns", icon: <FaLock />, tooltip: "Highest Odds" },
+    { name: "Biggest Odds", icon: <FaLock />, tooltip: "Biggest Odds" },
+
+    // { name: "Premium", icon: <FaLock />, tooltip: "Premium Predictions" },
+    // { name: "AI Chat", icon: <FaLock />, tooltip: "AI Chat" },
+
   ];
 
-  const projectsToDisplay = data?.projectSearch?.edges || [];
 
-  const [visibleItems, setVisibleItems] = useState(1);
-  const sectionRef = useRef<HTMLDivElement>(null);
+  // Previous Wins
+  //Newell's Old Boys - Boca Juniors - https://www.sofascore.com/football/match/newells-old-boys-boca-juniors/cobsmob
+  //Ind Santa Fe vs Atlético Nacional - https://www.sofascore.com/football/match/independiente-santa-fe-atletico-nacional/gxcsqxc
 
-  const jobApplications = [
-    {
-      title: "Software Engineer",
-      company: "TechCorp",
-      status: "Application Submitted",
-      salary: "120.000",
-      logo: pg,
-    },
-    {
-      title: "Data Scientist",
-      company: "Data Inc.",
-      status: "Pending Application",
-      salary: "110.000",
-      logo: uber,
-    },
-    {
-      title: "Senior Product Manager",
-      company: "Product Co.",
-      status: "Interview Scheduled",
-      salary: "140.000",
-      logo: adobe,
-    },
+  const headerImages = [bannerBg2, bannerBg4, bannerBg6, bannerBg7];
+
+  const completedBigReturns = predictions.filter(
+    (prediction) => prediction.is_finished && prediction.is_prediction_correct
+  );
+
+  const teamImages = [
+    "https://www.socios.com/wp-content/uploads/2024/05/The-Final-Stretch-of-the-Premier-League_-Championship-Battle-2024_.jpg",
+    "https://thefootballfaithful.com/wp-content/uploads/2024/08/Liverpool-Premier-League-Season-Preview-202425.png",
+    "https://images2.minutemediacdn.com/image/upload/c_crop,w_2389,h_1343,x_0,y_64/c_fill,w_2160,ar_16:9,f_auto,q_auto,g_auto/images%2FGettyImages%2Fmmsport%2F90min_en_international_web%2F01j6me33dnshvytgk973.jpg",
+    "https://assets.goal.com/images/v3/blt2dfcd69db17738d4/arsenal%20newcastle.jpg?auto=webp&format=pjpg&width=2048&quality=60",
+    "https://static.euronews.com/articles/stories/08/30/18/18/1920x1080_cmsv2_45b0ba81-86b6-51aa-b2db-3fe1396d6f1c-8301818.jpg",
   ];
 
+  const analysesRef = useRef<HTMLDivElement>(null);
+
+  const scrollLeftTeam = () => {
+    if (teamRef.current) {
+      teamRef.current.scrollBy({ left: -400, behavior: "smooth" });
+    }
+  };
+
+  const scrollRightTeam = () => {
+    if (teamRef.current) {
+      teamRef.current.scrollBy({ left: 400, behavior: "smooth" });
+    }
+  };
+
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
+  const [currentBannerIndex, setCurrentBannerIndex] = useState(0);
+  const [fade, setFade] = useState(false);
+
+  const headerTexts = [
+    "AI Model for Soccer Predictions",
+    "Premium Predictions for All Leagues",
+    "Daily Picks for Winning",
+    "Analyzing Millions of Football Data Sets",
+  ];
+
+  const descriptionTexts = [
+    "Our model analyzes millions of data sets added each week and makes predictions.",
+    "Go Premium to get access to our AI model and get predictions for all leagues.",
+    "Subscribe to get daily picks in your inbox.",
+    "Start now and get access to our AI model and get predictions for all leagues.",
+  ];
+  const [headerText, setHeaderText] = useState(headerTexts[0]);
+  const [descriptionText, setDescriptionText] = useState(descriptionTexts[0]);
   useEffect(() => {
-    const handleScroll = () => {
-      if (sectionRef.current) {
-        const sectionTop = sectionRef.current.getBoundingClientRect().top;
-        const windowHeight = window.innerHeight;
+    const interval = setInterval(() => {
+      setFade(true);
+      setTimeout(() => {
+        setCurrentBannerIndex((prevIndex) => {
+          const newIndex = (prevIndex + 1) % headerImages.length;
+          setHeaderText(headerTexts[newIndex]);
+          setDescriptionText(descriptionTexts[newIndex]);
+          return newIndex;
+        });
+        setFade(false);
+      }, 700);
+    }, 3700);
 
-        // Check if the user has scrolled past the first job application
-        if (sectionTop < windowHeight) {
-          setTimeout(() => {
-            setVisibleItems((prev) =>
-              Math.min(prev + 1, jobApplications.length)
-            );
-          }, 1000); // Delay of 1000ms (1 second) for a slower transition
-        }
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => clearInterval(interval);
   }, []);
 
-  if (projectsToDisplay.length === 0) {
-    return (
-      <section className="flexStart flex-col paddings">
-        <Categories />
+  const teamAnalyses = [
+    {
+      title: "Manchester City Team Analysis",
+      content: "In-depth look at Manchester City's performance this season.",
+    },
+    {
+      title: "Liverpool Team Analysis",
+      content: "Analysis of Liverpool's tactics and player performances.",
+    },
+    {
+      title: "Chelsea Team Analysis",
+      content: "Review of Chelsea's recent matches and strategies.",
+    },
+    {
+      title: "Arsenal Team Analysis",
+      content:
+        "Insights into Arsenal's team dynamics and player contributions.",
+    },
+    {
+      title: "Manchester United Team Analysis",
+      content: "Analysis of Manchester United's recent matches and strategies.",
+    },
+  ];
 
-        <p className="no-result-text text-center">
-          No projects found, go create some first.
-        </p>
-      </section>
-    );
-  }
+  const fetchVipPredictions = async () => {
+    const options = {
+      method: "GET",
+      url: "https://today-football-prediction.p.rapidapi.com/predictions/featured",
+      headers: {
+        "x-rapidapi-key": "4bf5a37284msh5664aae3be8efa8p16009cjsnad34520195d9",
+        "x-rapidapi-host": "today-football-prediction.p.rapidapi.com",
+      },
+    };
+
+    try {
+      const response = await axios.request(options);
+      console.log("VIP Predictions::::", response.data);
+      setVipPredictions(response.data.matches);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const fetchScorers = async () => {
+    const options = {
+      method: "GET",
+      url: "https://today-football-prediction.p.rapidapi.com/predictions/scores",
+      headers: {
+        "x-rapidapi-key": "4bf5a37284msh5664aae3be8efa8p16009cjsnad34520195d9",
+        "x-rapidapi-host": "today-football-prediction.p.rapidapi.com",
+      },
+    };
+
+    try {
+      const response = await axios.request(options);
+      setScorers(response.data.matches);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const fetchPredictions = async () => {
+    setLoading(true);
+    const options = {
+      method: "GET",
+      url: "https://today-football-prediction.p.rapidapi.com/predictions/list",
+      params: { page: "1" },
+      headers: {
+        "x-rapidapi-key": "4bf5a37284msh5664aae3be8efa8p16009cjsnad34520195d9",
+        "x-rapidapi-host": "today-football-prediction.p.rapidapi.com",
+      },
+    };
+
+    try {
+      const response = await axios.request(options);
+      setPredictions(response?.data?.matches);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchPredictions();
+    fetchVipPredictions();
+    fetchScorers();
+  }, []);
+
+  const handleLeagueChange = (leagueName: string) => {
+    setSelectedLeague(leagueName);
+    // Show modal if "Biggest Odds" is selected
+    if (leagueName === "Biggest Odds") {
+        setIsModalOpen(true);
+    }
+  };
+
+  const getLeagueTitle = (league: string) => {
+    switch (league) {
+      case "Premium":
+        return "Premium Predictions";
+      case "Scores":
+        return "Exact Results";
+      case "Free Predictions":
+        return "Free Predictions";
+      case "Daily Picks":
+        return "Daily Picks";
+      case "Highest Odds":
+        return "Highest Odds";
+      default:
+        return "Non European";
+    }
+  };
+
+  const renderMatches = (
+    type: "predictions" | "vipPredictions" | "scorers"
+  ) => {
+    let data: any[] = [];
+    switch (type) {
+      case "scorers":
+        data = scorers;
+        break;
+      case "vipPredictions":
+        data = vipPredictions;
+        break;
+      case "predictions":
+      default:
+        data = predictions;
+        break;
+    }
+
+    if (selectedLeague === "Non European") {
+      data = predictions;
+    } else if (selectedLeague === "Free Predictions") {
+      data = vipPredictions;
+    } else if (selectedLeague === "Scores") {
+      data = scorers;
+    } else if (selectedLeague === "Daily Picks") {
+      data = predictions
+        .filter((item) => item.prediction_probability)
+        .sort((a, b) => b.prediction_probability - a.prediction_probability)
+        .slice(0, 4);
+    } else if (selectedLeague === "Highest Odds") {
+      data = predictions
+        .sort((a, b) => b.prediction_odd - a.prediction_odd)
+        .slice(0, 10)
+        .reverse();
+    }
+
+    return data.map((item, index) => {
+      const leagueImage = getLeagueImage(item.league);
+      const itemClass =
+        index % 2 === 0 && theme === "dark" ? "bg-[#06231F]" : "bg-gray-800";
+
+      return (
+        <li
+          key={index}
+          className={`flex justify-between items-center p-6 ${itemClass} text-white shadow-md rounded transition-colors duration-300 ${
+            theme === "dark" ? "hover:bg-[#0C473F]" : "hover:bg-[#F5F5F5]"
+          }`}
+        >
+          <span
+            className={`text-left w-1/7 mr-5 text-[0.8em] sm:text-[0.9em] ${
+              theme === "light" ? "text-black-100" : "text-white"
+            }`}
+          >
+            {(() => {
+              return `${new Intl.DateTimeFormat("en-US", {
+                hour: "2-digit",
+                minute: "2-digit",
+                hour12: false,
+              }).format(new Date(item.date_time))}`;
+            })()}
+          </span>
+          <div className="flex items-center w-full">
+            {leagueImage && (
+              <Image
+                src={leagueImage}
+                alt="Country Icon"
+                width={25}
+                height={25}
+                className="mr-3"
+              />
+            )}
+            <span
+              className={`flex-1 sm:text-[1em] text-[1em] ${
+                theme === "light" ? "text-black-100" : "text-white"
+              }`}
+            >
+              {item.home_team} vs {item.away_team}
+              <div
+                className={`${
+                  theme === "light"
+                    ? "border border-gray-300 text-black-100"
+                    : "border border-green-500 text-white"
+                } px-2 py-1/2 rounded inline-block relative left-3 rounded-1/3 `}
+              >
+                {item.prediction_score
+                  ? item.prediction_score
+                  : item.prediction}
+              </div>
+            </span>
+          </div>
+          <span
+            className={`flex-1 text-center font-medium ${
+              theme === "light" ? "text-black-100" : "text-white"
+            } text-sm sm:text-base`}
+          >
+            {item.pred}
+          </span>
+
+          {item.prediction_probability ? (
+            <div className="flex-1 flex justify-end items-center space-x-4 pb-2 w-full">
+              <div className=" h-2 bg-gray-300 rounded justify-center items-center align-middle">
+                <ProgressBar
+                  animateOnRender={true}
+                  transitionDuration="0.3s"
+                  labelSize="16"
+                  bgColor="#00FF9C"
+                  labelColor={theme === "light" ? "#425F57" : "#425F57"}
+                  className="w-40 h-4 pb-20 text-s"
+                  completed={Math.min(item.prediction_probability + 27, 98)}
+                />
+              </div>
+            </div>
+          ) : (
+            <div className="flex-1 w-full">
+              <p
+                className="whitespace-nowrap"
+                style={{
+                  fontSize: "0.9em",
+                  color: theme === "light" ? "#425F57" : "#00FF9C",
+                }}
+              >
+                Average Goals: {item.average_goals}
+              </p>
+            </div>
+          )}
+        </li>
+      );
+    });
+  };
+
+  const handleItemClick = () => {
+    setIsModalOpen(true);
+  };
+
+  const Modal = () => (
+    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+      <div className="bg-white p-5 rounded shadow-lg">
+        <h2 className="text-lg font-bold">Go Premium</h2>
+        <p>To access premium features, please consider purchasing a premium subscription.</p>
+        <button onClick={() => setIsModalOpen(false)} className="mt-4 mr-2 bg-[#2D9479] hover:bg-[#2D9479]/85 text-white px-4 py-2 rounded">
+        <div className="flex items-center">
+        <FaStar className="mr-1" />
+        <p>Buy Premium</p>
+        </div>
+        </button>
+        <button onClick={() => setIsModalOpen(false)} className="mt-4 bg-slate-400 text-white px-4 py-2 rounded">
+          Close
+        </button>
+      </div>
+    </div>
+  );
 
   return (
-    <section className="mb-16">
-      <div className="pt-40 text-center" style={{ backgroundColor: "#151f2a" }}>
-        <motion.div
-          initial={{ opacity: 0, y: 10 }} // Start off-screen
-          animate={{ opacity: 1, y: 0 }} // Animate to on-screen
-          transition={{ duration: 0.3 }} // Animation duration
-        >
-          <h1 className="text-4xl font-bold mb-4 text-white">
-            You Upload the Resume, We Do The Rest
-          </h1>
-          <p className="text-lg text-slate-200 mb-5 mt-5">  
-            Auto-apply to hundreds of jobs across the web and get interview
-            invites.
-          </p>
-          <ResumeUpload />
-          <section
-          className="flexCenter flex-col mt-10 bg-center bg-no-repeat bg-contain h-[800px] w-[75%] mx-auto"
-          style={{
-            backgroundImage: "url(/dashboard-desktop.png)",
-          }}
-        />
-        </motion.div>
-
-      </div>
-    
-
-      <section
-        ref={sectionRef}
-        className="flexStart flex-col paddings mb-20 mt-20 w-full max-w-6xl mx-auto"
+    <section
+      className={`flex flex-col items-center ${
+        theme === "light" ? "bg-white" : "bg-[#021814]"
+      }`}
+    >
+      {isModalOpen && <Modal />}
+      {/* Header */}
+      <header
+        className={`relative h-80 w-4/5 mx-auto rounded-xl overflow-hidden mt-5 px-4 flex justify-center items-center mb-10 border-4 border-[#06231F] rounded-full ${
+          fade ? styles.fadeOut : styles.fadeIn
+        }`}
       >
-      <h1 className="text-3xl font-bold text-center text-[#182c34]">
-          Recent Applications
-        </h1>
-        <p className="text-lg text-gray-100 mb-7 mt-3">
-          Real-time tracking of job applications.
-        </p>
-        <div className="flex flex-col w-full">
-          {jobApplications.map((application, index) => (
-            <motion.div
+        <div className="rounded-xl">
+          <Image
+            src={headerImages[currentBannerIndex]}
+            alt={`Soccer Betting Header ${currentBannerIndex + 1}`}
+            objectFit="cover"
+            layout="fill"
+            className="filter grayscale"
+            />
+        </div>
+        <div className="absolute inset-0 bg-black opacity-50" />{" "}
+        <div className="absolute inset-0 flex flex-col items-center justify-center text-white p-4 ">
+          <h1 className="text-[1.5em] font-bold md:text-3xl tracking-wide leading-tight">
+            {headerText}
+          </h1>
+          <h2 className="text-[1.1em] mt-2 font-medium tracking-normal leading-snug">
+           {descriptionText}
+          </h2>
+          <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mt-5">
+          <button className="bg-[#074799] hover:bg-[#074789]/80 text-white px-8 py-3 rounded-xl flex items-center justify-center hover:bg-gray-300 hover:bg-slate-200 w-full sm:w-auto font-base mr-1">
+          <FaCrown className="mr-2" /> Start Premium
+            </button>
+            <button className="bg-slate-100 hover:bg-slate-100/80 text-black-100 px-8 py-3 rounded-xl flex items-center justify-center hover:bg-gray-300 hover:bg-slate-200 w-full sm:w-auto font-base">
+              <FaInfoCircle className="mr-2" /> Learn More
+            </button>
+          </div>
+        </div>
+      </header>
+      <div className="flex flex-col sm:flex-row space-x-4 mt-5 mb-5 justify-start w-full sm:w-4/5 max-w-full">
+        <div className="flex flex-row justify-start w-full">
+          <TransitionGroup className="flex flex-row overflow-x-auto max-w-full overflow-hidden">
+            {leagues.map((league) => (
+              <CSSTransition key={league.name} timeout={500} classNames="fade">
+                <div className="relative group">
+                  <button
+                    className={`h-12 font-base flex items-center space-x-2 px-4 py-2 rounded mr-3 transition duration-300 ease-in-out ${
+                      selectedLeague === league.name
+                        ? theme === "light"
+                          ? "bg-[#F5F5F5] text-black-100"
+                          : "bg-[#1f7a5b] text-white"
+                        : theme === "light"
+                        ? "bg-gray-300 hover:bg-gray-400 text-black-100"
+                        : "bg-[#06231F] hover:bg-[#06231F] text-white"
+                    } text-sm sm:text-base`}
+                    onClick={league.name === "Premium" || league.name === "Highest Returns" || league.name === "Daily Picks" ? () => setIsModalOpen(true) : () => handleLeagueChange(league.name)}
+                  >
+                    {league.icon}
+                    <span>{league.name}</span>
+                  </button>
+                  <div className="absolute left-1/2 transform -translate-x-1/2 mt-2 w-32 bg-gray-700 text-white text-center text-[12px] rounded py-1 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                    {league.tooltip}
+                  </div>
+                </div>
+              </CSSTransition>
+            ))}
+          </TransitionGroup>
+        </div>
+      </div>
+
+      <div className="mt-6 w-4/5 mb-20 justify-between">
+        <h2
+          className={`text-lg md:text-xl font-semibold mb-4 ${
+            theme === "light" ? "text-black-100" : "text-white"
+          }`}
+        >
+          {getLeagueTitle(selectedLeague)}
+        </h2>
+        {loading ? (
+          <div className="animate-pulse space-y-4">
+            <div className="h-6 bg-gray-300 rounded"></div>
+            <div className="h-6 bg-gray-300 rounded"></div>
+            <div className="h-6 bg-gray-300 rounded"></div>
+          </div>
+        ) : (
+          <ul className="space-y-3 mb-1">
+            {renderMatches(
+              selectedLeague.toLowerCase() as
+                | "predictions"
+                | "vipPredictions"
+                | "scorers"
+            ).map((item, index) => (
+              <li key={index} onClick={handleItemClick}>
+                {item}
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+      {/* <iframe src="https://www.yeschat.ai/i/gpts-9t56Me4qaMo-Football-Match-Predictor-Betting-Tips" width="800" height="500" className="max-w-full"></iframe> */}
+
+
+      <div className="w-4/5 mb-20 justify-between">
+        <h2
+          className={`text-xl font-semibold mb-4 ${
+            theme === "light" ? "text-black-100" : "text-white"
+          }`}
+        >
+          Completed Games
+        </h2>
+        <ul className="space-y-2">
+          {completedBigReturns.map((prediction, index) => (
+            <li
               key={index}
-              initial={{ opacity: 0, y: 20 }} // Start off-screen
-              animate={{
-                opacity: index < visibleItems ? 1 : 0,
-                y: index < visibleItems ? 0 : 20,
-              }} // Animate to on-screen
-              transition={{ duration: 0.5 }} // Animation duration
-              className={`flex items-center justify-between p-4 mt-1 mb-4 bg-white rounded-lg shadow-md border border-slate-200 transition-all duration-1000 cursor-pointer hover:bg-slate-100`}
+              className={`flex justify-between items-center p-6 ${
+                theme === "light" ? "bg-[#EEEEEE]" : "bg-[#06231F]"
+              } ${
+                theme === "light" ? "text-black-100" : "text-white"
+              } shadow-md rounded transition-colors duration-300 ${
+                theme === "light" ? "hover:bg-[#F5F5F5]" : "hover:bg-[#06231F]"
+              }`}
             >
-              <div className="flex items-center">
-                <Image
-                  src={application.logo} // Use the logo from the application object
-                  alt={`${application.company} logo`}
-                  width={40} // Adjust size as needed
-                  height={40} // Adjust size as needed
-                  className="mr-3 rounded-full" // Add margin and make it round
-                />
-                <div>
-                  <h3 className="font-semibold text-lg">{application.title}</h3>
-                  <p className="text-gray-600">{application.company}</p>
-                  <p className="text-gray-500">{`$${application.salary}`}</p>
+              <div className="flex items-center w-1/2">
+                <span className="flex-1">
+                  {prediction.home_team} vs {prediction.away_team}
+                </span>
+                <span className="flex-1 text-center font-medium">
+                  {prediction.prediction} (
+                  {prediction.result_score ? prediction.result_score : ""})
+                </span>
+
+                <div className="flex items-center justify-end">
+                  <FaDollarSign color="#00FF9C" className="inline mr-2" />
+                  <p className="text-[#00FF9C] font-medium">
+                    {prediction.prediction_odd}
+                  </p>
                 </div>
               </div>
-              <div className="flex items-center">
-                <span
-                  className={`px-3 py-1 text-sm font-semibold rounded-full ${
-                    application.status === "Application Submitted"
-                      ? "text-orange-800 bg-orange-200"
-                      : application.status === "Pending Application"
-                      ? "text-yellow-800 bg-yellow-200"
-                      : application.status === "Interview Scheduled"
-                      ? "text-green-800 bg-green-200"
-                      : "text-gray-800 bg-gray-200"
+              <span
+                className={`flex-1 text-right transition-colors duration-300 text-[0.9em] w-1/2`}
+              >
+                {(() => {
+                  const date = new Date(prediction.date);
+                  const now = new Date();
+                  const diffTime = Math.abs(now.getTime() - date.getTime());
+                  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+                  if (diffDays === 0)
+                    return `Today at ${new Date(
+                      prediction.date
+                    ).toLocaleTimeString("en-US", {
+                      hour: "2-digit",
+                      minute: "2-digit",
+                    })}`;
+                  if (diffDays === 1)
+                    return `Yesterday at ${new Date(
+                      prediction.date
+                    ).toLocaleTimeString("en-US", {
+                      hour: "2-digit",
+                      minute: "2-digit",
+                    })}`;
+                  return `${diffDays} days ago at ${new Date(
+                    prediction.date
+                  ).toLocaleTimeString("en-US", {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  })}`;
+                })()}
+              </span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div className="mt-6 w-4/5 mb-20">
+        <div className="flex justify-between items-center">
+          <h2
+            className={`text-lg md:text-xl font-semibold mb-4 ${
+              theme === "light" ? "text-black-100" : "text-white"
+            }`}
+          >
+            Analyses
+          </h2>
+          <div className="flex items-center">
+            <FaArrowLeft
+              color={theme === "light" ? "black" : "white"}
+              width={10}
+              height={10}
+              className="mr-2 w-5 h-5 cursor-pointer"
+              onClick={scrollLeftTeam}
+            />{" "}
+            <FaArrowRight
+              color={theme === "light" ? "black" : "white"}
+              width={10}
+              height={10}
+              className="ml-2 w-5 h-5 cursor-pointer"
+              onClick={scrollRightTeam}
+            />{" "}
+          </div>
+        </div>
+
+        <div className="flex items-center">
+          <div ref={teamRef} className="flex overflow-x-auto space-x-4">
+            {teamAnalyses.map((analysis, index) => (
+              <div
+                key={index}
+                className={`cursor-pointer justify-center items-center min-w-[400px] p-20 rounded-xl shadow-md ${
+                  theme === "light" ? "bg-slate-100" : "bg-[#06231F]"
+                } transition-colors duration-300 hover:bg-[#1f7a5b] text-center`}
+                onClick={handleItemClick}
+                onMouseEnter={() => setHoveredIndex(index)}
+                onMouseLeave={() => setHoveredIndex(null)}
+                style={{
+                  backgroundImage: `url(${teamImages[index]})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                  filter: hoveredIndex === index ? "grayscale(100%)" : "none",
+                  border: hoveredIndex === index ? "4px solid #2D9479" : "none",
+                  transition: "border 0.3s, filter 0.3s",
+                }}
+              >
+                <h2
+                  className={`text-xl font-bold mb-2 ${
+                    theme === "light" ? "text-white" : "text-white"
                   }`}
                 >
-                  {application.status}
-                </span>
+                  {analysis.title}
+                </h2>
+                <p
+                  className={`text-sm font-bold ${
+                    theme === "light" ? "text-white" : "text-white"
+                  }`}
+                >
+                  {analysis.content}
+                </p>
               </div>
-            </motion.div>
-          ))}
-        </div>
-      </section>
-      <section className="flexStart flex-col paddings mt-20 mb-20 ">
-        <p className="text-black mt-0 mb-5 text-lg text-center">
-          Our customers got interviewes with leading companies worldwide
-        </p>
-        <div className="flex justify-start items-center mt-4 space-x-8">
-          <Image
-            src={adobe}
-            alt="Adobe"
-            width={40}
-            height={30}
-            className="filter grayscale"
-          />
-          <Image
-            src={airbnb}
-            alt="Airbnb"
-            width={100}
-            height={30}
-            className="filter grayscale"
-          />
-          <Image
-            src={wordpress}
-            alt="Wordpress"
-            width={40}
-            height={30}
-            className="filter grayscale hidden md:block"
-          />{" "}
-          <Image
-            src={pg}
-            alt="Procter and Gamble"
-            width={60}
-            height={30}
-            className="filter grayscale"
-          />
-          <Image src={grab} alt="Grab" width={80} height={30} />
-        </div>
-        <div className="mb-15" />
-      </section>
-      <section className="bg-white py-5">
-        <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 items-center gap-4">
-          <div className="relative"> {/* Added relative positioning */}
-            <Image
-              src="/job-application.png"
-              alt="Job Application"
-              width={370}
-              height={250}
-              className="rounded-md"
-              style={{ objectFit: "cover" }}
-            />
-            <div className="absolute top-4 left-4 flex items-center bg-[#829da8] p-2 rounded-md"> {/* Added bg-[#829da2] */}
-              <FaBell size={23} className="text-orange-500" /> {/* Example icon */}
-              <p className="text-center text-[#182c34] ml-2 text-md leading-tight">(1) You have a new interview invite.</p> {/* Added margin-left for spacing */}
-            </div>
+            ))}
           </div>
-          <div className="flex flex-col justify">
-            {" "}
-            {/* Added flex and justify-center to align text vertically */}
-            <h2 className="text-4xl font-bold mb-4 tracking-wide leading-tight text-[#182c34]">
-              Get notified with the latest application updates
-            </h2>
-            <p className="mb-6 text-lg leading-relaxed">
-               Join our
-              network and sit back while we send custom job applications for you.               Stay up-to-date with the latest application updates.
-
-            </p>
-            <button className="bg-emerald-600 hover:bg-emerald-500 py-3 px-6 rounded-lg text-white font-medium">
-              Create Account For Free
-            </button>
-          </div>
-        </div>
-      </section>
-
-      {/* <section className="py-16 bg-gray-50">
-      <div className="max-w-6xl mx-auto text-center">
-        <h3 className="text-2xl font-bold mb-4">No Spam, Just Awesome Chances</h3>
-        <p className="mb-6">Discover exclusive job listings with top companies.</p>
-        <div className="flex justify-center space-x-8">
-          <img src="company_logo_1" alt="Company 1" className="h-12" />
-          <img src="company_logo_2" alt="Company 2" className="h-12" />
-          <img src="company_logo_3" alt="Company 3" className="h-12" />
-          <img src="company_logo_4" alt="Company 4" className="h-12" />
         </div>
       </div>
-    </section>
-
-      {/* <section className="flex flex-col paddings mb-16 max-w-6xl mx-auto w-full">
-
-        <h2 className="text-2xl font-semibold text-gray-800 mb-2 mt-20 text-center">
-        How It Works
-
-        </h2>
-        <p className="text-lg text-gray-100  mb-20 text-center">
-        Our process is simple and efficient. Follow these steps to get started.
-
-        </p>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="bg-white p-6 rounded-lg shadow-md">
-            <h2 className="text-xl font-bold mb-2">1. Upload Your Resume</h2>
-            <p className="text-gray-600">
-              Start by uploading your resume to our platform.
-            </p>
-          </div>
-          <div className="bg-white p-6 rounded-lg shadow-md">
-            <h2 className="text-xl font-bold mb-2">2. Add Job Preferences</h2>
-            <p className="text-gray-600">
-              Select the job categories that interest you.
-            </p>
-          </div>
-          <div className="bg-white p-6 rounded-lg shadow-md">
-            <h2 className="text-xl font-bold mb-2">3. Apply to Matching Jobs</h2>
-            <p className="text-gray-600">
-              We will automatically apply to jobs that match your profile.
-            </p>
-          </div>
-        </div>
-      </section> */}
-
-      <section className="flexStart flex-col paddings mb-16 w-full max-w-6xl mx-auto">
-        <h1 className="text-3xl font-bold text-center mt-40 text-[#182c34]">
-          Trending Job Categories
-        </h1>
-        <p className="text-lg text-gray-100 mt-5">
-          Explore the most popular job categories.
-        </p>
-        <div className={styles.scrollContainer}>
-          <div className={styles.scrollContent} style={{ marginBottom: "1%" }}>
-            {[
-              { type: "Software Developer", icon: <FaCode size={18} style={{ color: "#182c34" }} /> },
-              {
-                type: "Marketing",
-                icon: <SiGooglemarketingplatform size={18} style={{ color: "#182c34" }} />,
-              },
-              { type: "SEO", icon: <FaSearch size={18} style={{ color: "#182c34" }} /> },
-              { type: "UI/UX Design", icon: <MdDesignServices size={18} style={{ color: "#182c34" }} /> },
-              { type: "Data Analyst", icon: <CiDatabase size={18} style={{ color: "#182c34" }} /> },
-              { type: "Product Manager", icon: <CiDesktop size={18} style={{ color: "#182c34" }} /> },
-              { type: "Digital Marketing Specialist", icon: <SiGooglemarketingplatform size={18} style={{ color: "#182c34" }} /> },
-              { type: "Data Scientist", icon: <FaCheckSquare size={18} style={{ color: "#182c34" }} /> },
-              { type: "Mobile App Developer", icon: <FaMobile size={18} style={{ color: "#182c34" }} /> },
-            ].map((job, index) => (
-              <div
-                key={index}
-                className={`${styles.scrollItem} bg-slate-50 p-4 rounded-md flex items-center mx-2 shadow-sm`}
-              >
-                <span className="mr-2 text">{job.icon}</span>
-                <span className="text-[#182c34]">{job.type}</span> 
-              </div>
-            ))}
-          </div>
-          <div className={styles.scrollContentBottom}>
-            {[
-              { type: "Content Writer", icon: <FaPen size={18} style={{ color: "#182c34" }} /> },
-              { type: "3D Modelling", icon: <FaCube size={18} style={{ color: "#182c34" }} /> },
-              { type: "Video Editing", icon: <FaVideo size={18} style={{ color: "#182c34" }} /> },
-              { type: "Graphic Design", icon: <FaImage size={18} style={{ color: "#182c34" }} /> },
-              { type: "Copywriting", icon: <FaPen size={18} style={{ color: "#182c34" }} /> },
-              { type: "Social Media Manager", icon: <FaFacebook size={18} style={{ color: "#182c34" }} /> },
-              { type: "Project Manager", icon: <FaBriefcase size={18} style={{ color: "#182c34" }} /> },
-              { type: "Business Analyst", icon: <CiDatabase size={18} style={{ color: "#182c34" }} /> },
-              { type: "Web Developer", icon: <FaCode size={18} style={{ color: "#182c34" }} /> },
-
-            ].map((job, index) => (
-              <div
-                key={index}
-                className={`${styles.scrollItem} bg-slate-50 p-4 rounded-md flex items-center mx-2 shadow-sm`}
-              >
-                <span className="mr-2 text-[#182c34]">{job.icon}</span>
-                {job.type}
-              </div>
-            ))}
-          </div>
-          <div className="flex justify-center mt-8">
-            <button className="bg-slate-50 hover:bg-slate-200 py-3 px-6 rounded-lg text-black font-medium mt-10">
-              Explore All Categories
-            </button>
-          </div>
-        </div>
-      </section>
-
-      <section className="flex flex-col paddings mb-16 max-w-6xl mx-auto w-full">
-        <div className="mb-10">
-          <h1 className="text-3xl font-semibold text-[#182c34] mb-4 text-center">
-            FAQ
-          </h1>
-          <p className="text-lg text-gray-100 text-center">Frequently asked questions.</p>
-        </div>
-        <Faq faqData={faqData} />
-      </section>
-      <div className="mb-40" />
     </section>
   );
 };
 
-export default Home;
+export default SoccerBetting;

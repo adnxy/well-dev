@@ -1,15 +1,14 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import { ThemeProvider } from "./context/ThemeContext";
 
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Autoapply - Automate your job applications",
+  title: "Kickpredict - AI powered football predictions",
   description:
-    "Autoapply is a platform that allows you to automate your job applications. We apply to jobs across the web and schedule interviews for you.",
+    "Kickpredict is a AI driven platform for football analysis and predictions",
 };
 
 export default function RootLayout({
@@ -18,6 +17,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    <ThemeProvider>
     <html lang="en">
       <body className="layout-background">
         <Navbar />
@@ -25,5 +25,6 @@ export default function RootLayout({
         <Footer />
       </body>
     </html>
+    </ThemeProvider>
   );
 }

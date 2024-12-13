@@ -20,6 +20,7 @@ body {
   /* font-family: "Space Grotesk"; */
 
   font-family: "Inter";
+  overscroll-behavior: none;
 }
 
 .flexCenter {
@@ -118,7 +119,7 @@ body {
 /* Footer */
 .footer {
   @apply flex-col paddings w-full gap-20;
-  background-color: #35393d; /* Replace "#f0f0f0" with your desired color */
+
 }
 
 .footer_copyright {
@@ -179,3 +180,4 @@ body {
 .profile_projects {
   @apply grid xl:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-8 mt-5;
 }
+
