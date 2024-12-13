@@ -27,7 +27,7 @@ import axios from "axios";
 import { getLeagueImage } from "./helpers/getLeagueImage";
 
 const SoccerBetting = () => {
-  const [selectedLeague, setSelectedLeague] = useState("Top Predictions");
+  const [selectedLeague, setSelectedLeague] = useState("Free Predictions");
   const { theme } = useTheme();
   const teamRef = useRef<HTMLDivElement>(null);
   const [predictions, setPredictions] = useState<any[]>([]);
@@ -38,7 +38,7 @@ const SoccerBetting = () => {
 
   const leagues = [
     //Top Picks
-    { name: "Top Predictions", icon: <FaCrown />, tooltip: "Major Leagues" },
+    { name: "Free Predictions", icon: <FaCrown />, tooltip: "Major Leagues" },
     {
       // Non European Leagues
       name: "Non European",
@@ -46,12 +46,19 @@ const SoccerBetting = () => {
       tooltip: "x2, x3, x4 Returns",
     },
     { name: "Scores", icon: <FaTrophy />, tooltip: "Match Scores" },
-    { name: "Daily Picks", icon: <FaLock />, tooltip: "Daily Picks" },
+    { name: "Daily Picks", icon: <FaLock />, tooltip: "Vip Daily Picks" },
     { name: "Highest Returns", icon: <FaLock />, tooltip: "Highest Odds" },
+    { name: "Biggest Odds", icon: <FaLock />, tooltip: "Biggest Odds" },
+
     // { name: "Premium", icon: <FaLock />, tooltip: "Premium Predictions" },
-    { name: "AI Chat", icon: <FaLock />, tooltip: "AI Chat" },
+    // { name: "AI Chat", icon: <FaLock />, tooltip: "AI Chat" },
 
   ];
+
+
+  // Previous Wins
+  //Newell's Old Boys - Boca Juniors - https://www.sofascore.com/football/match/newells-old-boys-boca-juniors/cobsmob
+  //Ind Santa Fe vs Atlético Nacional - https://www.sofascore.com/football/match/independiente-santa-fe-atletico-nacional/gxcsqxc
 
   const headerImages = [bannerBg2, bannerBg4, bannerBg6, bannerBg7];
 
@@ -86,16 +93,34 @@ const SoccerBetting = () => {
   const [currentBannerIndex, setCurrentBannerIndex] = useState(0);
   const [fade, setFade] = useState(false);
 
+  const headerTexts = [
+    "AI Model for Soccer Predictions",
+    "Premium Predictions for All Leagues",
+    "Daily Picks for Winning",
+    "Analyzing Millions of Football Data Sets",
+  ];
+
+  const descriptionTexts = [
+    "Our model analyzes millions of data sets added each week and makes predictions.",
+    "Go Premium to get access to our AI model and get predictions for all leagues.",
+    "Subscribe to get daily picks in your inbox.",
+    "Start now and get access to our AI model and get predictions for all leagues.",
+  ];
+  const [headerText, setHeaderText] = useState(headerTexts[0]);
+  const [descriptionText, setDescriptionText] = useState(descriptionTexts[0]);
   useEffect(() => {
     const interval = setInterval(() => {
       setFade(true);
       setTimeout(() => {
-        setCurrentBannerIndex(
-          (prevIndex) => (prevIndex + 1) % headerImages.length
-        );
+        setCurrentBannerIndex((prevIndex) => {
+          const newIndex = (prevIndex + 1) % headerImages.length;
+          setHeaderText(headerTexts[newIndex]);
+          setDescriptionText(descriptionTexts[newIndex]);
+          return newIndex;
+        });
         setFade(false);
-      }, 750);
-    }, 3500);
+      }, 700);
+    }, 3700);
 
     return () => clearInterval(interval);
   }, []);
@@ -191,7 +216,10 @@ const SoccerBetting = () => {
 
   const handleLeagueChange = (leagueName: string) => {
     setSelectedLeague(leagueName);
-    // }
+    // Show modal if "Biggest Odds" is selected
+    if (leagueName === "Biggest Odds") {
+        setIsModalOpen(true);
+    }
   };
 
   const getLeagueTitle = (league: string) => {
@@ -200,8 +228,8 @@ const SoccerBetting = () => {
         return "Premium Predictions";
       case "Scores":
         return "Exact Results";
-      case "Top Predictions":
-        return "Top Predictions";
+      case "Free Predictions":
+        return "Free Predictions";
       case "Daily Picks":
         return "Daily Picks";
       case "Highest Odds":
@@ -230,7 +258,7 @@ const SoccerBetting = () => {
 
     if (selectedLeague === "Non European") {
       data = predictions;
-    } else if (selectedLeague === "Top Predictions") {
+    } else if (selectedLeague === "Free Predictions") {
       data = vipPredictions;
     } else if (selectedLeague === "Scores") {
       data = scorers;
@@ -258,18 +286,31 @@ const SoccerBetting = () => {
             theme === "dark" ? "hover:bg-[#0C473F]" : "hover:bg-[#F5F5F5]"
           }`}
         >
-          <div className="flex items-center w-1/2">
+          <span
+            className={`text-left w-1/7 mr-5 text-[0.8em] sm:text-[0.9em] ${
+              theme === "light" ? "text-black-100" : "text-white"
+            }`}
+          >
+            {(() => {
+              return `${new Intl.DateTimeFormat("en-US", {
+                hour: "2-digit",
+                minute: "2-digit",
+                hour12: false,
+              }).format(new Date(item.date_time))}`;
+            })()}
+          </span>
+          <div className="flex items-center w-full">
             {leagueImage && (
               <Image
                 src={leagueImage}
                 alt="Country Icon"
-                width={20}
-                height={20}
+                width={25}
+                height={25}
                 className="mr-3"
               />
             )}
             <span
-              className={`flex-1 sm:text-[0.7em]text-[1em] ${
+              className={`flex-1 sm:text-[1em] text-[1em] ${
                 theme === "light" ? "text-black-100" : "text-white"
               }`}
             >
@@ -322,21 +363,6 @@ const SoccerBetting = () => {
               </p>
             </div>
           )}
-          <span
-            className={`text-right ml-10 text-center text-[0.8em] sm:text-[0.9em] w-1/3 ${
-              theme === "light" ? "text-black-100" : "text-white"
-            } ${theme === "light" ? "hidden sm:block" : "hidden sm:block"}`}
-          >
-            {(() => {
-              return `${new Date(item.date_time).toLocaleDateString("en-US", {
-                month: "long",
-                day: "numeric",
-              })} at ${new Date(item.date_time).toLocaleTimeString("en-US", {
-                hour: "2-digit",
-                minute: "2-digit",
-              })}`;
-            })()}
-          </span>
         </li>
       );
     });
@@ -383,22 +409,22 @@ const SoccerBetting = () => {
             alt={`Soccer Betting Header ${currentBannerIndex + 1}`}
             objectFit="cover"
             layout="fill"
-          />
+            className="filter grayscale"
+            />
         </div>
         <div className="absolute inset-0 bg-black opacity-50" />{" "}
         <div className="absolute inset-0 flex flex-col items-center justify-center text-white p-4 ">
-          <h1 className="text-2xl md:text-3xl font-bold">
-            Premium AI Prediction Agent
+          <h1 className="text-[1.5em] font-bold md:text-3xl tracking-wide leading-tight">
+            {headerText}
           </h1>
-          <p className="text-sm md:text-base mt-2">
-            Our model analyzes millions of data sets added each week and makes
-            predictions.
-          </p>
-          <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mt-4">
-            <button className="bg-[#2D9479] px-8 py-3 rounded flex items-center justify-center hover:bg-[#1f7a5b] w-full sm:w-auto">
-              <FaCrown className="mr-2" /> Go Premium
+          <h2 className="text-[1.1em] mt-2 font-medium tracking-normal leading-snug">
+           {descriptionText}
+          </h2>
+          <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mt-5">
+          <button className="bg-[#074799] hover:bg-[#074789]/80 text-white px-8 py-3 rounded-xl flex items-center justify-center hover:bg-gray-300 hover:bg-slate-200 w-full sm:w-auto font-base mr-1">
+          <FaCrown className="mr-2" /> Start Premium
             </button>
-            <button className="bg-gray-200 text-black-100 px-8 py-3 rounded flex items-center justify-center hover:bg-gray-300 hover:bg-slate-200 w-full sm:w-auto">
+            <button className="bg-slate-100 hover:bg-slate-100/80 text-black-100 px-8 py-3 rounded-xl flex items-center justify-center hover:bg-gray-300 hover:bg-slate-200 w-full sm:w-auto font-base">
               <FaInfoCircle className="mr-2" /> Learn More
             </button>
           </div>

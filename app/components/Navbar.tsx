@@ -65,6 +65,14 @@ const Navbar = () => {
             How it works
           </Link>
           <Link
+            href="/pricing"
+            className={`font-[15px] cursor-pointer hover:text-slate-300 ${
+              theme === "light" ? "text-black" : "text-white"
+            } hidden md:block`}
+          >
+            Pricing
+          </Link>
+          <Link
             href="/faq"
             className={`font-[15px] cursor-pointer hover:text-slate-300 ${
               theme === "light" ? "text-black" : "text-white"
@@ -72,6 +80,7 @@ const Navbar = () => {
           >
             FAQs
           </Link>
+
         </div>
       </div>
 
@@ -111,7 +120,7 @@ const Navbar = () => {
 
         {NavLinks.map((link, index) => (
           <li key={index}>
-            {link.text === "Offers" ? (
+            {link.text === "Login" ? (
               <button className="border border-emerald-500 text-emerald-500 rounded-xl px-5 py-2 text-md font-small hover:bg-emerald-500 hover:text-white transition mr-20">
                 <Link href={link.href}>{link.text}</Link>
               </button>

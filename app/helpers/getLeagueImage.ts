@@ -34,6 +34,8 @@ import jordan from "../../public/jordan.png";
 import india from "../../public/india.png";
 import trinidad from "../../public/trinidad-and-tobago.png";
 import guatemala from "../../public/guatemala.png";
+import uefa from "../../public/uefa.png";
+
 export const getLeagueImage = (league: string) => {
   switch (league) {
     case "1":
@@ -116,6 +118,9 @@ export const getLeagueImage = (league: string) => {
       return trinidad;
     case "142":
       return guatemala;
+
+    case "13":
+      return uefa;
     default:
       return null;
   }

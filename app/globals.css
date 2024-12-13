@@ -119,7 +119,7 @@ body {
 /* Footer */
 .footer {
   @apply flex-col paddings w-full gap-20;
-  background-color: #35393d; /* Replace "#f0f0f0" with your desired color */
+
 }
 
 .footer_copyright {

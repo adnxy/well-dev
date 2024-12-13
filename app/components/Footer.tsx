@@ -1,3 +1,5 @@
+"use client";
+
 import { footerLinks } from "@/constants";
 import Image from "next/image";
 import Link from "next/link";
@@ -9,12 +11,12 @@ type ColumnProps = {
   links: Array<string>;
 };
 
-const FooterColumn = ({ title, links }: ColumnProps) => (
+const FooterColumn = ({ title, links, theme }: ColumnProps & { theme: string }  ) => (
   <div className="footer_column mr-40">
-    <h4 className="font-semibold text-white">{title}</h4>
-    <ul className="flex flex-col gap-2 font-normal text-white">
+    <h4 className={`${theme === 'dark' ? 'text-white' : 'text-black'} font-semibold`}>{title}</h4>
+    <ul className={`${theme === 'dark' ? 'text-white' : 'text-black'} flex flex-col gap-2 font-normal`}>
       {links.map((link) => (
-        <Link href="/" key={link}>
+        <Link href="/" key={link} className={`${theme === 'dark' ? 'text-white' : 'text-black'}`}>
           {link}
         </Link>
       ))}
@@ -23,11 +25,13 @@ const FooterColumn = ({ title, links }: ColumnProps) => (
 );
 
 const Footer = () => {
-  const backgroundColor = '#021814';
+  const { theme } = useTheme();
+  console.log(theme);
+  const backgroundColor = theme === 'dark' ? '#021814' : '#021814';
 
   return (
-    <section className="z-10 border-rounded border-white flex flex-col items-center footer pl-20 pt-10 pb-10" style={{ borderTop: 'none', backgroundColor, color: '#B0B0B0' }}>
-      <div className="flex flex-col gap-12 w-full text-black">
+    <section className={` ${theme === 'dark' ? 'bg-[#021814]' : 'bg-white'} z-10 border-rounded border-white flex flex-col items-center footer pl-20 pt-10 pb-10 ${theme === 'dark' ? 'text-white' : 'text-black'}`  } >
+      <div className="flex flex-col gap-12 w-full">
         <div className="flex items-start justify-between w-full">
           {/* <Image src="/logo.svg" width={150} height={60} alt="logo" /> */}
 
@@ -50,13 +54,14 @@ const Footer = () => {
             <FooterColumn
               title={footerLinks[6].title}
               links={footerLinks[6].links}
+              theme={theme}
             />
           </div>
         </div>
       </div>
 
       <div className="flex justify-between items-center w-full footer_copyright text-white">
-        <p>@ 2024 Kickpredict. All rights reserved <span className="text-white pl-10">1234 Main St, Delaware, USA</span></p>
+        <p className={`relative left-20 ${theme === 'dark' ? 'text-white' : 'text-black'}`}>@ 2024 Kickpredict. All rights reserved <span className="text-white pl-10">1234 Main St, Delaware, USA</span></p>
         <div className="flex justify-center mt-4 pr-40">
           <Link href="/premium" className="flex items-center bg-blue-500 text-white px-4 py-2 rounded">
             <FaStar className="mr-2" /> Go Premium
