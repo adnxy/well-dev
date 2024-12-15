@@ -18,6 +18,8 @@ import {
   FaStar,
   FaGlobe,
   FaLock,
+  FaSeedling,
+  FaCheckCircle,
 } from "react-icons/fa";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import ProgressBar from "@ramonak/react-progress-bar";
@@ -27,7 +29,7 @@ import axios from "axios";
 import { getLeagueImage } from "./helpers/getLeagueImage";
 
 const SoccerBetting = () => {
-  const [selectedLeague, setSelectedLeague] = useState("Free Predictions");
+  const [selectedLeague, setSelectedLeague] = useState("Free AI Pr");
   const { theme } = useTheme();
   const teamRef = useRef<HTMLDivElement>(null);
   const [predictions, setPredictions] = useState<any[]>([]);
@@ -35,13 +37,16 @@ const SoccerBetting = () => {
   const [scorers, setScorers] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [favorites, setFavorites] = useState<Set<number>>(new Set());
+  const [favoriteCount, setFavoriteCount] = useState(0);
+  const [totalOdds, setTotalOdds] = useState(0);
 
   const leagues = [
     //Top Picks
-    { name: "Free Predictions", icon: <FaCrown />, tooltip: "Major Leagues" },
+    { name: "AI Predictions", icon: <FaCrown />, tooltip: "Major Leagues" },
     {
-      // Non European Leagues
-      name: "Non European",
+      // Non European AI Predictions Leagues
+      name: "Non European AI Predictions",
       icon: <FaGlobe />,
       tooltip: "x2, x3, x4 Returns",
     },
@@ -95,14 +100,14 @@ const SoccerBetting = () => {
 
   const headerTexts = [
     "AI Model for Soccer Predictions",
-    "Premium Predictions for All Leagues",
-    "Daily Picks for Winning",
+    "Choose your predictions to enter free contest",
+    "Daily Picks with 90% Accuracy",
     "Analyzing Millions of Football Data Sets",
   ];
 
   const descriptionTexts = [
     "Our model analyzes millions of data sets added each week and makes predictions.",
-    "Go Premium to get access to our AI model and get predictions for all leagues.",
+    "Enter free prediction contest and win monthly prizes",
     "Subscribe to get daily picks in your inbox.",
     "Start now and get access to our AI model and get predictions for all leagues.",
   ];
@@ -228,14 +233,14 @@ const SoccerBetting = () => {
         return "Premium Predictions";
       case "Scores":
         return "Exact Results";
-      case "Free Predictions":
-        return "Free Predictions";
+      case "AI Predictions":
+        return "AI Predictions";
       case "Daily Picks":
         return "Daily Picks";
       case "Highest Odds":
         return "Highest Odds";
       default:
-        return "Non European";
+        return "Non European AI Predictions";
     }
   };
 
@@ -256,9 +261,9 @@ const SoccerBetting = () => {
         break;
     }
 
-    if (selectedLeague === "Non European") {
+    if (selectedLeague === "Non European AI Predictions") {
       data = predictions;
-    } else if (selectedLeague === "Free Predictions") {
+    } else if (selectedLeague === "AI Predictions") {
       data = vipPredictions;
     } else if (selectedLeague === "Scores") {
       data = scorers;
@@ -278,6 +283,8 @@ const SoccerBetting = () => {
       const leagueImage = getLeagueImage(item.league);
       const itemClass =
         index % 2 === 0 && theme === "dark" ? "bg-[#06231F]" : "bg-gray-800";
+
+      const isFavorite = favorites.has(index);
 
       return (
         <li
@@ -363,18 +370,53 @@ const SoccerBetting = () => {
               </p>
             </div>
           )}
+          <button
+            onClick={() => handleFavoriteToggle(index)}
+            className="ml-4"
+          >
+            {theme === "light" ? (
+              <FaStar color={isFavorite ? "gold" : "gray"} width={40} height={40} className="cursor-pointer w-5 h-5" />
+            ) : (
+              <FaStar color={isFavorite ? "gold" : "white"} width={40} height={40} className="cursor-pointer w-6 h-6" />
+            )}
+            {/* Display all favorite odds */}
+          </button>
         </li>
       );
     });
   };
 
   const handleItemClick = () => {
-    setIsModalOpen(true);
+    setIsModalOpen(false);
+  };
+
+  const handleFavoriteToggle = (index: number) => {
+    const newFavorites = new Set(favorites);
+    const currentOdds = predictions[index].prediction_odd; // Get current item's odds
+
+    if (newFavorites.has(index)) {
+        newFavorites.delete(index);
+        setFavoriteCount(favoriteCount - 1);
+        setTotalOdds(totalOdds - currentOdds); // Subtract odds
+    } else {
+        newFavorites.add(index);
+        setFavoriteCount(favoriteCount + 1);
+        setTotalOdds(totalOdds + currentOdds); // Add odds
+        // Show notification when a favorite is added
+        setFavoriteCount(favoriteCount + 1);
+    }
+    setFavorites(newFavorites);
   };
 
   const Modal = () => (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-      <div className="bg-white p-5 rounded shadow-lg">
+      <div className="bg-white p-5 rounded shadow-lg relative">
+        <button 
+          onClick={() => setIsModalOpen(false)} 
+          className="absolute top-2 right-2 text-gray-600 hover:text-gray-900"
+        >
+          &times;
+        </button>
         <h2 className="text-lg font-bold">Go Premium</h2>
         <p>To access premium features, please consider purchasing a premium subscription.</p>
         <button onClick={() => setIsModalOpen(false)} className="mt-4 mr-2 bg-[#2D9479] hover:bg-[#2D9479]/85 text-white px-4 py-2 rounded">
@@ -390,6 +432,43 @@ const SoccerBetting = () => {
     </div>
   );
 
+  const Notification = () => (
+    <div className="fixed z-50 top-10 right-5 bg-[#B3E2A7] text-white p-6 rounded-lg shadow-lg transition-transform transform hover:scale-105">
+      <div className="flex items-center">
+      <button 
+        onClick={() => setFavoriteCount(0)}
+        className="absolute top-2 right-2 text-black-100 hover:text-gray-900 w-7 h-7 mb-2"
+      >
+        &times;
+      </button>
+      
+        <div className="flex flex-col mt-2">
+          <p className="text-base font-base text-[#06231F] mt-2">Select your predictions to enter free contest</p>
+          <p className="text-base font-base text-[#06231F]">and win monthly prizes!</p>
+          <div className="border-b-2 border-yellow bg-red-500 w-full mt-2 mb-3" />
+
+        </div>
+      </div>
+      <div className="flex flex-col mt-1 border-b-3 mb-5 border-[#06231F]"> 
+      <div className="flex flex-row items-center mb-1">
+      <FaCheckCircle className="mr-1 w-3 h-3" color="#06231F" />    
+      <p className="text-[15px] font-base text-[#06231F]  decoration-2 decoration-slate-400">Cost: free</p>
+      </div>
+     <div className="flex flex-row items-center">
+     <FaDollarSign className="mr-1 w-3 h-3" color="#06231F" />
+     <p className="text-[15px] font-base text-[#06231F] ">Possible Payout: ${totalOdds.toFixed(2)}</p>
+     </div>
+      </div>
+
+      <button className="mt-2 bg-black text-white px-4 py-2 rounded hover:bg-[#6231F] transition flex items-center ">
+      <FaCheckCircle className="mr-1" color="white" />
+
+       <p className="text-[15px] font-medium text-white">Submit Free Bet</p>
+      </button>
+    </div>
+  );
+  console.log('favoriteCount', favoriteCount);
+
   return (
     <section
       className={`flex flex-col items-center ${
@@ -397,6 +476,7 @@ const SoccerBetting = () => {
       }`}
     >
       {isModalOpen && <Modal />}
+      {favoriteCount > 0 && <Notification />}
       {/* Header */}
       <header
         className={`relative h-80 w-4/5 mx-auto rounded-xl overflow-hidden mt-5 px-4 flex justify-center items-center mb-10 border-4 border-[#06231F] rounded-full ${
@@ -414,16 +494,17 @@ const SoccerBetting = () => {
         </div>
         <div className="absolute inset-0 bg-black opacity-50" />{" "}
         <div className="absolute inset-0 flex flex-col items-center justify-center text-white p-4 ">
-          <h1 className="text-[1.5em] font-bold md:text-3xl tracking-wide leading-tight">
+          <h1 className="text-[1.5em] font-bold md:text-3xl tracking-wide leading-tight mb-1">
             {headerText}
           </h1>
           <h2 className="text-[1.1em] mt-2 font-medium tracking-normal leading-snug">
            {descriptionText}
           </h2>
           <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mt-5">
-          <button className="bg-[#074799] hover:bg-[#074789]/80 text-white px-8 py-3 rounded-xl flex items-center justify-center hover:bg-gray-300 hover:bg-slate-200 w-full sm:w-auto font-base mr-1">
-          <FaCrown className="mr-2" /> Start Premium
-            </button>
+          <button className="bg-[#074799] hover:bg-[#074789]/80 text-white px-8 py-3 rounded-xl flex items-center justify-center w-full sm:w-auto font-base mr-1">
+            <FaCrown className="mr-2" /> 
+            <span>Join Premium <span className="text-xs">(4,500+)</span></span>
+          </button>
             <button className="bg-slate-100 hover:bg-slate-100/80 text-black-100 px-8 py-3 rounded-xl flex items-center justify-center hover:bg-gray-300 hover:bg-slate-200 w-full sm:w-auto font-base">
               <FaInfoCircle className="mr-2" /> Learn More
             </button>
@@ -493,78 +574,6 @@ const SoccerBetting = () => {
       {/* <iframe src="https://www.yeschat.ai/i/gpts-9t56Me4qaMo-Football-Match-Predictor-Betting-Tips" width="800" height="500" className="max-w-full"></iframe> */}
 
 
-      <div className="w-4/5 mb-20 justify-between">
-        <h2
-          className={`text-xl font-semibold mb-4 ${
-            theme === "light" ? "text-black-100" : "text-white"
-          }`}
-        >
-          Completed Games
-        </h2>
-        <ul className="space-y-2">
-          {completedBigReturns.map((prediction, index) => (
-            <li
-              key={index}
-              className={`flex justify-between items-center p-6 ${
-                theme === "light" ? "bg-[#EEEEEE]" : "bg-[#06231F]"
-              } ${
-                theme === "light" ? "text-black-100" : "text-white"
-              } shadow-md rounded transition-colors duration-300 ${
-                theme === "light" ? "hover:bg-[#F5F5F5]" : "hover:bg-[#06231F]"
-              }`}
-            >
-              <div className="flex items-center w-1/2">
-                <span className="flex-1">
-                  {prediction.home_team} vs {prediction.away_team}
-                </span>
-                <span className="flex-1 text-center font-medium">
-                  {prediction.prediction} (
-                  {prediction.result_score ? prediction.result_score : ""})
-                </span>
-
-                <div className="flex items-center justify-end">
-                  <FaDollarSign color="#00FF9C" className="inline mr-2" />
-                  <p className="text-[#00FF9C] font-medium">
-                    {prediction.prediction_odd}
-                  </p>
-                </div>
-              </div>
-              <span
-                className={`flex-1 text-right transition-colors duration-300 text-[0.9em] w-1/2`}
-              >
-                {(() => {
-                  const date = new Date(prediction.date);
-                  const now = new Date();
-                  const diffTime = Math.abs(now.getTime() - date.getTime());
-                  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-
-                  if (diffDays === 0)
-                    return `Today at ${new Date(
-                      prediction.date
-                    ).toLocaleTimeString("en-US", {
-                      hour: "2-digit",
-                      minute: "2-digit",
-                    })}`;
-                  if (diffDays === 1)
-                    return `Yesterday at ${new Date(
-                      prediction.date
-                    ).toLocaleTimeString("en-US", {
-                      hour: "2-digit",
-                      minute: "2-digit",
-                    })}`;
-                  return `${diffDays} days ago at ${new Date(
-                    prediction.date
-                  ).toLocaleTimeString("en-US", {
-                    hour: "2-digit",
-                    minute: "2-digit",
-                  })}`;
-                })()}
-              </span>
-            </li>
-          ))}
-        </ul>
-      </div>
-
       <div className="mt-6 w-4/5 mb-20">
         <div className="flex justify-between items-center">
           <h2
@@ -631,6 +640,79 @@ const SoccerBetting = () => {
           </div>
         </div>
       </div>
+
+      <div className="w-4/5 mb-20 justify-between">
+        <h2
+          className={`text-xl font-semibold mb-4 ${
+            theme === "light" ? "text-black-100" : "text-white"
+          }`}
+        >
+          Latest Wins
+        </h2>
+        <ul className="space-y-2">
+          {completedBigReturns.map((prediction, index) => (
+            <li
+              key={index}
+              className={`flex justify-between items-center p-6 ${
+                theme === "light" ? "bg-[#EEEEEE]" : "bg-[#06231F]"
+              } ${
+                theme === "light" ? "text-black-100" : "text-white"
+              } shadow-md rounded transition-colors duration-300 ${
+                theme === "light" ? "hover:bg-[#F5F5F5]" : "hover:bg-[#06231F]"
+              }`}
+            >
+              <div className="flex items-center w-1/2">
+                <span className="flex-1">
+                  {prediction.home_team} vs {prediction.away_team}
+                </span>
+                <span className="flex-1 text-center font-medium">
+                  {prediction.prediction} (
+                  {prediction.result_score ? prediction.result_score : ""})
+                </span>
+
+                <div className="flex items-center justify-end">
+                  <FaDollarSign color="#00FF9C" className="inline mr-2" />
+                  <p className="text-[#00FF9C] font-medium">
+                    {prediction.prediction_odd}
+                  </p>
+                </div>
+              </div>
+              <span
+                className={`flex-1 text-right transition-colors duration-300 text-[0.9em] w-1/2`}
+              >
+                {(() => {
+                  const date = new Date(prediction.date);
+                  const now = new Date();
+                  const diffTime = Math.abs(now.getTime() - date.getTime());
+                  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+                  if (diffDays === 0)
+                    return `Today at ${new Date(
+                      prediction.date
+                    ).toLocaleTimeString("en-US", {
+                      hour: "2-digit",
+                      minute: "2-digit",
+                    })}`;
+                  if (diffDays === 1)
+                    return `Yesterday at ${new Date(
+                      prediction.date
+                    ).toLocaleTimeString("en-US", {
+                      hour: "2-digit",
+                      minute: "2-digit",
+                    })}`;
+                  return `${diffDays} days ago at ${new Date(
+                    prediction.date
+                  ).toLocaleTimeString("en-US", {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  })}`;
+                })()}
+              </span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
     </section>
   );
 };

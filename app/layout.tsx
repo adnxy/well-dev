@@ -6,9 +6,9 @@ import { ThemeProvider } from "./context/ThemeContext";
 
 
 export const metadata: Metadata = {
-  title: "Kickpredict - AI powered football predictions",
+  title: "Goalpredict - AI powered football predictions",
   description:
-    "Kickpredict is a AI driven platform for football analysis and predictions",
+    "Goalpredict is a AI driven platform for football analysis and predictions",
 };
 
 export default function RootLayout({

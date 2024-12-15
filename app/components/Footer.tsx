@@ -61,7 +61,7 @@ const Footer = () => {
       </div>
 
       <div className="flex justify-between items-center w-full footer_copyright text-white">
-        <p className={`relative left-20 ${theme === 'dark' ? 'text-white' : 'text-black'}`}>@ 2024 Kickpredict. All rights reserved <span className="text-white pl-10">1234 Main St, Delaware, USA</span></p>
+        <p className={`relative left-20 ${theme === 'dark' ? 'text-white' : 'text-black'}`}>@ 2024 Goalpredict. All rights reserved <span className="text-white pl-10">1234 Main St, Delaware, USA</span></p>
         <div className="flex justify-center mt-4 pr-40">
           <Link href="/premium" className="flex items-center bg-blue-500 text-white px-4 py-2 rounded">
             <FaStar className="mr-2" /> Go Premium

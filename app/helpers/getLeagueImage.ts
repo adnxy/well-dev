@@ -35,6 +35,7 @@ import india from "../../public/india.png";
 import trinidad from "../../public/trinidad-and-tobago.png";
 import guatemala from "../../public/guatemala.png";
 import uefa from "../../public/uefa.png";
+import scotland from "../../public/scotland.png";
 
 export const getLeagueImage = (league: string) => {
   switch (league) {
@@ -74,6 +75,7 @@ export const getLeagueImage = (league: string) => {
     case "145":
       return salvador;
     case "702":
+    case "66":
       return australia;
     case "21":
       return japan;
@@ -121,6 +123,11 @@ export const getLeagueImage = (league: string) => {
 
     case "13":
       return uefa;
+
+    case "299":
+      return scotland;
+
+
     default:
       return null;
   }
