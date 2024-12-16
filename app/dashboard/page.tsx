@@ -65,7 +65,7 @@ const Dashboard = () => {
     <div className="flex flex-col h-screen">
       <div className="flex-1 flex h-full overflow-y-auto">
         <Sidebar />
-        <div className="flex-1 bg-white-50 p-6 flex flex-col">
+        <div className="flex-1 bg-white-50 p-6 flex flex-col ">
           {/* Top Bar */}
           <div className="flex justify-between items-center mb-6">
             {/* Move search bar to the left */}
@@ -85,16 +85,17 @@ const Dashboard = () => {
           </div>
 
           {/* Dashboard Stats */}
-          <div className="border-b border-slate-200 mb-5 w-full"></div> {/* Added thin slate line above Dashboard */}
+          <div className="border-b border-slate-200 mb-5 w-full "></div> {/* Added thin slate line above Dashboard */}
 
           {/* Recent Applications and Interviews */}
-          <div className="grid grid-cols-3 gap-6 flex-1 overflow-y-auto">
+          <div className=" gap-6 flex-1 overflow-y-auto">
             {/* Recent Applications */}
-            <div className="col-span-2 p-4 rounded-lg shadow-lg flex-1 max-100">
+            <div className="col-span-2 p-4 rounded-lg shadow-lg flex-1 max-100 p-15">
               <h3 className="text-xl font-semibold mb-4">All Predictions</h3>
               <ul className="max-h-41 overflow-y-auto">
                 {predictions.map((prediction, index) => {
                   const leagueImage = getLeagueImage(prediction.league); // Assuming you have a function to get league images
+                  const matchDate = prediction.start_date ? new Date(prediction.start_date).toLocaleString() : new Date(prediction.date_time).toLocaleString(); // Updated to handle start_date
                   return (
                     <li key={index} className="flex justify-between items-center p-6 border border-slate-200 bg-slate-50 rounded-lg mb-3">
                       <div className="flex items-center">
@@ -109,14 +110,14 @@ const Dashboard = () => {
                         )}
                         <div>
                           <span className="font-semibold">{prediction.home_team} vs {prediction.away_team}</span>
-                          <p className="text-sm">{new Date(prediction.date_time).toLocaleString()}</p>
+                          <p className="text-sm">{matchDate}</p>
                         </div>
                       </div>
                       <span className="text-sm font-semibold">{prediction.prediction}</span>
                       <div className="mt-2">
-                        {prediction.prediction_odd ? (
+                        {/* {prediction.prediction_odd ? (
                           <p className="text-sm">Odds: {prediction.prediction_odd}</p>
-                        ) : null}
+                        ) : null} */}
                         <div className="flex items-center">
                           <span className="text-sm mr-2">Probability: {prediction.prediction_probability}%</span>
                           <div className="relative w-full h-2 bg-gray-200 rounded">
@@ -133,12 +134,9 @@ const Dashboard = () => {
               </ul>
             </div>
 
-            {/* Upcoming Interviews */}
-            <div className="bg-white p-4 rounded-lg shadow-lg bg-green-500 flex-1"> {/* Added flex-1 */}
+            {/* <div className="bg-white p-4 rounded-lg shadow-lg bg-green-500 flex-1"> 
               <h3 className="text-xl font-bold mb-4">Recent Analyses</h3>
-              <ul className="max-h-81 overflow-y-auto"> {/* Updated max height for Upcoming Interviews */}
-                {/* Updated list items to match Recent Applications style */}
-                <li className="mb-3 border border-slate-200 bg-slate-50 p-4 rounded-lg flex justify-between items-center"> 
+              <ul className="max-h-81 overflow-y-auto">                 <li className="mb-3 border border-slate-200 bg-slate-50 p-4 rounded-lg flex justify-between items-center"> 
                   <div>
                     <span className="font-semibold">Review candidate applications</span>
                     <p className="text-sm">Today, 11:30 AM</p>
@@ -163,7 +161,7 @@ const Dashboard = () => {
                   </div>
                 </li>
               </ul>
-            </div>
+            </div> */}
           </div>
 
           {/* Soccer Predictions */}
