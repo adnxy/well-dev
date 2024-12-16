@@ -60,10 +60,14 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="flex justify-between items-center w-full footer_copyright text-white">
-        <p className={`relative left-20 ${theme === 'dark' ? 'text-white' : 'text-black'}`}>@ 2024 Goalpredict. All rights reserved <span className="text-white pl-10">1234 Main St, Delaware, USA</span></p>
-        <div className="flex justify-center mt-4 pr-40">
-          <Link href="/premium" className="flex items-center bg-blue-500 text-white px-4 py-2 rounded">
+      <div className="flex flex-col items-center justify-center w-full footer_copyright text-white">
+        <p className={`relative ${theme === 'dark' ? 'text-white' : 'text-black'} text-center`}>
+          @ 2024 Goalpredict. All rights reserved 
+        </p>
+        <span className="text-white pl-2">Paromlinska 12, Sarajevo, Bosnia and Herzegovina</span>
+
+        <div className="flex justify-center mt-4">
+          <Link href="/premium" className="flex items-center bg-[#F5F5F5] text-black px-4 py-2 rounded">
             <FaStar className="mr-2" /> Go Premium
           </Link>
         </div>

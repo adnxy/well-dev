@@ -74,7 +74,7 @@ export const footerLinks = [
     ],
   },
   {
-    title: "Hire us",
-    links: ["Landing Pages", "Web Apps", "Mobile Apps", "No-code Solutions"],
+    title: "Pages",
+    links: ["Privacy Policy", "Terms of Service", "Contact Us", "Go Premium"],
   },
 ];

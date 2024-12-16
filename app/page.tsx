@@ -7,7 +7,6 @@ import bannerBg4 from "../public/bg-4.jpg";
 import bannerBg6 from "../public/bg-6.jpg";
 import bannerBg7 from "../public/bg-7.jpg";
 
-
 import {
   FaTrophy,
   FaCrown,
@@ -29,7 +28,7 @@ import axios from "axios";
 import { getLeagueImage } from "./helpers/getLeagueImage";
 
 const SoccerBetting = () => {
-  const [selectedLeague, setSelectedLeague] = useState("Free AI Pr");
+  const [selectedLeague, setSelectedLeague] = useState("AI Predictions");
   const { theme } = useTheme();
   const teamRef = useRef<HTMLDivElement>(null);
   const [predictions, setPredictions] = useState<any[]>([]);
@@ -40,16 +39,17 @@ const SoccerBetting = () => {
   const [favorites, setFavorites] = useState<Set<number>>(new Set());
   const [favoriteCount, setFavoriteCount] = useState(0);
   const [totalOdds, setTotalOdds] = useState(0);
+  const [selectedItems, setSelectedItems] = useState<any[]>([]);
 
   const leagues = [
     //Top Picks
     { name: "AI Predictions", icon: <FaCrown />, tooltip: "Major Leagues" },
-    {
-      // Non European AI Predictions Leagues
-      name: "Non European AI Predictions",
-      icon: <FaGlobe />,
-      tooltip: "x2, x3, x4 Returns",
-    },
+    // {
+    //   // Combined AI Predictions and Non European
+    //   name: "Combined Predictions",
+    //   icon: <FaGlobe />,
+    //   tooltip: "AI Predictions and Non European",
+    // },
     { name: "Scores", icon: <FaTrophy />, tooltip: "Match Scores" },
     { name: "Daily Picks", icon: <FaLock />, tooltip: "Vip Daily Picks" },
     { name: "Highest Returns", icon: <FaLock />, tooltip: "Highest Odds" },
@@ -57,9 +57,7 @@ const SoccerBetting = () => {
 
     // { name: "Premium", icon: <FaLock />, tooltip: "Premium Predictions" },
     // { name: "AI Chat", icon: <FaLock />, tooltip: "AI Chat" },
-
   ];
-
 
   // Previous Wins
   //Newell's Old Boys - Boca Juniors - https://www.sofascore.com/football/match/newells-old-boys-boca-juniors/cobsmob
@@ -99,10 +97,10 @@ const SoccerBetting = () => {
   const [fade, setFade] = useState(false);
 
   const headerTexts = [
-    "AI Model for Soccer Predictions",
+    "AI Model for soccer predictions",
     "Choose your predictions to enter free contest",
-    "Daily Picks with 90% Accuracy",
-    "Analyzing Millions of Football Data Sets",
+    "Daily Picks with 90% accuracy",
+    "Analyzing millions of Football Data Sets",
   ];
 
   const descriptionTexts = [
@@ -223,7 +221,7 @@ const SoccerBetting = () => {
     setSelectedLeague(leagueName);
     // Show modal if "Biggest Odds" is selected
     if (leagueName === "Biggest Odds") {
-        setIsModalOpen(true);
+      setIsModalOpen(true);
     }
   };
 
@@ -240,51 +238,22 @@ const SoccerBetting = () => {
       case "Highest Odds":
         return "Highest Odds";
       default:
-        return "Non European AI Predictions";
+        return "Non European";
     }
   };
 
   const renderMatches = (
     type: "predictions" | "vipPredictions" | "scorers"
   ) => {
-    let data: any[] = [];
-    switch (type) {
-      case "scorers":
-        data = scorers;
-        break;
-      case "vipPredictions":
-        data = vipPredictions;
-        break;
-      case "predictions":
-      default:
-        data = predictions;
-        break;
-    }
-
-    if (selectedLeague === "Non European AI Predictions") {
-      data = predictions;
-    } else if (selectedLeague === "AI Predictions") {
-      data = vipPredictions;
-    } else if (selectedLeague === "Scores") {
-      data = scorers;
-    } else if (selectedLeague === "Daily Picks") {
-      data = predictions
-        .filter((item) => item.prediction_probability)
-        .sort((a, b) => b.prediction_probability - a.prediction_probability)
-        .slice(0, 4);
-    } else if (selectedLeague === "Highest Odds") {
-      data = predictions
-        .sort((a, b) => b.prediction_odd - a.prediction_odd)
-        .slice(0, 10)
-        .reverse();
-    }
-
+    let data = predictions.concat(vipPredictions);
+    data = data.reverse();
+    console.log('data is:', data);
     return data.map((item, index) => {
       const leagueImage = getLeagueImage(item.league);
       const itemClass =
         index % 2 === 0 && theme === "dark" ? "bg-[#06231F]" : "bg-gray-800";
 
-      const isFavorite = favorites.has(index);
+      const isFavorite = favorites.has(item);
 
       return (
         <li
@@ -313,11 +282,11 @@ const SoccerBetting = () => {
                 alt="Country Icon"
                 width={25}
                 height={25}
-                className="mr-3"
+                className="mr-3 sm:w-6 sm:h-6 w-5 h-5"
               />
             )}
             <span
-              className={`flex-1 sm:text-[1em] text-[1em] ${
+              className={`flex-1 sm:text-[1em] text-[0.8em] ${
                 theme === "light" ? "text-black-100" : "text-white"
               }`}
             >
@@ -344,19 +313,21 @@ const SoccerBetting = () => {
           </span>
 
           {item.prediction_probability ? (
-            <div className="flex-1 flex justify-end items-center space-x-4 pb-2 w-full">
-              <div className=" h-2 bg-gray-300 rounded justify-center items-center align-middle">
-                <ProgressBar
-                  animateOnRender={true}
-                  transitionDuration="0.3s"
-                  labelSize="16"
-                  bgColor="#00FF9C"
-                  labelColor={theme === "light" ? "#425F57" : "#425F57"}
-                  className="w-40 h-4 pb-20 text-s"
-                  completed={Math.min(item.prediction_probability + 27, 98)}
-                />
+            window.innerWidth > 640 ? (
+              <div className="flex-1 flex justify-end items-center space-x-4 pb-2 w-full">
+                <div className=" h-2 bg-gray-300 rounded justify-center items-center align-middle">
+                  <ProgressBar
+                    animateOnRender={true}
+                    transitionDuration="0.3s"
+                    labelSize="16"
+                    bgColor="#00FF9C"
+                    labelColor={theme === "light" ? "#425F57" : "#425F57"}
+                    className="w-40 h-4 pb-20 text-s"
+                    completed={Math.min(item.prediction_probability + 27, 98)}
+                  />
+                </div>
               </div>
-            </div>
+            ) : null
           ) : (
             <div className="flex-1 w-full">
               <p
@@ -370,15 +341,11 @@ const SoccerBetting = () => {
               </p>
             </div>
           )}
-          <button
-            onClick={() => handleFavoriteToggle(index)}
-            className="ml-4"
-          >
-            {theme === "light" ? (
-              <FaStar color={isFavorite ? "gold" : "gray"} width={40} height={40} className="cursor-pointer w-5 h-5" />
-            ) : (
-              <FaStar color={isFavorite ? "gold" : "white"} width={40} height={40} className="cursor-pointer w-6 h-6" />
-            )}
+          <button onClick={() => handleFavoriteToggle(item)} className="ml-4">
+            <FaStar
+              color={isFavorite ? "gold" : theme === "light" ? "gray" : "white"}
+              className={`cursor-pointer w-5 h-5 sm:w-6 sm:h-6`}
+            />
             {/* Display all favorite odds */}
           </button>
         </li>
@@ -390,20 +357,26 @@ const SoccerBetting = () => {
     setIsModalOpen(false);
   };
 
-  const handleFavoriteToggle = (index: number) => {
+  const handleFavoriteToggle = (item: any) => {
     const newFavorites = new Set(favorites);
-    const currentOdds = predictions[index].prediction_odd; // Get current item's odds
+    const currentOdds = item.prediction_odd; // Get current item's odds
+    const currentItem = item; // Use the passed item directly
 
-    if (newFavorites.has(index)) {
-        newFavorites.delete(index);
-        setFavoriteCount(favoriteCount - 1);
-        setTotalOdds(totalOdds - currentOdds); // Subtract odds
+    if (newFavorites.has(item)) {
+      newFavorites.delete(item);
+      setFavoriteCount(favoriteCount - 1);
+      setTotalOdds(totalOdds - currentOdds); // Subtract odds
+      setSelectedItems(
+        selectedItems.filter((item) => item !== currentItem) // Remove from selected items
+      );
     } else {
-        newFavorites.add(index);
-        setFavoriteCount(favoriteCount + 1);
-        setTotalOdds(totalOdds + currentOdds); // Add odds
-        // Show notification when a favorite is added
-        setFavoriteCount(favoriteCount + 1);
+      newFavorites.add(item);
+      setFavoriteCount(favoriteCount + 1);
+      setTotalOdds(totalOdds + currentOdds); // Add odds
+      // Add to selected items only if it's not already included
+      if (!selectedItems.includes(currentItem)) {
+        setSelectedItems([...selectedItems, currentItem]); // Add to selected items
+      }
     }
     setFavorites(newFavorites);
   };
@@ -411,21 +384,30 @@ const SoccerBetting = () => {
   const Modal = () => (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
       <div className="bg-white p-5 rounded shadow-lg relative">
-        <button 
-          onClick={() => setIsModalOpen(false)} 
+        <button
+          onClick={() => setIsModalOpen(false)}
           className="absolute top-2 right-2 text-gray-600 hover:text-gray-900"
         >
           &times;
         </button>
         <h2 className="text-lg font-bold">Go Premium</h2>
-        <p>To access premium features, please consider purchasing a premium subscription.</p>
-        <button onClick={() => setIsModalOpen(false)} className="mt-4 mr-2 bg-[#2D9479] hover:bg-[#2D9479]/85 text-white px-4 py-2 rounded">
-        <div className="flex items-center">
-        <FaStar className="mr-1" />
-        <p>Buy Premium</p>
-        </div>
+        <p>
+          To access premium features, please consider purchasing a premium
+          subscription.
+        </p>
+        <button
+          onClick={() => setIsModalOpen(false)}
+          className="mt-4 mr-2 bg-[#2D9479] hover:bg-[#2D9479]/85 text-white px-4 py-2 rounded"
+        >
+          <div className="flex items-center">
+            <FaStar className="mr-1" />
+            <p>Buy Premium</p>
+          </div>
         </button>
-        <button onClick={() => setIsModalOpen(false)} className="mt-4 bg-slate-400 text-white px-4 py-2 rounded">
+        <button
+          onClick={() => setIsModalOpen(false)}
+          className="mt-4 bg-slate-400 text-white px-4 py-2 rounded"
+        >
           Close
         </button>
       </div>
@@ -433,41 +415,43 @@ const SoccerBetting = () => {
   );
 
   const Notification = () => (
-    <div className="fixed z-50 top-10 right-5 bg-[#B3E2A7] text-white p-6 rounded-lg shadow-lg transition-transform transform hover:scale-105">
-      <div className="flex items-center">
-      <button 
-        onClick={() => setFavoriteCount(0)}
-        className="absolute top-2 right-2 text-black-100 hover:text-gray-900 w-7 h-7 mb-2"
-      >
-        &times;
-      </button>
-      
-        <div className="flex flex-col mt-2">
-          <p className="text-base font-base text-[#06231F] mt-2">Select your predictions to enter free contest</p>
-          <p className="text-base font-base text-[#06231F]">and win monthly prizes!</p>
-          <div className="border-b-2 border-yellow bg-red-500 w-full mt-2 mb-3" />
+    <div className="fixed z-50 top-10 right-5 bg-white border-2 border-[#2D9479] rounded-lg shadow-lg p-4 w-120 transition-transform transform hover:scale-105">
+      <div className="flex items-center justify-between">
+        <h3 className="text-md font-bold text-black-100">Enter Free Contest</h3>
 
-        </div>
+        <button
+          onClick={() => setFavoriteCount(0)}
+          className="text-black-100 hover:text-gray-900 w-7 h-7 mb-2"
+        >
+          &times;
+        </button>
       </div>
-      <div className="flex flex-col mt-1 border-b-3 mb-5 border-[#06231F]"> 
-      <div className="flex flex-row items-center mb-1">
-      <FaCheckCircle className="mr-1 w-3 h-3" color="#06231F" />    
-      <p className="text-[15px] font-base text-[#06231F]  decoration-2 decoration-slate-400">Cost: free</p>
-      </div>
-     <div className="flex flex-row items-center">
-     <FaDollarSign className="mr-1 w-3 h-3" color="#06231F" />
-     <p className="text-[15px] font-base text-[#06231F] ">Possible Payout: ${totalOdds.toFixed(2)}</p>
-     </div>
+      <p className="text-[15px] text-[#16423C] mb-1">
+        Possible Win: {totalOdds.toFixed(2)}
+      </p>
+
+      <div className="mt-2  border-b-3 border-slate-100">
+        <h3 className="font-medium font-black text-[#06231F] pt-2 mb-4">
+          Selected Predictions:
+        </h3>
+        <ul>
+          {selectedItems.map((item, index) => (
+            <li key={index} className="text-[15px] text-[#16423C] mb-1">
+              {item.home_team} vs {item.away_team}
+            </li>
+          ))}
+        </ul>
       </div>
 
-      <button className="mt-2 bg-black text-white px-4 py-2 rounded hover:bg-[#6231F] transition flex items-center ">
-      <FaCheckCircle className="mr-1" color="white" />
-
-       <p className="text-[15px] font-medium text-white">Submit Free Bet</p>
+      <button className="mt-2 bg-black-100 text-white px-4 py-2 rounded hover:bg-black-100/85 transition flex items-center ">
+        <FaCheckCircle className="mr-2" color="white" />
+        <p className="text-[15px] font-medium text-white">
+          Submit to enter contest
+        </p>
       </button>
     </div>
   );
-  console.log('favoriteCount', favoriteCount);
+  console.log("favoriteCount", favoriteCount);
 
   return (
     <section
@@ -490,7 +474,7 @@ const SoccerBetting = () => {
             objectFit="cover"
             layout="fill"
             className="filter grayscale"
-            />
+          />
         </div>
         <div className="absolute inset-0 bg-black opacity-50" />{" "}
         <div className="absolute inset-0 flex flex-col items-center justify-center text-white p-4 ">
@@ -498,13 +482,13 @@ const SoccerBetting = () => {
             {headerText}
           </h1>
           <h2 className="text-[1.1em] mt-2 font-medium tracking-normal leading-snug">
-           {descriptionText}
+            {descriptionText}
           </h2>
           <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mt-5">
-          <button className="bg-[#074799] hover:bg-[#074789]/80 text-white px-8 py-3 rounded-xl flex items-center justify-center w-full sm:w-auto font-base mr-1">
-            <FaCrown className="mr-2" /> 
-            <span>Join Premium <span className="text-xs">(4,500+)</span></span>
-          </button>
+            <button className="bg-[#FF6500] hover:bg-[#FF6500]/90 text-white px-8 py-3 rounded-xl flex items-center justify-center w-full sm:w-auto font-base mr-1">
+              <FaCrown className="mr-2" />
+              <span>Join Premium </span>
+            </button>
             <button className="bg-slate-100 hover:bg-slate-100/80 text-black-100 px-8 py-3 rounded-xl flex items-center justify-center hover:bg-gray-300 hover:bg-slate-200 w-full sm:w-auto font-base">
               <FaInfoCircle className="mr-2" /> Learn More
             </button>
@@ -513,10 +497,10 @@ const SoccerBetting = () => {
       </header>
       <div className="flex flex-col sm:flex-row space-x-4 mt-5 mb-5 justify-start w-full sm:w-4/5 max-w-full">
         <div className="flex flex-row justify-start w-full">
-          <TransitionGroup className="flex flex-row overflow-x-auto max-w-full overflow-hidden">
+          <TransitionGroup className="flex flex-row overflow-x-auto max-w-full overflow-hidden whitespace-nowrap">
             {leagues.map((league) => (
               <CSSTransition key={league.name} timeout={500} classNames="fade">
-                <div className="relative group">
+                <div className="relative group flex-none mr-3">
                   <button
                     className={`h-12 font-base flex items-center space-x-2 px-4 py-2 rounded mr-3 transition duration-300 ease-in-out ${
                       selectedLeague === league.name
@@ -526,11 +510,17 @@ const SoccerBetting = () => {
                         : theme === "light"
                         ? "bg-gray-300 hover:bg-gray-400 text-black-100"
                         : "bg-[#06231F] hover:bg-[#06231F] text-white"
-                    } text-sm sm:text-base`}
-                    onClick={league.name === "Premium" || league.name === "Highest Returns" || league.name === "Daily Picks" ? () => setIsModalOpen(true) : () => handleLeagueChange(league.name)}
+                    } text-sm sm:text-base w-full`}
+                    onClick={
+                      league.name === "Premium" ||
+                      league.name === "Highest Returns" ||
+                      league.name === "Daily Picks"
+                        ? () => setIsModalOpen(true)
+                        : () => handleLeagueChange(league.name)
+                    }
                   >
                     {league.icon}
-                    <span>{league.name}</span>
+                    <span className="w-full max-w-full">{league.name}</span>
                   </button>
                   <div className="absolute left-1/2 transform -translate-x-1/2 mt-2 w-32 bg-gray-700 text-white text-center text-[12px] rounded py-1 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                     {league.tooltip}
@@ -542,7 +532,7 @@ const SoccerBetting = () => {
         </div>
       </div>
 
-      <div className="mt-6 w-4/5 mb-20 justify-between">
+      <div className="mt-6 w-full sm:w-4/5 mb-20 justify-between p-3 sm:p-0">
         <h2
           className={`text-lg md:text-xl font-semibold mb-4 ${
             theme === "light" ? "text-black-100" : "text-white"
@@ -572,7 +562,6 @@ const SoccerBetting = () => {
         )}
       </div>
       {/* <iframe src="https://www.yeschat.ai/i/gpts-9t56Me4qaMo-Football-Match-Predictor-Betting-Tips" width="800" height="500" className="max-w-full"></iframe> */}
-
 
       <div className="mt-6 w-4/5 mb-20">
         <div className="flex justify-between items-center">
@@ -712,7 +701,6 @@ const SoccerBetting = () => {
           ))}
         </ul>
       </div>
-
     </section>
   );
 };

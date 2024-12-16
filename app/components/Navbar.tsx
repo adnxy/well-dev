@@ -56,13 +56,13 @@ const Navbar = () => {
           />
         )}
         <div className="flex space-x-4 ml-5">
-          <Link
-            href="/how-it-works"
+        <Link
+            href="/privacy"
             className={`font-[15px] cursor-pointer hover:text-slate-300 ${
               theme === "light" ? "text-black" : "text-white"
             } hidden md:block`}
           >
-            How it works
+            Privacy
           </Link>
           <Link
             href="/pricing"
@@ -72,6 +72,15 @@ const Navbar = () => {
           >
             Pricing
           </Link>
+          <Link
+            href="/faq"
+            className={`font-[15px] cursor-pointer hover:text-slate-300 ${
+              theme === "light" ? "text-black" : "text-white"
+            } hidden md:block`}
+          >
+            Contest
+          </Link>
+
           <Link
             href="/faq"
             className={`font-[15px] cursor-pointer hover:text-slate-300 ${

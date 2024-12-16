@@ -4,6 +4,8 @@ import React from "react";
 import { useTheme } from "../context/ThemeContext";
 import stripeLogo from "../../public/stripe.png";
 import Image from "next/image";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar, faRobot, faChartLine, faCalendar, faGlobe } from '@fortawesome/free-solid-svg-icons';
 
 const PricingPage = () => {
   const { theme } = useTheme();
@@ -21,20 +23,20 @@ const PricingPage = () => {
           <p className={`price text-3xl font-bold ${theme === 'dark' ? 'text-white' : 'text-black'}`}>$0</p>
           <ul className="benefits-list mt-4">
             <li className={`flex items-center ${theme === 'dark' ? 'text-white' : 'text-black'}`}>
-              <span className="icon text-2xl mr-2">🌟</span> European leagues predictions
+              <FontAwesomeIcon icon={faStar} className="text-xl mr-2" /> European leagues predictions
             </li>
             <li className={`flex items-center ${theme === 'dark' ? 'text-white' : 'text-black'}`}>
-              <span className="icon text-2xl mr-2">🤖</span> Non-European leagues predictions
+              <FontAwesomeIcon icon={faRobot} className="text-xl mr-2" /> Non-European leagues predictions
             </li>
             <li className={`flex items-center ${theme === 'dark' ? 'text-white' : 'text-black'}`}>
-              <span className="icon text-2xl mr-2">📈</span> Exact scores predictions
+              <FontAwesomeIcon icon={faChartLine} className="text-xl mr-2" /> Exact scores predictions
             </li>
-            {/* <li className={`flex items-center ${theme === 'dark' ? 'text-white' : 'text-black'}`}>
-              <span className="icon text-2xl mr-2">📈</span> Analytics Dashboard
-            </li> */}
-            {/* <li className={`flex items-center ${theme === 'dark' ? 'text-white' : 'text-black'}`}>
-              <span className="icon text-2xl mr-2">📅</span> Monthly Analysis
-            </li> */}
+            <li className={`flex items-center ${theme === 'dark' ? 'text-white' : 'text-black'}`}>
+              <FontAwesomeIcon icon={faChartLine} className="text-xl mr-2" /> Analytics Dashboard
+            </li>
+            <li className={`flex items-center ${theme === 'dark' ? 'text-white' : 'text-black'}`}>
+              <FontAwesomeIcon icon={faCalendar} className="text-xl mr-2" /> Monthly Analysis
+            </li>
           </ul>
           <button className={`button mt-4 ${theme === 'dark' ? 'bg-blue-500 text-white' : 'bg-black text-white'} py-2 px-4 rounded`}>
             Get Started
@@ -45,20 +47,20 @@ const PricingPage = () => {
           <p className={`mb-5 text-lg font-normal ${theme === 'dark' ? 'text-white' : 'text-black'}`}>Access to all AI features and dashboard.</p>
           <p className={`price text-3xl font-bold ${theme === 'dark' ? 'text-white' : 'text-black'}`}>$5.99</p>
           <ul className="benefits-list mt-4">
-          <li className={`flex items-center ${theme === 'dark' ? 'text-white' : 'text-black'}`}>
-              <span className="icon text-2xl mr-2">🌟</span> European leagues
+            <li className={`flex items-center ${theme === 'dark' ? 'text-white' : 'text-black'}`}>
+              <FontAwesomeIcon icon={faStar} className="text-xl mr-2" /> European leagues
             </li>
             <li className={`flex items-center ${theme === 'dark' ? 'text-white' : 'text-black'}`}>
-              <span className="icon text-2xl mr-2">🌍</span> Non-European leagues
+              <FontAwesomeIcon icon={faGlobe} className="text-xl mr-2" /> Non-European leagues
             </li>
             <li className={`flex items-center ${theme === 'dark' ? 'text-white' : 'text-black'}`}>
-              <span className="icon text-2xl mr-2">📈</span> Exact scores predictions
+              <FontAwesomeIcon icon={faChartLine} className="text-xl mr-2" /> Exact scores predictions
             </li>
             <li className={`flex items-center ${theme === 'dark' ? 'text-white' : 'text-black'}`}>
-              <span className="icon text-2xl mr-2">🤖</span> Premium AI predictions
+              <FontAwesomeIcon icon={faRobot} className="text-xl mr-2" /> Premium AI predictions
             </li>
             <li className={`flex items-center ${theme === 'dark' ? 'text-white' : 'text-black'}`}>
-              <span className="icon text-2xl mr-2">📅</span> Daily picks
+              <FontAwesomeIcon icon={faCalendar} className="text-xl mr-2" /> Daily picks
             </li>
           </ul>
           <button className="button mt-4 bg-blue-500 text-white py-2 px-4 rounded">
@@ -70,20 +72,20 @@ const PricingPage = () => {
           <p className={`mb-5 text-lg font-normal ${theme === 'dark' ? 'text-white' : 'text-black'}`}>Access to all AI features and dashboard.</p>
           <p className={`price text-3xl font-bold ${theme === 'dark' ? 'text-white' : 'text-black'}`}>$50</p>
           <ul className="benefits-list mt-4">
-          <li className={`flex items-center ${theme === 'dark' ? 'text-white' : 'text-black'}`}>
-              <span className="icon text-2xl mr-2">🌟</span> European leagues
+            <li className={`flex items-center ${theme === 'dark' ? 'text-white' : 'text-black'}`}>
+              <FontAwesomeIcon icon={faStar} className="text-xl mr-2" /> European leagues
             </li>
             <li className={`flex items-center ${theme === 'dark' ? 'text-white' : 'text-black'}`}>
-              <span className="icon text-2xl mr-2">🌍</span> Non-European leagues
+              <FontAwesomeIcon icon={faGlobe} className="text-xl mr-2" /> Non-European leagues
             </li>
             <li className={`flex items-center ${theme === 'dark' ? 'text-white' : 'text-black'}`}>
-              <span className="icon text-2xl mr-2">📈</span> Exact scores predictions
+              <FontAwesomeIcon icon={faChartLine} className="text-xl mr-2" /> Exact scores predictions
             </li>
             <li className={`flex items-center ${theme === 'dark' ? 'text-white' : 'text-black'}`}>
-              <span className="icon text-2xl mr-2">🤖</span> Premium AI predictions
+              <FontAwesomeIcon icon={faRobot} className="text-xl mr-2" /> Premium AI predictions
             </li>
             <li className={`flex items-center ${theme === 'dark' ? 'text-white' : 'text-black'}`}>
-              <span className="icon text-2xl mr-2">📅</span> Daily picks
+              <FontAwesomeIcon icon={faCalendar} className="text-xl mr-2" /> Daily picks
             </li>
           </ul>
           <button className="button mt-4 bg-blue-500 text-white py-2 px-4 rounded">
