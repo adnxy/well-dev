@@ -469,9 +469,9 @@ const SoccerBetting = () => {
       {favoriteCount > 0 && <Notification />}
       {/* Header */}
       <header
-        className={`relative h-80 w-4/5 mx-auto rounded-xl overflow-hidden mt-5 px-4 flex justify-center items-center mb-10 border-4 border-[#06231F] rounded-full ${
+        className={`relative h-80 w-4/5 rounded-xl overflow-hidden mt-5 px-4 flex justify-center items-center mb-10 border-4 border-[#06231F] rounded-full  ${
           fade ? styles.fadeOut : styles.fadeIn
-        }`}
+        } ${theme === "light" ? "sm:h-96" : "sm:h-96"}`}
       >
         <div className="rounded-xl">
           <Image
@@ -482,8 +482,8 @@ const SoccerBetting = () => {
             className="filter grayscale"
           />
         </div>
-        <div className="absolute inset-0 bg-black opacity-50" />{" "}
-        <div className="absolute inset-0 flex flex-col items-center justify-center text-white p-4 ">
+        <div className="absolute inset-0 bg-black opacity-50 bg-[#57CC99]/25 sm:w-1/1" />{" "}
+        <div className="absolute inset-0 flex flex-col items-center justify-center text-white p-4 w-full sm:w-1/2">
           <h1 className="text-[1.5em] font-bold md:text-3xl tracking-wide leading-tight mb-1">
             {headerText}
           </h1>

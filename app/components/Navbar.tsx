@@ -36,25 +36,26 @@ const Navbar = () => {
         theme === "light" ? "bg-white text-black" : "bg-[#06231F] text-white"
       } shadow-lg`}
     >
-      <div className="flex items-center">
-        <Link href="/">
+      <div className="flex items-center relative ml-12 relative left-10">
+      <Link href="/" className=" mr-2">
           <Image
-            className="h-11 w-11 ml-2 mr-2 cursor-pointer md:ml-0"
+            className="h-11 w-11 mr-2 cursor-pointer md:ml-0 "
             src={rb}
             alt="Logo"
           />
         </Link>
         {theme === "dark" ? (
           <FaSun
-            className="text-yellow-500 ml-2 cursor-pointer w-5 h-5 md:ml-0"
+            className="text-yellow-500 ml-2 cursor-pointer w-5 h-5 md:ml-0 mr-3"
             onClick={toggleTheme}
           />
         ) : (
           <FaMoon
-            className="text-gray-800 ml-2 cursor-pointer w-5 h-5 md:ml-0"
+            className="text-gray-800 ml-2 cursor-pointer w-5 h-5 md:ml-0 mr-3"
             onClick={toggleTheme}
           />
         )}
+
         <div className="flex space-x-4 ml-5">
           <Link
             href="/privacy"
@@ -128,7 +129,7 @@ const Navbar = () => {
 
       {/* Mobile menu */}
       {isMenuOpen && (
-        <div className={`p-4 md:hidden w-full h-auto flex flex-col items-end absolute top-0 left-0 z-10 h-1/1 p-10 ${theme === "light" ? "bg-black" : "bg-[#3A6351]"}`}>
+        <div className={`p-10 md:hidden w-full h-auto flex flex-col items-end absolute top-0 left-0 z-10 h-1/1 p-10 ${theme === "light" ? "bg-black" : "bg-[#3A6351]"}`}>
           {/* Close button */}
           <button
             className="text-white mb-4"
@@ -139,8 +140,18 @@ const Navbar = () => {
           <ul className="flex flex-col space-y-4">
             <li>
               <Link
+                href="/"
+                className="text-white text-md hover:text-emerald-400"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link
                 href="/pricing"
-                className="text-white text-sm hover:text-emerald-400"
+                className="text-white text-md hover:text-emerald-400"
+                onClick={() => setIsMenuOpen(false)}
               >
                 Pricing
               </Link>
@@ -148,7 +159,8 @@ const Navbar = () => {
             <li>
               <Link
                 href="/privacy"
-                className="text-white text-sm hover:text-emerald-400"
+                className="text-white text-md hover:text-emerald-400"
+                onClick={() => setIsMenuOpen(false)}
               >
                 Privacy
               </Link>
@@ -157,12 +169,13 @@ const Navbar = () => {
               <li key={index}>
                 {link.text === "Sign up" ? (
                   <button className="border border-emerald-500 text-emerald-500 rounded-full px-5 py-2 text-sm font-medium hover:bg-emerald-500 hover:text-white transition w-full text-center">
-                    <Link href={link.href}>{link.text}</Link>
+                    <Link href={link.href} onClick={() => setIsMenuOpen(false)}>{link.text}</Link>
                   </button>
                 ) : (
                   <Link
                     href={link.href}
                     className="text-white text-sm hover:text-emerald-400"
+                    onClick={() => setIsMenuOpen(false)}
                   >
                     {link.text}
                   </Link>
