@@ -422,7 +422,7 @@ const SoccerBetting = () => {
 
   const Notification = () => (
     <div className="fixed z-50 top-10 right-5 bg-white border-2 border-[#2D9479] rounded-lg shadow-lg p-5 w-120 transition-transform transform hover:scale-105">
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between ">
         <h3 className="text-md font-bold text-black-100">Enter Free Contest</h3>
 
         <button
@@ -440,7 +440,7 @@ const SoccerBetting = () => {
         <h3 className="font-medium font-black text-[#06231F] pt-2 mb-4">
           Selected Predictions:
         </h3>
-        <ul>
+        <ul className="border-b-2 border-slate-200 pb-2">
           {selectedItems.map((item, index) => (
             <li key={index} className="text-[15px] text-[#16423C] mb-1">
               {item.home_team} vs {item.away_team}
@@ -482,22 +482,23 @@ const SoccerBetting = () => {
             className="filter grayscale"
           />
         </div>
-        <div className="absolute inset-0 bg-black opacity-50 bg-[#57CC99]/25 sm:w-1/1" />{" "}
-        <div className="absolute inset-0 flex flex-col items-center justify-center text-white p-4 w-full sm:w-1/2">
-          <h1 className="text-[1.5em] font-bold md:text-3xl tracking-wide leading-tight mb-1">
-            {headerText}
-          </h1>
-          <h2 className="text-[1.1em] mt-2 font-medium tracking-normal leading-snug">
-            {descriptionText}
-          </h2>
-          <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mt-5">
-            <button className="bg-[#ED5107] hover:bg-[#FF6500]/90 text-white px-8 py-3 rounded-xl flex items-center justify-center w-full sm:w-auto font-base mr-1">
-              <FaCrown className="mr-2" />
-              <span>Join Premium </span>
-            </button>
-            <button className="bg-slate-100 hover:bg-slate-100/80 text-black-100 px-8 py-3 rounded-xl flex items-center justify-center hover:bg-gray-300 hover:bg-slate-200 w-full sm:w-auto font-base">
-              <FaInfoCircle className="mr-2" /> Learn More
-            </button>
+        <div className="absolute flex flex-col rounded text-white p-4 w-full sm:w-1/2 items-center justify-center">
+          <div className="flex flex-col items-center justify-center w-full h-full">
+            <h1 className="text-[1.5em] font-bold md:text-3xl tracking-wide leading-tight mb-1 text-center">
+              {headerText}
+            </h1>
+            <h2 className="text-[1.1em] mt-2 font-medium tracking-normal leading-snug text-center text-[#F5F5F5]">
+              {descriptionText}
+            </h2>
+            <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mt-5">
+              <button className="bg-[#ED5107] hover:bg-[#FF6500]/90 text-white px-8 py-3 rounded-xl flex items-center justify-center w-full sm:w-auto font-base mr-1">
+                <FaCrown className="mr-2" />
+                <span>Join Premium </span>
+              </button>
+              <button className="bg-slate-100 hover:bg-slate-100/80 text-black-100 px-8 py-3 rounded-xl flex items-center justify-center hover:bg-gray-300 hover:bg-slate-200 w-full sm:w-auto font-base">
+                <FaInfoCircle className="mr-2" /> Learn More
+              </button>
+            </div>
           </div>
         </div>
       </header>
