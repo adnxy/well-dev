@@ -487,9 +487,9 @@ const SoccerBetting = () => {
             <h1 className="text-[1.5em] font-bold md:text-3xl tracking-wide leading-tight mb-1 text-center">
               {headerText}
             </h1>
-            <h2 className="text-[1.1em] mt-2 font-medium tracking-normal leading-snug text-center text-[#F5F5F5]">
+            {/* <h2 className="text-[1.1em] mt-2 font-medium tracking-normal leading-snug text-center text-[#F5F5F5]">
               {descriptionText}
-            </h2>
+            </h2> */}
             <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mt-5">
               <button className="bg-[#ED5107] hover:bg-[#FF6500]/90 text-white px-8 py-3 rounded-xl flex items-center justify-center w-full sm:w-auto font-base mr-1">
                 <FaCrown className="mr-2" />

@@ -4,7 +4,6 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import { ThemeProvider } from "./context/ThemeContext";
 
-
 export const metadata: Metadata = {
   title: "Goalpredict - AI powered football predictions",
   description:
@@ -16,13 +15,15 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  console.log('children is', children)
+
   return (
     <ThemeProvider>
     <html lang="en">
       <body className="layout-background">
         <Navbar />
         <main className="layout-background"> {children}</main>
-        <Footer />
+         <Footer />
       </body>
     </html>
     </ThemeProvider>

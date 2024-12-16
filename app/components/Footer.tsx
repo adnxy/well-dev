@@ -64,10 +64,10 @@ const Footer = () => {
         <p className={`relative ${theme === 'dark' ? 'text-white' : 'text-black'} text-center`}>
           @ 2024 Goalpredict. All rights reserved 
         </p>
-        <span className="text-white pl-2">Paromlinska 12, Sarajevo, Bosnia and Herzegovina</span>
+        <span className="text-white pl-2">1234 Main St, Delaware, USA</span>
 
         <div className="flex justify-center mt-4">
-          <Link href="/premium" className="flex items-center bg-[#F5F5F5] text-black px-4 py-2 rounded">
+          <Link href="/premium" className="flex items-center bg-[#] text-white px-4 py-2 rounded">
             <FaStar className="mr-2" /> Go Premium
           </Link>
         </div>

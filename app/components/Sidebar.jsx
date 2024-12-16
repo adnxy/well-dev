@@ -1,37 +1,45 @@
 import Link from 'next/link';
 import React from 'react';
-import { FaHome, FaClipboardList, FaTools, FaCog } from 'react-icons/fa';
+import { FaHome, FaClipboardCheck, FaChartLine, FaUserCircle, FaTrophy } from 'react-icons/fa';
+import Image from 'next/image';
+// import logo from '../assets/logo.svg';
 
 const Sidebar = () => {
   return (
-    <div style={{ backgroundColor: '#F7F7F7'}} className="w-64 p-5">
+    <div style={{ backgroundColor: '#F7F7F7'}} className="w-80 p-5">
       <div className="flex items-center mb-10">
-        <img src="/logo.svg" alt="Logo" className="h-8 w-8 mr-3" />
-        <span className="font-semibold text-xl">autoapply.io</span>
+        {/* <Image src="/logo.svg" alt="Logo" width={150} height={60} /> */}
+        <span className="font-semibold text-xl">Goalpredict</span>
       </div>
       <ul className="space-y-4">
         <li className="font-medium text-gray-500 hover:text-gray-700">
           <Link href="/dashboard" className="flex items-center">
-            <FaHome className="mr-4" />
-            Dashboard
+            <FaHome className="mr-4 text-xl" />
+            Predictions
+          </Link>
+        </li>
+        <li className="font-medium text-gray-500 hover:text-gray-700">
+          <Link href="/dashboard" className="flex items-center">
+            <FaTrophy className="mr-4 text-xl" />
+            Daily Picks
           </Link>
         </li>
         <li className="font-medium text-gray-500 hover:text-gray-700">
           <Link href="/activity" className="flex items-center">
-            <FaClipboardList className="mr-4" />
-            Activity
+            <FaClipboardCheck className="mr-4 text-xl" />
+            Contest
           </Link>
         </li>
         <li className="font-medium text-gray-500 hover:text-gray-700">
           <Link href="/support" className="flex items-center">
-            <FaTools className="mr-4" />
-            Support
+            <FaChartLine className="mr-4 text-xl" />
+            Analysis
           </Link>
         </li>
         <li className="font-medium text-gray-500 hover:text-gray-700">
           <Link href="/settings" className="flex items-center">
-            <FaCog className="mr-4" />
-            Settings
+            <FaUserCircle className="mr-4 text-xl" />
+            Profile
           </Link>
         </li>
       </ul>
