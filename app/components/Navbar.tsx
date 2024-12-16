@@ -36,27 +36,27 @@ const Navbar = () => {
         theme === "light" ? "bg-white text-black" : "bg-[#06231F] text-white"
       } shadow-lg`}
     >
-      <div className="flex items-center pl-20">
+      <div className="flex items-center">
         <Link href="/">
           <Image
-            className="h-11 w-11 ml-2 mr-2 cursor-pointer"
+            className="h-11 w-11 ml-2 mr-2 cursor-pointer md:ml-0"
             src={rb}
             alt="Logo"
           />
         </Link>
         {theme === "dark" ? (
           <FaSun
-            className="text-yellow-500 ml-2 cursor-pointer w-5 h-5"
+            className="text-yellow-500 ml-2 cursor-pointer w-5 h-5 md:ml-0"
             onClick={toggleTheme}
           />
         ) : (
           <FaMoon
-            className="text-gray-800 ml-2 cursor-pointer w-5 h-5"
+            className="text-gray-800 ml-2 cursor-pointer w-5 h-5 md:ml-0"
             onClick={toggleTheme}
           />
         )}
         <div className="flex space-x-4 ml-5">
-        <Link
+          <Link
             href="/privacy"
             className={`font-[15px] cursor-pointer hover:text-slate-300 ${
               theme === "light" ? "text-black" : "text-white"
@@ -78,42 +78,23 @@ const Navbar = () => {
               theme === "light" ? "text-black" : "text-white"
             } hidden md:block`}
           >
-            Contest
-          </Link>
-
-          <Link
-            href="/faq"
-            className={`font-[15px] cursor-pointer hover:text-slate-300 ${
-              theme === "light" ? "text-black" : "text-white"
-            } hidden md:block`}
-          >
             FAQs
           </Link>
-
         </div>
       </div>
 
-      {/* Search input */}
-      {/* <div className="hidden md:flex items-center flex-grow mx-10">
-        <div className="relative w-full max-w-xl">
-          <input
-            type="text"
-            placeholder="Search for jobs..."
-            className="w-full py-2 pl-4 pr-10 text-sm bg-gray-800 text-white rounded-full focus:outline-none focus:ring-2 focus:ring-emerald-500"
-          />
-          <FaSearch className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-        </div>  
-      </div> */}
-
       {/* Mobile menu button */}
       <button
-        className="md:hidden text-white"
+        className={`md:hidden ${theme === "light" ? "text-black" : "text-white"}`}
         onClick={() => {
-          toggleTheme(theme === "dark" ? "light" : "dark");
           setIsMenuOpen(!isMenuOpen);
         }}
       >
-        {isMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+        {isMenuOpen ? (
+          <FaTimes className={theme === "light" ? "text-black" : "text-white"} size={24} />
+        ) : (
+          <FaBars className={theme === "light" ? "text-black" : "text-white"} size={24} />
+        )}
       </button>
 
       {/* New Links for Blog and Pricing - Moved next to the toggle menu */}
@@ -130,7 +111,7 @@ const Navbar = () => {
         {NavLinks.map((link, index) => (
           <li key={index}>
             {link.text === "Login" ? (
-              <button className="border border-emerald-500 text-emerald-500 rounded-xl px-5 py-2 text-md font-small hover:bg-emerald-500 hover:text-white transition mr-20">
+              <button className="border border-emerald-500 text-emerald-500 rounded-xl px-5 py-2 text-md font-small  hover:text-[#1EAE98]/60 hover:border-[#1EAE98]/60 transition mr-20">
                 <Link href={link.href}>{link.text}</Link>
               </button>
             ) : (
@@ -147,7 +128,14 @@ const Navbar = () => {
 
       {/* Mobile menu */}
       {isMenuOpen && (
-        <div className="bg-[#222c37] p-4 md:hidden mr-60">
+        <div className={`p-4 md:hidden w-full h-auto flex flex-col items-end absolute top-0 left-0 z-10 h-1/1 p-10 ${theme === "light" ? "bg-black" : "bg-[#3A6351]"}`}>
+          {/* Close button */}
+          <button
+            className="text-white mb-4"
+            onClick={() => setIsMenuOpen(false)}
+          >
+            <FaTimes size={24} />
+          </button>
           <ul className="flex flex-col space-y-4">
             <li>
               <Link
@@ -157,7 +145,6 @@ const Navbar = () => {
                 Pricing
               </Link>
             </li>
-
             <li>
               <Link
                 href="/privacy"

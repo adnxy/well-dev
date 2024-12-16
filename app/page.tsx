@@ -245,9 +245,15 @@ const SoccerBetting = () => {
   const renderMatches = (
     type: "predictions" | "vipPredictions" | "scorers"
   ) => {
-    let data = predictions.concat(vipPredictions);
-    data = data.reverse();
-    console.log('data is:', data);
+    let data = [];
+    
+    // Check if the selected league is "Scores"
+    if (selectedLeague === "Scores") {
+      data = scorers;
+    } else {
+      data = predictions.concat(vipPredictions);
+    }
+
     return data.map((item, index) => {
       const leagueImage = getLeagueImage(item.league);
       const itemClass =
@@ -415,7 +421,7 @@ const SoccerBetting = () => {
   );
 
   const Notification = () => (
-    <div className="fixed z-50 top-10 right-5 bg-white border-2 border-[#2D9479] rounded-lg shadow-lg p-4 w-120 transition-transform transform hover:scale-105">
+    <div className="fixed z-50 top-10 right-5 bg-white border-2 border-[#2D9479] rounded-lg shadow-lg p-5 w-120 transition-transform transform hover:scale-105">
       <div className="flex items-center justify-between">
         <h3 className="text-md font-bold text-black-100">Enter Free Contest</h3>
 
@@ -427,7 +433,7 @@ const SoccerBetting = () => {
         </button>
       </div>
       <p className="text-[15px] text-[#16423C] mb-1">
-        Possible Win: {totalOdds.toFixed(2)}
+        Possible Payout: {totalOdds.toFixed(2)}
       </p>
 
       <div className="mt-2  border-b-3 border-slate-100">
@@ -485,7 +491,7 @@ const SoccerBetting = () => {
             {descriptionText}
           </h2>
           <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mt-5">
-            <button className="bg-[#FF6500] hover:bg-[#FF6500]/90 text-white px-8 py-3 rounded-xl flex items-center justify-center w-full sm:w-auto font-base mr-1">
+            <button className="bg-[#ED5107] hover:bg-[#FF6500]/90 text-white px-8 py-3 rounded-xl flex items-center justify-center w-full sm:w-auto font-base mr-1">
               <FaCrown className="mr-2" />
               <span>Join Premium </span>
             </button>
