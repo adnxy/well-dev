@@ -3,7 +3,9 @@ export const NavLinks = [
   // { href: '/', key: 'Hire Us', text: 'Hire Us' },
   // { href: "/login", key: "Hire Us", text: "Login" },
   // { href: '/jobs', key: 'Jobs', text: 'Get Started' },
-  { href: "/login", key: "Jobs", text: "Login" },
+  { href: "/pricing", key: "Jobs", text: "Pricing" },
+  { href: "/privacy", key: "Jobs", text: "Privacy Policy" },
+  { href: "/faq", key: "Jobs", text: "FAQs" },
 ];
 
 export const categoryFilters = [
@@ -52,7 +54,7 @@ export const footerLinks = [
   },
   {
     title: "Company",
-    links: ["About", "Careers", "Terms of service", "Privacy policy"],
+    links: ["About", "Careers", "Terms of service", "licy"],
   },
   {
     title: "Directories",

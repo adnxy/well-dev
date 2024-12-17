@@ -96,22 +96,11 @@ const Navbar = () => {
           <Link href="/pricing" className="text-white text-md hover:text-emerald-400">Pricing</Link>
         </li> */}
 
-        {NavLinks.map((link, index) => (
-          <li key={index}>
-            {link.text === "Login" ? (
-              <button className="border border-emerald-500 text-emerald-500 rounded-xl px-5 py-2 text-md font-small  hover:text-[#1EAE98]/60 hover:border-[#1EAE98]/60 transition mr-20">
-                <Link href={link.href}>{link.text}</Link>
-              </button>
-            ) : (
-              <Link
-                href={link.href}
-                className="text-white text-md hover:text-emerald-400"
-              >
-                {link.text}
-              </Link>
-            )}
-          </li>
-        ))}
+          <div className="flex items-center space-x-4 relative right-[100px]">
+            <button className="border border-gray-500 text-gray-500 rounded-full px-10 py-2 text-sm font-medium hover:bg-gray-500 hover:text-white transition w-full text-center">
+              <Link href="/login">Login</Link>
+            </button>
+          </div>
       </ul>
 
       {/* Mobile menu */}
