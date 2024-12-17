@@ -57,30 +57,17 @@ const Navbar = () => {
         )}
 
         <div className="flex space-x-4 ml-5">
-          <Link
-            href="/privacy"
-            className={`font-[15px] cursor-pointer hover:text-slate-300 ${
-              theme === "light" ? "text-black" : "text-white"
-            } hidden md:block`}
-          >
-            Privacy
-          </Link>
-          <Link
-            href="/pricing"
-            className={`font-[15px] cursor-pointer hover:text-slate-300 ${
-              theme === "light" ? "text-black" : "text-white"
-            } hidden md:block`}
-          >
-            Pricing
-          </Link>
-          <Link
-            href="/faq"
-            className={`font-[15px] cursor-pointer hover:text-slate-300 ${
-              theme === "light" ? "text-black" : "text-white"
-            } hidden md:block`}
-          >
-            FAQs
-          </Link>
+          {NavLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className={`font-[15px] cursor-pointer hover:text-slate-300 ${
+                pathname === link.href ? "text-green-500" : theme === "light" ? "text-black" : "text-white"
+              } hidden md:block`}
+            >
+              {link.text}
+            </Link>
+          ))}
         </div>
       </div>
 

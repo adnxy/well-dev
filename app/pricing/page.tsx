@@ -23,19 +23,19 @@ const PricingPage = () => {
           <p className={`price text-3xl font-bold ${theme === 'dark' ? 'text-white' : 'text-black'}`}>$0</p>
           <ul className="benefits-list mt-4">
             <li className={`flex items-center ${theme === 'dark' ? 'text-white' : 'text-black'}`}>
-              <FontAwesomeIcon icon={faStar} className="text-lg text-green-500 mr-2" /> European leagues predictions
+              <FontAwesomeIcon icon={faStar} className="text-lg text-slate-500 mr-3" /> European leagues predictions
             </li>
             <li className={`flex items-center ${theme === 'dark' ? 'text-white' : 'text-black'}`}>
-              <FontAwesomeIcon icon={faRobot} className="text-lg text-green-500 mr-2" /> Non-European leagues predictions
+              <FontAwesomeIcon icon={faRobot} className="text-lg text-slate-500 mr-3" /> Non-European leagues predictions
             </li>
             <li className={`flex items-center ${theme === 'dark' ? 'text-white' : 'text-black'}`}>
-              <FontAwesomeIcon icon={faChartLine} className="text-lg text-green-500 mr-2" /> Exact scores predictions
+              <FontAwesomeIcon icon={faChartLine} className="text-lg text-slate-500 mr-3" /> Exact scores predictions
             </li>
             <li className={`flex items-center ${theme === 'dark' ? 'text-white' : 'text-black'}`}>
-              <FontAwesomeIcon icon={faChartLine} className="text-lg text-green-500 mr-2" /> Analytics Dashboard
+              <FontAwesomeIcon icon={faChartLine} className="text-lg text-slate-500 mr-3" /> Analytics Dashboard
             </li>
             <li className={`flex items-center ${theme === 'dark' ? 'text-white' : 'text-black'}`}>
-              <FontAwesomeIcon icon={faCalendar} className="text-lg text-green-500 mr-2" /> Monthly Analysis
+              <FontAwesomeIcon icon={faCalendar} className="text-lg text-slate-500 mr-3" /> Monthly Analysis
             </li>
           </ul>
           <button className={`button mt-4 ${theme === 'dark' ? 'bg-black text-white' : 'bg-black text-white'} py-2 px-4 rounded hover:bg-gray-700`}>
@@ -43,33 +43,30 @@ const PricingPage = () => {
           </button>
         </div>
         <div className={`card p-6 rounded-lg shadow-lg ${theme === 'dark' ? 'bg-[#06231f]' : 'bg-white'}`}>
-          <h2 className={`plan-title text-xl font-semibold ${theme === 'dark' ? 'text-white' : 'text-black'}`}>Premium Monthly <span className="text-sm text-yellow-500">(Most Popular)</span></h2>
+          <h2 className={`plan-title text-xl font-semibold ${theme === 'dark' ? 'text-white' : 'text-black'}`}>Premium Monthly <span className="text-sm text-yellow-500">(most popular)</span></h2>
           <p className={`mb-5 text-lg font-normal ${theme === 'dark' ? 'text-white' : 'text-black'}`}>Access to all AI features and dashboard.</p>
           <p className={`price text-3xl font-bold ${theme === 'dark' ? 'text-white' : 'text-black'}`}>$5.99</p>
           <ul className="benefits-list mt-4">
             <li className={`flex items-center ${theme === 'dark' ? 'text-white' : 'text-black'}`}>
-              <FontAwesomeIcon icon={faStar} className="text-lg text-green-500 mr-2" /> European leagues
+              <FontAwesomeIcon icon={faStar} className="text-lg text-slate-500 mr-3" /> European leagues
             </li>
             <li className={`flex items-center ${theme === 'dark' ? 'text-white' : 'text-black'}`}>
-              <FontAwesomeIcon icon={faGlobe} className="text-lg text-green-500 mr-2" /> Non-European leagues
+              <FontAwesomeIcon icon={faGlobe} className="text-lg text-slate-500 mr-3" /> Non-European leagues
             </li>
             <li className={`flex items-center ${theme === 'dark' ? 'text-white' : 'text-black'}`}>
-              <FontAwesomeIcon icon={faChartLine} className="text-lg text-green-500 mr-2" /> Exact scores predictions
+              <FontAwesomeIcon icon={faChartLine} className="text-lg text-slate-500 mr-3" /> Exact scores predictions
             </li>
             <li className={`flex items-center ${theme === 'dark' ? 'text-white' : 'text-black'}`}>
-              <FontAwesomeIcon icon={faRobot} className="text-lg text-green-500 mr-2" /> Premium AI predictions
+              <FontAwesomeIcon icon={faRobot} className="text-lg text-slate-500 mr-3" /> Premium AI predictions
             </li>
             <li className={`flex items-center ${theme === 'dark' ? 'text-white' : 'text-black'}`}>
-              <FontAwesomeIcon icon={faCalendar} className="text-lg text-green-500 mr-2" /> Daily picks
+              <FontAwesomeIcon icon={faCalendar} className="text-lg text-slate-500 mr-3" /> Daily picks
             </li>
             <li className={`flex items-center ${theme === 'dark' ? 'text-white' : 'text-black'}`}>
-              <FontAwesomeIcon icon={faTrophy} className="text-lg text-green-500 mr-2" /> Access to contests
+              <FontAwesomeIcon icon={faTrophy} className="text-lg text-slate-500 mr-3" /> Access to contests
             </li>
           </ul>
-          <h3 className={`leaderboard-title text-lg font-semibold ${theme === 'dark' ? 'text-white' : 'text-black'}`}>Leaderboard</h3>
-          <ul className="leaderboard">
-            {/* Leaderboard items go here */}
-          </ul>
+
           <button className={`button mt-4 ${theme === 'dark' ? 'bg-black text-white' : 'bg-black text-white'} py-2 px-4 rounded hover:bg-gray-700`}>
             Subscribe
           </button>
@@ -80,22 +77,22 @@ const PricingPage = () => {
           <p className={`price text-3xl font-bold ${theme === 'dark' ? 'text-white' : 'text-black'}`}>$50</p>
           <ul className="benefits-list mt-4">
             <li className={`flex items-center ${theme === 'dark' ? 'text-white' : 'text-black'}`}>
-              <FontAwesomeIcon icon={faStar} className="text-lg text-green-500 mr-2" /> European leagues
+              <FontAwesomeIcon icon={faStar} className="text-lg text-slate-500 mr-3" /> European leagues
             </li>
             <li className={`flex items-center ${theme === 'dark' ? 'text-white' : 'text-black'}`}>
-              <FontAwesomeIcon icon={faGlobe} className="text-lg text-green-500 mr-2" /> Non-European leagues
+              <FontAwesomeIcon icon={faGlobe} className="text-lg text-slate-500 mr-3" /> Non-European leagues
             </li>
             <li className={`flex items-center ${theme === 'dark' ? 'text-white' : 'text-black'}`}>
-              <FontAwesomeIcon icon={faChartLine} className="text-lg text-green-500 mr-2" /> Exact scores predictions
+              <FontAwesomeIcon icon={faChartLine} className="text-lg text-slate-500 mr-3" /> Exact scores predictions
             </li>
             <li className={`flex items-center ${theme === 'dark' ? 'text-white' : 'text-black'}`}>
-              <FontAwesomeIcon icon={faRobot} className="text-lg text-green-500 mr-2" /> Premium AI predictions
+              <FontAwesomeIcon icon={faRobot} className="text-lg text-slate-500 mr-3" /> Premium AI predictions
             </li>
             <li className={`flex items-center ${theme === 'dark' ? 'text-white' : 'text-black'}`}>
-              <FontAwesomeIcon icon={faCalendar} className="text-lg text-green-500 mr-2" /> Daily picks
+              <FontAwesomeIcon icon={faCalendar} className="text-lg text-slate-500 mr-3" /> Daily picks
             </li>
             <li className={`flex items-center ${theme === 'dark' ? 'text-white' : 'text-black'}`}>
-              <FontAwesomeIcon icon={faTrophy} className="text-lg text-green-500 mr-2" /> Access to contests
+              <FontAwesomeIcon icon={faTrophy} className="text-lg text-slate-500 mr-3" /> Access to contests
             </li>
           </ul>
           <button className={`button mt-4 ${theme === 'dark' ? 'bg-black text-white' : 'bg-black text-white'} py-2 px-4 rounded hover:bg-gray-700`}>

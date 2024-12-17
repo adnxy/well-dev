@@ -97,10 +97,10 @@ const SoccerBetting = () => {
   const [fade, setFade] = useState(false);
 
   const headerTexts = [
-    "AI Model for soccer predictions",
-    "Choose your predictions to enter free contest",
-    "Daily Picks with 90% accuracy",
-    "Analyzing millions of Football Data Sets",
+    "AI Model For Football Predictions",
+    "Analyzing Millions Of Football Data Sets",
+    "Daily Picks With 90% Accuracy",
+    "Select Predictions To Enter Free Contest",
   ];
 
   const descriptionTexts = [
@@ -109,6 +109,7 @@ const SoccerBetting = () => {
     "Subscribe to get daily picks in your inbox.",
     "Start now and get access to our AI model and get predictions for all leagues.",
   ];
+
   const [headerText, setHeaderText] = useState(headerTexts[0]);
   const [descriptionText, setDescriptionText] = useState(descriptionTexts[0]);
   useEffect(() => {
@@ -388,7 +389,7 @@ const SoccerBetting = () => {
   };
 
   const Modal = () => (
-    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-70 z-50">
       <div className="bg-white p-5 rounded shadow-lg relative">
         <button
           onClick={() => setIsModalOpen(false)}
@@ -398,8 +399,7 @@ const SoccerBetting = () => {
         </button>
         <h2 className="text-lg font-bold">Go Premium</h2>
         <p>
-          To access premium features, please consider purchasing a premium
-          subscription.
+          To access premium features, subscribe to our premium plan. Cancel or pause anytime.
         </p>
         <button
           onClick={() => setIsModalOpen(false)}
@@ -482,22 +482,23 @@ const SoccerBetting = () => {
             className="filter grayscale"
           />
         </div>
+        <div className="absolute inset-0 bg-black opacity-50" />
         <div className="absolute flex flex-col rounded text-white p-4 w-full sm:w-1/2 items-center justify-center">
           <div className="flex flex-col items-center justify-center w-full h-full">
             <h1 className="text-[1.5em] font-bold md:text-3xl tracking-wide leading-tight mb-1 text-center">
               {headerText}
             </h1>
-            {/* <h2 className="text-[1.1em] mt-2 font-medium tracking-normal leading-snug text-center text-[#F5F5F5]">
+            <h2 className="text-[1.1em] mt-2 font-base tracking-normal leading-snug text-center text-[#F5F5F5]">
               {descriptionText}
-            </h2> */}
+            </h2>
             <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mt-5">
-              <button className="bg-[#ED5107] hover:bg-[#FF6500]/90 text-white px-8 py-3 rounded-xl flex items-center justify-center w-full sm:w-auto font-base mr-1">
+              <button className="bg-[#ED5107] hover:bg-[#ED5107]/90 text-white px-10 py-3.5 rounded-[8px] flex items-center justify-center w-full sm:w-auto font-base mr-1">
                 <FaCrown className="mr-2" />
-                <span>Join Premium </span>
+                <span className="text-[1em] font-medium">Join Premium </span>
               </button>
-              <button className="bg-slate-100 hover:bg-slate-100/80 text-black-100 px-8 py-3 rounded-xl flex items-center justify-center hover:bg-gray-300 hover:bg-slate-200 w-full sm:w-auto font-base">
+              {/* <button className="bg-slate-100 hover:bg-slate-100/80 text-black-100 px-8 py-3 rounded-xl flex items-center justify-center hover:bg-gray-300 hover:bg-slate-200 w-full sm:w-auto font-base">
                 <FaInfoCircle className="mr-2" /> Learn More
-              </button>
+              </button> */}
             </div>
           </div>
         </div>
