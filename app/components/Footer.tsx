@@ -30,7 +30,7 @@ const Footer = () => {
   const backgroundColor = theme === 'dark' ? '#021814' : '#021814';
 
   return (
-    <section className={` ${theme === 'dark' ? 'bg-[#021814]' : 'bg-white'} z-10 border-rounded border-white flex flex-col items-center footer pl-20 pt-10 pb-10 ${theme === 'dark' ? 'text-white' : 'text-black'}`  } >
+    <section className={` ${theme === 'dark' ? 'bg-[#111111]' : 'bg-white'} z-10 border-rounded border-white flex flex-col items-center footer pl-20 pt-10 pb-10 ${theme === 'dark' ? 'text-white' : 'text-black'}`  } >
       <div className="flex flex-col gap-12 w-full">
         <div className="flex items-start justify-between w-full">
           {/* <Image src="/logo.svg" width={150} height={60} alt="logo" /> */}
@@ -62,7 +62,7 @@ const Footer = () => {
 
       <div className="flex flex-col items-center justify-center w-full footer_copyright text-white">
         <p className={`relative ${theme === 'dark' ? 'text-white' : 'text-black'} text-center`}>
-          @ 2024 Goalpredict. All rights reserved 
+          @ 2024 ModUI. All rights reserved 
         </p>
         <span className="text-white pl-2">1234 Main St, Delaware, USA</span>
 

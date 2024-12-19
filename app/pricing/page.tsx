@@ -17,7 +17,7 @@ const PricingPage = () => {
       </h1>
       <p className={`${theme === 'dark' ? 'text-white' : 'text-black'} text-center text-lg font-normal mb-10 relative bottom-5`}>Choose the plan that best suits your needs and start enjoying the benefits of our premium.</p>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className={`card p-6 rounded-lg shadow-lg ${theme === 'dark' ? 'bg-[#06231f]' : 'bg-white'}`}>
+        <div className={`card p-6 rounded-lg shadow-lg ${theme === 'dark' ? 'bg-[#111111]' : 'bg-white'}`}>
           <h2 className={`plan-title text-xl font-semibold ${theme === 'dark' ? 'text-white' : 'text-black'}`}>Free Account</h2>
           <p className={`mb-5 text-lg font-normal ${theme === 'dark' ? 'text-white' : 'text-black'}`}>Free access to the basic features.</p>
           <p className={`price text-3xl font-bold ${theme === 'dark' ? 'text-white' : 'text-black'}`}>$0</p>
@@ -42,7 +42,7 @@ const PricingPage = () => {
             Get Started
           </button>
         </div>
-        <div className={`card p-6 rounded-lg shadow-lg ${theme === 'dark' ? 'bg-[#06231f]' : 'bg-white'}`}>
+        <div className={`card p-6 rounded-lg shadow-lg ${theme === 'dark' ? 'bg-[#111111]' : 'bg-white'}`}>
           <h2 className={`plan-title text-xl font-semibold ${theme === 'dark' ? 'text-white' : 'text-black'}`}>Premium Monthly <span className="text-sm text-yellow-500">(most popular)</span></h2>
           <p className={`mb-5 text-lg font-normal ${theme === 'dark' ? 'text-white' : 'text-black'}`}>Access to all AI features and dashboard.</p>
           <p className={`price text-3xl font-bold ${theme === 'dark' ? 'text-white' : 'text-black'}`}>$5.99</p>
@@ -71,7 +71,7 @@ const PricingPage = () => {
             Subscribe
           </button>
         </div>
-        <div className={`card p-6 rounded-lg shadow-lg ${theme === 'dark' ? 'bg-[#06231f]' : 'bg-white'}`}>
+        <div className={`card p-6 rounded-lg shadow-lg ${theme === 'dark' ? 'bg-[#111111]' : 'bg-white'}`}>
           <h2 className={`plan-title text-xl font-semibold ${theme === 'dark' ? 'text-white' : 'text-black'}`}>Premium Yearly</h2>
           <p className={`mb-5 text-lg font-normal ${theme === 'dark' ? 'text-white' : 'text-black'}`}>Access to all AI features and dashboard.</p>
           <p className={`price text-3xl font-bold ${theme === 'dark' ? 'text-white' : 'text-black'}`}>$50</p>

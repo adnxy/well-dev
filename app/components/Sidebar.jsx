@@ -9,7 +9,7 @@ const Sidebar = () => {
     <div style={{ backgroundColor: '#f8f8f8'}} className="w-1/1 p-10">
       <div className="flex items-center mb-10">
         {/* <Image src="/logo.svg" alt="Logo" width={150} height={60} /> */}
-        <span className="font-semibold text-2xl">Goalpredict</span>
+        <span className="font-semibold text-2xl">Welldev</span>
       </div>
       <ul className="space-y-6">
         <li className="font-medium text-gray-500 hover:text-gray-700 active:text-blue-600 transition-colors duration-200 p-1">

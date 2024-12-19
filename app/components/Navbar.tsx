@@ -17,11 +17,8 @@ const Navbar = () => {
   console.log("theme", theme);
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem("theme");
-    console.log("savedTheme", savedTheme);
-    if (savedTheme) {
-      toggleTheme(savedTheme);
-    }
+    const savedTheme = localStorage.getItem("theme") || "dark";
+    toggleTheme(savedTheme);
   }, []);
 
   useEffect(() => {
@@ -32,36 +29,25 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`flex justify-between items-center h-20 px-4 md:px-10 lg:px-20 transition-colors duration-350 ${
-        theme === "light" ? "bg-white text-black" : "bg-[#06231F] text-white"
+      className={`flex justify-between items-center h-20 px-180 md:px-10 lg:px-[80px] transition-colors duration-350 ${
+        theme === "light" ? "bg-white text-black" : "bg-[#111111] text-white"
       } shadow-lg`}
     >
-      <div className="flex items-center relative ml-12 relative left-10">
-      <Link href="/" className=" mr-2">
-          <Image
-            className="h-11 w-11 mr-2 cursor-pointer md:ml-0 "
-            src={rb}
-            alt="Logo"
-          />
-        </Link>
-        {theme === "dark" ? (
-          <FaSun
-            className="text-yellow-500 ml-2 cursor-pointer w-5 h-5 md:ml-0 mr-3"
-            onClick={toggleTheme}
-          />
-        ) : (
-          <FaMoon
-            className="text-gray-800 ml-2 cursor-pointer w-5 h-5 md:ml-0 mr-3"
-            onClick={toggleTheme}
-          />
-        )}
+      <div className="flex items-center relative ml-3 relative left-10">
 
-        <div className="flex space-x-4 ml-5">
+      
+          <FaMoon
+            className="text-gray-800 ml-2 cursor-pointer w-5 h-5 md:ml-0 mr-7"
+            onClick={toggleTheme}
+          />
+  
+
+        <div className="flex space-x-6 ">
           {NavLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className={`font-[15px] cursor-pointer hover:text-slate-300 ${
+              className={`font-[13px] cursor-pointer hover:text-slate-300 ${
                 pathname === link.href ? "text-green-500" : theme === "light" ? "text-black" : "text-white"
               } hidden md:block`}
             >
@@ -150,7 +136,7 @@ const Navbar = () => {
                 ) : (
                   <Link
                     href={link.href}
-                    className="text-white text-sm hover:text-emerald-400"
+                    className="text-white text-[13px] hover:text-emerald-400"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     {link.text}

@@ -12,6 +12,14 @@
 
 }
 
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  background-color: #111111;
+}
+
 .logo {
   height: 100px;
 }
@@ -21,6 +29,7 @@ body {
 
   font-family: "Inter";
   overscroll-behavior: none;
+  padding: 20px;
 }
 
 .flexCenter {

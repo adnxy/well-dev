@@ -27,7 +27,7 @@ const Header: React.FC<HeaderProps> = ({ setSidebarOpen, sidebarOpen }) => {
   };
 
   return (
-    <header className={`flex justify-between items-center p-4 bg-blue-500 border-b border-gray-200 h-20 w-full`}>
+    <header className={`flex justify-around items-center border-b border-gray-200 h-20 w-full`}>
  
       <div className="flex items-center space-x-4"> {/* Centered items */}
         <Image
@@ -51,7 +51,7 @@ const Header: React.FC<HeaderProps> = ({ setSidebarOpen, sidebarOpen }) => {
         >
           <FaBell size={22} className="mr-2" />
           {hasNewNotifications && (
-            <span className="absolute top-0 right-0 block h-2 w-2 rounded-full bg-red-500 transform translate-x-1/2 -translate-y-1/2"></span>
+            <span className="absolute top-0 right-0 block h-2 w-2 rounded-full transform translate-x-1/2 -translate-y-1/2"></span>
           )}
         </button>
         <button

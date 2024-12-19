@@ -22,11 +22,11 @@ const PrivacyPage: React.FC = () => {
             <ul>
                 <li>We do not track your usage behavior or preferences.</li>
                 <li>We do not send you promotional emails or notifications.</li>
-                <li>Your activity on GoalPredict.ai remains completely private.</li>
+                <li>Your activity on well.dev remains completely private.</li>
             </ul>
 
             <h2 className="text-2xl font-semibold mt-6 mb-2">3. Payments</h2>
-            <p>All payments made on GoalPredict.ai are processed securely through Stripe, a third-party payment processor. Here's what you need to know about payment handling:</p>
+            <p>All payments made on well.dev are processed securely through Stripe, a third-party payment processor. Here's what you need to know about payment handling:</p>
             <ul>
                 <li>Payment details such as credit card numbers and billing information are not stored or processed by us.</li>
                 <li>Stripe adheres to strict industry security standards (PCI DSS compliance) to ensure the safety of your payment data.</li>
@@ -41,24 +41,24 @@ const PrivacyPage: React.FC = () => {
             </ul>
 
             <h2 className="text-2xl font-semibold mt-6 mb-2">5. Your Rights</h2>
-            <p>Since we do not collect or store data, there is no personal information to access, update, or delete. However, if you have questions or concerns about your interaction with GoalPredict.ai, feel free to reach out to us.</p>
+            <p>Since we do not collect or store data, there is no personal information to access, update, or delete. However, if you have questions or concerns about your interaction with well.dev, feel free to reach out to us.</p>
 
             <h2 className="text-2xl font-semibold mt-6 mb-2">6. Contact Us</h2>
             <p>If you have any questions about this Privacy Policy or our practices, please contact us:</p>
-            <p>Company Name: Well-Dev</p>
+            <p>Company Name: ModUI</p>
             <p>Address: Paromlinska 12, Sarajevo, Bosnia and Herzegovina</p>
-            <p>Email: hello@goalpredict.ai</p>
+            <p>Email: hello@modui.io</p>
             <p>We are committed to addressing any concerns or inquiries promptly.</p>
 
             <h2 className="text-2xl font-semibold mt-6 mb-2">7. Changes to This Privacy Policy</h2>
             <p>We may update this Privacy Policy from time to time. Any changes will be reflected on this page with a new "Effective Date." Key points about updates:</p>
             <ul>
-                <li>We will notify users of significant changes via the GoalPredict.ai website.</li>
+                <li>We will notify users of significant changes via the well.dev website.</li>
                 <li>Minor updates that do not affect user privacy will be posted without direct notification.</li>
                 <li>We encourage you to review this policy periodically to stay informed about our practices.</li>
             </ul>
 
-            <p>Thank you for trusting GoalPredict.ai. Your privacy is important to us.</p>
+            <p>Thank you for trusting well.dev. Your privacy is important to us.</p>
         </div>
     );
 };

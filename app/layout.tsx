@@ -5,9 +5,9 @@ import Footer from "./components/Footer";
 import { ThemeProvider } from "./context/ThemeContext";
 
 export const metadata: Metadata = {
-  title: "Goalpredict - AI powered football predictions",
+  title: "ModUI - Development & Design Inspiration and UI Resources",
   description:
-    "Goalpredict is a AI driven platform for football analysis and predictions",
+    "ModUI is a UI/UX Design & Frontend Development Inspiration",
 };
 
 export default function RootLayout({
