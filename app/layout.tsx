@@ -5,9 +5,9 @@ import Footer from "./components/Footer";
 import { ThemeProvider } from "./context/ThemeContext";
 
 export const metadata: Metadata = {
-  title: "ModUI - Development & Design Inspiration and UI Resources",
+  title: "Mobaa - Build Faster Mobile Apps",
   description:
-    "ModUI is a UI/UX Design & Frontend Development Inspiration",
+    "Helping businesses build mobile apps faster and better",
 };
 
 export default function RootLayout({

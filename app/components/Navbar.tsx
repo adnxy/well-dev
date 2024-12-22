@@ -6,7 +6,7 @@ import Link from "next/link";
 import React, { useState, useContext, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import rb from "../../public/goal-post.png";
-import { FaBars, FaTimes, FaSearch, FaMoon, FaSun } from "react-icons/fa";
+import { FaBars, FaTimes, FaSearch, FaMoon, FaSun, FaRocket } from "react-icons/fa";
 import { useTheme } from "../context/ThemeContext";
 
 const Navbar = () => {
@@ -29,25 +29,36 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`flex justify-between items-center h-20 px-180 md:px-10 lg:px-[80px] transition-colors duration-350 ${
+      className={`flex justify-between items-center h-20 px-20 md:px-10 lg:px-[80px] transition-colors duration-350 ${
         theme === "light" ? "bg-white text-black" : "bg-[#111111] text-white"
       } shadow-lg`}
     >
-      <div className="flex items-center relative ml-3 relative left-10">
-
-      
+      <div className="flex items-center relative ml-3">
+      <FaRocket
+          className="text-[#C5FF95] ml-2 cursor-pointer w-5 h-5 md:ml-0 mr-3"
+          onClick={toggleTheme}
+        />
+      {theme === "light" ? (
+    
           <FaMoon
-            className="text-gray-800 ml-2 cursor-pointer w-5 h-5 md:ml-0 mr-7"
+            className="text-gray-800 ml-2 cursor-pointer w-5 h-5 md:ml-0 mr-3"
             onClick={toggleTheme}
           />
+          ) : (
+          <FaSun
+            className="text-gray-800 ml-2 cursor-pointer w-5 h-5 md:ml-0 mr-3"
+            onClick={toggleTheme}
+          />
+        )}
   
 
-        <div className="flex space-x-6 ">
+        <div className="flex space-x-4 ml-1">
           {NavLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className={`font-[13px] cursor-pointer hover:text-slate-300 ${
+              style={{ fontSize: "1em" }}
+              className={`font-[1.1em] cursor-pointer hover:text-slate-300 ${
                 pathname === link.href ? "text-green-500" : theme === "light" ? "text-black" : "text-white"
               } hidden md:block`}
             >
@@ -82,9 +93,12 @@ const Navbar = () => {
           <Link href="/pricing" className="text-white text-md hover:text-emerald-400">Pricing</Link>
         </li> */}
 
-          <div className="flex items-center space-x-4 relative right-[100px]">
-            <button className="border border-gray-500 text-gray-500 rounded-full px-10 py-2 text-sm font-medium hover:bg-gray-500 hover:text-white transition w-full text-center">
-              <Link href="/login">Login</Link>
+          <div className="flex items-center space-x-4 relative right-[120px]">
+            {/* <button className="border border-gray-500 text-gray-500 rounded-full px-10 py-2 text-sm font-medium hover:bg-gray-500 hover:text-white transition w-full text-center whitespace-nowrap">
+            <Link href="/login" style={{ fontSize: "1.1em", color: "white" }}> Start selling</Link>
+            </button> */}
+            <button className="no-wrap bg-[#343131] hover:bg-[#343131]/80 w-full text-white rounded-full px-8 py-3 text-sm font-medium hover:bg-gray-500 hover:text-white transition w-full text-center min-w-[80px] whitespace-nowrap">
+              <Link href="/login" style={{ fontSize: "1.1em", color: "white" }}>Schedule a call</Link>
             </button>
           </div>
       </ul>
@@ -127,6 +141,7 @@ const Navbar = () => {
                 Privacy
               </Link>
             </li>
+            
             {NavLinks.map((link, index) => (
               <li key={index}>
                 {link.text === "Sign up" ? (

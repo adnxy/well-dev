@@ -12,6 +12,13 @@ import screenshot0 from "../public/screenshot.png";
 import screenshot1 from "../public/screenshot1.png";
 import screenshot2 from "../public/screenshot2.png";
 import screenshot3 from "../public/screenshot3.png";
+
+import mobileScreen1 from "../public/mobile-screen1.png";
+import mobileScreen2 from "../public/mobile-screen2.png";
+import mobileScreen3 from "../public/mobile-screen3.png";
+import mobileScreen4 from "../public/mobile-screen4.png";
+import mobileScreen5 from "../public/mobile-screen5.png";
+
 import {
   FaTrophy,
   FaCrown,
@@ -36,15 +43,41 @@ import { useTheme } from "./context/ThemeContext";
 import axios from "axios";
 import { getLeagueImage } from "./helpers/getLeagueImage";
 
+export const getButtonClass = (theme: string, isSelected: boolean) => {
+  if (isSelected && theme === 'light') {
+    return 'font-medium underline underline-offset-8 text-orange-400'; // Selected button color
+  }
+  if (isSelected && theme === 'dark') {
+    return 'font-medium underline underline-offset-8 text-orange-400'; // Selected button color
+  }
+  return theme === 'light' ? 'text-black' : 'text-white'; // Default button color based on theme
+};
+
+const getButtonStyles = (theme: string, isSelected: boolean) => {
+  const baseStyle = "px-6 py-2 rounded-full border whitespace-nowrap flex-shrink-0";
+  const activeStyle = theme === 'light' 
+    ? "text-orange-400" // Light theme active style
+    : "text-orange-400"; // Dark theme active style
+
+  if (isSelected) { 
+    return `${baseStyle} ${activeStyle} `;
+  }
+  return `${baseStyle} ${theme === 'light' ? 'text-black' : 'text-white'}`; // Default text color for dark theme
+};
+
 const SoccerBetting = () => {
   const { theme } = useTheme();
 
   // Set default selected filter to "Web" and "Screen"
-  const [selectedFilter, setSelectedFilter] = useState<string | null>("Web");
-  const [selectedView, setSelectedView] = useState<string | null>("UI Screens");
+  const [selectedFilter, setSelectedFilter] = useState<string | null>("Apps");
+  const [selectedView, setSelectedView] = useState<string | null>("E-commerce");
   const [hoveredImageIndex, setHoveredImageIndex] = useState<number | null>(null);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [currentScreenshotIndex, setCurrentScreenshotIndex] = useState<number>(0);
+  const [currentRating, setCurrentRating] = useState<number | null>(4.5);
+  const [isViewClicked, setIsViewClicked] = useState<boolean>(false);
+
+  const modalRef = useRef<HTMLDivElement | null>(null);
 
   const handleFilterClick = (filter: string) => {
     setSelectedFilter(filter);
@@ -55,6 +88,7 @@ const SoccerBetting = () => {
   };
 
   const openModal = (index: number) => {
+    console.log("openModal", index);
     setCurrentScreenshotIndex(index);
     setIsModalOpen(true);
   };
@@ -63,120 +97,196 @@ const SoccerBetting = () => {
     setIsModalOpen(false);
   };
 
+  const handleClickOutside = (event: MouseEvent) => {
+    if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
+      closeModal();
+    }
+  };
+
+  useEffect(() => {
+    if (isModalOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isModalOpen]);
+
   const nextImage = () => {
-    setCurrentScreenshotIndex((prevIndex) => (prevIndex + 1) % [screenshot0, screenshot1, screenshot2, screenshot3].length);
+    setCurrentScreenshotIndex((prevIndex) => (prevIndex + 1) % [mobileScreen1, mobileScreen2, mobileScreen3, mobileScreen4, mobileScreen5].length);
   };
 
   const prevImage = () => {
-    setCurrentScreenshotIndex((prevIndex) => (prevIndex - 1 + [screenshot0, screenshot1, screenshot2, screenshot3].length) % [screenshot0, screenshot1, screenshot2, screenshot3].length);
+    setCurrentScreenshotIndex((prevIndex) => (prevIndex - 1 + [mobileScreen1, mobileScreen2, mobileScreen3, mobileScreen4, mobileScreen5].length) % [mobileScreen1, mobileScreen2, mobileScreen3, mobileScreen4, mobileScreen5].length);
   };
+
+  const handleRating = (rating: number) => {
+    setCurrentRating(rating);
+  };
+
+  const mobileScreenshots = [mobileScreen1, mobileScreen2, mobileScreen3, mobileScreen4];
 
   return (
     <section
-      className={`flex flex-col items-start w-full h-100 flex-1 flex-start flex-start ${styles.body}`}
+      className={`${theme === "light" ? "bg-white" : "bg-[#111111]"} flex flex-col items-start w-full flex-1 flex-start flex-start ${styles.body}`}
     >
-      <div className="flex w-1/1 mt-5 mb-10 justify-start pl-[120px] h-10">
-        {["Web", "iOS", "Android"].map((filter) => (
-        <button
-        key={filter}
-        onClick={() => handleFilterClick(filter)}
-        className={`px-5 text-l py-2 rounded-xl border-none text-gray-400 ${
-          selectedFilter === filter
-            ? "text-white underline"
-            : "text-slate-400"
-        }`}
-      >
-        {filter}
-      </button>
+
+      <div className="flex flex-col items-start w-full flex-1 flex-start flex-start justify-between pl-20">
+
+      <div className="flex w-full justify-start pl-0 mb-5">
+        {["Apps", "Designs", "Free Resources"].map((filter) => (
+          <div className="flex flex-col items-start w-1/1 justify-start">
+            <button
+              key={filter}
+              onClick={() => handleFilterClick(filter)}
+              className={`px-3 text-l py-2 rounded-xl border-none text-black   ${getButtonClass(theme, selectedFilter === filter)}`}
+            >
+              {filter}
+            </button>
+          </div>
         ))}
       </div>
 
-      <div className="flex w-1/2 space-x-3 justify-start pl-[140px]">
-        {["Auth", "Dashboard", "UI Components", "Forms", "Buttons", "Modals", "Charts"].map((view) => (
+      <div className="flex w-full space-x-3 justify-start pl-1">
+        {["E-commerce", "Fitness", "Fintech", "Crypto"].map((view) => (
           <button
             key={view}
-            onClick={() => handleViewClick(view)}
-            className={`px-10 py-2 rounded-xl border whitespace-nowrap flex-shrink-0 ${
-              selectedView === view
-                ? "bg-white text-black"
-                : "border-gray-400 text-white"
-            }`}
+            onClick={() => {
+              handleViewClick(view);
+              setIsViewClicked(true);
+            }}
+            className={getButtonStyles(theme, selectedView === view)}
+            onMouseEnter={() => !isViewClicked && setHoveredImageIndex(view)}
+            onMouseLeave={() => !isViewClicked && setHoveredImageIndex(null)}
           >
             {view}
           </button>
         ))}
       </div>
 
-      {/* New section for screenshots */}
-      <div className="flex flex-col items-center justify-center">
-        <div className="flex items-center mb-4">
-          <FaImage className="text-2xl mr-2" /> {/* Icon */}
-          <h2 className="text-xl">Screenshots</h2> {/* Title */}
-        </div>
-        <div className="flex flex-wrap justify-center items-center">
-          {[screenshot0, screenshot1, screenshot2, screenshot3].map((screenshot, index) => (
-            <div
-              key={index}
-              className="m-2 flex justify-center relative w-2/5"
-              onMouseEnter={() => setHoveredImageIndex(index)}
-              onMouseLeave={() => setHoveredImageIndex(null)}
-            >
-              <Image
-                src={screenshot}
-                alt={`Screenshot ${index + 1}`}
-                className="min-w-[600px] min-h-[400px] w-full object-cover cursor-pointer m-3 rounded-xl image-hover hover:scale-105 transition-all duration-400"
+
+      </div>
+
+      <div className="flex flex-col items-center justify-center w-full">
+        <div className="flex flex-wrap justify-start mt-5 w-full pl-20">
+          {selectedFilter === "Apps" 
+            ? mobileScreenshots.map((screenshot, index) => (
+              <div
+                key={index}
+                className="m-1 flex justify-center relative w-1/5 mr-[20px]"
+                onMouseEnter={() => setHoveredImageIndex(index)}
+                onMouseLeave={() => setHoveredImageIndex(null)}
                 onClick={() => openModal(index)}
-              />
-              {hoveredImageIndex === index && 
-                <FaArrowCircleRight color="navy" className="text-3xl absolute top-5 right-10" />
-              }
-              {hoveredImageIndex === index && (
-                <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 mb-2 flex space-x-3">
-                  <button className="bg-slate-200 text-black px-4 py-3 rounded mr-1 mt-2">
-                    Download Design
-                  </button>
-                  <button className="bg-blue-500 text-white px-2 py-1 rounded mt-2">
-                    Download Code
-                  </button>
-                </div>
-              )}
-            </div>
-          ))}
+              >
+                {/* Circle overlay for hovered screenshots */}
+                {hoveredImageIndex === index && (
+                  <div className="absolute top-10 left-10 transform -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-blue-500" />
+                )}
+                <Image
+                  src={screenshot}
+                  alt={`Screenshot ${index + 1}`}
+                  className="min-w-[240px] min-h-[200px] w-full object-cover cursor-pointer m-2 rounded-xl"
+                />
+                {hoveredImageIndex === index && (
+                  <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 mb-2 flex space-x-1 whitespace-nowrap">
+                    <button className="bg-slate-100 text-black px-6 py-3 rounded mr-1 text-[1em]">
+                      View Demo
+                    </button>
+                    <button className="bg-blue-500 text-white px-6 py-3 rounded mr-1 text-[1em]">
+                      Buy Now
+                    </button>
+                  </div>
+                )}
+              </div>
+            ))
+            : [screenshot0, screenshot1, screenshot2, screenshot3].map((screenshot, index) => (
+              <div
+                key={index}
+                className="m-4 flex justify-center relative w-2/5"
+                onMouseEnter={() => setHoveredImageIndex(index)}
+                onMouseLeave={() => setHoveredImageIndex(null)}
+              >
+                <Image
+                  src={screenshot}
+                  alt={`Screenshot ${index + 1}`}
+                  className="min-w-[650px] min-h-[400px] w-full object-cover cursor-pointer m-3 rounded-xl"
+                  onClick={() => openModal(index)}
+                />
+                {hoveredImageIndex === index && (
+                  <div className="absolute inset-0 bg-black opacity-50 rounded-xl w-full" />
+                )}
+                {hoveredImageIndex === index && 
+                  <FaArrowCircleRight color="navy" className="text-3xl absolute top-5 right-10" />
+                }
+                {hoveredImageIndex === index && (
+                  <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 mb-2 flex space-x-2 whitespace-nowrap">
+                    <button className="bg-slate-200 text-black px-3 py-3 rounded mr-1 text-sm">
+                      Download Design
+                    </button>
+                    <button className="bg-[#00FF9C] text-black px-3 py-3 rounded mr-1 text-sm">
+                      Download Code
+                    </button>
+                  </div>
+                )}
+              </div>
+            ))
+          }
         </div>
       </div>
 
       {/* Modal for displaying the screenshot */}
       {isModalOpen && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-75 z-50 p-10">
-          <div className="relative bg-white rounded-lg overflow-hidden flex flex-col items-center">
-            <button onClick={closeModal} className="absolute top-2 left-2 text-[35px] text-red-500">✖</button>
-            <button onClick={prevImage} className="absolute left-2 top-1/2 transform -translate-y-1/2 text-3xl text-black">❮</button>
-            <button onClick={nextImage} className="absolute top-1/2 right-[400px] transform -translate-y-1/2 text-3xl text-black">❯</button> {/* Ensure visibility */}
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-75 z-50 p-10 bg-black">
+          <div ref={modalRef} className="relative  rounded-lg overflow-hidden flex flex-col items-center p-10 bg-[#2A3335]/40">
+            <button onClick={prevImage} className="absolute left-2 top-1/2 transform -translate-y-1/2 text-2xl text-white">❮</button>
+            <button onClick={nextImage} className="absolute top-1/2 right-[10px] transform -translate-y-1/2 text-2xl text-white">❯</button> {/* Ensure visibility */}
             
-            <div className="flex"> {/* Added flex container for image and details */}
+            <div className="flex bg-[#1f1f1f] rounded-xl"> {/* Added flex container for image and details */}
               {/* Ensure the image is displayed correctly */}
               <Image
-                src={[screenshot0, screenshot1, screenshot2, screenshot3][currentScreenshotIndex]} // Use current index
+                src={[mobileScreen1, mobileScreen2, mobileScreen3, mobileScreen4, mobileScreen5][currentScreenshotIndex]} // Use current index
                 alt={`Screenshot ${currentScreenshotIndex + 1}`} // Update alt text for accessibility
-                className="w-full h-auto max-w-[800px] max-h-[600px] object-cover" // Set max dimensions
+                className="w-[350px] h-[700px] object-cover rounded-l-xl" // Changed dimensions to 300x300
               />
-              <div className="bg-[#1E1E1E] text-white flex flex-col min-w-[350px] p-10 ml-4"> {/* Moved content here */}
-                <h3 className="text-lg font-semibold mb-2">Sleek Authentication</h3>
-                <p className="text-base text-gray-500 mb-1">Created: Jan 1, 2023 | Downloads: 150</p>
-                <p className="text-base text-gray-500 mb-4">Stack: Figma, React, Tailwind CSS</p>
-                <div className="flex flex-col space-y-2">
-                  <button className="bg-slate-300 text-black px-6 py-3 rounded-lg shadow-md hover:bg-slate-400 transition duration-200">
-                    Download Figma
+              <div className="bg-[#1f1f1f] text-white flex flex-col min-w-[370px] p-5 pl-1/4 rounded-r-lg"> {/* Moved content here */}
+                <h3 className="text-lg font-semibold mb-2 font-inter leading-tight mb-3">E-commerce Shop</h3> {/* Added font */}
+                <p className="text-base text-gray-500 mb-1 font-inter leading-tight mb-3">Type: iOS App, Android App</p>
+                <p className="text-base text-gray-500 mb-1 font-inter leading-tight mb-3">Updated: Jan 3, 2023</p>
+                <p className="text-base text-gray-500 mb-4 font-inter leading-tight mb-3 line-height-3">Stack: Expo, React Native, Tailwind CSS</p>
+
+                <div className="flex flex-col space-y-3">
+   
+                  
+                  <button className="text-sm bg-slate-200 text-black px-6 py-3 rounded-lg shadow-md hover:bg-slate-200/90 transition duration-200">
+                    View Demo
                   </button>
-                  <button className="bg-[#15F5BA] text-black px-6 py-3 rounded-lg shadow-md hover:bg-[#10E5A0] transition duration-200">
-                    Download Code
+
+                  <button className="text-sm bg-slate-200 text-black px-6 py-3 rounded-lg shadow-md hover:bg-slate-200/90 transition duration-200">
+                    Buy $150 
                   </button>
-                  <button className="bg-slate-300 text-black px-6 py-3 rounded-lg shadow-md hover:bg-slate-400 transition duration-200">
-                    Save to Collection
+
+                  <button className="text-sm bg-[#1F509A] text-white px-6 py-3 rounded-lg shadow-md ">
+                    Custom Development
                   </button>
-                  <button className="bg-slate-300 text-black px-6 py-3 rounded-lg shadow-md hover:bg-slate-400 transition duration-200">
-                    Add Review
-                  </button>
+
+                  {/* Separate Divider */}
+                  <div className="border-b-2 border-slate-400 pt-1 pb-1" /> {/* New divider */}
+                  {/* Star Rating Component */}
+                  <div className="flex items-center">
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <span
+                        key={star}
+                        className={`mr-3 cursor-pointer text-3xl ${star <= currentRating ? 'text-yellow-500' : 'text-gray-400'}`}
+                        // onClick={() => handleRating(star)}
+                      >
+                        ★
+                      </span>
+                    ))}
+                  </div>
+                  <p className="text-sm text-white">Average Rating: 4.5 (115 reviews)</p>
+                  {/* Disabled rating functionality */}
                 </div>
               </div>
             </div>

@@ -4,7 +4,7 @@ import { footerLinks } from "@/constants";
 import Image from "next/image";
 import Link from "next/link";
 import { useTheme } from "../context/ThemeContext";
-import { FaStar } from 'react-icons/fa';
+import { FaEnvelope, FaStar } from 'react-icons/fa';
 
 type ColumnProps = {
   title: string;
@@ -51,24 +51,24 @@ const Footer = () => {
             /> */}
           </div>
           <div className="ml-auto">
-            <FooterColumn
+            {/* <FooterColumn
               title={footerLinks[6].title}
               links={footerLinks[6].links}
               theme={theme}
-            />
+            /> */}
           </div>
         </div>
       </div>
 
       <div className="flex flex-col items-center justify-center w-full footer_copyright text-white">
-        <p className={`relative ${theme === 'dark' ? 'text-white' : 'text-black'} text-center`}>
-          @ 2024 ModUI. All rights reserved 
+        <p className={` ${theme === 'dark' ? 'text-white' : 'text-black'} text-center`}>
+          @ 2024 Mobaa. All rights reserved 
         </p>
-        <span className="text-white pl-2">1234 Main St, Delaware, USA</span>
+        <span className={`${theme === 'dark' ? 'text-white' : 'text-black'} pl-2`}>1234 Main St, Delaware, USA</span>
 
         <div className="flex justify-center mt-4">
           <Link href="/premium" className="flex items-center bg-[#] text-white px-4 py-2 rounded">
-            <FaStar className="mr-2" /> Go Premium
+            <FaEnvelope className="mr-2" /> Contact Us
           </Link>
         </div>
       </div>

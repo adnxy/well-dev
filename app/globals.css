@@ -26,10 +26,10 @@ html {
 
 body {
   /* font-family: "Space Grotesk"; */
+  font-family: "Avenir";
 
-  font-family: "Inter";
+  /* font-family: "Inter"; */
   overscroll-behavior: none;
-  padding: 20px;
 }
 
 .flexCenter {
@@ -45,7 +45,6 @@ body {
 }
 
 .layout-background {
- 
 }
 
 .footer {
