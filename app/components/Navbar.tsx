@@ -35,18 +35,20 @@ const Navbar = () => {
     >
       <div className="flex items-center relative ml-3">
       <FaRocket
-          className="text-[#C5FF95] ml-2 cursor-pointer w-5 h-5 md:ml-0 mr-3"
-          onClick={toggleTheme}
+          className="text-[#C5FF95] ml-2 cursor-pointer w-6 h-6 md:ml-0 mr-3"
+          onClick={() => {
+            window.location.href = "/";
+          }}
         />
       {theme === "light" ? (
     
           <FaMoon
-            className="text-gray-800 ml-2 cursor-pointer w-5 h-5 md:ml-0 mr-3"
+            className="text-gray-800 ml-2 cursor-pointer w-6 h-6 md:ml-0 mr-3"
             onClick={toggleTheme}
           />
           ) : (
           <FaSun
-            className="text-gray-800 ml-2 cursor-pointer w-5 h-5 md:ml-0 mr-3"
+            className="text-gray-800 ml-2 cursor-pointer w-6 h-6 md:ml-0 mr-3"
             onClick={toggleTheme}
           />
         )}
@@ -58,8 +60,8 @@ const Navbar = () => {
               key={link.href}
               href={link.href}
               style={{ fontSize: "1em" }}
-              className={`font-[1.1em] cursor-pointer hover:text-slate-300 ${
-                pathname === link.href ? "text-green-500" : theme === "light" ? "text-black" : "text-white"
+              className={`font-[1.1em] font-medium cursor-pointer  ${
+                pathname === link.href ? "text-slate-400" : theme === "light" ? "text-black" : "text-white"
               } hidden md:block`}
             >
               {link.text}
@@ -134,7 +136,7 @@ const Navbar = () => {
             </li>
             <li>
               <Link
-                href="/privacy"
+                href="/agency"
                 className="text-white text-md hover:text-emerald-400"
                 onClick={() => setIsMenuOpen(false)}
               >
@@ -151,7 +153,6 @@ const Navbar = () => {
                 ) : (
                   <Link
                     href={link.href}
-                    className="text-white text-[13px] hover:text-emerald-400"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     {link.text}

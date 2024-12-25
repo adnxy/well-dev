@@ -41,14 +41,13 @@ import {
 
 import { useTheme } from "./context/ThemeContext";
 import axios from "axios";
-import { getLeagueImage } from "./helpers/getLeagueImage";
 
 export const getButtonClass = (theme: string, isSelected: boolean) => {
   if (isSelected && theme === 'light') {
-    return 'font-medium underline underline-offset-8 text-orange-400'; // Selected button color
+    return 'font-medium underline underline-offset-8 text-black'; // Selected button color
   }
   if (isSelected && theme === 'dark') {
-    return 'font-medium underline underline-offset-8 text-orange-400'; // Selected button color
+    return 'font-medium underline underline-offset-8 text-white'; // Selected button color
   }
   return theme === 'light' ? 'text-black' : 'text-white'; // Default button color based on theme
 };
@@ -56,8 +55,8 @@ export const getButtonClass = (theme: string, isSelected: boolean) => {
 const getButtonStyles = (theme: string, isSelected: boolean) => {
   const baseStyle = "px-6 py-2 rounded-full border whitespace-nowrap flex-shrink-0";
   const activeStyle = theme === 'light' 
-    ? "text-orange-400" // Light theme active style
-    : "text-orange-400"; // Dark theme active style
+    ? "bg-[#F0F0F0] border" // Light theme active style
+    : "bg-[#F0F0F0] border"; // Dark theme active style
 
   if (isSelected) { 
     return `${baseStyle} ${activeStyle} `;
@@ -69,7 +68,7 @@ const SoccerBetting = () => {
   const { theme } = useTheme();
 
   // Set default selected filter to "Web" and "Screen"
-  const [selectedFilter, setSelectedFilter] = useState<string | null>("Apps");
+  const [selectedFilter, setSelectedFilter] = useState<string | null>("Mobile");
   const [selectedView, setSelectedView] = useState<string | null>("E-commerce");
   const [hoveredImageIndex, setHoveredImageIndex] = useState<number | null>(null);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -126,17 +125,17 @@ const SoccerBetting = () => {
     setCurrentRating(rating);
   };
 
-  const mobileScreenshots = [mobileScreen1, mobileScreen2, mobileScreen3, mobileScreen4];
+  const mobileScreenshots = [mobileScreen1, mobileScreen2, mobileScreen3, mobileScreen4, mobileScreen1, mobileScreen2, mobileScreen3, mobileScreen4, mobileScreen1, mobileScreen2, mobileScreen3, mobileScreen4, mobileScreen1, mobileScreen2, mobileScreen3, mobileScreen4];
 
   return (
     <section
       className={`${theme === "light" ? "bg-white" : "bg-[#111111]"} flex flex-col items-start w-full flex-1 flex-start flex-start ${styles.body}`}
     >
-
       <div className="flex flex-col items-start w-full flex-1 flex-start flex-start justify-between pl-20">
+      <h1 className={`text-3xl pl-2 mb-2 font-bold ${theme === "light" ? "text-black" : "text-white"}`}>Discover</h1>
 
-      <div className="flex w-full justify-start pl-0 mb-5">
-        {["Apps", "Designs", "Free Resources"].map((filter) => (
+      {/* <div className="flex w-full justify-start pl-0 mb-5">
+        {["Mobile", "Free Resources"].map((filter) => (
           <div className="flex flex-col items-start w-1/1 justify-start">
             <button
               key={filter}
@@ -147,10 +146,10 @@ const SoccerBetting = () => {
             </button>
           </div>
         ))}
-      </div>
+      </div> */}
 
-      <div className="flex w-full space-x-3 justify-start pl-1">
-        {["E-commerce", "Fitness", "Fintech", "Crypto"].map((view) => (
+      <div className="flex w-full space-x-3 justify-start pl-1 mt-3">
+        {["E-commerce", "Ordering", "Fitness", "Crypto"].map((view) => (
           <button
             key={view}
             onClick={() => {
@@ -170,31 +169,31 @@ const SoccerBetting = () => {
       </div>
 
       <div className="flex flex-col items-center justify-center w-full">
-        <div className="flex flex-wrap justify-start mt-5 w-full pl-20">
-          {selectedFilter === "Apps" 
+        <div className="flex overflow-x-auto mt-5 w-full pl-20">
+          {selectedFilter === "Mobile"
             ? mobileScreenshots.map((screenshot, index) => (
               <div
                 key={index}
-                className="m-1 flex justify-center relative w-1/5 mr-[20px]"
+                className="m-1 flex justify-center relative w-auto"
                 onMouseEnter={() => setHoveredImageIndex(index)}
                 onMouseLeave={() => setHoveredImageIndex(null)}
                 onClick={() => openModal(index)}
               >
                 {/* Circle overlay for hovered screenshots */}
                 {hoveredImageIndex === index && (
-                  <div className="absolute top-10 left-10 transform -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-blue-500" />
+                  <div className="absolute top-10 left-10 transform -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-[#111111]" />
                 )}
                 <Image
                   src={screenshot}
                   alt={`Screenshot ${index + 1}`}
-                  className="min-w-[240px] min-h-[200px] w-full object-cover cursor-pointer m-2 rounded-xl"
+                  className="min-w-[300px] min-h-[200px] w-full object-cover cursor-pointer m-2 rounded-xl"
                 />
                 {hoveredImageIndex === index && (
                   <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 mb-2 flex space-x-1 whitespace-nowrap">
-                    <button className="bg-slate-100 text-black px-6 py-3 rounded mr-1 text-[1em]">
+                    <button className="bg-slate-100 text-black px-6 py-3 rounded-full mr-1 text-[1em]">
                       View Demo
                     </button>
-                    <button className="bg-blue-500 text-white px-6 py-3 rounded mr-1 text-[1em]">
+                    <button className="bg-[#111111] text-white px-6 py-3 rounded-full mr-1 text-[1em]">
                       Buy Now
                     </button>
                   </div>
@@ -204,14 +203,14 @@ const SoccerBetting = () => {
             : [screenshot0, screenshot1, screenshot2, screenshot3].map((screenshot, index) => (
               <div
                 key={index}
-                className="m-4 flex justify-center relative w-2/5"
+                className="m-4 flex justify-center relative w-full md:w-2/5"
                 onMouseEnter={() => setHoveredImageIndex(index)}
                 onMouseLeave={() => setHoveredImageIndex(null)}
               >
                 <Image
                   src={screenshot}
                   alt={`Screenshot ${index + 1}`}
-                  className="min-w-[650px] min-h-[400px] w-full object-cover cursor-pointer m-3 rounded-xl"
+                  className="min-w-[550px] min-h-[400px] w-full object-cover cursor-pointer m-3 rounded-xl"
                   onClick={() => openModal(index)}
                 />
                 {hoveredImageIndex === index && (
@@ -268,7 +267,7 @@ const SoccerBetting = () => {
                   </button>
 
                   <button className="text-sm bg-[#1F509A] text-white px-6 py-3 rounded-lg shadow-md ">
-                    Custom Development
+                    Hire Us
                   </button>
 
                   {/* Separate Divider */}

@@ -5,9 +5,9 @@ import Footer from "./components/Footer";
 import { ThemeProvider } from "./context/ThemeContext";
 
 export const metadata: Metadata = {
-  title: "Mobaa - Build Faster Mobile Apps",
+  title: "Discover Mobile App Templates & Designs",
   description:
-    "Helping businesses build mobile apps faster and better",
+    "Discover mobile app designs and coded apps for your business",
 };
 
 export default function RootLayout({

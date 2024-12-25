@@ -4,7 +4,6 @@ import Sidebar from '../components/Sidebar';
 import { FaDotCircle } from 'react-icons/fa';
 import axios from 'axios';
 import Image from 'next/image';
-import { getLeagueImage } from '../helpers/getLeagueImage';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
@@ -146,29 +145,11 @@ console.log('start date', startDate)
               {/* <h3 className="text-xl font-semibold mb-4">All Predictions</h3> */}
               <ul className="max-h-41 overflow-y-auto">
                 {predictions.map((prediction, index) => {
-                  const leagueImage = getLeagueImage(prediction.league);
-                  const matchDate = prediction.start_date 
-                    ? new Date(prediction.start_date).toLocaleDateString('en-GB')
-                    : new Date(prediction.date_time).toLocaleDateString('en-GB');
                   const predictionOutcome = prediction.prediction || 'X';
                   return (
                     <li key={index} className="flex justify-between items-center p-6 border border-slate-200 bg-slate-50 rounded-lg mb-3">
-                      <div className="flex items-center">
-                        {leagueImage && (
-                          <Image
-                            src={leagueImage}
-                            alt="League Icon"
-                            width={25}
-                            height={25}
-                            className="mr-3"
-                          />
-                        )}
-                        <div>
-                          <span className="font-semibold">{prediction.home_team} vs {prediction.away_team}</span>
-                          <p className="text-sm">{matchDate}</p>
-                          <span className="text-sm">Prediction: {predictionOutcome}</span>
-                        </div>
-                      </div>
+
+
                       {prediction.prediction_probability ? (
                         <div className="mt-2">
                           <span className="text-sm mr-2">Probability: {prediction.prediction_probability}%</span>

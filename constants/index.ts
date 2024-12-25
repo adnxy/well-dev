@@ -3,9 +3,10 @@ export const NavLinks = [
   // { href: '/', key: 'Hire Us', text: 'Hire Us' },
   // { href: "/login", key: "Hire Us", text: "Login" },
   // { href: '/jobs', key: 'Jobs', text: 'Get Started' },
-  { href: "/pricing", key: "Jobs", text: "About" },
-  { href: "/submit", key: "Jobs", text: "Careers" },
-  { href: "/submit", key: "Jobs", text: "Privacy" },
+  { href: "/", key: "Jobs", text: "Templates" },
+  // { href: "/about", key: "About", text: "About" },
+  { href: "/careers", key: "Jobs", text: "Careers" },
+  { href: "/agency", key: "Jobs", text: "Hire us" },
 
 
 ];
