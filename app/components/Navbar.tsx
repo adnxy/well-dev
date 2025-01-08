@@ -6,7 +6,14 @@ import Link from "next/link";
 import React, { useState, useContext, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import rb from "../../public/goal-post.png";
-import { FaBars, FaTimes, FaSearch, FaMoon, FaSun, FaRocket } from "react-icons/fa";
+import {
+  FaBars,
+  FaTimes,
+  FaSearch,
+  FaMoon,
+  FaSun,
+  FaRocket,
+} from "react-icons/fa";
 import { useTheme } from "../context/ThemeContext";
 
 const Navbar = () => {
@@ -34,34 +41,24 @@ const Navbar = () => {
       } shadow-lg`}
     >
       <div className="flex items-center relative ml-3">
-      <FaRocket
-          className="text-[#C5FF95] ml-2 cursor-pointer w-6 h-6 md:ml-0 mr-3"
+        <FaRocket
+          className="text-[#C5FF95] ml-2 cursor-pointer w-7 h-7 md:ml-0 mr-3"
           onClick={() => {
             window.location.href = "/";
           }}
         />
-      {theme === "light" ? (
-    
-          <FaMoon
-            className="text-gray-800 ml-2 cursor-pointer w-6 h-6 md:ml-0 mr-3"
-            onClick={toggleTheme}
-          />
-          ) : (
-          <FaSun
-            className="text-gray-800 ml-2 cursor-pointer w-6 h-6 md:ml-0 mr-3"
-            onClick={toggleTheme}
-          />
-        )}
-  
-
         <div className="flex space-x-4 ml-1">
           {NavLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              style={{ fontSize: "1em" }}
+              style={{ fontSize: "1.1em" }}
               className={`font-[1.1em] font-medium cursor-pointer  ${
-                pathname === link.href ? "text-slate-400" : theme === "light" ? "text-black" : "text-white"
+                pathname === link.href
+                  ? "text-white"
+                  : theme === "light"
+                  ? "text-black"
+                  : "text-white/60"
               } hidden md:block`}
             >
               {link.text}
@@ -70,17 +67,43 @@ const Navbar = () => {
         </div>
       </div>
 
+      {/* New Links for Blog and Pricing - Moved next to the toggle menu */}
+      <div className="flex items-center space-x-4 relative right-[120px]">
+
+
+        {/* Moved theme toggle icons here */}
+        {theme === "light" ? (
+          <FaMoon
+            className="text-gray-800 cursor-pointer w-6 h-6"
+            onClick={toggleTheme}
+          />
+        ) : (
+          <FaSun
+            className="text-gray-800 cursor-pointer w-6 h-6"
+            onClick={toggleTheme}
+          />
+        )}
+      </div>
+
       {/* Mobile menu button */}
       <button
-        className={`md:hidden ${theme === "light" ? "text-black" : "text-white"}`}
+        className={`md:hidden ${
+          theme === "light" ? "text-black" : "text-white"
+        }`}
         onClick={() => {
           setIsMenuOpen(!isMenuOpen);
         }}
       >
         {isMenuOpen ? (
-          <FaTimes className={theme === "light" ? "text-black" : "text-white"} size={24} />
+          <FaTimes
+            className={theme === "light" ? "text-black" : "text-white"}
+            size={24}
+          />
         ) : (
-          <FaBars className={theme === "light" ? "text-black" : "text-white"} size={24} />
+          <FaBars
+            className={theme === "light" ? "text-black" : "text-white"}
+            size={24}
+          />
         )}
       </button>
 
@@ -95,19 +118,25 @@ const Navbar = () => {
           <Link href="/pricing" className="text-white text-md hover:text-emerald-400">Pricing</Link>
         </li> */}
 
-          <div className="flex items-center space-x-4 relative right-[120px]">
-            {/* <button className="border border-gray-500 text-gray-500 rounded-full px-10 py-2 text-sm font-medium hover:bg-gray-500 hover:text-white transition w-full text-center whitespace-nowrap">
+        <div className="flex items-center space-x-4 relative right-[120px]">
+          {/* <button className="border border-gray-500 text-gray-500 rounded-full px-10 py-2 text-sm font-medium hover:bg-gray-500 hover:text-white transition w-full text-center whitespace-nowrap">
             <Link href="/login" style={{ fontSize: "1.1em", color: "white" }}> Start selling</Link>
             </button> */}
-            <button className="no-wrap bg-[#343131] hover:bg-[#343131]/80 w-full text-white rounded-full px-8 py-3 text-sm font-medium hover:bg-gray-500 hover:text-white transition w-full text-center min-w-[80px] whitespace-nowrap">
-              <Link href="/login" style={{ fontSize: "1.1em", color: "white" }}>Schedule a call</Link>
-            </button>
-          </div>
+          <button className="no-wrap bg-[#343131] hover:bg-[#343131]/80 w-full text-white rounded-full px-8 py-3 text-sm font-medium hover:bg-gray-500 hover:text-white transition w-full text-center min-w-[80px] whitespace-nowrap">
+            <Link href="/login" style={{ fontSize: "1.15em", color: "white" }}>
+              Subscribe
+            </Link>
+          </button>
+        </div>
       </ul>
 
       {/* Mobile menu */}
       {isMenuOpen && (
-        <div className={`p-10 md:hidden w-full h-auto flex flex-col items-end absolute top-0 left-0 z-10 h-1/1 p-10 ${theme === "light" ? "bg-black" : "bg-[#3A6351]"}`}>
+        <div
+          className={`p-10 md:hidden w-full h-auto flex flex-col items-end absolute top-0 left-0 z-10 h-1/1 p-10 ${
+            theme === "light" ? "bg-black" : "bg-[#3A6351]"
+          }`}
+        >
           {/* Close button */}
           <button
             className="text-white mb-4"
@@ -143,17 +172,20 @@ const Navbar = () => {
                 Privacy
               </Link>
             </li>
-            
+
             {NavLinks.map((link, index) => (
               <li key={index}>
                 {link.text === "Sign up" ? (
                   <button className="border border-emerald-500 text-emerald-500 rounded-full px-5 py-2 text-sm font-medium hover:bg-emerald-500 hover:text-white transition w-full text-center">
-                    <Link href={link.href} onClick={() => setIsMenuOpen(false)}>{link.text}</Link>
+                    <Link href={link.href} onClick={() => setIsMenuOpen(false)}>
+                      {link.text}
+                    </Link>
                   </button>
                 ) : (
-                  <Link
-                    href={link.href}
-                    onClick={() => setIsMenuOpen(false)}
+                  <Link 
+                    href={link.href} 
+                    onClick={() => setIsMenuOpen(false)} 
+                    className={theme === "light" ? "text-black" : "text-white"}
                   >
                     {link.text}
                   </Link>

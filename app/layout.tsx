@@ -5,9 +5,9 @@ import Footer from "./components/Footer";
 import { ThemeProvider } from "./context/ThemeContext";
 
 export const metadata: Metadata = {
-  title: "Discover Mobile App Templates & Designs",
+  title: "Discover Well Crafted App Inspiration",
   description:
-    "Discover mobile app designs and coded apps for your business",
+    "Discover inspiring app designs and coded apps for your business",
 };
 
 export default function RootLayout({

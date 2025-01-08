@@ -53,7 +53,7 @@ export const getButtonClass = (theme: string, isSelected: boolean) => {
 };
 
 const getButtonStyles = (theme: string, isSelected: boolean) => {
-  const baseStyle = "px-6 py-2 rounded-full border whitespace-nowrap flex-shrink-0";
+  const baseStyle = "px-6 py-2 rounded-full border border-[#3D3D3D] whitespace-nowrap flex-shrink-0";
   const activeStyle = theme === 'light' 
     ? "bg-[#F0F0F0] border" // Light theme active style
     : "bg-[#F0F0F0] border"; // Dark theme active style
@@ -61,15 +61,15 @@ const getButtonStyles = (theme: string, isSelected: boolean) => {
   if (isSelected) { 
     return `${baseStyle} ${activeStyle} `;
   }
-  return `${baseStyle} ${theme === 'light' ? 'text-black' : 'text-white'}`; // Default text color for dark theme
+  return `${baseStyle} ${theme === 'light' ? 'text-black' : 'text-[#F0F0F0]'}`; // Default text color for dark theme
 };
 
-const SoccerBetting = () => {
+const Landing = () => {
   const { theme } = useTheme();
 
   // Set default selected filter to "Web" and "Screen"
-  const [selectedFilter, setSelectedFilter] = useState<string | null>("Mobile");
-  const [selectedView, setSelectedView] = useState<string | null>("E-commerce");
+  const [selectedFilter, setSelectedFilter] = useState<string | null>("Web");
+  const [selectedView, setSelectedView] = useState<string | null>("Apps");
   const [hoveredImageIndex, setHoveredImageIndex] = useState<number | null>(null);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [currentScreenshotIndex, setCurrentScreenshotIndex] = useState<number>(0);
@@ -87,7 +87,6 @@ const SoccerBetting = () => {
   };
 
   const openModal = (index: number) => {
-    console.log("openModal", index);
     setCurrentScreenshotIndex(index);
     setIsModalOpen(true);
   };
@@ -103,13 +102,22 @@ const SoccerBetting = () => {
   };
 
   useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        closeModal();
+      }
+    };
+
     if (isModalOpen) {
       document.addEventListener("mousedown", handleClickOutside);
+      document.addEventListener("keydown", handleKeyDown);
     } else {
       document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("keydown", handleKeyDown);
     }
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("keydown", handleKeyDown);
     };
   }, [isModalOpen]);
 
@@ -125,17 +133,17 @@ const SoccerBetting = () => {
     setCurrentRating(rating);
   };
 
-  const mobileScreenshots = [mobileScreen1, mobileScreen2, mobileScreen3, mobileScreen4, mobileScreen1, mobileScreen2, mobileScreen3, mobileScreen4, mobileScreen1, mobileScreen2, mobileScreen3, mobileScreen4, mobileScreen1, mobileScreen2, mobileScreen3, mobileScreen4];
+  const mobileScreenshots = [mobileScreen1, mobileScreen2, mobileScreen3, mobileScreen4, mobileScreen1, mobileScreen2];
 
   return (
     <section
       className={`${theme === "light" ? "bg-white" : "bg-[#111111]"} flex flex-col items-start w-full flex-1 flex-start flex-start ${styles.body}`}
     >
       <div className="flex flex-col items-start w-full flex-1 flex-start flex-start justify-between pl-20">
-      <h1 className={`text-3xl pl-2 mb-2 font-bold ${theme === "light" ? "text-black" : "text-white"}`}>Discover</h1>
+      <h1 className={`text-3xl pl-2 mb-2 font-bold ${theme === "light" ? "text-black" : "text-white"}`}>Discover </h1>
 
-      {/* <div className="flex w-full justify-start pl-0 mb-5">
-        {["Mobile", "Free Resources"].map((filter) => (
+     <div className="flex w-full justify-start pl-0 mb-2">
+        {["Web", "React Native", "Flutter", "Android", "iOS" ].map((filter) => (
           <div className="flex flex-col items-start w-1/1 justify-start">
             <button
               key={filter}
@@ -146,10 +154,10 @@ const SoccerBetting = () => {
             </button>
           </div>
         ))}
-      </div> */}
+      </div> 
 
-      <div className="flex w-full space-x-3 justify-start pl-1 mt-3">
-        {["E-commerce", "Ordering", "Fitness", "Crypto"].map((view) => (
+      <div className="flex overflow-x-auto w-full space-x-3 justify-start pl-1 mt-3">
+        {["Apps", "Screens", "Workflows", "UI Elements", "Animations"].map((view) => (
           <button
             key={view}
             onClick={() => {
@@ -169,15 +177,15 @@ const SoccerBetting = () => {
       </div>
 
       <div className="flex flex-col items-center justify-center w-full">
-        <div className="flex overflow-x-auto mt-5 w-full pl-20">
-          {selectedFilter === "Mobile"
+        <div className="flex overflow-x-auto mt-5 w-full pl-0 md:pl-20 flex-col md:flex-row">
+          {selectedFilter === "React Native" || selectedFilter === "Flutter" || selectedFilter === "Android" || selectedFilter === "iOS"
             ? mobileScreenshots.map((screenshot, index) => (
               <div
                 key={index}
-                className="m-1 flex justify-center relative w-auto"
+                className="m-1 flex justify-center relative w-full md:w-auto"
                 onMouseEnter={() => setHoveredImageIndex(index)}
                 onMouseLeave={() => setHoveredImageIndex(null)}
-                onClick={() => openModal(index)}
+                onClick={() => window.location.href = `/template/${index}`}
               >
                 {/* Circle overlay for hovered screenshots */}
                 {hoveredImageIndex === index && (
@@ -186,7 +194,7 @@ const SoccerBetting = () => {
                 <Image
                   src={screenshot}
                   alt={`Screenshot ${index + 1}`}
-                  className="min-w-[300px] min-h-[200px] w-full object-cover cursor-pointer m-2 rounded-xl"
+                  className="min-w-[320px] min-h-[200px] w-full object-cover cursor-pointer m-2 rounded-xl"
                 />
                 {hoveredImageIndex === index && (
                   <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 mb-2 flex space-x-1 whitespace-nowrap">
@@ -203,7 +211,7 @@ const SoccerBetting = () => {
             : [screenshot0, screenshot1, screenshot2, screenshot3].map((screenshot, index) => (
               <div
                 key={index}
-                className="m-4 flex justify-center relative w-full md:w-2/5"
+                className="m-4 flex justify-center relative w-full md:w-2/5 bg-blue-500"
                 onMouseEnter={() => setHoveredImageIndex(index)}
                 onMouseLeave={() => setHoveredImageIndex(null)}
               >
@@ -237,47 +245,50 @@ const SoccerBetting = () => {
 
       {/* Modal for displaying the screenshot */}
       {isModalOpen && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-75 z-50 p-10 bg-black">
-          <div ref={modalRef} className="relative  rounded-lg overflow-hidden flex flex-col items-center p-10 bg-[#2A3335]/40">
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-75 z-50 p-0">
+          <div ref={modalRef} className="relative w-[95%] max-h-[95%] flex flex-col items-center p-0 bg-[#1E1E1E]/90 overflow-hidden rounded-xl">
             <button onClick={prevImage} className="absolute left-2 top-1/2 transform -translate-y-1/2 text-2xl text-white">❮</button>
             <button onClick={nextImage} className="absolute top-1/2 right-[10px] transform -translate-y-1/2 text-2xl text-white">❯</button> {/* Ensure visibility */}
             
-            <div className="flex bg-[#1f1f1f] rounded-xl"> {/* Added flex container for image and details */}
-              {/* Ensure the image is displayed correctly */}
+            <div className="flex bg-[#1f1f1f] rounded-none  mt-10 mb-10  rounded-xl"> {/* Changed rounded to none */}
               <Image
                 src={[mobileScreen1, mobileScreen2, mobileScreen3, mobileScreen4, mobileScreen5][currentScreenshotIndex]} // Use current index
                 alt={`Screenshot ${currentScreenshotIndex + 1}`} // Update alt text for accessibility
-                className="w-[350px] h-[700px] object-cover rounded-l-xl" // Changed dimensions to 300x300
+                className="w-full h-[700px] object-cover rounded-xl" // Changed dimensions to full
               />
-              <div className="bg-[#1f1f1f] text-white flex flex-col min-w-[370px] p-5 pl-1/4 rounded-r-lg"> {/* Moved content here */}
-                <h3 className="text-lg font-semibold mb-2 font-inter leading-tight mb-3">E-commerce Shop</h3> {/* Added font */}
-                <p className="text-base text-gray-500 mb-1 font-inter leading-tight mb-3">Type: iOS App, Android App</p>
-                <p className="text-base text-gray-500 mb-1 font-inter leading-tight mb-3">Updated: Jan 3, 2023</p>
+              <div className="bg-[#1f1f1f] text-white flex flex-col min-w-[370px] p-5 pl-1/4 rounded-none"> {/* Changed rounded to none */}
+                <h3 className="text-[1.4em] font-semibold mb-2 font-inter leading-tight mb-3">E-commerce Shop</h3> {/* Added font */}
+                <p className="text-[1em] text-gray-500 mb-1 font-inter leading-tight mb-3">Type: iOS App, Android App</p>
+                <p className="text-[1em] text-gray-500 mb-1 font-inter leading-tight mb-3">Updated: Jan 3, 2023</p>
                 <p className="text-base text-gray-500 mb-4 font-inter leading-tight mb-3 line-height-3">Stack: Expo, React Native, Tailwind CSS</p>
+                <div className="border-b-2 border-slate-200 pt-1 pb-1" />
+                <div className="flex flex-col space-y-2 mt-5 mb-5">
+                  <p className="text-sm text-gray-500 mb-4 font-inter leading-tight mb-3 line-height-3">Easy to customize</p>
+                  <p className="text-sm text-gray-500 mb-4 font-inter leading-tight mb-3 line-height-3">Easy to customize</p>
+                  <p className="text-sm text-gray-500 mb-4 font-inter leading-tight mb-3 line-height-3">Easy to customize</p>
+                </div>
 
                 <div className="flex flex-col space-y-3">
-   
-                  
                   <button className="text-sm bg-slate-200 text-black px-6 py-3 rounded-lg shadow-md hover:bg-slate-200/90 transition duration-200">
                     View Demo
                   </button>
 
                   <button className="text-sm bg-slate-200 text-black px-6 py-3 rounded-lg shadow-md hover:bg-slate-200/90 transition duration-200">
-                    Buy $150 
+                    Buy $199 
                   </button>
 
                   <button className="text-sm bg-[#1F509A] text-white px-6 py-3 rounded-lg shadow-md ">
-                    Hire Us
+                    Customize
                   </button>
 
                   {/* Separate Divider */}
-                  <div className="border-b-2 border-slate-400 pt-1 pb-1" /> {/* New divider */}
+                  <div className="border-b-21 border-slate-200 pt-1 pb-1" /> {/* New divider */}
                   {/* Star Rating Component */}
                   <div className="flex items-center">
                     {[1, 2, 3, 4, 5].map((star) => (
                       <span
                         key={star}
-                        className={`mr-3 cursor-pointer text-3xl ${star <= currentRating ? 'text-yellow-500' : 'text-gray-400'}`}
+                        className={`mr-3 cursor-pointer text-2xl ${star <= currentRating ? 'text-yellow-500' : 'text-gray-400'}`}
                         // onClick={() => handleRating(star)}
                       >
                         ★
@@ -296,4 +307,4 @@ const SoccerBetting = () => {
   );
 };
 
-export default SoccerBetting;
+export default Landing;

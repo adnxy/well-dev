@@ -1,12 +1,9 @@
 export const NavLinks = [
-  // { href: '/', key: 'Templates', text: 'Limited Templates' },
-  // { href: '/', key: 'Hire Us', text: 'Hire Us' },
-  // { href: "/login", key: "Hire Us", text: "Login" },
-  // { href: '/jobs', key: 'Jobs', text: 'Get Started' },
-  { href: "/", key: "Jobs", text: "Templates" },
-  // { href: "/about", key: "About", text: "About" },
-  { href: "/careers", key: "Jobs", text: "Careers" },
-  { href: "/agency", key: "Jobs", text: "Hire us" },
+  { href: "/", key: "Jobs", text: "Discover" },
+  { href: "/faq", key: "Jobs", text: "FAQ" },
+  { href: "/agency", key: "Jobs", text: "Learn" },
+  { href: "/agency", key: "Jobs", text: "Start Selling" },
+
 
 
 ];
@@ -24,10 +21,6 @@ export const categoryFilters = [
     name: "Webflow",
     img: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/webflow/webflow-original.svg",
   },
-  //  { name: "Tailwind", img: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg"},
-  //  { name: "React Native", img: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg"},
-  //  { name: "React", img: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg"},
-  //  { name: "Next.js", img: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg"},
 ];
 
 export const footerLinks = [
