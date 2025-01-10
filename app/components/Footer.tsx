@@ -68,7 +68,7 @@ const Footer = () => {
 
         <div className="flex justify-center mt-4">
           <Link href="/premium" className="flex items-center bg-[#] text-white px-4 py-2 rounded">
-            <FaEnvelope className="mr-2" /> Contact Us
+            <FaEnvelope className="mr-2" /> Contact Us For Collaboration
           </Link>
         </div>
       </div>

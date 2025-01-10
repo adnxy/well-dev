@@ -68,7 +68,7 @@ const Landing = () => {
   const { theme } = useTheme();
 
   // Set default selected filter to "Web" and "Screen"
-  const [selectedFilter, setSelectedFilter] = useState<string | null>("Web");
+  const [selectedFilter, setSelectedFilter] = useState<string | null>("React Native");
   const [selectedView, setSelectedView] = useState<string | null>("Apps");
   const [hoveredImageIndex, setHoveredImageIndex] = useState<number | null>(null);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -140,10 +140,13 @@ const Landing = () => {
       className={`${theme === "light" ? "bg-white" : "bg-[#111111]"} flex flex-col items-start w-full flex-1 flex-start flex-start ${styles.body}`}
     >
       <div className="flex flex-col items-start w-full flex-1 flex-start flex-start justify-between pl-20">
-      <h1 className={`text-3xl pl-2 mb-2 font-bold ${theme === "light" ? "text-black" : "text-white"}`}>Discover </h1>
+      <h1 className={`text-3xl pl-2 mb-2 font-bold ${theme === "light" ? "text-black" : "text-white"}`}>Discover</h1>
+      <h2 className={`text-xl pl-2 mb-4 font-normal ${theme === "light" ? "text-black" : "text-[#EEEEEE]"}`}>
+        Get inspired with mobile design patterns, workflows and pre-coded solutions all in one place.
+      </h2>
 
      <div className="flex w-full justify-start pl-0 mb-2">
-        {["Web", "React Native", "Flutter", "Android", "iOS" ].map((filter) => (
+        {["React Native", "Flutter", "Android", "iOS" ].map((filter) => (
           <div className="flex flex-col items-start w-1/1 justify-start">
             <button
               key={filter}
@@ -157,7 +160,7 @@ const Landing = () => {
       </div> 
 
       <div className="flex overflow-x-auto w-full space-x-3 justify-start pl-1 mt-3">
-        {["Apps", "Screens", "Workflows", "UI Elements", "Animations"].map((view) => (
+        {["Apps", "Screens", "Workflows", "UI Elements", "Figma", "Illustrations", "Icons", "Animations"].map((view) => (
           <button
             key={view}
             onClick={() => {
@@ -302,6 +305,7 @@ const Landing = () => {
             </div>
           </div>
         </div>
+        
       )}
     </section>
   );
