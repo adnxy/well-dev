@@ -141,8 +141,8 @@ const Landing = () => {
     >
       <div className="flex flex-col items-start w-full flex-1 flex-start flex-start justify-between pl-20">
       <h1 className={`text-3xl pl-2 mb-2 font-bold ${theme === "light" ? "text-black" : "text-white"}`}>Discover</h1>
-      <h2 className={`text-xl pl-2 mb-4 font-normal ${theme === "light" ? "text-black" : "text-[#EEEEEE]"}`}>
-        Get inspired with mobile design patterns, workflows and pre-coded solutions all in one place.
+      <h2 className={`text-[1.1em] pl-2 mb-4 font-normal ${theme === "light" ? "text-black" : "text-[#EEEEEE]"}`}>
+        Get inspired and download mobile design patterns, workflows and pre-coded solutions.
       </h2>
 
      <div className="flex w-full justify-start pl-0 mb-2">
@@ -160,7 +160,7 @@ const Landing = () => {
       </div> 
 
       <div className="flex overflow-x-auto w-full space-x-3 justify-start pl-1 mt-3">
-        {["Apps", "Screens", "Workflows", "UI Elements", "Figma", "Illustrations", "Icons", "Animations"].map((view) => (
+        {["Apps", "Screens", "Workflows", "UI Elements", "Designs", "Illustrations", "Icons", "Animations"].map((view) => (
           <button
             key={view}
             onClick={() => {

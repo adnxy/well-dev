@@ -67,23 +67,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* New Links for Blog and Pricing - Moved next to the toggle menu */}
-      <div className="flex items-center space-x-4 relative right-[120px]">
 
-
-        {/* Moved theme toggle icons here */}
-        {/* {theme === "light" ? (
-          <FaMoon
-            className="text-gray-800 cursor-pointer w-6 h-6"
-            onClick={toggleTheme}
-          />
-        ) : (
-          <FaSun
-            className="text-gray-800 cursor-pointer w-6 h-6"
-            onClick={toggleTheme}
-          />
-        )} */}
-      </div>
 
       {/* Mobile menu button */}
       <button
@@ -122,11 +106,20 @@ const Navbar = () => {
           {/* <button className="border border-gray-500 text-gray-500 rounded-full px-10 py-2 text-sm font-medium hover:bg-gray-500 hover:text-white transition w-full text-center whitespace-nowrap">
             <Link href="/login" style={{ fontSize: "1.1em", color: "white" }}> Start selling</Link>
             </button> */}
-          <button className="no-wrap bg-[#343131] hover:bg-[#343131]/80 w-full text-white rounded-full px-8 py-3 text-sm font-medium hover:bg-gray-500 hover:text-white transition w-full text-center min-w-[80px] whitespace-nowrap">
-            <Link href="/login" style={{ fontSize: "1.1em", color: "white" }}>
-              Schedule a call
-            </Link>
-          </button>
+          {/* New Links for Blog and Pricing - Moved next to the toggle menu */}
+          <div className="flex items-center space-x-4 relative left-[120px]">
+        <button className="no-wrap border border-gray hover:bg-[#343131]/80 w-full text-white rounded-full px-7 py-2 text-sm font-medium hover:bg-gray-500 hover:text-white transition w-full text-center min-w-[80px] whitespace-nowrap">
+          <Link href="/login" className="text-[1em]">
+            Login
+          </Link>
+        </button>
+        <button className="no-wrap bg-[#343131] hover:bg-[#343131]/80 w-full text-white rounded-full px-7 py-2 text-sm font-medium hover:bg-gray-500 hover:text-white transition w-full text-center min-w-[80px] whitespace-nowrap">
+          <Link href="/register" className="text-[1em]">
+            Register
+          </Link>
+        </button>
+
+      </div>
         </div>
       </ul>
 

@@ -15,6 +15,7 @@ const TemplatePage = () => {
   const category = "Artificial Intelligence"; // Replace with dynamic data
   const stack = "React Native, Expo"; // Replace with dynamic data
   const delivery = "Figma, Code"; // Replace with dynamic data
+  const description = "AI Chatbot, a React Native app that allows you to chat with AI. Created with Expo and React Native. Easy to customize and customize. Documentation and support included."; // Replace with dynamic data
   const screenshots = [
     mobileScreen1,
     mobileScreen2,
@@ -83,13 +84,14 @@ const TemplatePage = () => {
     <div>
       <div className="flex flex-col items-start justify-start pl-20 mt-10">
         <h1 className="text-4xl font-bold text-white mb-2">{title}</h1>
+        <h2 className="text-[1em] mb-4 font-normal text-white max-w-[800px] overflow-wrap break-word">{description}</h2>  
         <div className="flex justify-start items-start bg-[#2E2E2E] rounded-full w-[98%] px-5 py-2 mt-3 mb-4 pr-10">
           <p className="text-white">
             <span className="text-emerald-500 bg-white px-3 py-0 rounded-full mr-3 text-[0.9em] font-bold">
               PRO
             </span>{" "}
-            Subscribe to get access to all resources and weekly new resources in your inbox{" "}
-            <span className="text-emerald-500 underline underline-offset-4 cursor-pointer ml-2">
+            Subscribe to get access to every resource and weekly new ones in your inbox{" "}
+            <span className="text-emerald-500 underline underline-offset-4 cursor-pointer ml-1">
               Upgrade for $10 per month
             </span>
           </p>
