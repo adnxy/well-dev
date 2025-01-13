@@ -5,7 +5,7 @@ import Footer from "./components/Footer";
 import { ThemeProvider } from "./context/ThemeContext";
 
 export const metadata: Metadata = {
-  title: "Discover Well Crafted App Inspiration",
+  title: "Mobile Design & Templates Library",
   description:
     "Discover inspiring app designs and coded apps for your business",
 };

@@ -141,12 +141,12 @@ const Landing = () => {
     >
       <div className="flex flex-col items-start w-full flex-1 flex-start flex-start justify-between pl-20">
       <h1 className={`text-3xl pl-2 mb-2 font-bold ${theme === "light" ? "text-black" : "text-white"}`}>Discover</h1>
-      <h2 className={`text-[1.1em] pl-2 mb-4 font-normal ${theme === "light" ? "text-black" : "text-[#EEEEEE]"}`}>
-        Get inspired and download mobile design patterns, workflows and pre-coded solutions.
+      <h2 className={`text-[1.1em] pl-2 mb-4 font-medium ${theme === "light" ? "text-black" : "text-[#EEEEEE]"}`}>
+        Get inspired and download premium mobile designs, elements, workflows and pre-coded templates.
       </h2>
 
      <div className="flex w-full justify-start pl-0 mb-2">
-        {["React Native", "Flutter", "Android", "iOS" ].map((filter) => (
+        {["React Native", "Flutter", "Android", "iOS", "Figma" ].map((filter) => (
           <div className="flex flex-col items-start w-1/1 justify-start">
             <button
               key={filter}
@@ -160,7 +160,7 @@ const Landing = () => {
       </div> 
 
       <div className="flex overflow-x-auto w-full space-x-3 justify-start pl-1 mt-3">
-        {["Apps", "Screens", "Workflows", "UI Elements", "Designs", "Illustrations", "Icons", "Animations"].map((view) => (
+        {["Apps", "Workflows", "Screens", "UI Elements"].map((view) => (
           <button
             key={view}
             onClick={() => {
@@ -307,6 +307,44 @@ const Landing = () => {
         </div>
         
       )}
+
+      {/* New Section */}
+      <div className="flex flex-col items-center justify-left w-full mt-20 pl-40">
+        <h2 className={`text-4xl font-bold ${theme === "light" ? "text-black" : "text-white"} w-1/2 text-center line-height-10`}>
+          The world’s premium design inspiration and pre-coded solutions
+        </h2>
+        <div className="mt-4 p-6 border rounded-lg shadow-lg bg-[#1E1E1E]/40 mb-2 mt-8 w-1/2 line-height-10">
+          {/* Content for the box can be added here */}
+          <p style={{fontSize: '1.15em'}} className={`text-center ${theme === "light" ? "text-black" : "text-white"} font-inter line-height-30 font-xl font-[#1E1E1E] font-normal font-[15em]`}>
+            Explore a vast collection of design resources, templates, and inspiration for your next project. Download designs, coded solutions, or help us build custom apps.
+          </p>
+        </div>
+        <div className="flex justify-end mt-4 right-10 mb-130">
+              <>
+                <button className="bg-[#F0F0F0] text-black px-7 py-2 rounded-full shadow-lg hover:bg-[#]/80 transition duration-300 font-bold text-md mr-4">
+                  Create Account
+                </button>
+                <button
+                  className="text-white border border-white px-7 py-2 rounded-full shadow-lg transition duration-300 font-bold text-md"
+                >
+                  See All Plans
+                </button>
+              </>
+        </div>
+        {/* Moved icons to a new artistic layout */}
+        <div className="flex flex-wrap justify-between w-full pr-40 mt-20">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg" className="h-14 transform rotate-12 mb-4" />
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" className="h-14 transform -rotate-12 mb-4" />
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vuejs/vuejs-original.svg" className="h-14 transform translate-x-4 mb-4" />
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/webflow/webflow-original.svg" className="h-14 transform -translate-x-4 mb-4" />
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/android/android-original.svg" className="h-14 transform rotate-6 mb-4" />
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/apple/apple-original.svg" className="h-14 transform -rotate-6 mb-4 filter invert" />
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/illustrator/illustrator-plain.svg" className="h-14 transform -rotate-6 mb-4" />
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/flutter/flutter-plain.svg" className="h-14 transform -rotate-6 mb-4" />
+        </div>
+
+    
+      </div>
     </section>
   );
 };

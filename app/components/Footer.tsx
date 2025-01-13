@@ -62,13 +62,14 @@ const Footer = () => {
 
       <div className="flex flex-col items-center justify-center w-full footer_copyright text-white">
         <p className={` ${theme === 'dark' ? 'text-white' : 'text-black'} text-center`}>
-          @ 2024 well-dev. All rights reserved 
+          @ 2024 WELL (Well-Dev) All rights reserved.
         </p>
-        <span className={`${theme === 'dark' ? 'text-white' : 'text-black'} pl-2`}>1234 Main St, Delaware, USA</span>
+        <span className={`${theme === 'dark' ? 'text-white' : 'text-black'} pl-2 mt-2`}>1234 Main St, Delaware, USA</span>
+        <span className={`${theme === 'dark' ? 'text-white' : 'text-black'} pl-2 mt-2`}>Paromlinska 12, Sarajevo, Bosnia and Herzegovina</span>
 
         <div className="flex justify-center mt-4">
           <Link href="/premium" className="flex items-center bg-[#] text-white px-4 py-2 rounded">
-            <FaEnvelope className="mr-2" /> Contact Us For Collaboration
+            <FaEnvelope className="mr-2" /> Email For Collaboration
           </Link>
         </div>
       </div>

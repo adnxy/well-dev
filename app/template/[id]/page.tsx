@@ -10,12 +10,12 @@ import mobileScreen5 from "../../../public/mobile-screen5.png";
 
 const TemplatePage = () => {
   const title = "AI Chatbot - React Native"; // Replace with dynamic data
-  const platform = "iOS, Android"; // Replace with dynamic data
+  const platform = "iOS & Android"; // Replace with dynamic data
   const rating = "4.8"; // Replace with dynamic data
   const category = "Artificial Intelligence"; // Replace with dynamic data
   const stack = "React Native, Expo"; // Replace with dynamic data
-  const delivery = "Figma, Code"; // Replace with dynamic data
-  const description = "AI Chatbot, a React Native app that allows you to chat with AI. Created with Expo and React Native. Easy to customize and customize. Documentation and support included."; // Replace with dynamic data
+  const delivery = "  , Code"; // Replace with dynamic data
+  const description = "AI Chatbot, a React Native app that allows you to chat with AI. Created with Expo, Typescript. Easy to customize and deploy. Documentation and support included. Project maintenance and lifetime support included."; // Replace with dynamic data
   const screenshots = [
     mobileScreen1,
     mobileScreen2,
@@ -80,11 +80,32 @@ const TemplatePage = () => {
     "Custom Solutions",
   ]; // Added benefits array
 
+  const comments = [
+    {
+      name: "John Doe",
+      avatar: "https://example.com/avatar1.png",
+      comment: "This app is fantastic! It has changed the way I interact with AI. I've been using it for a few months now and it's been a game changer for me.",
+      userType: "UI Designer"
+    },
+    {
+      name: "Jane Smith",
+      avatar: "https://example.com/avatar2.png",
+      comment: "Nice UI, easy to use and customize. I've been using it for a few months now and it's been a game changer for me.",
+      userType: "Frontend Developer"
+    },
+    {
+      name: "Alice Johnson",
+      avatar: "https://example.com/avatar3.png",
+      comment: "Looking for a way to chat with AI? This app is the perfect solution. It's easy to use and has a great user interface. I've been using it for a few months now and it's been a game changer for me.",
+      userType: "Founder"  
+    },
+  ]; // Added comments array
+
   return (
     <div>
       <div className="flex flex-col items-start justify-start pl-20 mt-10">
         <h1 className="text-4xl font-bold text-white mb-2">{title}</h1>
-        <h2 className="text-[1em] mb-4 font-normal text-white max-w-[800px] overflow-wrap break-word">{description}</h2>  
+        <h2 className="text-[1em] font-normal text-white max-w-[800px] overflow-wrap break-word">{description}</h2>  
         <div className="flex justify-start items-start bg-[#2E2E2E] rounded-full w-[98%] px-5 py-2 mt-3 mb-4 pr-10">
           <p className="text-white">
             <span className="text-emerald-500 bg-white px-3 py-0 rounded-full mr-3 text-[0.9em] font-bold">
@@ -125,32 +146,21 @@ const TemplatePage = () => {
 
 
         <div className="flex flex-col items-start justify-start">
-          <div className="flex space-x-4">
-            <p className="text-md text-white my-1 text-[#989898] mr-5 font-medium">
-              Platform
-            </p>
-            <p className="text-md text-white my-1 text-[#989898] mr-5 font-medium">
-              Rating
-            </p>
-            <p className="text-md text-white my-1 text-[#989898] mr-10 font-medium">
-              Category
-            </p>
-
-            {/* <p className="text-md text-white my-1 font-[#989898]">Stack</p> */}
+          <div className="flex space-x-12">
+            <p className="text-md text-slate-300 my-1 font-regular">Platform</p>
+            <p className="text-md text-slate-300 my-1 font-regular">Rating</p>
+            <p className="text-md text-slate-300 my-1 font-regular">Category</p>
           </div>
-          <div className="flex space-x-4">
+          <div className="flex space-x-5">
             <p className="text-[1em] text-white my-1 font-medium">{platform}</p>
-            <p className="text-[1em] text-white my-1 font-medium">{rating}</p>
-            <p className="text-[1em] text-white my-1 font-medium ml-5">
-              {category}
-            </p>
-            {/* <p className="text-md text-white my-1">React Native, Expo</p> */}
+            <p className="text-[1em] text-white my-1 font-medium">{rating} (180)</p>
+            <p className="text-[1em] text-white my-1 font-medium">{category}</p>
           </div>
 
           <div className="flex justify-end mt-4 right-10 mb-100">
             {!isVideoVisible && (
               <>
-                <button className="bg-[#F0F0F0] text-black px-4 py-2 rounded-full shadow-lg hover:bg-[#]/80 transition duration-300 font-bold text-md mr-2">
+                <button className="bg-[#F0F0F0] text-black px-4 py-2 rounded-full shadow-lg hover:bg-[#]/80 transition duration-300 font-bold text-md mr-3">
                   Buy Now $99
                 </button>
                 <button
@@ -158,6 +168,12 @@ const TemplatePage = () => {
                   className=" text-white border border-white px-4 py-2 rounded-full shadow-lg transition duration-300 font-bold text-md"
                 >
                   Play Demo
+                </button>
+                <button
+                  onClick={handlePlayDemo}
+                  className=" text-white border border-white px-4 py-2 rounded-full shadow-lg transition duration-300 font-medium text-md ml-2 absolute right-20 top-40 "
+                >
+                  Customize
                 </button>
 
 
@@ -211,6 +227,52 @@ const TemplatePage = () => {
         ))}
       </div>
   
+      <div className="mt-10 flex space-x-4 p-4 bg-gray-900 rounded-lg shadow-lg pl-20 overflow-x-auto">
+        {comments.map((comment, index) => (
+          <div key={index} className="flex items-start p-4 bg-gray-800 rounded-lg shadow-md min-w-[250px]">
+            <img
+              // src={comment.avatar}
+              src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=3560&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              alt={`${comment.name}'s avatar`}
+              className="h-10 w-10 rounded-full mr-4"
+            />
+            <div>
+              <p className="font-bold text-white">{comment.name}</p>
+              <p className="text-gray-300 text-[0.95em] text-slate-100">@{comment.userType}</p>
+              <p className="text-gray-300 text-[0.95em] text-slate-300">{comment.comment}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div className="flex justify-center mt-4 bg-[#1E1E1E]/40 p-20">
+        <div className="text-center mt-10">
+          <p className="text-white text-[2em] font-bold">Access to all mobile apps and 9,631 screens.</p>
+          <p className="text-slate-200 font-[1.5em]">Get unlimited access to the full library from $10/month — cancel anytime.</p>
+          <button className="bg-[#F0F0F0] text-black px-8 py-2 rounded-full shadow-lg hover:bg-[#]/80 transition duration-300 font-medium text-md mt-4">
+            Get Pro
+          </button>
+          <div className="flex items-center justify-center mt-2">
+            <div className="flex -space-x-1">
+              <img
+                src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=3560&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt="Avatar"
+                className="h-8 w-8 rounded-full border-2 border-white"
+              />
+              <img
+                src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=3560&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt="Avatar"
+                className="h-8 w-8 rounded-full border-2 border-white"
+              />
+              <img
+                src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=3560&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt="Avatar"
+                className="h-8 w-8 rounded-full border-2 border-white"
+              />
+            </div>
+            <p className="text-slate-300 mt-2 ml-4">Supporting thousands of software developers, designers and agencies worldwide</p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

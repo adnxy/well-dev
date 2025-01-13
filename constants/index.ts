@@ -1,9 +1,10 @@
 export const NavLinks = [
   { href: "/", key: "Jobs", text: "Discover" },
-  { href: "/agency", key: "Jobs", text: "About" },
-  { href: "/agency", key: "Jobs", text: "Privacy" },
-  { href: "/agency", key: "Jobs", text: "Terms" },
-
+  // { href: "/agency", key: "Jobs", text: "About" },
+  // { href: "/agency", key: "Jobs", text: "Privacy" },
+  // { href: "/agency", key: "Jobs", text: "Terms" },
+  { href: "/agency", key: "Jobs", text: "Start Selling" },
+  { href: "https://www.behance.net/patrickseymour", key: "Jobs", text: "Behance" },
 ];
 
 export const categoryFilters = [
