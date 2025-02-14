@@ -198,7 +198,7 @@ const Landing = () => {
       <div className="flex flex-col items-center justify-center w-full ">
         <div className="flex overflow-x-auto mt-5 w-full pl-0 md:pl-20 flex-col md:flex-row flex-wrap justify-start">
           {["React Native Basics", "Understanding Flutter", "Android Development 101", "iOS App Design", "Building Web Apps with React", "Quality Assurance Best Practices", "Exploring DevOps Tools", "Introduction to UI/UX Design"].map((blog, index) => (
-            <div key={index} className={`m-4 flex flex-col items-center w-full md:w-1/5 space-y-2 border-large border-slate-200 p-5 rounded-xl ${premiumPosts.includes(index) ? 'bg-gradient-to-r from-[#024CAA] to-[#1E90FF] border border-[#024CAA]' : 'bg-transparent'}`}>
+            <div key={index} className={`m-4 flex flex-col items-center w-full md:w-1/5 space-y-2 border-large border-slate-200 p-4 rounded-xl ${premiumPosts.includes(index) ? 'bg-gradient-to-r from-[#1E3A8A] to-[#3B82F6] border border-[#1E3A8A] transition duration-300 ease-in-out hover:shadow-lg hover:border-[#1E90FF] hover:outline hover:outline-[#1E90FF] hover:outline-2 shadow-lg shadow-blue-500/50' : 'bg-transparent'}`}>
               <div className="flex justify-between w-full">
                 <div className="flex items-center mt-2 cursor-pointer mb-1" onClick={() => window.open('https://www.linkedin.com/in/adnansahinovic/', '_blank')}>
                   <img src={generateAvatar(index)} alt="Author Avatar" className="w-7 h-7 rounded-full mr-2" />
@@ -228,7 +228,7 @@ const Landing = () => {
                     <span className="text-[0.8em] text-slate-200 font-inter font-medium">45 Likes</span>
                   </div>
                 </div>
-                <button className="mt-2 border border-slate-200 hover:bg-[#73EC8B] hover:text-black text-black px-3 py-1.5 rounded-lg w-full text-white text-bold transition duration-200 ease-in-out hover:outline hover:outline-[#73EC8B]">
+                <button className="mt-2 border border-[#A0D3FF] hover:bg-white hover:text-black text-black px-3 py-1.5 rounded-lg w-full text-white text-bold transition duration-200 ease-in-out hover:outline hover:outline-[#73EC8B]">
                   Read More
                 </button>
               </div>

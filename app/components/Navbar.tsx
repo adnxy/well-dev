@@ -102,7 +102,7 @@ const Navbar = () => {
           <Link href="/pricing" className="text-white text-md hover:text-emerald-400">Pricing</Link>
         </li> */}
 
-        <div className="flex items-center space-x-4 relative right-[120px]">
+        <div className="flex items-center space-x-4 relative right-[300px]">
           {/* <button className="border border-gray-500 text-gray-500 rounded-full px-10 py-2 text-sm font-medium hover:bg-gray-500 hover:text-white transition w-full text-center whitespace-nowrap">
             <Link href="/login" style={{ fontSize: "1.1em", color: "white" }}> Start selling</Link>
             </button> */}
@@ -113,8 +113,8 @@ const Navbar = () => {
             Login
           </Link>
         </button> */}
-        <button className="no-wrap bg-[#343131] hover:bg-[#343131]/80 w-full text-white rounded-full px-7 py-2 text-sm font-medium hover:bg-gray-500 hover:text-white transition w-full text-center min-w-[80px] whitespace-nowrap text-[1.2em]">
-          <Link href="/register" className="text-[1em]">
+        <button className="no-wrap bg-[#343131] hover:bg-[#343131]/80 w-full text-white rounded-full px-8 py-2 text-sm font-medium hover:bg-gray-500 hover:text-white transition w-full text-center min-w-[80px] whitespace-nowrap text-[1.2em]">
+          <Link href="/register" className="text-[1.1em]">
             Subscribe
           </Link>
         </button>
