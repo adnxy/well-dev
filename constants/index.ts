@@ -3,8 +3,8 @@ export const NavLinks = [
   // { href: "/agency", key: "Jobs", text: "About" },
   // { href: "/agency", key: "Jobs", text: "Privacy" },
   // { href: "/agency", key: "Jobs", text: "Terms" },
-  { href: "/agency", key: "Jobs", text: "Start Selling" },
-  { href: "https://www.behance.net/patrickseymour", key: "Jobs", text: "Behance" },
+  { href: "/agency", key: "Jobs", text: "Start Writing" },
+  // { href: "https://www.behance.net/patrickseymour", key: "Jobs", text: "Behance" },
 ];
 
 export const categoryFilters = [

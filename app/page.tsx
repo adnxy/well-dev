@@ -2,16 +2,17 @@
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import styles from "./page.module.css";
-import bannerBg2 from "../public/pitch.jpg";
-import bannerBg4 from "../public/bg-4.jpg";
-import bannerBg6 from "../public/bg-6.jpg";
-import bannerBg7 from "../public/bg-7.jpg";
-
+import { avataaars, identicon, micah, pixelArt } from '@dicebear/collection';
+import { BiMessageRounded as ChatBubbleOutlineIcon } from 'react-icons/bi';
+import { MdVisibility, MdSubscriptions } from "react-icons/md";
+import SchoolIcon from '@mui/icons-material/School';
 
 import screenshot0 from "../public/screenshot.png";
 import screenshot1 from "../public/screenshot1.png";
 import screenshot2 from "../public/screenshot2.png";
 import screenshot3 from "../public/screenshot3.png";
+import screenshot4 from "../public/screenshot4.png";
+import screenshot5 from "../public/screenshot5.png";
 
 import mobileScreen1 from "../public/mobile-screen1.png";
 import mobileScreen2 from "../public/mobile-screen2.png";
@@ -20,27 +21,12 @@ import mobileScreen4 from "../public/mobile-screen4.png";
 import mobileScreen5 from "../public/mobile-screen5.png";
 
 import {
-  FaTrophy,
-  FaCrown,
-  FaInfoCircle,
-  FaArrowLeft,
-  FaArrowRight,
-  FaDollarSign,
-  FaStar,
-  FaGlobe,
-  FaLock,
-  FaSeedling,
-  FaCheckCircle,
-  FaImage,
-  FaInfo,
-  FaOpencart,
-  FaCompress,
-  FaStreetView,
-  FaArrowCircleRight,
+  FaEnvelope,
 } from "react-icons/fa";
 
 import { useTheme } from "./context/ThemeContext";
 import axios from "axios";
+import { createAvatar } from '@dicebear/avatars';
 
 export const getButtonClass = (theme: string, isSelected: boolean) => {
   if (isSelected && theme === 'light') {
@@ -75,6 +61,7 @@ const Landing = () => {
   const [currentScreenshotIndex, setCurrentScreenshotIndex] = useState<number>(0);
   const [currentRating, setCurrentRating] = useState<number | null>(4.5);
   const [isViewClicked, setIsViewClicked] = useState<boolean>(false);
+  const [isSubscribeModalOpen, setIsSubscribeModalOpen] = useState<boolean>(false);
 
   const modalRef = useRef<HTMLDivElement | null>(null);
 
@@ -133,7 +120,36 @@ const Landing = () => {
     setCurrentRating(rating);
   };
 
-  const mobileScreenshots = [mobileScreen1, mobileScreen2, mobileScreen3, mobileScreen4, mobileScreen1, mobileScreen2];
+  // Show modal after 5 seconds
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsSubscribeModalOpen(true);
+    }, 5000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  const closeSubscribeModal = () => {
+    setIsSubscribeModalOpen(false);
+  };
+
+  const generateAvatar = (index: number) => {
+    const svg = createAvatar(micah as any, {
+      seed: `user-${index}`, // Unique seed for each avatar
+      dataUri: true,
+      baseColor: ["77311d","ac6651","f9c9b6"],
+      background: ['#f0f0f0', '#ffcc00', '#000000', '#111111', '#222222', '#333333', '#444444', '#555555', '#666666', '#777777', '#888888', '#999999', '#aaaaaa', '#bbbbbb', '#cccccc', '#dddddd', '#eeeeee', '#ffffff'], 
+      avatarStyle: 'circle', // Changed to a more neutral style
+      facialHair: 'medium', // Example: add medium facial hair
+      hair: 'short', // Example: short hair
+      skinTone: 'light', // Example: light skin tone
+      size: 128,
+      backgroundType: ["gradientLinear","solid"]
+    });
+    return svg;
+  };
+
+  const premiumPosts = [ 3, 5]; // Indices of premium posts
 
   return (
     <section
@@ -142,11 +158,11 @@ const Landing = () => {
       <div className="flex flex-col items-start w-full flex-1 flex-start flex-start justify-between pl-20">
       <h1 className={`text-3xl pl-2 mb-2 font-bold ${theme === "light" ? "text-black" : "text-white"}`}>Discover</h1>
       <h2 className={`text-[1.1em] pl-2 mb-4 font-medium ${theme === "light" ? "text-black" : "text-[#EEEEEE]"}`}>
-        Get inspired and download premium mobile designs, elements, workflows and pre-coded templates.
+        Get handpicked practices, tutorials, and trends for mobile developers, designers and QA engineers.
       </h2>
 
      <div className="flex w-full justify-start pl-0 mb-2">
-        {["React Native", "Flutter", "Android", "iOS", "Figma" ].map((filter) => (
+        {["React Native", "Flutter", "Android", "iOS", ].map((filter) => (
           <div className="flex flex-col items-start w-1/1 justify-start">
             <button
               key={filter}
@@ -160,7 +176,7 @@ const Landing = () => {
       </div> 
 
       <div className="flex overflow-x-auto w-full space-x-3 justify-start pl-1 mt-3">
-        {["Apps", "Workflows", "Screens", "UI Elements"].map((view) => (
+        {["Tutorials", "Best Practices", "News & Trends", "Tools & Libraries", "Design", "Quality Assurance"].map((view) => (
           <button
             key={view}
             onClick={() => {
@@ -179,172 +195,82 @@ const Landing = () => {
 
       </div>
 
-      <div className="flex flex-col items-center justify-center w-full">
-        <div className="flex overflow-x-auto mt-5 w-full pl-0 md:pl-20 flex-col md:flex-row">
-          {selectedFilter === "React Native" || selectedFilter === "Flutter" || selectedFilter === "Android" || selectedFilter === "iOS"
-            ? mobileScreenshots.map((screenshot, index) => (
-              <div
-                key={index}
-                className="m-1 flex justify-center relative w-full md:w-auto"
-                onMouseEnter={() => setHoveredImageIndex(index)}
-                onMouseLeave={() => setHoveredImageIndex(null)}
-                onClick={() => window.location.href = `/template/${index}`}
-              >
-                {/* Circle overlay for hovered screenshots */}
-                {hoveredImageIndex === index && (
-                  <div className="absolute top-10 left-10 transform -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-[#111111]" />
-                )}
-                <Image
-                  src={screenshot}
-                  alt={`Screenshot ${index + 1}`}
-                  className="min-w-[320px] min-h-[200px] w-full object-cover cursor-pointer m-2 rounded-xl"
-                />
-                {hoveredImageIndex === index && (
-                  <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 mb-2 flex space-x-1 whitespace-nowrap">
-                    <button className="bg-slate-100 text-black px-6 py-3 rounded-full mr-1 text-[1em]">
-                      View Demo
-                    </button>
-                    <button className="bg-[#111111] text-white px-6 py-3 rounded-full mr-1 text-[1em]">
-                      Buy Now
-                    </button>
-                  </div>
-                )}
+      <div className="flex flex-col items-center justify-center w-full ">
+        <div className="flex overflow-x-auto mt-5 w-full pl-0 md:pl-20 flex-col md:flex-row flex-wrap justify-start">
+          {["React Native Basics", "Understanding Flutter", "Android Development 101", "iOS App Design", "Building Web Apps with React", "Quality Assurance Best Practices", "Exploring DevOps Tools", "Introduction to UI/UX Design"].map((blog, index) => (
+            <div key={index} className={`m-4 flex flex-col items-center w-full md:w-1/5 space-y-2 border-large border-slate-200 p-5 rounded-xl ${premiumPosts.includes(index) ? 'bg-gradient-to-r from-[#024CAA] to-[#1E90FF] border border-[#024CAA]' : 'bg-transparent'}`}>
+              <div className="flex justify-between w-full">
+                <div className="flex items-center mt-2 cursor-pointer mb-1" onClick={() => window.open('https://www.linkedin.com/in/adnansahinovic/', '_blank')}>
+                  <img src={generateAvatar(index)} alt="Author Avatar" className="w-7 h-7 rounded-full mr-2" />
+                  <span className="text-[0.95em] text-slate-100">Adnan Sahinovic</span>
+                </div>
+                <span className="text-[0.95em] text-slate-200 mt-2">Three days ago</span>
               </div>
-            ))
-            : [screenshot0, screenshot1, screenshot2, screenshot3].map((screenshot, index) => (
-              <div
-                key={index}
-                className="m-4 flex justify-center relative w-full md:w-2/5 bg-blue-500"
-                onMouseEnter={() => setHoveredImageIndex(index)}
-                onMouseLeave={() => setHoveredImageIndex(null)}
-              >
-                <Image
-                  src={screenshot}
-                  alt={`Screenshot ${index + 1}`}
-                  className="min-w-[550px] min-h-[400px] w-full object-cover cursor-pointer m-3 rounded-xl"
-                  onClick={() => openModal(index)}
-                />
-                {hoveredImageIndex === index && (
-                  <div className="absolute inset-0 bg-black opacity-50 rounded-xl w-full" />
-                )}
-                {hoveredImageIndex === index && 
-                  <FaArrowCircleRight color="navy" className="text-3xl absolute top-5 right-10" />
-                }
-                {hoveredImageIndex === index && (
-                  <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 mb-2 flex space-x-2 whitespace-nowrap">
-                    <button className="bg-slate-200 text-black px-3 py-3 rounded mr-1 text-sm">
-                      Download Design
-                    </button>
-                    <button className="bg-[#00FF9C] text-black px-3 py-3 rounded mr-1 text-sm">
-                      Download Code
-                    </button>
-                  </div>
-                )}
-              </div>
-            ))
-          }
-        </div>
-      </div>
-
-      {/* Modal for displaying the screenshot */}
-      {isModalOpen && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-75 z-50 p-0">
-          <div ref={modalRef} className="relative w-[95%] max-h-[95%] flex flex-col items-center p-0 bg-[#1E1E1E]/90 overflow-hidden rounded-xl">
-            <button onClick={prevImage} className="absolute left-2 top-1/2 transform -translate-y-1/2 text-2xl text-white">❮</button>
-            <button onClick={nextImage} className="absolute top-1/2 right-[10px] transform -translate-y-1/2 text-2xl text-white">❯</button> {/* Ensure visibility */}
-            
-            <div className="flex bg-[#1f1f1f] rounded-none  mt-10 mb-10  rounded-xl"> {/* Changed rounded to none */}
               <Image
-                src={[mobileScreen1, mobileScreen2, mobileScreen3, mobileScreen4, mobileScreen5][currentScreenshotIndex]} // Use current index
-                alt={`Screenshot ${currentScreenshotIndex + 1}`} // Update alt text for accessibility
-                className="w-full h-[700px] object-cover rounded-xl" // Changed dimensions to full
+                src={[screenshot0, screenshot1, screenshot2, screenshot3, screenshot1, screenshot2, screenshot2, screenshot1, screenshot0][index]} // Use screenshot images
+                alt={`Screenshot ${index + 1}`}
+                className="w-full h-55 object-cover rounded-xl"
               />
-              <div className="bg-[#1f1f1f] text-white flex flex-col min-w-[370px] p-5 pl-1/4 rounded-none"> {/* Changed rounded to none */}
-                <h3 className="text-[1.4em] font-semibold mb-2 font-inter leading-tight mb-3">E-commerce Shop</h3> {/* Added font */}
-                <p className="text-[1em] text-gray-500 mb-1 font-inter leading-tight mb-3">Type: iOS App, Android App</p>
-                <p className="text-[1em] text-gray-500 mb-1 font-inter leading-tight mb-3">Updated: Jan 3, 2023</p>
-                <p className="text-base text-gray-500 mb-4 font-inter leading-tight mb-3 line-height-3">Stack: Expo, React Native, Tailwind CSS</p>
-                <div className="border-b-2 border-slate-200 pt-1 pb-1" />
-                <div className="flex flex-col space-y-2 mt-5 mb-5">
-                  <p className="text-sm text-gray-500 mb-4 font-inter leading-tight mb-3 line-height-3">Easy to customize</p>
-                  <p className="text-sm text-gray-500 mb-4 font-inter leading-tight mb-3 line-height-3">Easy to customize</p>
-                  <p className="text-sm text-gray-500 mb-4 font-inter leading-tight mb-3 line-height-3">Easy to customize</p>
-                </div>
-
-                <div className="flex flex-col space-y-3">
-                  <button className="text-sm bg-slate-200 text-black px-6 py-3 rounded-lg shadow-md hover:bg-slate-200/90 transition duration-200">
-                    View Demo
-                  </button>
-
-                  <button className="text-sm bg-slate-200 text-black px-6 py-3 rounded-lg shadow-md hover:bg-slate-200/90 transition duration-200">
-                    Buy $199 
-                  </button>
-
-                  <button className="text-sm bg-[#1F509A] text-white px-6 py-3 rounded-lg shadow-md ">
-                    Customize
-                  </button>
-
-                  {/* Separate Divider */}
-                  <div className="border-b-21 border-slate-200 pt-1 pb-1" /> {/* New divider */}
-                  {/* Star Rating Component */}
-                  <div className="flex items-center">
-                    {[1, 2, 3, 4, 5].map((star) => (
-                      <span
-                        key={star}
-                        className={`mr-3 cursor-pointer text-2xl ${star <= currentRating ? 'text-yellow-500' : 'text-gray-400'}`}
-                        // onClick={() => handleRating(star)}
-                      >
-                        ★
-                      </span>
-                    ))}
+              <div className="flex flex-col items-start w-full">
+                <h3 className="text-[1.4em] font-bold text-slate-100 tracking-wide">{blog}</h3>
+                <p className="text-slate-200 font-inter text-[0.9em]">A step-by-step guide for mastering React Native fundamentals and best practices.</p>
+                <div className="flex items-center justify-between w-full mb-2">
+                  <div className="flex items-center mt-2">
+                    <MdVisibility className="h-4 w-4 mr-1" color="white" />
+                    <span className="text-[0.8em] text-slate-200 font-inter font-medium">1.5K Views</span>
                   </div>
-                  <p className="text-sm text-white">Average Rating: 4.5 (115 reviews)</p>
-                  {/* Disabled rating functionality */}
+                  {/* <div className="flex items-center">
+                    <ChatBubbleOutlineIcon className="h-4 w-4 mr-1" color="white" />
+                    <span className="text-[0.8em] text-slate-200 font-inter font-medium">10+ Comments</span>
+                  </div> */}
+                  <div className="flex items-center">
+                    <img style={{filter: 'invert(1)'}} src="https://cdn-icons-png.flaticon.com/512/1077/1077035.png" alt="Likes Icon" className="h-4 w-4 mr-1 text-slate-100" />
+                    <span className="text-[0.8em] text-slate-200 font-inter font-medium">45 Likes</span>
+                  </div>
                 </div>
+                <button className="mt-2 border border-slate-200 hover:bg-[#73EC8B] hover:text-black text-black px-3 py-1.5 rounded-lg w-full text-white text-bold transition duration-200 ease-in-out hover:outline hover:outline-[#73EC8B]">
+                  Read More
+                </button>
               </div>
             </div>
+          ))}
+        </div>
+      </div>
+
+ 
+
+      {/* Subscribe Modal */}
+      {isSubscribeModalOpen && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-75 z-50" onClick={closeSubscribeModal}>
+          <div className="bg-white rounded-lg shadow-lg text-center w-1/4 p-10" onClick={(e) => e.stopPropagation()}>
+            <button
+              onClick={closeSubscribeModal}
+              className="absolute top-3 right-3 text-gray-500"
+            >
+              ✖
+            </button>
+            <h2 className="text-2xl font-bold mb-2 text-[#09122C] flex items-center justify-center">
+              <SchoolIcon className="mr-2" size={35} /> Join Our Newsletter
+            </h2>
+            <p className="mb-4 font-inter font-medium text-[#243642]">Join our newsletter to stay updated with the currated and latest mobile resources, trends, and best practices.</p>
+            <div className="flex items-center border rounded p-2 mb-4 w-full border-slate-400">
+              <FaEnvelope className="mr-2 text-gray-500" />
+              <input
+                type="email"
+                placeholder="Enter your email"
+                className="flex-grow h-5 focus:outline-none focus:border-none"
+                style={{ fontSize: '1em', padding: '1%' }}
+              />
+            </div>
+            <button
+              onClick={closeSubscribeModal}
+              className="bg-black text-white px-4 py-2 rounded w-full hover:bg-slate-800"
+            >
+              Subscribe
+            </button>
           </div>
         </div>
-        
       )}
-
-      {/* New Section */}
-      <div className="flex flex-col items-center justify-left w-full mt-20 pl-40">
-        <h2 className={`text-4xl font-bold ${theme === "light" ? "text-black" : "text-white"} w-1/2 text-center line-height-10`}>
-          The world’s premium design inspiration and pre-coded solutions
-        </h2>
-        <div className="mt-4 p-6 border rounded-lg shadow-lg bg-[#1E1E1E]/40 mb-2 mt-8 w-1/2 line-height-10">
-          {/* Content for the box can be added here */}
-          <p style={{fontSize: '1.15em'}} className={`text-center ${theme === "light" ? "text-black" : "text-white"} font-inter line-height-30 font-xl font-[#1E1E1E] font-normal font-[15em]`}>
-            Explore a vast collection of design resources, templates, and inspiration for your next project. Download designs, coded solutions, or help us build custom apps.
-          </p>
-        </div>
-        <div className="flex justify-end mt-4 right-10 mb-130">
-              <>
-                <button className="bg-[#F0F0F0] text-black px-7 py-2 rounded-full shadow-lg hover:bg-[#]/80 transition duration-300 font-bold text-md mr-4">
-                  Create Account
-                </button>
-                <button
-                  className="text-white border border-white px-7 py-2 rounded-full shadow-lg transition duration-300 font-bold text-md"
-                >
-                  See All Plans
-                </button>
-              </>
-        </div>
-        {/* Moved icons to a new artistic layout */}
-        <div className="flex flex-wrap justify-between w-full pr-40 mt-20">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg" className="h-14 transform rotate-12 mb-4" />
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" className="h-14 transform -rotate-12 mb-4" />
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vuejs/vuejs-original.svg" className="h-14 transform translate-x-4 mb-4" />
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/webflow/webflow-original.svg" className="h-14 transform -translate-x-4 mb-4" />
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/android/android-original.svg" className="h-14 transform rotate-6 mb-4" />
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/apple/apple-original.svg" className="h-14 transform -rotate-6 mb-4 filter invert" />
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/illustrator/illustrator-plain.svg" className="h-14 transform -rotate-6 mb-4" />
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/flutter/flutter-plain.svg" className="h-14 transform -rotate-6 mb-4" />
-        </div>
-
-    
-      </div>
     </section>
   );
 };

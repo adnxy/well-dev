@@ -43,8 +43,8 @@ const Agency = () => {
             <div className="flex flex-col items-start w-full flex-1 flex-start flex-start justify-between pl-20">
 
                 {/* New Form Section */}
-                <h1 className={`text-3xl font-semibold pl-2 ${theme === 'light' ? 'text-black' : 'text-white'} mb-2`}>Submit Your Resource</h1>
-                <p className={`text-lg font-medium pl-2 ${theme === 'light' ? 'text-black' : 'text-slate-300'} mb-2`}>Start selling your UI designs, templates, workflows and screens</p>
+                <h1 className={`text-3xl font-semibold pl-2 ${theme === 'light' ? 'text-black' : 'text-white'} mb-2`}>Become a Partner</h1>
+                <p className={`text-lg font-medium pl-2 ${theme === 'light' ? 'text-black' : 'text-slate-300'} mb-2`}>Start selling your UI designs, templates, workflows and more</p>
 
                 <form onSubmit={handleSubmit} className="flex flex-col space-y-4 pl-2">
                     {/* Updated Type Selection */}
